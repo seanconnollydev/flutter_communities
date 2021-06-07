@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'registration_screen.dart';
+
 class HomeScreen extends StatelessWidget {
   static const routeName = '/';
 
@@ -34,7 +36,7 @@ class HomeScreen extends StatelessWidget {
             alignment: Alignment.center,
             child: ElevatedButton(
               onPressed: () {
-                print('>>> Navigate to Register');
+                Navigator.of(context).pushNamed(RegistrationScreen.routeName);
               },
               child: Text('Register'),
             ),
