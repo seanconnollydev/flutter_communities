@@ -40,4 +40,9 @@ class AuthNotifier extends StateNotifier<AuthSession?> {
     await storage.write(key: _tokenKey, value: token);
     state = AuthSession(token);
   }
+
+  Future<void> clearSession() async {
+    await storage.delete(key: _tokenKey);
+    state = null;
+  }
 }

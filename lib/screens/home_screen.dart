@@ -16,6 +16,36 @@ class HomeScreen extends ConsumerWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('Flutter Communities'),
+        actions: [
+          if (auth != null)
+            GestureDetector(
+              child: CircleAvatar(
+                child: Text('🙋🏻‍♂️'),
+                backgroundColor: Theme.of(context).backgroundColor,
+              ),
+              onTap: () {
+                showModalBottomSheet(
+                    context: context,
+                    builder: (_) {
+                      return Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          ListTile(
+                            title: Text('Logout'),
+                            onTap: () async {
+                              await context
+                                  .read(authProvider.notifier)
+                                  .clearSession();
+                              Navigator.of(context).popUntil((route) => false);
+                              Navigator.of(context).pushNamed(routeName);
+                            },
+                          )
+                        ],
+                      );
+                    });
+              },
+            )
+        ],
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -37,24 +67,27 @@ class HomeScreen extends ConsumerWidget {
                 style: TextStyle(fontSize: 144),
               ),
             ),
-            Container(
-              alignment: Alignment.center,
-              child: ElevatedButton(
-                onPressed: () {
-                  Navigator.of(context).pushNamed(RegistrationScreen.routeName);
-                },
-                child: Text('Register'),
+            if (auth == null)
+              Container(
+                alignment: Alignment.center,
+                child: ElevatedButton(
+                  onPressed: () {
+                    Navigator.of(context)
+                        .pushNamed(RegistrationScreen.routeName);
+                  },
+                  child: Text('Register'),
+                ),
               ),
-            ),
-            Container(
-              alignment: Alignment.center,
-              child: TextButton(
-                onPressed: () {
-                  print('>>> Navigate to Login');
-                },
-                child: Text('Login'),
-              ),
-            )
+            if (auth == null)
+              Container(
+                alignment: Alignment.center,
+                child: TextButton(
+                  onPressed: () {
+                    print('>>> Navigate to Login');
+                  },
+                  child: Text('Login'),
+                ),
+              )
           ],
         ),
       ),
