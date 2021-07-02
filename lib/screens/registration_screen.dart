@@ -35,7 +35,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     final token = resp.data?.createUser;
     if (token != null) {
       await context.read(authProvider.notifier).setSession(token);
-      Navigator.of(context).pushNamed(HomeScreen.routeName);
+      Navigator.of(context)
+          .pushNamedAndRemoveUntil(HomeScreen.routeName, (_) => false);
     }
   }
 

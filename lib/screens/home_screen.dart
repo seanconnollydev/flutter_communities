@@ -12,12 +12,12 @@ class HomeScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, ScopedReader watch) {
     final auth = watch(authProvider);
-    print('>>> auth token: ${auth?.token}');
+    print('>>> isAuthenticated: ${auth.isAuthenticated}');
     return Scaffold(
       appBar: AppBar(
         title: Text('Flutter Communities'),
         actions: [
-          if (auth != null)
+          if (auth.isAuthenticated)
             GestureDetector(
               child: CircleAvatar(
                 child: Text('🙋🏻‍♂️'),
@@ -67,7 +67,7 @@ class HomeScreen extends ConsumerWidget {
                 style: TextStyle(fontSize: 144),
               ),
             ),
-            if (auth == null)
+            if (!auth.isAuthenticated) ...[
               Container(
                 alignment: Alignment.center,
                 child: ElevatedButton(
@@ -78,7 +78,6 @@ class HomeScreen extends ConsumerWidget {
                   child: Text('Register'),
                 ),
               ),
-            if (auth == null)
               Container(
                 alignment: Alignment.center,
                 child: TextButton(
@@ -88,6 +87,7 @@ class HomeScreen extends ConsumerWidget {
                   child: Text('Login'),
                 ),
               )
+            ]
           ],
         ),
       ),

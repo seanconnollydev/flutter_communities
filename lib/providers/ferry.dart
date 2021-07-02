@@ -7,7 +7,7 @@ import 'auth.dart';
 
 final ferryClientProvider = Provider<Client>((ref) {
   final auth = ref.watch(authProvider);
-  final token = auth?.token ?? dotenv.env["FAUNA_PUBLIC_KEY"];
+  final token = auth.token ?? dotenv.env["FAUNA_PUBLIC_KEY"];
 
   print('>>> token $token');
 
