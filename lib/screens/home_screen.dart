@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_communities/providers/auth.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import 'login_screen.dart';
 import 'registration_screen.dart';
 
 class HomeScreen extends ConsumerWidget {
@@ -82,7 +83,7 @@ class HomeScreen extends ConsumerWidget {
                 alignment: Alignment.center,
                 child: TextButton(
                   onPressed: () {
-                    print('>>> Navigate to Login');
+                    Navigator.of(context).pushNamed(LoginScreen.routeName);
                   },
                   child: Text('Login'),
                 ),

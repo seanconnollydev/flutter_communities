@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_communities/screens/login_screen.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -21,6 +22,7 @@ class MyApp extends StatelessWidget {
       routes: {
         HomeScreen.routeName: (_) => HomeScreen(),
         RegistrationScreen.routeName: (_) => RegistrationScreen(),
+        LoginScreen.routeName: (_) => LoginScreen(),
       },
     );
   }

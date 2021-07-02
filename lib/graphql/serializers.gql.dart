@@ -2,11 +2,11 @@ import 'package:built_collection/built_collection.dart';
 import 'package:built_value/serializer.dart';
 import 'package:built_value/standard_json_plugin.dart' show StandardJsonPlugin;
 import 'package:flutter_communities/graphql/communities.data.gql.dart'
-    show GCreateUserData;
+    show GCreateUserData, GLoginUserData;
 import 'package:flutter_communities/graphql/communities.req.gql.dart'
-    show GCreateUserReq;
+    show GCreateUserReq, GLoginUserReq;
 import 'package:flutter_communities/graphql/communities.var.gql.dart'
-    show GCreateUserVars;
+    show GCreateUserVars, GLoginUserVars;
 import 'package:flutter_communities/graphql/schema.schema.gql.dart'
     show GCreateUserInput, GDate, GLoginUserInput, GLong, GTime, GUserInput;
 import 'package:gql_code_builder/src/serializers/operation_serializer.dart'
@@ -23,7 +23,10 @@ final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   GCreateUserReq,
   GCreateUserVars,
   GDate,
+  GLoginUserData,
   GLoginUserInput,
+  GLoginUserReq,
+  GLoginUserVars,
   GLong,
   GTime,
   GUserInput

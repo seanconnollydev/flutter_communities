@@ -23,3 +23,20 @@ abstract class GCreateUserVars
   static GCreateUserVars? fromJson(Map<String, dynamic> json) =>
       _i2.serializers.deserializeWith(GCreateUserVars.serializer, json);
 }
+
+abstract class GLoginUserVars
+    implements Built<GLoginUserVars, GLoginUserVarsBuilder> {
+  GLoginUserVars._();
+
+  factory GLoginUserVars([Function(GLoginUserVarsBuilder b) updates]) =
+      _$GLoginUserVars;
+
+  _i1.GLoginUserInput get input;
+  static Serializer<GLoginUserVars> get serializer =>
+      _$gLoginUserVarsSerializer;
+  Map<String, dynamic> toJson() =>
+      (_i2.serializers.serializeWith(GLoginUserVars.serializer, this)
+          as Map<String, dynamic>);
+  static GLoginUserVars? fromJson(Map<String, dynamic> json) =>
+      _i2.serializers.deserializeWith(GLoginUserVars.serializer, json);
+}

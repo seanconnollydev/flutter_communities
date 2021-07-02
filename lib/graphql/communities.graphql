@@ -1,3 +1,7 @@
 mutation CreateUser($input: CreateUserInput!) {
   createUser(input: $input)
 }
+
+mutation LoginUser($input: LoginUserInput!) {
+  loginUser(input: $input)
+}
