@@ -5,6 +5,7 @@ type Mutation {
 
 type User {
   username: String! @unique
+  communities: [Community!] @relation(name: "user_communities")
 }
 
 input CreateUserInput {
@@ -15,4 +16,10 @@ input CreateUserInput {
 input LoginUserInput {
   username: String!
   password: String!
+}
+
+type Community {
+  name: String!
+  purpose: String
+  creator: User! @relation(name: "user_communities")
 }
