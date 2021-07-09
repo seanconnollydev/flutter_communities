@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_communities/providers/auth.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import 'create_community_screen.dart';
 import 'login_screen.dart';
 import 'registration_screen.dart';
 
@@ -91,6 +92,12 @@ class HomeScreen extends ConsumerWidget {
             ]
           ],
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        onPressed: () {
+          Navigator.of(context).pushNamed(CreateCommunityScreen.routeName);
+        },
       ),
     );
   }

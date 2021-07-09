@@ -73,6 +73,109 @@ const unique = _i1.DirectiveDefinitionNode(
     ],
     locations: [_i1.DirectiveLocation.fieldDefinition],
     repeatable: false);
+const Community = _i1.ObjectTypeDefinitionNode(
+    name: _i1.NameNode(value: 'Community'),
+    directives: [],
+    interfaces: [],
+    fields: [
+      _i1.FieldDefinitionNode(
+          name: _i1.NameNode(value: 'name'),
+          directives: [],
+          args: [],
+          type: _i1.NamedTypeNode(
+              name: _i1.NameNode(value: 'String'), isNonNull: true)),
+      _i1.FieldDefinitionNode(
+          name: _i1.NameNode(value: '_id'),
+          directives: [],
+          args: [],
+          type: _i1.NamedTypeNode(
+              name: _i1.NameNode(value: 'ID'), isNonNull: true)),
+      _i1.FieldDefinitionNode(
+          name: _i1.NameNode(value: 'creator'),
+          directives: [],
+          args: [],
+          type: _i1.NamedTypeNode(
+              name: _i1.NameNode(value: 'User'), isNonNull: true)),
+      _i1.FieldDefinitionNode(
+          name: _i1.NameNode(value: 'purpose'),
+          directives: [],
+          args: [],
+          type: _i1.NamedTypeNode(
+              name: _i1.NameNode(value: 'String'), isNonNull: false)),
+      _i1.FieldDefinitionNode(
+          name: _i1.NameNode(value: '_ts'),
+          directives: [],
+          args: [],
+          type: _i1.NamedTypeNode(
+              name: _i1.NameNode(value: 'Long'), isNonNull: true))
+    ]);
+const CommunityCreatorRelation = _i1.InputObjectTypeDefinitionNode(
+    name: _i1.NameNode(value: 'CommunityCreatorRelation'),
+    directives: [],
+    fields: [
+      _i1.InputValueDefinitionNode(
+          name: _i1.NameNode(value: 'create'),
+          directives: [],
+          type: _i1.NamedTypeNode(
+              name: _i1.NameNode(value: 'UserInput'), isNonNull: false),
+          defaultValue: null),
+      _i1.InputValueDefinitionNode(
+          name: _i1.NameNode(value: 'connect'),
+          directives: [],
+          type: _i1.NamedTypeNode(
+              name: _i1.NameNode(value: 'ID'), isNonNull: false),
+          defaultValue: null)
+    ]);
+const CommunityInput = _i1.InputObjectTypeDefinitionNode(
+    name: _i1.NameNode(value: 'CommunityInput'),
+    directives: [],
+    fields: [
+      _i1.InputValueDefinitionNode(
+          name: _i1.NameNode(value: 'name'),
+          directives: [],
+          type: _i1.NamedTypeNode(
+              name: _i1.NameNode(value: 'String'), isNonNull: true),
+          defaultValue: null),
+      _i1.InputValueDefinitionNode(
+          name: _i1.NameNode(value: 'purpose'),
+          directives: [],
+          type: _i1.NamedTypeNode(
+              name: _i1.NameNode(value: 'String'), isNonNull: false),
+          defaultValue: null),
+      _i1.InputValueDefinitionNode(
+          name: _i1.NameNode(value: 'creator'),
+          directives: [],
+          type: _i1.NamedTypeNode(
+              name: _i1.NameNode(value: 'CommunityCreatorRelation'),
+              isNonNull: false),
+          defaultValue: null)
+    ]);
+const CommunityPage = _i1.ObjectTypeDefinitionNode(
+    name: _i1.NameNode(value: 'CommunityPage'),
+    directives: [],
+    interfaces: [],
+    fields: [
+      _i1.FieldDefinitionNode(
+          name: _i1.NameNode(value: 'data'),
+          directives: [],
+          args: [],
+          type: _i1.ListTypeNode(
+              type: _i1.NamedTypeNode(
+                  name: _i1.NameNode(value: 'Community'), isNonNull: false),
+              isNonNull: true)),
+      _i1.FieldDefinitionNode(
+          name: _i1.NameNode(value: 'after'),
+          directives: [],
+          args: [],
+          type: _i1.NamedTypeNode(
+              name: _i1.NameNode(value: 'String'), isNonNull: false)),
+      _i1.FieldDefinitionNode(
+          name: _i1.NameNode(value: 'before'),
+          directives: [],
+          args: [],
+          type: _i1.NamedTypeNode(
+              name: _i1.NameNode(value: 'String'), isNonNull: false))
+    ]);
 const CreateUserInput = _i1.InputObjectTypeDefinitionNode(
     name: _i1.NameNode(value: 'CreateUserInput'),
     directives: [],
@@ -117,20 +220,6 @@ const Mutation = _i1.ObjectTypeDefinitionNode(
     interfaces: [],
     fields: [
       _i1.FieldDefinitionNode(
-          name: _i1.NameNode(value: 'createUser'),
-          directives: [],
-          args: [
-            _i1.InputValueDefinitionNode(
-                name: _i1.NameNode(value: 'input'),
-                directives: [],
-                type: _i1.NamedTypeNode(
-                    name: _i1.NameNode(value: 'CreateUserInput'),
-                    isNonNull: true),
-                defaultValue: null)
-          ],
-          type: _i1.NamedTypeNode(
-              name: _i1.NameNode(value: 'String'), isNonNull: true)),
-      _i1.FieldDefinitionNode(
           name: _i1.NameNode(value: 'updateUser'),
           directives: [],
           args: [
@@ -150,7 +239,21 @@ const Mutation = _i1.ObjectTypeDefinitionNode(
           type: _i1.NamedTypeNode(
               name: _i1.NameNode(value: 'User'), isNonNull: false)),
       _i1.FieldDefinitionNode(
-          name: _i1.NameNode(value: 'deleteUser'),
+          name: _i1.NameNode(value: 'createUser'),
+          directives: [],
+          args: [
+            _i1.InputValueDefinitionNode(
+                name: _i1.NameNode(value: 'input'),
+                directives: [],
+                type: _i1.NamedTypeNode(
+                    name: _i1.NameNode(value: 'CreateUserInput'),
+                    isNonNull: true),
+                defaultValue: null)
+          ],
+          type: _i1.NamedTypeNode(
+              name: _i1.NameNode(value: 'String'), isNonNull: true)),
+      _i1.FieldDefinitionNode(
+          name: _i1.NameNode(value: 'updateCommunity'),
           directives: [],
           args: [
             _i1.InputValueDefinitionNode(
@@ -158,10 +261,17 @@ const Mutation = _i1.ObjectTypeDefinitionNode(
                 directives: [],
                 type: _i1.NamedTypeNode(
                     name: _i1.NameNode(value: 'ID'), isNonNull: true),
+                defaultValue: null),
+            _i1.InputValueDefinitionNode(
+                name: _i1.NameNode(value: 'data'),
+                directives: [],
+                type: _i1.NamedTypeNode(
+                    name: _i1.NameNode(value: 'CommunityInput'),
+                    isNonNull: true),
                 defaultValue: null)
           ],
           type: _i1.NamedTypeNode(
-              name: _i1.NameNode(value: 'User'), isNonNull: false)),
+              name: _i1.NameNode(value: 'Community'), isNonNull: false)),
       _i1.FieldDefinitionNode(
           name: _i1.NameNode(value: 'loginUser'),
           directives: [],
@@ -175,7 +285,47 @@ const Mutation = _i1.ObjectTypeDefinitionNode(
                 defaultValue: null)
           ],
           type: _i1.NamedTypeNode(
-              name: _i1.NameNode(value: 'String'), isNonNull: true))
+              name: _i1.NameNode(value: 'String'), isNonNull: true)),
+      _i1.FieldDefinitionNode(
+          name: _i1.NameNode(value: 'deleteCommunity'),
+          directives: [],
+          args: [
+            _i1.InputValueDefinitionNode(
+                name: _i1.NameNode(value: 'id'),
+                directives: [],
+                type: _i1.NamedTypeNode(
+                    name: _i1.NameNode(value: 'ID'), isNonNull: true),
+                defaultValue: null)
+          ],
+          type: _i1.NamedTypeNode(
+              name: _i1.NameNode(value: 'Community'), isNonNull: false)),
+      _i1.FieldDefinitionNode(
+          name: _i1.NameNode(value: 'deleteUser'),
+          directives: [],
+          args: [
+            _i1.InputValueDefinitionNode(
+                name: _i1.NameNode(value: 'id'),
+                directives: [],
+                type: _i1.NamedTypeNode(
+                    name: _i1.NameNode(value: 'ID'), isNonNull: true),
+                defaultValue: null)
+          ],
+          type: _i1.NamedTypeNode(
+              name: _i1.NameNode(value: 'User'), isNonNull: false)),
+      _i1.FieldDefinitionNode(
+          name: _i1.NameNode(value: 'createCommunity'),
+          directives: [],
+          args: [
+            _i1.InputValueDefinitionNode(
+                name: _i1.NameNode(value: 'data'),
+                directives: [],
+                type: _i1.NamedTypeNode(
+                    name: _i1.NameNode(value: 'CommunityInput'),
+                    isNonNull: true),
+                defaultValue: null)
+          ],
+          type: _i1.NamedTypeNode(
+              name: _i1.NameNode(value: 'Community'), isNonNull: true))
     ]);
 const Query = _i1.ObjectTypeDefinitionNode(
     name: _i1.NameNode(value: 'Query'),
@@ -194,7 +344,20 @@ const Query = _i1.ObjectTypeDefinitionNode(
                 defaultValue: null)
           ],
           type: _i1.NamedTypeNode(
-              name: _i1.NameNode(value: 'User'), isNonNull: false))
+              name: _i1.NameNode(value: 'User'), isNonNull: false)),
+      _i1.FieldDefinitionNode(
+          name: _i1.NameNode(value: 'findCommunityByID'),
+          directives: [],
+          args: [
+            _i1.InputValueDefinitionNode(
+                name: _i1.NameNode(value: 'id'),
+                directives: [],
+                type: _i1.NamedTypeNode(
+                    name: _i1.NameNode(value: 'ID'), isNonNull: true),
+                defaultValue: null)
+          ],
+          type: _i1.NamedTypeNode(
+              name: _i1.NameNode(value: 'Community'), isNonNull: false))
     ]);
 const Time = _i1.ScalarTypeDefinitionNode(
     name: _i1.NameNode(value: 'Time'), directives: []);
@@ -220,7 +383,56 @@ const User = _i1.ObjectTypeDefinitionNode(
           directives: [],
           args: [],
           type: _i1.NamedTypeNode(
-              name: _i1.NameNode(value: 'String'), isNonNull: true))
+              name: _i1.NameNode(value: 'String'), isNonNull: true)),
+      _i1.FieldDefinitionNode(
+          name: _i1.NameNode(value: 'communities'),
+          directives: [],
+          args: [
+            _i1.InputValueDefinitionNode(
+                name: _i1.NameNode(value: '_size'),
+                directives: [],
+                type: _i1.NamedTypeNode(
+                    name: _i1.NameNode(value: 'Int'), isNonNull: false),
+                defaultValue: null),
+            _i1.InputValueDefinitionNode(
+                name: _i1.NameNode(value: '_cursor'),
+                directives: [],
+                type: _i1.NamedTypeNode(
+                    name: _i1.NameNode(value: 'String'), isNonNull: false),
+                defaultValue: null)
+          ],
+          type: _i1.NamedTypeNode(
+              name: _i1.NameNode(value: 'CommunityPage'), isNonNull: true))
+    ]);
+const UserCommunitiesRelation = _i1.InputObjectTypeDefinitionNode(
+    name: _i1.NameNode(value: 'UserCommunitiesRelation'),
+    directives: [],
+    fields: [
+      _i1.InputValueDefinitionNode(
+          name: _i1.NameNode(value: 'create'),
+          directives: [],
+          type: _i1.ListTypeNode(
+              type: _i1.NamedTypeNode(
+                  name: _i1.NameNode(value: 'CommunityInput'),
+                  isNonNull: false),
+              isNonNull: false),
+          defaultValue: null),
+      _i1.InputValueDefinitionNode(
+          name: _i1.NameNode(value: 'connect'),
+          directives: [],
+          type: _i1.ListTypeNode(
+              type: _i1.NamedTypeNode(
+                  name: _i1.NameNode(value: 'ID'), isNonNull: false),
+              isNonNull: false),
+          defaultValue: null),
+      _i1.InputValueDefinitionNode(
+          name: _i1.NameNode(value: 'disconnect'),
+          directives: [],
+          type: _i1.ListTypeNode(
+              type: _i1.NamedTypeNode(
+                  name: _i1.NameNode(value: 'ID'), isNonNull: false),
+              isNonNull: false),
+          defaultValue: null)
     ]);
 const UserInput = _i1.InputObjectTypeDefinitionNode(
     name: _i1.NameNode(value: 'UserInput'),
@@ -231,6 +443,13 @@ const UserInput = _i1.InputObjectTypeDefinitionNode(
           directives: [],
           type: _i1.NamedTypeNode(
               name: _i1.NameNode(value: 'String'), isNonNull: true),
+          defaultValue: null),
+      _i1.InputValueDefinitionNode(
+          name: _i1.NameNode(value: 'communities'),
+          directives: [],
+          type: _i1.NamedTypeNode(
+              name: _i1.NameNode(value: 'UserCommunitiesRelation'),
+              isNonNull: false),
           defaultValue: null)
     ]);
 const document = _i1.DocumentNode(definitions: [
@@ -240,6 +459,10 @@ const document = _i1.DocumentNode(definitions: [
   resolver,
   relation,
   unique,
+  Community,
+  CommunityCreatorRelation,
+  CommunityInput,
+  CommunityPage,
   CreateUserInput,
   Date,
   LoginUserInput,
@@ -248,5 +471,6 @@ const document = _i1.DocumentNode(definitions: [
   Query,
   Time,
   User,
+  UserCommunitiesRelation,
   UserInput
 ]);

@@ -7,6 +7,41 @@ directive @resolver(
 ) on FIELD_DEFINITION
 directive @relation(name: String) on FIELD_DEFINITION
 directive @unique(index: String) on FIELD_DEFINITION
+type Community {
+  name: String!
+  # The document's ID.
+  _id: ID!
+  creator: User!
+  purpose: String
+  # The document's timestamp.
+  _ts: Long!
+}
+
+# Allow manipulating the relationship between the types 'Community' and 'User' using the field 'Community.creator'.
+input CommunityCreatorRelation {
+  # Create a document of type 'User' and associate it with the current document.
+  create: UserInput
+  # Connect a document of type 'User' with the current document using its ID.
+  connect: ID
+}
+
+# 'Community' input values
+input CommunityInput {
+  name: String!
+  purpose: String
+  creator: CommunityCreatorRelation
+}
+
+# The pagination object for elements of type 'Community'.
+type CommunityPage {
+  # The elements of type 'Community' in this page.
+  data: [Community]!
+  # A cursor for elements coming after the current page.
+  after: String
+  # A cursor for elements coming before the current page.
+  before: String
+}
+
 input CreateUserInput {
   username: String!
   password: String!
@@ -24,7 +59,6 @@ input LoginUserInput {
 scalar Long
 
 type Mutation {
-  createUser(input: CreateUserInput!): String!
   # Update an existing document in the collection of 'User'
   updateUser(
     # The 'User' document's ID
@@ -32,12 +66,30 @@ type Mutation {
     # 'User' input values
     data: UserInput!
   ): User
+  createUser(input: CreateUserInput!): String!
+  # Update an existing document in the collection of 'Community'
+  updateCommunity(
+    # The 'Community' document's ID
+    id: ID!
+    # 'Community' input values
+    data: CommunityInput!
+  ): Community
+  loginUser(input: LoginUserInput!): String!
+  # Delete an existing document in the collection of 'Community'
+  deleteCommunity(
+    # The 'Community' document's ID
+    id: ID!
+  ): Community
   # Delete an existing document in the collection of 'User'
   deleteUser(
     # The 'User' document's ID
     id: ID!
   ): User
-  loginUser(input: LoginUserInput!): String!
+  # Create a new document in the collection of 'Community'
+  createCommunity(
+    # 'Community' input values
+    data: CommunityInput!
+  ): Community!
 }
 
 type Query {
@@ -46,6 +98,11 @@ type Query {
     # The 'User' document's ID
     id: ID!
   ): User
+  # Find a document from the collection of 'Community' by its id.
+  findCommunityByID(
+    # The 'Community' document's ID
+    id: ID!
+  ): Community
 }
 
 scalar Time
@@ -56,10 +113,27 @@ type User {
   # The document's timestamp.
   _ts: Long!
   username: String!
+  communities(
+    # The number of items to return per page.
+    _size: Int
+    # The pagination cursor.
+    _cursor: String
+  ): CommunityPage!
+}
+
+# Allow manipulating the relationship between the types 'User' and 'Community'.
+input UserCommunitiesRelation {
+  # Create one or more documents of type 'Community' and associate them with the current document.
+  create: [CommunityInput]
+  # Connect one or more documents of type 'Community' with the current document using their IDs.
+  connect: [ID]
+  # Disconnect the given documents of type 'Community' from the current document using their IDs.
+  disconnect: [ID]
 }
 
 # 'User' input values
 input UserInput {
   username: String!
+  communities: UserCommunitiesRelation
 }
 
