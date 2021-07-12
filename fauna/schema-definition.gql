@@ -3,6 +3,10 @@ type Mutation {
   loginUser(input: LoginUserInput!): String! @resolver(name: "login_user")
 }
 
+type Query {
+  communities: [Community!]!
+}
+
 type User {
   username: String! @unique
   communities: [Community!] @relation(name: "user_communities")

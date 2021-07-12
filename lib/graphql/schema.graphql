@@ -103,6 +103,12 @@ type Query {
     # The 'Community' document's ID
     id: ID!
   ): Community
+  communities(
+    # The number of items to return per page.
+    _size: Int
+    # The pagination cursor.
+    _cursor: String
+  ): CommunityPage!
 }
 
 scalar Time

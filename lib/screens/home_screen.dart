@@ -13,13 +13,13 @@ class HomeScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, ScopedReader watch) {
-    final auth = watch(authProvider);
-    print('>>> isAuthenticated: ${auth.isAuthenticated}');
+    final _auth = watch(authProvider);
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Flutter Communities'),
         actions: [
-          if (auth.isAuthenticated)
+          if (_auth.isAuthenticated)
             GestureDetector(
               child: CircleAvatar(
                 child: Text('🙋🏻‍♂️'),
@@ -49,50 +49,7 @@ class HomeScreen extends ConsumerWidget {
             )
         ],
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(32.0),
-              child: Text(
-                'Welcome to Flutter Communities',
-                style: TextStyle(fontSize: 20),
-                textAlign: TextAlign.center,
-              ),
-            ),
-            Container(
-              padding: const EdgeInsets.all(16.0),
-              alignment: Alignment.center,
-              child: Text(
-                '🏡',
-                style: TextStyle(fontSize: 144),
-              ),
-            ),
-            if (!auth.isAuthenticated) ...[
-              Container(
-                alignment: Alignment.center,
-                child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.of(context)
-                        .pushNamed(RegistrationScreen.routeName);
-                  },
-                  child: Text('Register'),
-                ),
-              ),
-              Container(
-                alignment: Alignment.center,
-                child: TextButton(
-                  onPressed: () {
-                    Navigator.of(context).pushNamed(LoginScreen.routeName);
-                  },
-                  child: Text('Login'),
-                ),
-              )
-            ]
-          ],
-        ),
-      ),
+      body: _HomeScreenWelcome(_auth),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
         onPressed: () {
@@ -100,5 +57,66 @@ class HomeScreen extends ConsumerWidget {
         },
       ),
     );
+  }
+}
+
+class _HomeScreenWelcome extends StatelessWidget {
+  final AuthSession _auth;
+  const _HomeScreenWelcome(this._auth, {Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(32.0),
+            child: Text(
+              'Welcome to Flutter Communities',
+              style: TextStyle(fontSize: 20),
+              textAlign: TextAlign.center,
+            ),
+          ),
+          Container(
+            padding: const EdgeInsets.all(16.0),
+            alignment: Alignment.center,
+            child: Text(
+              '🏡',
+              style: TextStyle(fontSize: 144),
+            ),
+          ),
+          if (!_auth.isAuthenticated) ...[
+            Container(
+              alignment: Alignment.center,
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.of(context).pushNamed(RegistrationScreen.routeName);
+                },
+                child: Text('Register'),
+              ),
+            ),
+            Container(
+              alignment: Alignment.center,
+              child: TextButton(
+                onPressed: () {
+                  Navigator.of(context).pushNamed(LoginScreen.routeName);
+                },
+                child: Text('Login'),
+              ),
+            )
+          ]
+        ],
+      ),
+    );
+  }
+}
+
+class _CommunityList extends StatelessWidget {
+  const _CommunityList({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container();
   }
 }

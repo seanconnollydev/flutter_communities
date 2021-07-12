@@ -6,11 +6,18 @@ import 'package:flutter_communities/graphql/communities.data.gql.dart'
         GCreateCommunityData,
         GCreateCommunityData_createCommunity,
         GCreateUserData,
+        GGetCommunitiesData,
+        GGetCommunitiesData_communities,
+        GGetCommunitiesData_communities_data,
         GLoginUserData;
 import 'package:flutter_communities/graphql/communities.req.gql.dart'
-    show GCreateCommunityReq, GCreateUserReq, GLoginUserReq;
+    show GCreateCommunityReq, GCreateUserReq, GGetCommunitiesReq, GLoginUserReq;
 import 'package:flutter_communities/graphql/communities.var.gql.dart'
-    show GCreateCommunityVars, GCreateUserVars, GLoginUserVars;
+    show
+        GCreateCommunityVars,
+        GCreateUserVars,
+        GGetCommunitiesVars,
+        GLoginUserVars;
 import 'package:flutter_communities/graphql/schema.schema.gql.dart'
     show
         GCommunityCreatorRelation,
@@ -42,6 +49,11 @@ final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   GCreateUserReq,
   GCreateUserVars,
   GDate,
+  GGetCommunitiesData,
+  GGetCommunitiesData_communities,
+  GGetCommunitiesData_communities_data,
+  GGetCommunitiesReq,
+  GGetCommunitiesVars,
   GLoginUserData,
   GLoginUserInput,
   GLoginUserReq,

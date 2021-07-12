@@ -11,3 +11,12 @@ mutation CreateCommunity($data: CommunityInput!) {
     _id
   }
 }
+
+query GetCommunities($size: Int, $cursor: String) {
+  communities(_size: $size, _cursor: $cursor) {
+    data {
+      _id
+      name
+    }
+  }
+}

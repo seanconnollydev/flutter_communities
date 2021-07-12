@@ -58,3 +58,21 @@ abstract class GCreateCommunityVars
   static GCreateCommunityVars? fromJson(Map<String, dynamic> json) =>
       _i2.serializers.deserializeWith(GCreateCommunityVars.serializer, json);
 }
+
+abstract class GGetCommunitiesVars
+    implements Built<GGetCommunitiesVars, GGetCommunitiesVarsBuilder> {
+  GGetCommunitiesVars._();
+
+  factory GGetCommunitiesVars(
+      [Function(GGetCommunitiesVarsBuilder b) updates]) = _$GGetCommunitiesVars;
+
+  int? get size;
+  String? get cursor;
+  static Serializer<GGetCommunitiesVars> get serializer =>
+      _$gGetCommunitiesVarsSerializer;
+  Map<String, dynamic> toJson() =>
+      (_i2.serializers.serializeWith(GGetCommunitiesVars.serializer, this)
+          as Map<String, dynamic>);
+  static GGetCommunitiesVars? fromJson(Map<String, dynamic> json) =>
+      _i2.serializers.deserializeWith(GGetCommunitiesVars.serializer, json);
+}
