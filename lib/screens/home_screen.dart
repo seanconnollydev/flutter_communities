@@ -1,5 +1,11 @@
+import 'package:ferry/ferry.dart';
+import 'package:ferry_flutter/ferry_flutter.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_communities/graphql/communities.data.gql.dart';
+import 'package:flutter_communities/graphql/communities.req.gql.dart';
+import 'package:flutter_communities/graphql/communities.var.gql.dart';
 import 'package:flutter_communities/providers/auth.dart';
+import 'package:flutter_communities/providers/ferry.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'create_community_screen.dart';
@@ -14,6 +20,7 @@ class HomeScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, ScopedReader watch) {
     final _auth = watch(authProvider);
+    final _client = watch(ferryClientProvider);
 
     void _handleTap() {
       showModalBottomSheet(
@@ -50,7 +57,24 @@ class HomeScreen extends ConsumerWidget {
             )
         ],
       ),
-      body: _HomeScreenWelcome(_auth),
+      body: Operation(
+        client: _client,
+        operationRequest: GGetCommunitiesReq(),
+        builder: (
+          context,
+          OperationResponse<GGetCommunitiesData, GGetCommunitiesVars>? response,
+          error,
+        ) {
+          if (response == null || response.loading == true) {
+            return CircularProgressIndicator();
+          }
+          if (response.data?.communities.data.isEmpty == false) {
+            return _CommunityList();
+          }
+
+          return _HomeScreenWelcome(_auth);
+        },
+      ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
         onPressed: () {
@@ -118,6 +142,6 @@ class _CommunityList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Text('CommunityList');
   }
 }
