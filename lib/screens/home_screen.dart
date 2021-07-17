@@ -15,6 +15,27 @@ class HomeScreen extends ConsumerWidget {
   Widget build(BuildContext context, ScopedReader watch) {
     final _auth = watch(authProvider);
 
+    void _handleTap() {
+      showModalBottomSheet(
+        context: context,
+        builder: (_) {
+          return Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              ListTile(
+                title: Text('Logout'),
+                onTap: () async {
+                  await context.read(authProvider.notifier).clearSession();
+                  Navigator.of(context).popUntil((route) => false);
+                  Navigator.of(context).pushNamed(routeName);
+                },
+              )
+            ],
+          );
+        },
+      );
+    }
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Flutter Communities'),
@@ -25,27 +46,7 @@ class HomeScreen extends ConsumerWidget {
                 child: Text('🙋🏻‍♂️'),
                 backgroundColor: Theme.of(context).backgroundColor,
               ),
-              onTap: () {
-                showModalBottomSheet(
-                    context: context,
-                    builder: (_) {
-                      return Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          ListTile(
-                            title: Text('Logout'),
-                            onTap: () async {
-                              await context
-                                  .read(authProvider.notifier)
-                                  .clearSession();
-                              Navigator.of(context).popUntil((route) => false);
-                              Navigator.of(context).pushNamed(routeName);
-                            },
-                          )
-                        ],
-                      );
-                    });
-              },
+              onTap: _handleTap,
             )
         ],
       ),
