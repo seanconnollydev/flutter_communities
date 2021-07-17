@@ -20,7 +20,7 @@ class HomeScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, ScopedReader watch) {
     final _auth = watch(authProvider);
-    final _client = watch(ferryClientProvider);
+    print('>>> HomeScreen build');
 
     void _handleTap() {
       showModalBottomSheet(
@@ -57,24 +57,7 @@ class HomeScreen extends ConsumerWidget {
             )
         ],
       ),
-      body: Operation(
-        client: _client,
-        operationRequest: GGetCommunitiesReq(),
-        builder: (
-          context,
-          OperationResponse<GGetCommunitiesData, GGetCommunitiesVars>? response,
-          error,
-        ) {
-          if (response == null || response.loading == true) {
-            return CircularProgressIndicator();
-          }
-          if (response.data?.communities.data.isEmpty == false) {
-            return _CommunityList();
-          }
-
-          return _HomeScreenWelcome(_auth);
-        },
-      ),
+      body: _auth.isAuthenticated ? _CommunityList() : _Welcome(),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
         onPressed: () {
@@ -85,9 +68,8 @@ class HomeScreen extends ConsumerWidget {
   }
 }
 
-class _HomeScreenWelcome extends StatelessWidget {
-  final AuthSession _auth;
-  const _HomeScreenWelcome(this._auth, {Key? key}) : super(key: key);
+class _Welcome extends StatelessWidget {
+  const _Welcome({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -111,37 +93,56 @@ class _HomeScreenWelcome extends StatelessWidget {
               style: TextStyle(fontSize: 144),
             ),
           ),
-          if (!_auth.isAuthenticated) ...[
-            Container(
-              alignment: Alignment.center,
-              child: ElevatedButton(
-                onPressed: () {
-                  Navigator.of(context).pushNamed(RegistrationScreen.routeName);
-                },
-                child: Text('Register'),
-              ),
+          Container(
+            alignment: Alignment.center,
+            child: ElevatedButton(
+              onPressed: () {
+                Navigator.of(context).pushNamed(RegistrationScreen.routeName);
+              },
+              child: Text('Register'),
             ),
-            Container(
-              alignment: Alignment.center,
-              child: TextButton(
-                onPressed: () {
-                  Navigator.of(context).pushNamed(LoginScreen.routeName);
-                },
-                child: Text('Login'),
-              ),
-            )
-          ]
+          ),
+          Container(
+            alignment: Alignment.center,
+            child: TextButton(
+              onPressed: () {
+                Navigator.of(context).pushNamed(LoginScreen.routeName);
+              },
+              child: Text('Login'),
+            ),
+          )
         ],
       ),
     );
   }
 }
 
-class _CommunityList extends StatelessWidget {
+class _CommunityList extends ConsumerWidget {
   const _CommunityList({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    return Text('CommunityList');
+  Widget build(BuildContext context, ScopedReader watch) {
+    final _client = watch(ferryClientProvider);
+
+    return Operation(
+      client: _client,
+      operationRequest: GGetCommunitiesReq(),
+      builder: (
+        context,
+        OperationResponse<GGetCommunitiesData, GGetCommunitiesVars>? response,
+        error,
+      ) {
+        if (response == null || response.loading == true) {
+          print('>>> progress');
+          return Center(child: CircularProgressIndicator());
+        }
+        print('>>> data');
+        if (response.data?.communities.data.isEmpty == false) {
+          return Text('Communities found');
+        }
+
+        return Text('No Communities');
+      },
+    );
   }
 }
