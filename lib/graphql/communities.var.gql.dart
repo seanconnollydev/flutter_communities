@@ -76,3 +76,20 @@ abstract class GGetCommunitiesVars
   static GGetCommunitiesVars? fromJson(Map<String, dynamic> json) =>
       _i2.serializers.deserializeWith(GGetCommunitiesVars.serializer, json);
 }
+
+abstract class GCommunityFragmentVars
+    implements Built<GCommunityFragmentVars, GCommunityFragmentVarsBuilder> {
+  GCommunityFragmentVars._();
+
+  factory GCommunityFragmentVars(
+          [Function(GCommunityFragmentVarsBuilder b) updates]) =
+      _$GCommunityFragmentVars;
+
+  static Serializer<GCommunityFragmentVars> get serializer =>
+      _$gCommunityFragmentVarsSerializer;
+  Map<String, dynamic> toJson() =>
+      (_i2.serializers.serializeWith(GCommunityFragmentVars.serializer, this)
+          as Map<String, dynamic>);
+  static GCommunityFragmentVars? fromJson(Map<String, dynamic> json) =>
+      _i2.serializers.deserializeWith(GCommunityFragmentVars.serializer, json);
+}

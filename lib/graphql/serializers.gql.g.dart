@@ -8,6 +8,9 @@ part of 'serializers.gql.dart';
 
 Serializers _$serializers = (new Serializers().toBuilder()
       ..add(GCommunityCreatorRelation.serializer)
+      ..add(GCommunityFragmentData.serializer)
+      ..add(GCommunityFragmentReq.serializer)
+      ..add(GCommunityFragmentVars.serializer)
       ..add(GCommunityInput.serializer)
       ..add(GCreateCommunityData.serializer)
       ..add(GCreateCommunityData_createCommunity.serializer)

@@ -14,6 +14,8 @@ Serializer<GCreateCommunityReq> _$gCreateCommunityReqSerializer =
     new _$GCreateCommunityReqSerializer();
 Serializer<GGetCommunitiesReq> _$gGetCommunitiesReqSerializer =
     new _$GGetCommunitiesReqSerializer();
+Serializer<GCommunityFragmentReq> _$gCommunityFragmentReqSerializer =
+    new _$GCommunityFragmentReqSerializer();
 
 class _$GCreateUserReqSerializer
     implements StructuredSerializer<GCreateUserReq> {
@@ -483,6 +485,83 @@ class _$GGetCommunitiesReqSerializer
         case 'executeOnListen':
           result.executeOnListen = serializers.deserialize(value,
               specifiedType: const FullType(bool)) as bool;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GCommunityFragmentReqSerializer
+    implements StructuredSerializer<GCommunityFragmentReq> {
+  @override
+  final Iterable<Type> types = const [
+    GCommunityFragmentReq,
+    _$GCommunityFragmentReq
+  ];
+  @override
+  final String wireName = 'GCommunityFragmentReq';
+
+  @override
+  Iterable<Object?> serialize(
+      Serializers serializers, GCommunityFragmentReq object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      'vars',
+      serializers.serialize(object.vars,
+          specifiedType: const FullType(_i3.GCommunityFragmentVars)),
+      'document',
+      serializers.serialize(object.document,
+          specifiedType: const FullType(_i7.DocumentNode)),
+      'idFields',
+      serializers.serialize(object.idFields,
+          specifiedType: const FullType(
+              Map, const [const FullType(String), const FullType(dynamic)])),
+    ];
+    Object? value;
+    value = object.fragmentName;
+    if (value != null) {
+      result
+        ..add('fragmentName')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    return result;
+  }
+
+  @override
+  GCommunityFragmentReq deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GCommunityFragmentReqBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case 'vars':
+          result.vars.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(_i3.GCommunityFragmentVars))!
+              as _i3.GCommunityFragmentVars);
+          break;
+        case 'document':
+          result.document = serializers.deserialize(value,
+                  specifiedType: const FullType(_i7.DocumentNode))
+              as _i7.DocumentNode;
+          break;
+        case 'fragmentName':
+          result.fragmentName = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
+          break;
+        case 'idFields':
+          result.idFields = serializers.deserialize(value,
+              specifiedType: const FullType(Map, const [
+                const FullType(String),
+                const FullType(dynamic)
+              ])) as Map<String, dynamic>;
           break;
       }
     }
@@ -1380,6 +1459,148 @@ class GGetCommunitiesReqBuilder
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             'GGetCommunitiesReq', _$failedField, e.toString());
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GCommunityFragmentReq extends GCommunityFragmentReq {
+  @override
+  final _i3.GCommunityFragmentVars vars;
+  @override
+  final _i7.DocumentNode document;
+  @override
+  final String? fragmentName;
+  @override
+  final Map<String, dynamic> idFields;
+
+  factory _$GCommunityFragmentReq(
+          [void Function(GCommunityFragmentReqBuilder)? updates]) =>
+      (new GCommunityFragmentReqBuilder()..update(updates)).build();
+
+  _$GCommunityFragmentReq._(
+      {required this.vars,
+      required this.document,
+      this.fragmentName,
+      required this.idFields})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        vars, 'GCommunityFragmentReq', 'vars');
+    BuiltValueNullFieldError.checkNotNull(
+        document, 'GCommunityFragmentReq', 'document');
+    BuiltValueNullFieldError.checkNotNull(
+        idFields, 'GCommunityFragmentReq', 'idFields');
+  }
+
+  @override
+  GCommunityFragmentReq rebuild(
+          void Function(GCommunityFragmentReqBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GCommunityFragmentReqBuilder toBuilder() =>
+      new GCommunityFragmentReqBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GCommunityFragmentReq &&
+        vars == other.vars &&
+        document == other.document &&
+        fragmentName == other.fragmentName &&
+        idFields == other.idFields;
+  }
+
+  @override
+  int get hashCode {
+    return $jf($jc(
+        $jc($jc($jc(0, vars.hashCode), document.hashCode),
+            fragmentName.hashCode),
+        idFields.hashCode));
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper('GCommunityFragmentReq')
+          ..add('vars', vars)
+          ..add('document', document)
+          ..add('fragmentName', fragmentName)
+          ..add('idFields', idFields))
+        .toString();
+  }
+}
+
+class GCommunityFragmentReqBuilder
+    implements Builder<GCommunityFragmentReq, GCommunityFragmentReqBuilder> {
+  _$GCommunityFragmentReq? _$v;
+
+  _i3.GCommunityFragmentVarsBuilder? _vars;
+  _i3.GCommunityFragmentVarsBuilder get vars =>
+      _$this._vars ??= new _i3.GCommunityFragmentVarsBuilder();
+  set vars(_i3.GCommunityFragmentVarsBuilder? vars) => _$this._vars = vars;
+
+  _i7.DocumentNode? _document;
+  _i7.DocumentNode? get document => _$this._document;
+  set document(_i7.DocumentNode? document) => _$this._document = document;
+
+  String? _fragmentName;
+  String? get fragmentName => _$this._fragmentName;
+  set fragmentName(String? fragmentName) => _$this._fragmentName = fragmentName;
+
+  Map<String, dynamic>? _idFields;
+  Map<String, dynamic>? get idFields => _$this._idFields;
+  set idFields(Map<String, dynamic>? idFields) => _$this._idFields = idFields;
+
+  GCommunityFragmentReqBuilder() {
+    GCommunityFragmentReq._initializeBuilder(this);
+  }
+
+  GCommunityFragmentReqBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _vars = $v.vars.toBuilder();
+      _document = $v.document;
+      _fragmentName = $v.fragmentName;
+      _idFields = $v.idFields;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GCommunityFragmentReq other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GCommunityFragmentReq;
+  }
+
+  @override
+  void update(void Function(GCommunityFragmentReqBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  _$GCommunityFragmentReq build() {
+    _$GCommunityFragmentReq _$result;
+    try {
+      _$result = _$v ??
+          new _$GCommunityFragmentReq._(
+              vars: vars.build(),
+              document: BuiltValueNullFieldError.checkNotNull(
+                  document, 'GCommunityFragmentReq', 'document'),
+              fragmentName: fragmentName,
+              idFields: BuiltValueNullFieldError.checkNotNull(
+                  idFields, 'GCommunityFragmentReq', 'idFields'));
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'vars';
+        vars.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            'GCommunityFragmentReq', _$failedField, e.toString());
       }
       rethrow;
     }

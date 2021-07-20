@@ -20,7 +20,6 @@ class HomeScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, ScopedReader watch) {
     final _auth = watch(authProvider);
-    print('>>> HomeScreen build');
 
     void _handleTap() {
       showModalBottomSheet(

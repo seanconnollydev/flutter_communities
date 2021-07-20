@@ -25,9 +25,12 @@ class _CreateCommunityScreenState extends State<CreateCommunityScreen> {
 
     final client = context.read(ferryClientProvider);
 
-    final request = GCreateCommunityReq((b) => b
-      ..vars.data.name = _name
-      ..vars.data.purpose = _purpose);
+    final request = GCreateCommunityReq(
+      (b) => b
+        ..vars.data.name = _name
+        ..vars.data.purpose = _purpose
+        ..updateCacheHandlerKey = 'createCommunityHandler',
+    );
 
     await client.request(request).first;
 

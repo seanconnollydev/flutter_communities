@@ -23,6 +23,8 @@ Serializer<GGetCommunitiesData_communities>
 Serializer<GGetCommunitiesData_communities_data>
     _$gGetCommunitiesDataCommunitiesDataSerializer =
     new _$GGetCommunitiesData_communities_dataSerializer();
+Serializer<GCommunityFragmentData> _$gCommunityFragmentDataSerializer =
+    new _$GCommunityFragmentDataSerializer();
 
 class _$GCreateUserDataSerializer
     implements StructuredSerializer<GCreateUserData> {
@@ -197,6 +199,8 @@ class _$GCreateCommunityData_createCommunitySerializer
           specifiedType: const FullType(String)),
       '_id',
       serializers.serialize(object.G_id, specifiedType: const FullType(String)),
+      'name',
+      serializers.serialize(object.name, specifiedType: const FullType(String)),
     ];
 
     return result;
@@ -220,6 +224,10 @@ class _$GCreateCommunityData_createCommunitySerializer
           break;
         case '_id':
           result.G_id = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
+          break;
+        case 'name':
+          result.name = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
           break;
       }
@@ -372,6 +380,64 @@ class _$GGetCommunitiesData_communities_dataSerializer
       Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
     final result = new GGetCommunitiesData_communities_dataBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case '__typename':
+          result.G__typename = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
+          break;
+        case '_id':
+          result.G_id = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
+          break;
+        case 'name':
+          result.name = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GCommunityFragmentDataSerializer
+    implements StructuredSerializer<GCommunityFragmentData> {
+  @override
+  final Iterable<Type> types = const [
+    GCommunityFragmentData,
+    _$GCommunityFragmentData
+  ];
+  @override
+  final String wireName = 'GCommunityFragmentData';
+
+  @override
+  Iterable<Object?> serialize(
+      Serializers serializers, GCommunityFragmentData object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      '__typename',
+      serializers.serialize(object.G__typename,
+          specifiedType: const FullType(String)),
+      '_id',
+      serializers.serialize(object.G_id, specifiedType: const FullType(String)),
+      'name',
+      serializers.serialize(object.name, specifiedType: const FullType(String)),
+    ];
+
+    return result;
+  }
+
+  @override
+  GCommunityFragmentData deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GCommunityFragmentDataBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -714,6 +780,8 @@ class _$GCreateCommunityData_createCommunity
   final String G__typename;
   @override
   final String G_id;
+  @override
+  final String name;
 
   factory _$GCreateCommunityData_createCommunity(
           [void Function(GCreateCommunityData_createCommunityBuilder)?
@@ -722,12 +790,14 @@ class _$GCreateCommunityData_createCommunity
           .build();
 
   _$GCreateCommunityData_createCommunity._(
-      {required this.G__typename, required this.G_id})
+      {required this.G__typename, required this.G_id, required this.name})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         G__typename, 'GCreateCommunityData_createCommunity', 'G__typename');
     BuiltValueNullFieldError.checkNotNull(
         G_id, 'GCreateCommunityData_createCommunity', 'G_id');
+    BuiltValueNullFieldError.checkNotNull(
+        name, 'GCreateCommunityData_createCommunity', 'name');
   }
 
   @override
@@ -744,19 +814,22 @@ class _$GCreateCommunityData_createCommunity
     if (identical(other, this)) return true;
     return other is GCreateCommunityData_createCommunity &&
         G__typename == other.G__typename &&
-        G_id == other.G_id;
+        G_id == other.G_id &&
+        name == other.name;
   }
 
   @override
   int get hashCode {
-    return $jf($jc($jc(0, G__typename.hashCode), G_id.hashCode));
+    return $jf(
+        $jc($jc($jc(0, G__typename.hashCode), G_id.hashCode), name.hashCode));
   }
 
   @override
   String toString() {
     return (newBuiltValueToStringHelper('GCreateCommunityData_createCommunity')
           ..add('G__typename', G__typename)
-          ..add('G_id', G_id))
+          ..add('G_id', G_id)
+          ..add('name', name))
         .toString();
   }
 }
@@ -775,6 +848,10 @@ class GCreateCommunityData_createCommunityBuilder
   String? get G_id => _$this._G_id;
   set G_id(String? G_id) => _$this._G_id = G_id;
 
+  String? _name;
+  String? get name => _$this._name;
+  set name(String? name) => _$this._name = name;
+
   GCreateCommunityData_createCommunityBuilder() {
     GCreateCommunityData_createCommunity._initializeBuilder(this);
   }
@@ -784,6 +861,7 @@ class GCreateCommunityData_createCommunityBuilder
     if ($v != null) {
       _G__typename = $v.G__typename;
       _G_id = $v.G_id;
+      _name = $v.name;
       _$v = null;
     }
     return this;
@@ -808,7 +886,9 @@ class GCreateCommunityData_createCommunityBuilder
             G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
                 'GCreateCommunityData_createCommunity', 'G__typename'),
             G_id: BuiltValueNullFieldError.checkNotNull(
-                G_id, 'GCreateCommunityData_createCommunity', 'G_id'));
+                G_id, 'GCreateCommunityData_createCommunity', 'G_id'),
+            name: BuiltValueNullFieldError.checkNotNull(
+                name, 'GCreateCommunityData_createCommunity', 'name'));
     replace(_$result);
     return _$result;
   }
@@ -1160,6 +1240,120 @@ class GGetCommunitiesData_communities_dataBuilder
                 G_id, 'GGetCommunitiesData_communities_data', 'G_id'),
             name: BuiltValueNullFieldError.checkNotNull(
                 name, 'GGetCommunitiesData_communities_data', 'name'));
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GCommunityFragmentData extends GCommunityFragmentData {
+  @override
+  final String G__typename;
+  @override
+  final String G_id;
+  @override
+  final String name;
+
+  factory _$GCommunityFragmentData(
+          [void Function(GCommunityFragmentDataBuilder)? updates]) =>
+      (new GCommunityFragmentDataBuilder()..update(updates)).build();
+
+  _$GCommunityFragmentData._(
+      {required this.G__typename, required this.G_id, required this.name})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        G__typename, 'GCommunityFragmentData', 'G__typename');
+    BuiltValueNullFieldError.checkNotNull(
+        G_id, 'GCommunityFragmentData', 'G_id');
+    BuiltValueNullFieldError.checkNotNull(
+        name, 'GCommunityFragmentData', 'name');
+  }
+
+  @override
+  GCommunityFragmentData rebuild(
+          void Function(GCommunityFragmentDataBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GCommunityFragmentDataBuilder toBuilder() =>
+      new GCommunityFragmentDataBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GCommunityFragmentData &&
+        G__typename == other.G__typename &&
+        G_id == other.G_id &&
+        name == other.name;
+  }
+
+  @override
+  int get hashCode {
+    return $jf(
+        $jc($jc($jc(0, G__typename.hashCode), G_id.hashCode), name.hashCode));
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper('GCommunityFragmentData')
+          ..add('G__typename', G__typename)
+          ..add('G_id', G_id)
+          ..add('name', name))
+        .toString();
+  }
+}
+
+class GCommunityFragmentDataBuilder
+    implements Builder<GCommunityFragmentData, GCommunityFragmentDataBuilder> {
+  _$GCommunityFragmentData? _$v;
+
+  String? _G__typename;
+  String? get G__typename => _$this._G__typename;
+  set G__typename(String? G__typename) => _$this._G__typename = G__typename;
+
+  String? _G_id;
+  String? get G_id => _$this._G_id;
+  set G_id(String? G_id) => _$this._G_id = G_id;
+
+  String? _name;
+  String? get name => _$this._name;
+  set name(String? name) => _$this._name = name;
+
+  GCommunityFragmentDataBuilder() {
+    GCommunityFragmentData._initializeBuilder(this);
+  }
+
+  GCommunityFragmentDataBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _G__typename = $v.G__typename;
+      _G_id = $v.G_id;
+      _name = $v.name;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GCommunityFragmentData other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GCommunityFragmentData;
+  }
+
+  @override
+  void update(void Function(GCommunityFragmentDataBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  _$GCommunityFragmentData build() {
+    final _$result = _$v ??
+        new _$GCommunityFragmentData._(
+            G__typename: BuiltValueNullFieldError.checkNotNull(
+                G__typename, 'GCommunityFragmentData', 'G__typename'),
+            G_id: BuiltValueNullFieldError.checkNotNull(
+                G_id, 'GCommunityFragmentData', 'G_id'),
+            name: BuiltValueNullFieldError.checkNotNull(
+                name, 'GCommunityFragmentData', 'name'));
     replace(_$result);
     return _$result;
   }

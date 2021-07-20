@@ -74,7 +74,8 @@ abstract class GCreateCommunityData
 abstract class GCreateCommunityData_createCommunity
     implements
         Built<GCreateCommunityData_createCommunity,
-            GCreateCommunityData_createCommunityBuilder> {
+            GCreateCommunityData_createCommunityBuilder>,
+        GCommunityFragment {
   GCreateCommunityData_createCommunity._();
 
   factory GCreateCommunityData_createCommunity(
@@ -88,6 +89,7 @@ abstract class GCreateCommunityData_createCommunity
   String get G__typename;
   @BuiltValueField(wireName: '_id')
   String get G_id;
+  String get name;
   static Serializer<GCreateCommunityData_createCommunity> get serializer =>
       _$gCreateCommunityDataCreateCommunitySerializer;
   Map<String, dynamic> toJson() => (_i1.serializers
@@ -148,7 +150,8 @@ abstract class GGetCommunitiesData_communities
 abstract class GGetCommunitiesData_communities_data
     implements
         Built<GGetCommunitiesData_communities_data,
-            GGetCommunitiesData_communities_dataBuilder> {
+            GGetCommunitiesData_communities_dataBuilder>,
+        GCommunityFragment {
   GGetCommunitiesData_communities_data._();
 
   factory GGetCommunitiesData_communities_data(
@@ -172,4 +175,37 @@ abstract class GGetCommunitiesData_communities_data
           Map<String, dynamic> json) =>
       _i1.serializers.deserializeWith(
           GGetCommunitiesData_communities_data.serializer, json);
+}
+
+abstract class GCommunityFragment {
+  String get G__typename;
+  String get G_id;
+  String get name;
+  Map<String, dynamic> toJson();
+}
+
+abstract class GCommunityFragmentData
+    implements
+        Built<GCommunityFragmentData, GCommunityFragmentDataBuilder>,
+        GCommunityFragment {
+  GCommunityFragmentData._();
+
+  factory GCommunityFragmentData(
+          [Function(GCommunityFragmentDataBuilder b) updates]) =
+      _$GCommunityFragmentData;
+
+  static void _initializeBuilder(GCommunityFragmentDataBuilder b) =>
+      b..G__typename = 'Community';
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  @BuiltValueField(wireName: '_id')
+  String get G_id;
+  String get name;
+  static Serializer<GCommunityFragmentData> get serializer =>
+      _$gCommunityFragmentDataSerializer;
+  Map<String, dynamic> toJson() =>
+      (_i1.serializers.serializeWith(GCommunityFragmentData.serializer, this)
+          as Map<String, dynamic>);
+  static GCommunityFragmentData? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(GCommunityFragmentData.serializer, json);
 }

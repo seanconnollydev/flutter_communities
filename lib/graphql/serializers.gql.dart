@@ -3,6 +3,7 @@ import 'package:built_value/serializer.dart';
 import 'package:built_value/standard_json_plugin.dart' show StandardJsonPlugin;
 import 'package:flutter_communities/graphql/communities.data.gql.dart'
     show
+        GCommunityFragmentData,
         GCreateCommunityData,
         GCreateCommunityData_createCommunity,
         GCreateUserData,
@@ -11,9 +12,15 @@ import 'package:flutter_communities/graphql/communities.data.gql.dart'
         GGetCommunitiesData_communities_data,
         GLoginUserData;
 import 'package:flutter_communities/graphql/communities.req.gql.dart'
-    show GCreateCommunityReq, GCreateUserReq, GGetCommunitiesReq, GLoginUserReq;
+    show
+        GCommunityFragmentReq,
+        GCreateCommunityReq,
+        GCreateUserReq,
+        GGetCommunitiesReq,
+        GLoginUserReq;
 import 'package:flutter_communities/graphql/communities.var.gql.dart'
     show
+        GCommunityFragmentVars,
         GCreateCommunityVars,
         GCreateUserVars,
         GGetCommunitiesVars,
@@ -39,6 +46,9 @@ final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   ..addPlugin(StandardJsonPlugin());
 @SerializersFor([
   GCommunityCreatorRelation,
+  GCommunityFragmentData,
+  GCommunityFragmentReq,
+  GCommunityFragmentVars,
   GCommunityInput,
   GCreateCommunityData,
   GCreateCommunityData_createCommunity,

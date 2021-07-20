@@ -8,15 +8,19 @@ mutation LoginUser($input: LoginUserInput!) {
 
 mutation CreateCommunity($data: CommunityInput!) {
   createCommunity(data: $data) {
-    _id
+    ...CommunityFragment
   }
 }
 
 query GetCommunities($size: Int, $cursor: String) {
   communities(_size: $size, _cursor: $cursor) {
     data {
-      _id
-      name
+      ...CommunityFragment
     }
   }
+}
+
+fragment CommunityFragment on Community {
+  _id
+  name
 }
