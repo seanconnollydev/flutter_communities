@@ -133,15 +133,34 @@ class _CommunityList extends ConsumerWidget {
         error,
       ) {
         if (response == null || response.loading == true) {
-          print('>>> progress');
           return Center(child: CircularProgressIndicator());
         }
-        print('>>> data');
-        if (response.data?.communities.data.isEmpty == false) {
-          return Text('Communities found');
+        final communities = response.data?.communities.data;
+        if (communities != null && communities.isEmpty == false) {
+          return ListView.separated(
+              itemBuilder: (context, i) {
+                final community = communities[i];
+                return ListTile(
+                  leading: Text('🌱', style: TextStyle(fontSize: 24)),
+                  title: Text(community.name),
+                );
+              },
+              separatorBuilder: (context, i) => const Divider(),
+              itemCount: communities.length);
         }
 
-        return Text('No Communities');
+        return Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(bottom: 16),
+                child: Text('No Communities', style: TextStyle(fontSize: 24)),
+              ),
+              Text('Tap the "+" button to create a community.'),
+            ],
+          ),
+        );
       },
     );
   }
