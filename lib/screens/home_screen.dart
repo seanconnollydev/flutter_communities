@@ -8,6 +8,7 @@ import 'package:flutter_communities/providers/auth.dart';
 import 'package:flutter_communities/providers/ferry.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import 'community_screen.dart';
 import 'create_community_screen.dart';
 import 'login_screen.dart';
 import 'registration_screen.dart';
@@ -142,6 +143,10 @@ class _CommunityList extends ConsumerWidget {
                 return ListTile(
                   leading: Text('🌱', style: TextStyle(fontSize: 24)),
                   title: Text(community.name),
+                  onTap: () {
+                    Navigator.of(context).pushNamed(CommunityScreen.routeName,
+                        arguments: community.G_id);
+                  },
                 );
               },
               separatorBuilder: (context, i) => const Divider(),

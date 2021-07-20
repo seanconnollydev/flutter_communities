@@ -121,6 +121,39 @@ const GetCommunities = _i1.OperationDefinitionNode(
                 ]))
           ]))
     ]));
+const GetCommunity = _i1.OperationDefinitionNode(
+    type: _i1.OperationType.query,
+    name: _i1.NameNode(value: 'GetCommunity'),
+    variableDefinitions: [
+      _i1.VariableDefinitionNode(
+          variable: _i1.VariableNode(name: _i1.NameNode(value: 'id')),
+          type: _i1.NamedTypeNode(
+              name: _i1.NameNode(value: 'ID'), isNonNull: true),
+          defaultValue: _i1.DefaultValueNode(value: null),
+          directives: [])
+    ],
+    directives: [],
+    selectionSet: _i1.SelectionSetNode(selections: [
+      _i1.FieldNode(
+          name: _i1.NameNode(value: 'findCommunityByID'),
+          alias: null,
+          arguments: [
+            _i1.ArgumentNode(
+                name: _i1.NameNode(value: 'id'),
+                value: _i1.VariableNode(name: _i1.NameNode(value: 'id')))
+          ],
+          directives: [],
+          selectionSet: _i1.SelectionSetNode(selections: [
+            _i1.FragmentSpreadNode(
+                name: _i1.NameNode(value: 'CommunityFragment'), directives: []),
+            _i1.FieldNode(
+                name: _i1.NameNode(value: 'purpose'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null)
+          ]))
+    ]));
 const CommunityFragment = _i1.FragmentDefinitionNode(
     name: _i1.NameNode(value: 'CommunityFragment'),
     typeCondition: _i1.TypeConditionNode(
@@ -146,5 +179,6 @@ const document = _i1.DocumentNode(definitions: [
   LoginUser,
   CreateCommunity,
   GetCommunities,
+  GetCommunity,
   CommunityFragment
 ]);

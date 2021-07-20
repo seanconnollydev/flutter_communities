@@ -177,6 +177,58 @@ abstract class GGetCommunitiesData_communities_data
           GGetCommunitiesData_communities_data.serializer, json);
 }
 
+abstract class GGetCommunityData
+    implements Built<GGetCommunityData, GGetCommunityDataBuilder> {
+  GGetCommunityData._();
+
+  factory GGetCommunityData([Function(GGetCommunityDataBuilder b) updates]) =
+      _$GGetCommunityData;
+
+  static void _initializeBuilder(GGetCommunityDataBuilder b) =>
+      b..G__typename = 'Query';
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  GGetCommunityData_findCommunityByID? get findCommunityByID;
+  static Serializer<GGetCommunityData> get serializer =>
+      _$gGetCommunityDataSerializer;
+  Map<String, dynamic> toJson() =>
+      (_i1.serializers.serializeWith(GGetCommunityData.serializer, this)
+          as Map<String, dynamic>);
+  static GGetCommunityData? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(GGetCommunityData.serializer, json);
+}
+
+abstract class GGetCommunityData_findCommunityByID
+    implements
+        Built<GGetCommunityData_findCommunityByID,
+            GGetCommunityData_findCommunityByIDBuilder>,
+        GCommunityFragment {
+  GGetCommunityData_findCommunityByID._();
+
+  factory GGetCommunityData_findCommunityByID(
+          [Function(GGetCommunityData_findCommunityByIDBuilder b) updates]) =
+      _$GGetCommunityData_findCommunityByID;
+
+  static void _initializeBuilder(
+          GGetCommunityData_findCommunityByIDBuilder b) =>
+      b..G__typename = 'Community';
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  @BuiltValueField(wireName: '_id')
+  String get G_id;
+  String get name;
+  String? get purpose;
+  static Serializer<GGetCommunityData_findCommunityByID> get serializer =>
+      _$gGetCommunityDataFindCommunityByIDSerializer;
+  Map<String, dynamic> toJson() => (_i1.serializers
+          .serializeWith(GGetCommunityData_findCommunityByID.serializer, this)
+      as Map<String, dynamic>);
+  static GGetCommunityData_findCommunityByID? fromJson(
+          Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+          GGetCommunityData_findCommunityByID.serializer, json);
+}
+
 abstract class GCommunityFragment {
   String get G__typename;
   String get G_id;

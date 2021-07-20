@@ -20,6 +20,13 @@ query GetCommunities($size: Int, $cursor: String) {
   }
 }
 
+query GetCommunity($id: ID!) {
+  findCommunityByID(id: $id) {
+    ...CommunityFragment
+    purpose
+  }
+}
+
 fragment CommunityFragment on Community {
   _id
   name

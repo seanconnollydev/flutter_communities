@@ -164,6 +164,44 @@ abstract class GGetCommunitiesReq
       _i6.serializers.deserializeWith(GGetCommunitiesReq.serializer, json);
 }
 
+abstract class GGetCommunityReq
+    implements
+        Built<GGetCommunityReq, GGetCommunityReqBuilder>,
+        _i1.OperationRequest<_i2.GGetCommunityData, _i3.GGetCommunityVars> {
+  GGetCommunityReq._();
+
+  factory GGetCommunityReq([Function(GGetCommunityReqBuilder b) updates]) =
+      _$GGetCommunityReq;
+
+  static void _initializeBuilder(GGetCommunityReqBuilder b) => b
+    ..operation =
+        _i4.Operation(document: _i5.document, operationName: 'GetCommunity')
+    ..executeOnListen = true;
+  _i3.GGetCommunityVars get vars;
+  _i4.Operation get operation;
+  _i4.Request get execRequest =>
+      _i4.Request(operation: operation, variables: vars.toJson());
+  String? get requestId;
+  @BuiltValueField(serialize: false)
+  _i2.GGetCommunityData? Function(
+      _i2.GGetCommunityData?, _i2.GGetCommunityData?)? get updateResult;
+  _i2.GGetCommunityData? get optimisticResponse;
+  String? get updateCacheHandlerKey;
+  Map<String, dynamic>? get updateCacheHandlerContext;
+  _i1.FetchPolicy? get fetchPolicy;
+  bool get executeOnListen;
+  @override
+  _i2.GGetCommunityData? parseData(Map<String, dynamic> json) =>
+      _i2.GGetCommunityData.fromJson(json);
+  static Serializer<GGetCommunityReq> get serializer =>
+      _$gGetCommunityReqSerializer;
+  Map<String, dynamic> toJson() =>
+      (_i6.serializers.serializeWith(GGetCommunityReq.serializer, this)
+          as Map<String, dynamic>);
+  static GGetCommunityReq? fromJson(Map<String, dynamic> json) =>
+      _i6.serializers.deserializeWith(GGetCommunityReq.serializer, json);
+}
+
 abstract class GCommunityFragmentReq
     implements
         Built<GCommunityFragmentReq, GCommunityFragmentReqBuilder>,

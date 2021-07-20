@@ -14,6 +14,8 @@ Serializer<GCreateCommunityVars> _$gCreateCommunityVarsSerializer =
     new _$GCreateCommunityVarsSerializer();
 Serializer<GGetCommunitiesVars> _$gGetCommunitiesVarsSerializer =
     new _$GGetCommunitiesVarsSerializer();
+Serializer<GGetCommunityVars> _$gGetCommunityVarsSerializer =
+    new _$GGetCommunityVarsSerializer();
 Serializer<GCommunityFragmentVars> _$gCommunityFragmentVarsSerializer =
     new _$GCommunityFragmentVarsSerializer();
 
@@ -200,6 +202,47 @@ class _$GGetCommunitiesVarsSerializer
           break;
         case 'cursor':
           result.cursor = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GGetCommunityVarsSerializer
+    implements StructuredSerializer<GGetCommunityVars> {
+  @override
+  final Iterable<Type> types = const [GGetCommunityVars, _$GGetCommunityVars];
+  @override
+  final String wireName = 'GGetCommunityVars';
+
+  @override
+  Iterable<Object?> serialize(Serializers serializers, GGetCommunityVars object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      'id',
+      serializers.serialize(object.id, specifiedType: const FullType(String)),
+    ];
+
+    return result;
+  }
+
+  @override
+  GGetCommunityVars deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GGetCommunityVarsBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case 'id':
+          result.id = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
           break;
       }
@@ -586,6 +629,85 @@ class GGetCommunitiesVarsBuilder
   _$GGetCommunitiesVars build() {
     final _$result =
         _$v ?? new _$GGetCommunitiesVars._(size: size, cursor: cursor);
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GGetCommunityVars extends GGetCommunityVars {
+  @override
+  final String id;
+
+  factory _$GGetCommunityVars(
+          [void Function(GGetCommunityVarsBuilder)? updates]) =>
+      (new GGetCommunityVarsBuilder()..update(updates)).build();
+
+  _$GGetCommunityVars._({required this.id}) : super._() {
+    BuiltValueNullFieldError.checkNotNull(id, 'GGetCommunityVars', 'id');
+  }
+
+  @override
+  GGetCommunityVars rebuild(void Function(GGetCommunityVarsBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GGetCommunityVarsBuilder toBuilder() =>
+      new GGetCommunityVarsBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GGetCommunityVars && id == other.id;
+  }
+
+  @override
+  int get hashCode {
+    return $jf($jc(0, id.hashCode));
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper('GGetCommunityVars')..add('id', id))
+        .toString();
+  }
+}
+
+class GGetCommunityVarsBuilder
+    implements Builder<GGetCommunityVars, GGetCommunityVarsBuilder> {
+  _$GGetCommunityVars? _$v;
+
+  String? _id;
+  String? get id => _$this._id;
+  set id(String? id) => _$this._id = id;
+
+  GGetCommunityVarsBuilder();
+
+  GGetCommunityVarsBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _id = $v.id;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GGetCommunityVars other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GGetCommunityVars;
+  }
+
+  @override
+  void update(void Function(GGetCommunityVarsBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  _$GGetCommunityVars build() {
+    final _$result = _$v ??
+        new _$GGetCommunityVars._(
+            id: BuiltValueNullFieldError.checkNotNull(
+                id, 'GGetCommunityVars', 'id'));
     replace(_$result);
     return _$result;
   }

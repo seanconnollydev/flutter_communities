@@ -77,6 +77,23 @@ abstract class GGetCommunitiesVars
       _i2.serializers.deserializeWith(GGetCommunitiesVars.serializer, json);
 }
 
+abstract class GGetCommunityVars
+    implements Built<GGetCommunityVars, GGetCommunityVarsBuilder> {
+  GGetCommunityVars._();
+
+  factory GGetCommunityVars([Function(GGetCommunityVarsBuilder b) updates]) =
+      _$GGetCommunityVars;
+
+  String get id;
+  static Serializer<GGetCommunityVars> get serializer =>
+      _$gGetCommunityVarsSerializer;
+  Map<String, dynamic> toJson() =>
+      (_i2.serializers.serializeWith(GGetCommunityVars.serializer, this)
+          as Map<String, dynamic>);
+  static GGetCommunityVars? fromJson(Map<String, dynamic> json) =>
+      _i2.serializers.deserializeWith(GGetCommunityVars.serializer, json);
+}
+
 abstract class GCommunityFragmentVars
     implements Built<GCommunityFragmentVars, GCommunityFragmentVarsBuilder> {
   GCommunityFragmentVars._();
