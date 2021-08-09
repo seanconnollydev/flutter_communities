@@ -94,6 +94,23 @@ abstract class GGetCommunityVars
       _i2.serializers.deserializeWith(GGetCommunityVars.serializer, json);
 }
 
+abstract class GCreatePostVars
+    implements Built<GCreatePostVars, GCreatePostVarsBuilder> {
+  GCreatePostVars._();
+
+  factory GCreatePostVars([Function(GCreatePostVarsBuilder b) updates]) =
+      _$GCreatePostVars;
+
+  _i1.GPostInput get data;
+  static Serializer<GCreatePostVars> get serializer =>
+      _$gCreatePostVarsSerializer;
+  Map<String, dynamic> toJson() =>
+      (_i2.serializers.serializeWith(GCreatePostVars.serializer, this)
+          as Map<String, dynamic>);
+  static GCreatePostVars? fromJson(Map<String, dynamic> json) =>
+      _i2.serializers.deserializeWith(GCreatePostVars.serializer, json);
+}
+
 abstract class GCommunityFragmentVars
     implements Built<GCommunityFragmentVars, GCommunityFragmentVarsBuilder> {
   GCommunityFragmentVars._();

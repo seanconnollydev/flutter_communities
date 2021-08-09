@@ -10,13 +10,22 @@ Serializer<GCommunityCreatorRelation> _$gCommunityCreatorRelationSerializer =
     new _$GCommunityCreatorRelationSerializer();
 Serializer<GCommunityInput> _$gCommunityInputSerializer =
     new _$GCommunityInputSerializer();
+Serializer<GCommunityPostsRelation> _$gCommunityPostsRelationSerializer =
+    new _$GCommunityPostsRelationSerializer();
 Serializer<GCreateUserInput> _$gCreateUserInputSerializer =
     new _$GCreateUserInputSerializer();
 Serializer<GLoginUserInput> _$gLoginUserInputSerializer =
     new _$GLoginUserInputSerializer();
+Serializer<GPostCommunityRelation> _$gPostCommunityRelationSerializer =
+    new _$GPostCommunityRelationSerializer();
+Serializer<GPostCreatorRelation> _$gPostCreatorRelationSerializer =
+    new _$GPostCreatorRelationSerializer();
+Serializer<GPostInput> _$gPostInputSerializer = new _$GPostInputSerializer();
 Serializer<GUserCommunitiesRelation> _$gUserCommunitiesRelationSerializer =
     new _$GUserCommunitiesRelationSerializer();
 Serializer<GUserInput> _$gUserInputSerializer = new _$GUserInputSerializer();
+Serializer<GUserPostsRelation> _$gUserPostsRelationSerializer =
+    new _$GUserPostsRelationSerializer();
 
 class _$GCommunityCreatorRelationSerializer
     implements StructuredSerializer<GCommunityCreatorRelation> {
@@ -107,6 +116,13 @@ class _$GCommunityInputSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(GCommunityCreatorRelation)));
     }
+    value = object.posts;
+    if (value != null) {
+      result
+        ..add('posts')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(GCommunityPostsRelation)));
+    }
     return result;
   }
 
@@ -134,6 +150,91 @@ class _$GCommunityInputSerializer
           result.creator.replace(serializers.deserialize(value,
                   specifiedType: const FullType(GCommunityCreatorRelation))!
               as GCommunityCreatorRelation);
+          break;
+        case 'posts':
+          result.posts.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(GCommunityPostsRelation))!
+              as GCommunityPostsRelation);
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GCommunityPostsRelationSerializer
+    implements StructuredSerializer<GCommunityPostsRelation> {
+  @override
+  final Iterable<Type> types = const [
+    GCommunityPostsRelation,
+    _$GCommunityPostsRelation
+  ];
+  @override
+  final String wireName = 'GCommunityPostsRelation';
+
+  @override
+  Iterable<Object?> serialize(
+      Serializers serializers, GCommunityPostsRelation object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[];
+    Object? value;
+    value = object.create;
+    if (value != null) {
+      result
+        ..add('create')
+        ..add(serializers.serialize(value,
+            specifiedType:
+                const FullType(BuiltList, const [const FullType(GPostInput)])));
+    }
+    value = object.connect;
+    if (value != null) {
+      result
+        ..add('connect')
+        ..add(serializers.serialize(value,
+            specifiedType:
+                const FullType(BuiltList, const [const FullType(String)])));
+    }
+    value = object.disconnect;
+    if (value != null) {
+      result
+        ..add('disconnect')
+        ..add(serializers.serialize(value,
+            specifiedType:
+                const FullType(BuiltList, const [const FullType(String)])));
+    }
+    return result;
+  }
+
+  @override
+  GCommunityPostsRelation deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GCommunityPostsRelationBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case 'create':
+          result.create.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(GPostInput)]))!
+              as BuiltList<Object>);
+          break;
+        case 'connect':
+          result.connect.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(String)]))!
+              as BuiltList<Object>);
+          break;
+        case 'disconnect':
+          result.disconnect.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(String)]))!
+              as BuiltList<Object>);
           break;
       }
     }
@@ -232,6 +333,198 @@ class _$GLoginUserInputSerializer
         case 'password':
           result.password = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GPostCommunityRelationSerializer
+    implements StructuredSerializer<GPostCommunityRelation> {
+  @override
+  final Iterable<Type> types = const [
+    GPostCommunityRelation,
+    _$GPostCommunityRelation
+  ];
+  @override
+  final String wireName = 'GPostCommunityRelation';
+
+  @override
+  Iterable<Object?> serialize(
+      Serializers serializers, GPostCommunityRelation object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[];
+    Object? value;
+    value = object.create;
+    if (value != null) {
+      result
+        ..add('create')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(GCommunityInput)));
+    }
+    value = object.connect;
+    if (value != null) {
+      result
+        ..add('connect')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    return result;
+  }
+
+  @override
+  GPostCommunityRelation deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GPostCommunityRelationBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case 'create':
+          result.create.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(GCommunityInput))!
+              as GCommunityInput);
+          break;
+        case 'connect':
+          result.connect = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GPostCreatorRelationSerializer
+    implements StructuredSerializer<GPostCreatorRelation> {
+  @override
+  final Iterable<Type> types = const [
+    GPostCreatorRelation,
+    _$GPostCreatorRelation
+  ];
+  @override
+  final String wireName = 'GPostCreatorRelation';
+
+  @override
+  Iterable<Object?> serialize(
+      Serializers serializers, GPostCreatorRelation object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[];
+    Object? value;
+    value = object.create;
+    if (value != null) {
+      result
+        ..add('create')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(GUserInput)));
+    }
+    value = object.connect;
+    if (value != null) {
+      result
+        ..add('connect')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    return result;
+  }
+
+  @override
+  GPostCreatorRelation deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GPostCreatorRelationBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case 'create':
+          result.create.replace(serializers.deserialize(value,
+              specifiedType: const FullType(GUserInput))! as GUserInput);
+          break;
+        case 'connect':
+          result.connect = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GPostInputSerializer implements StructuredSerializer<GPostInput> {
+  @override
+  final Iterable<Type> types = const [GPostInput, _$GPostInput];
+  @override
+  final String wireName = 'GPostInput';
+
+  @override
+  Iterable<Object?> serialize(Serializers serializers, GPostInput object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      'title',
+      serializers.serialize(object.title,
+          specifiedType: const FullType(String)),
+      'message',
+      serializers.serialize(object.message,
+          specifiedType: const FullType(String)),
+    ];
+    Object? value;
+    value = object.creator;
+    if (value != null) {
+      result
+        ..add('creator')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(GPostCreatorRelation)));
+    }
+    value = object.community;
+    if (value != null) {
+      result
+        ..add('community')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(GPostCommunityRelation)));
+    }
+    return result;
+  }
+
+  @override
+  GPostInput deserialize(Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GPostInputBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case 'title':
+          result.title = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
+          break;
+        case 'message':
+          result.message = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
+          break;
+        case 'creator':
+          result.creator.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(GPostCreatorRelation))!
+              as GPostCreatorRelation);
+          break;
+        case 'community':
+          result.community.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(GPostCommunityRelation))!
+              as GPostCommunityRelation);
           break;
       }
     }
@@ -342,6 +635,13 @@ class _$GUserInputSerializer implements StructuredSerializer<GUserInput> {
         ..add(serializers.serialize(value,
             specifiedType: const FullType(GUserCommunitiesRelation)));
     }
+    value = object.posts;
+    if (value != null) {
+      result
+        ..add('posts')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(GUserPostsRelation)));
+    }
     return result;
   }
 
@@ -364,6 +664,88 @@ class _$GUserInputSerializer implements StructuredSerializer<GUserInput> {
           result.communities.replace(serializers.deserialize(value,
                   specifiedType: const FullType(GUserCommunitiesRelation))!
               as GUserCommunitiesRelation);
+          break;
+        case 'posts':
+          result.posts.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(GUserPostsRelation))!
+              as GUserPostsRelation);
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GUserPostsRelationSerializer
+    implements StructuredSerializer<GUserPostsRelation> {
+  @override
+  final Iterable<Type> types = const [GUserPostsRelation, _$GUserPostsRelation];
+  @override
+  final String wireName = 'GUserPostsRelation';
+
+  @override
+  Iterable<Object?> serialize(
+      Serializers serializers, GUserPostsRelation object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[];
+    Object? value;
+    value = object.create;
+    if (value != null) {
+      result
+        ..add('create')
+        ..add(serializers.serialize(value,
+            specifiedType:
+                const FullType(BuiltList, const [const FullType(GPostInput)])));
+    }
+    value = object.connect;
+    if (value != null) {
+      result
+        ..add('connect')
+        ..add(serializers.serialize(value,
+            specifiedType:
+                const FullType(BuiltList, const [const FullType(String)])));
+    }
+    value = object.disconnect;
+    if (value != null) {
+      result
+        ..add('disconnect')
+        ..add(serializers.serialize(value,
+            specifiedType:
+                const FullType(BuiltList, const [const FullType(String)])));
+    }
+    return result;
+  }
+
+  @override
+  GUserPostsRelation deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GUserPostsRelationBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case 'create':
+          result.create.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(GPostInput)]))!
+              as BuiltList<Object>);
+          break;
+        case 'connect':
+          result.connect.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(String)]))!
+              as BuiltList<Object>);
+          break;
+        case 'disconnect':
+          result.disconnect.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(String)]))!
+              as BuiltList<Object>);
           break;
       }
     }
@@ -481,11 +863,14 @@ class _$GCommunityInput extends GCommunityInput {
   final String? purpose;
   @override
   final GCommunityCreatorRelation? creator;
+  @override
+  final GCommunityPostsRelation? posts;
 
   factory _$GCommunityInput([void Function(GCommunityInputBuilder)? updates]) =>
       (new GCommunityInputBuilder()..update(updates)).build();
 
-  _$GCommunityInput._({required this.name, this.purpose, this.creator})
+  _$GCommunityInput._(
+      {required this.name, this.purpose, this.creator, this.posts})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(name, 'GCommunityInput', 'name');
   }
@@ -504,13 +889,15 @@ class _$GCommunityInput extends GCommunityInput {
     return other is GCommunityInput &&
         name == other.name &&
         purpose == other.purpose &&
-        creator == other.creator;
+        creator == other.creator &&
+        posts == other.posts;
   }
 
   @override
   int get hashCode {
-    return $jf(
-        $jc($jc($jc(0, name.hashCode), purpose.hashCode), creator.hashCode));
+    return $jf($jc(
+        $jc($jc($jc(0, name.hashCode), purpose.hashCode), creator.hashCode),
+        posts.hashCode));
   }
 
   @override
@@ -518,7 +905,8 @@ class _$GCommunityInput extends GCommunityInput {
     return (newBuiltValueToStringHelper('GCommunityInput')
           ..add('name', name)
           ..add('purpose', purpose)
-          ..add('creator', creator))
+          ..add('creator', creator)
+          ..add('posts', posts))
         .toString();
   }
 }
@@ -541,6 +929,11 @@ class GCommunityInputBuilder
   set creator(GCommunityCreatorRelationBuilder? creator) =>
       _$this._creator = creator;
 
+  GCommunityPostsRelationBuilder? _posts;
+  GCommunityPostsRelationBuilder get posts =>
+      _$this._posts ??= new GCommunityPostsRelationBuilder();
+  set posts(GCommunityPostsRelationBuilder? posts) => _$this._posts = posts;
+
   GCommunityInputBuilder();
 
   GCommunityInputBuilder get _$this {
@@ -549,6 +942,7 @@ class GCommunityInputBuilder
       _name = $v.name;
       _purpose = $v.purpose;
       _creator = $v.creator?.toBuilder();
+      _posts = $v.posts?.toBuilder();
       _$v = null;
     }
     return this;
@@ -574,15 +968,141 @@ class GCommunityInputBuilder
               name: BuiltValueNullFieldError.checkNotNull(
                   name, 'GCommunityInput', 'name'),
               purpose: purpose,
-              creator: _creator?.build());
+              creator: _creator?.build(),
+              posts: _posts?.build());
     } catch (_) {
       late String _$failedField;
       try {
         _$failedField = 'creator';
         _creator?.build();
+        _$failedField = 'posts';
+        _posts?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             'GCommunityInput', _$failedField, e.toString());
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GCommunityPostsRelation extends GCommunityPostsRelation {
+  @override
+  final BuiltList<GPostInput>? create;
+  @override
+  final BuiltList<String>? connect;
+  @override
+  final BuiltList<String>? disconnect;
+
+  factory _$GCommunityPostsRelation(
+          [void Function(GCommunityPostsRelationBuilder)? updates]) =>
+      (new GCommunityPostsRelationBuilder()..update(updates)).build();
+
+  _$GCommunityPostsRelation._({this.create, this.connect, this.disconnect})
+      : super._();
+
+  @override
+  GCommunityPostsRelation rebuild(
+          void Function(GCommunityPostsRelationBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GCommunityPostsRelationBuilder toBuilder() =>
+      new GCommunityPostsRelationBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GCommunityPostsRelation &&
+        create == other.create &&
+        connect == other.connect &&
+        disconnect == other.disconnect;
+  }
+
+  @override
+  int get hashCode {
+    return $jf($jc(
+        $jc($jc(0, create.hashCode), connect.hashCode), disconnect.hashCode));
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper('GCommunityPostsRelation')
+          ..add('create', create)
+          ..add('connect', connect)
+          ..add('disconnect', disconnect))
+        .toString();
+  }
+}
+
+class GCommunityPostsRelationBuilder
+    implements
+        Builder<GCommunityPostsRelation, GCommunityPostsRelationBuilder> {
+  _$GCommunityPostsRelation? _$v;
+
+  ListBuilder<GPostInput>? _create;
+  ListBuilder<GPostInput> get create =>
+      _$this._create ??= new ListBuilder<GPostInput>();
+  set create(ListBuilder<GPostInput>? create) => _$this._create = create;
+
+  ListBuilder<String>? _connect;
+  ListBuilder<String> get connect =>
+      _$this._connect ??= new ListBuilder<String>();
+  set connect(ListBuilder<String>? connect) => _$this._connect = connect;
+
+  ListBuilder<String>? _disconnect;
+  ListBuilder<String> get disconnect =>
+      _$this._disconnect ??= new ListBuilder<String>();
+  set disconnect(ListBuilder<String>? disconnect) =>
+      _$this._disconnect = disconnect;
+
+  GCommunityPostsRelationBuilder();
+
+  GCommunityPostsRelationBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _create = $v.create?.toBuilder();
+      _connect = $v.connect?.toBuilder();
+      _disconnect = $v.disconnect?.toBuilder();
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GCommunityPostsRelation other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GCommunityPostsRelation;
+  }
+
+  @override
+  void update(void Function(GCommunityPostsRelationBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  _$GCommunityPostsRelation build() {
+    _$GCommunityPostsRelation _$result;
+    try {
+      _$result = _$v ??
+          new _$GCommunityPostsRelation._(
+              create: _create?.build(),
+              connect: _connect?.build(),
+              disconnect: _disconnect?.build());
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'create';
+        _create?.build();
+        _$failedField = 'connect';
+        _connect?.build();
+        _$failedField = 'disconnect';
+        _disconnect?.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            'GCommunityPostsRelation', _$failedField, e.toString());
       }
       rethrow;
     }
@@ -934,6 +1454,345 @@ class GLongBuilder implements Builder<GLong, GLongBuilder> {
   }
 }
 
+class _$GPostCommunityRelation extends GPostCommunityRelation {
+  @override
+  final GCommunityInput? create;
+  @override
+  final String? connect;
+
+  factory _$GPostCommunityRelation(
+          [void Function(GPostCommunityRelationBuilder)? updates]) =>
+      (new GPostCommunityRelationBuilder()..update(updates)).build();
+
+  _$GPostCommunityRelation._({this.create, this.connect}) : super._();
+
+  @override
+  GPostCommunityRelation rebuild(
+          void Function(GPostCommunityRelationBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GPostCommunityRelationBuilder toBuilder() =>
+      new GPostCommunityRelationBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GPostCommunityRelation &&
+        create == other.create &&
+        connect == other.connect;
+  }
+
+  @override
+  int get hashCode {
+    return $jf($jc($jc(0, create.hashCode), connect.hashCode));
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper('GPostCommunityRelation')
+          ..add('create', create)
+          ..add('connect', connect))
+        .toString();
+  }
+}
+
+class GPostCommunityRelationBuilder
+    implements Builder<GPostCommunityRelation, GPostCommunityRelationBuilder> {
+  _$GPostCommunityRelation? _$v;
+
+  GCommunityInputBuilder? _create;
+  GCommunityInputBuilder get create =>
+      _$this._create ??= new GCommunityInputBuilder();
+  set create(GCommunityInputBuilder? create) => _$this._create = create;
+
+  String? _connect;
+  String? get connect => _$this._connect;
+  set connect(String? connect) => _$this._connect = connect;
+
+  GPostCommunityRelationBuilder();
+
+  GPostCommunityRelationBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _create = $v.create?.toBuilder();
+      _connect = $v.connect;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GPostCommunityRelation other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GPostCommunityRelation;
+  }
+
+  @override
+  void update(void Function(GPostCommunityRelationBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  _$GPostCommunityRelation build() {
+    _$GPostCommunityRelation _$result;
+    try {
+      _$result = _$v ??
+          new _$GPostCommunityRelation._(
+              create: _create?.build(), connect: connect);
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'create';
+        _create?.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            'GPostCommunityRelation', _$failedField, e.toString());
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GPostCreatorRelation extends GPostCreatorRelation {
+  @override
+  final GUserInput? create;
+  @override
+  final String? connect;
+
+  factory _$GPostCreatorRelation(
+          [void Function(GPostCreatorRelationBuilder)? updates]) =>
+      (new GPostCreatorRelationBuilder()..update(updates)).build();
+
+  _$GPostCreatorRelation._({this.create, this.connect}) : super._();
+
+  @override
+  GPostCreatorRelation rebuild(
+          void Function(GPostCreatorRelationBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GPostCreatorRelationBuilder toBuilder() =>
+      new GPostCreatorRelationBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GPostCreatorRelation &&
+        create == other.create &&
+        connect == other.connect;
+  }
+
+  @override
+  int get hashCode {
+    return $jf($jc($jc(0, create.hashCode), connect.hashCode));
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper('GPostCreatorRelation')
+          ..add('create', create)
+          ..add('connect', connect))
+        .toString();
+  }
+}
+
+class GPostCreatorRelationBuilder
+    implements Builder<GPostCreatorRelation, GPostCreatorRelationBuilder> {
+  _$GPostCreatorRelation? _$v;
+
+  GUserInputBuilder? _create;
+  GUserInputBuilder get create => _$this._create ??= new GUserInputBuilder();
+  set create(GUserInputBuilder? create) => _$this._create = create;
+
+  String? _connect;
+  String? get connect => _$this._connect;
+  set connect(String? connect) => _$this._connect = connect;
+
+  GPostCreatorRelationBuilder();
+
+  GPostCreatorRelationBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _create = $v.create?.toBuilder();
+      _connect = $v.connect;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GPostCreatorRelation other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GPostCreatorRelation;
+  }
+
+  @override
+  void update(void Function(GPostCreatorRelationBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  _$GPostCreatorRelation build() {
+    _$GPostCreatorRelation _$result;
+    try {
+      _$result = _$v ??
+          new _$GPostCreatorRelation._(
+              create: _create?.build(), connect: connect);
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'create';
+        _create?.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            'GPostCreatorRelation', _$failedField, e.toString());
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GPostInput extends GPostInput {
+  @override
+  final String title;
+  @override
+  final String message;
+  @override
+  final GPostCreatorRelation? creator;
+  @override
+  final GPostCommunityRelation? community;
+
+  factory _$GPostInput([void Function(GPostInputBuilder)? updates]) =>
+      (new GPostInputBuilder()..update(updates)).build();
+
+  _$GPostInput._(
+      {required this.title,
+      required this.message,
+      this.creator,
+      this.community})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(title, 'GPostInput', 'title');
+    BuiltValueNullFieldError.checkNotNull(message, 'GPostInput', 'message');
+  }
+
+  @override
+  GPostInput rebuild(void Function(GPostInputBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GPostInputBuilder toBuilder() => new GPostInputBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GPostInput &&
+        title == other.title &&
+        message == other.message &&
+        creator == other.creator &&
+        community == other.community;
+  }
+
+  @override
+  int get hashCode {
+    return $jf($jc(
+        $jc($jc($jc(0, title.hashCode), message.hashCode), creator.hashCode),
+        community.hashCode));
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper('GPostInput')
+          ..add('title', title)
+          ..add('message', message)
+          ..add('creator', creator)
+          ..add('community', community))
+        .toString();
+  }
+}
+
+class GPostInputBuilder implements Builder<GPostInput, GPostInputBuilder> {
+  _$GPostInput? _$v;
+
+  String? _title;
+  String? get title => _$this._title;
+  set title(String? title) => _$this._title = title;
+
+  String? _message;
+  String? get message => _$this._message;
+  set message(String? message) => _$this._message = message;
+
+  GPostCreatorRelationBuilder? _creator;
+  GPostCreatorRelationBuilder get creator =>
+      _$this._creator ??= new GPostCreatorRelationBuilder();
+  set creator(GPostCreatorRelationBuilder? creator) =>
+      _$this._creator = creator;
+
+  GPostCommunityRelationBuilder? _community;
+  GPostCommunityRelationBuilder get community =>
+      _$this._community ??= new GPostCommunityRelationBuilder();
+  set community(GPostCommunityRelationBuilder? community) =>
+      _$this._community = community;
+
+  GPostInputBuilder();
+
+  GPostInputBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _title = $v.title;
+      _message = $v.message;
+      _creator = $v.creator?.toBuilder();
+      _community = $v.community?.toBuilder();
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GPostInput other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GPostInput;
+  }
+
+  @override
+  void update(void Function(GPostInputBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  _$GPostInput build() {
+    _$GPostInput _$result;
+    try {
+      _$result = _$v ??
+          new _$GPostInput._(
+              title: BuiltValueNullFieldError.checkNotNull(
+                  title, 'GPostInput', 'title'),
+              message: BuiltValueNullFieldError.checkNotNull(
+                  message, 'GPostInput', 'message'),
+              creator: _creator?.build(),
+              community: _community?.build());
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'creator';
+        _creator?.build();
+        _$failedField = 'community';
+        _community?.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            'GPostInput', _$failedField, e.toString());
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
+}
+
 class _$GTime extends GTime {
   @override
   final String value;
@@ -1138,11 +1997,14 @@ class _$GUserInput extends GUserInput {
   final String username;
   @override
   final GUserCommunitiesRelation? communities;
+  @override
+  final GUserPostsRelation? posts;
 
   factory _$GUserInput([void Function(GUserInputBuilder)? updates]) =>
       (new GUserInputBuilder()..update(updates)).build();
 
-  _$GUserInput._({required this.username, this.communities}) : super._() {
+  _$GUserInput._({required this.username, this.communities, this.posts})
+      : super._() {
     BuiltValueNullFieldError.checkNotNull(username, 'GUserInput', 'username');
   }
 
@@ -1158,19 +2020,22 @@ class _$GUserInput extends GUserInput {
     if (identical(other, this)) return true;
     return other is GUserInput &&
         username == other.username &&
-        communities == other.communities;
+        communities == other.communities &&
+        posts == other.posts;
   }
 
   @override
   int get hashCode {
-    return $jf($jc($jc(0, username.hashCode), communities.hashCode));
+    return $jf($jc(
+        $jc($jc(0, username.hashCode), communities.hashCode), posts.hashCode));
   }
 
   @override
   String toString() {
     return (newBuiltValueToStringHelper('GUserInput')
           ..add('username', username)
-          ..add('communities', communities))
+          ..add('communities', communities)
+          ..add('posts', posts))
         .toString();
   }
 }
@@ -1188,6 +2053,11 @@ class GUserInputBuilder implements Builder<GUserInput, GUserInputBuilder> {
   set communities(GUserCommunitiesRelationBuilder? communities) =>
       _$this._communities = communities;
 
+  GUserPostsRelationBuilder? _posts;
+  GUserPostsRelationBuilder get posts =>
+      _$this._posts ??= new GUserPostsRelationBuilder();
+  set posts(GUserPostsRelationBuilder? posts) => _$this._posts = posts;
+
   GUserInputBuilder();
 
   GUserInputBuilder get _$this {
@@ -1195,6 +2065,7 @@ class GUserInputBuilder implements Builder<GUserInput, GUserInputBuilder> {
     if ($v != null) {
       _username = $v.username;
       _communities = $v.communities?.toBuilder();
+      _posts = $v.posts?.toBuilder();
       _$v = null;
     }
     return this;
@@ -1219,15 +2090,140 @@ class GUserInputBuilder implements Builder<GUserInput, GUserInputBuilder> {
           new _$GUserInput._(
               username: BuiltValueNullFieldError.checkNotNull(
                   username, 'GUserInput', 'username'),
-              communities: _communities?.build());
+              communities: _communities?.build(),
+              posts: _posts?.build());
     } catch (_) {
       late String _$failedField;
       try {
         _$failedField = 'communities';
         _communities?.build();
+        _$failedField = 'posts';
+        _posts?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             'GUserInput', _$failedField, e.toString());
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GUserPostsRelation extends GUserPostsRelation {
+  @override
+  final BuiltList<GPostInput>? create;
+  @override
+  final BuiltList<String>? connect;
+  @override
+  final BuiltList<String>? disconnect;
+
+  factory _$GUserPostsRelation(
+          [void Function(GUserPostsRelationBuilder)? updates]) =>
+      (new GUserPostsRelationBuilder()..update(updates)).build();
+
+  _$GUserPostsRelation._({this.create, this.connect, this.disconnect})
+      : super._();
+
+  @override
+  GUserPostsRelation rebuild(
+          void Function(GUserPostsRelationBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GUserPostsRelationBuilder toBuilder() =>
+      new GUserPostsRelationBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GUserPostsRelation &&
+        create == other.create &&
+        connect == other.connect &&
+        disconnect == other.disconnect;
+  }
+
+  @override
+  int get hashCode {
+    return $jf($jc(
+        $jc($jc(0, create.hashCode), connect.hashCode), disconnect.hashCode));
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper('GUserPostsRelation')
+          ..add('create', create)
+          ..add('connect', connect)
+          ..add('disconnect', disconnect))
+        .toString();
+  }
+}
+
+class GUserPostsRelationBuilder
+    implements Builder<GUserPostsRelation, GUserPostsRelationBuilder> {
+  _$GUserPostsRelation? _$v;
+
+  ListBuilder<GPostInput>? _create;
+  ListBuilder<GPostInput> get create =>
+      _$this._create ??= new ListBuilder<GPostInput>();
+  set create(ListBuilder<GPostInput>? create) => _$this._create = create;
+
+  ListBuilder<String>? _connect;
+  ListBuilder<String> get connect =>
+      _$this._connect ??= new ListBuilder<String>();
+  set connect(ListBuilder<String>? connect) => _$this._connect = connect;
+
+  ListBuilder<String>? _disconnect;
+  ListBuilder<String> get disconnect =>
+      _$this._disconnect ??= new ListBuilder<String>();
+  set disconnect(ListBuilder<String>? disconnect) =>
+      _$this._disconnect = disconnect;
+
+  GUserPostsRelationBuilder();
+
+  GUserPostsRelationBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _create = $v.create?.toBuilder();
+      _connect = $v.connect?.toBuilder();
+      _disconnect = $v.disconnect?.toBuilder();
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GUserPostsRelation other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GUserPostsRelation;
+  }
+
+  @override
+  void update(void Function(GUserPostsRelationBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  _$GUserPostsRelation build() {
+    _$GUserPostsRelation _$result;
+    try {
+      _$result = _$v ??
+          new _$GUserPostsRelation._(
+              create: _create?.build(),
+              connect: _connect?.build(),
+              disconnect: _disconnect?.build());
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'create';
+        _create?.build();
+        _$failedField = 'connect';
+        _connect?.build();
+        _$failedField = 'disconnect';
+        _disconnect?.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            'GUserPostsRelation', _$failedField, e.toString());
       }
       rethrow;
     }

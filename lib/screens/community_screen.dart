@@ -5,6 +5,7 @@ import 'package:flutter_communities/graphql/communities.data.gql.dart';
 import 'package:flutter_communities/graphql/communities.req.gql.dart';
 import 'package:flutter_communities/graphql/communities.var.gql.dart';
 import 'package:flutter_communities/providers/ferry.dart';
+import 'package:flutter_communities/screens/create_post_screen.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 typedef GetCommunityResponse
@@ -33,6 +34,12 @@ class CommunityScreen extends ConsumerWidget {
             title: Text(response?.data?.findCommunityByID?.name ?? ''),
           ),
           body: _CommunityScreenBody(response),
+          floatingActionButton: FloatingActionButton(
+            child: Icon(Icons.add),
+            onPressed: () {
+              Navigator.of(context).pushNamed(CreatePostScreen.routeName);
+            },
+          ),
         );
       },
     );

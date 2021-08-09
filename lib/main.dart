@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_communities/screens/community_screen.dart';
 import 'package:flutter_communities/screens/create_community_screen.dart';
+import 'package:flutter_communities/screens/create_post_screen.dart';
 import 'package:flutter_communities/screens/login_screen.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -27,6 +28,7 @@ class MyApp extends StatelessWidget {
         LoginScreen.routeName: (_) => LoginScreen(),
         CreateCommunityScreen.routeName: (_) => CreateCommunityScreen(),
         CommunityScreen.routeName: (_) => CommunityScreen(),
+        CreatePostScreen.routeName: (_) => CreatePostScreen(),
       },
     );
   }

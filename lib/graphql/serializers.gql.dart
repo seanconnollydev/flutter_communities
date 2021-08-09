@@ -6,6 +6,8 @@ import 'package:flutter_communities/graphql/communities.data.gql.dart'
         GCommunityFragmentData,
         GCreateCommunityData,
         GCreateCommunityData_createCommunity,
+        GCreatePostData,
+        GCreatePostData_createPost,
         GCreateUserData,
         GGetCommunitiesData,
         GGetCommunitiesData_communities,
@@ -17,6 +19,7 @@ import 'package:flutter_communities/graphql/communities.req.gql.dart'
     show
         GCommunityFragmentReq,
         GCreateCommunityReq,
+        GCreatePostReq,
         GCreateUserReq,
         GGetCommunitiesReq,
         GGetCommunityReq,
@@ -25,6 +28,7 @@ import 'package:flutter_communities/graphql/communities.var.gql.dart'
     show
         GCommunityFragmentVars,
         GCreateCommunityVars,
+        GCreatePostVars,
         GCreateUserVars,
         GGetCommunitiesVars,
         GGetCommunityVars,
@@ -33,13 +37,18 @@ import 'package:flutter_communities/graphql/schema.schema.gql.dart'
     show
         GCommunityCreatorRelation,
         GCommunityInput,
+        GCommunityPostsRelation,
         GCreateUserInput,
         GDate,
         GLoginUserInput,
         GLong,
+        GPostCommunityRelation,
+        GPostCreatorRelation,
+        GPostInput,
         GTime,
         GUserCommunitiesRelation,
-        GUserInput;
+        GUserInput,
+        GUserPostsRelation;
 import 'package:gql_code_builder/src/serializers/operation_serializer.dart'
     show OperationSerializer;
 
@@ -54,10 +63,15 @@ final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   GCommunityFragmentReq,
   GCommunityFragmentVars,
   GCommunityInput,
+  GCommunityPostsRelation,
   GCreateCommunityData,
   GCreateCommunityData_createCommunity,
   GCreateCommunityReq,
   GCreateCommunityVars,
+  GCreatePostData,
+  GCreatePostData_createPost,
+  GCreatePostReq,
+  GCreatePostVars,
   GCreateUserData,
   GCreateUserInput,
   GCreateUserReq,
@@ -77,8 +91,12 @@ final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   GLoginUserReq,
   GLoginUserVars,
   GLong,
+  GPostCommunityRelation,
+  GPostCreatorRelation,
+  GPostInput,
   GTime,
   GUserCommunitiesRelation,
-  GUserInput
+  GUserInput,
+  GUserPostsRelation
 ])
 final Serializers serializers = _serializersBuilder.build();

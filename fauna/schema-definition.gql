@@ -10,6 +10,7 @@ type Query {
 type User {
   username: String! @unique
   communities: [Community!] @relation(name: "user_communities")
+  posts: [Post!] @relation(name: "user_posts")
 }
 
 input CreateUserInput {
@@ -26,4 +27,12 @@ type Community {
   name: String!
   purpose: String
   creator: User! @relation(name: "user_communities")
+  posts: [Post!] @relation(name: "community_posts")
+}
+
+type Post {
+  title: String!
+  message: String!
+  creator: User! @relation(name: "user_posts")
+  community: Community! @relation(name: "community_posts")
 }

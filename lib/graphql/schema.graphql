@@ -9,6 +9,12 @@ directive @relation(name: String) on FIELD_DEFINITION
 directive @unique(index: String) on FIELD_DEFINITION
 type Community {
   name: String!
+  posts(
+    # The number of items to return per page.
+    _size: Int
+    # The pagination cursor.
+    _cursor: String
+  ): PostPage!
   # The document's ID.
   _id: ID!
   creator: User!
@@ -30,6 +36,7 @@ input CommunityInput {
   name: String!
   purpose: String
   creator: CommunityCreatorRelation
+  posts: CommunityPostsRelation
 }
 
 # The pagination object for elements of type 'Community'.
@@ -40,6 +47,16 @@ type CommunityPage {
   after: String
   # A cursor for elements coming before the current page.
   before: String
+}
+
+# Allow manipulating the relationship between the types 'Community' and 'Post'.
+input CommunityPostsRelation {
+  # Create one or more documents of type 'Post' and associate them with the current document.
+  create: [PostInput]
+  # Connect one or more documents of type 'Post' with the current document using their IDs.
+  connect: [ID]
+  # Disconnect the given documents of type 'Post' from the current document using their IDs.
+  disconnect: [ID]
 }
 
 input CreateUserInput {
@@ -74,6 +91,13 @@ type Mutation {
     # 'Community' input values
     data: CommunityInput!
   ): Community
+  # Update an existing document in the collection of 'Post'
+  updatePost(
+    # The 'Post' document's ID
+    id: ID!
+    # 'Post' input values
+    data: PostInput!
+  ): Post
   loginUser(input: LoginUserInput!): String!
   # Delete an existing document in the collection of 'Community'
   deleteCommunity(
@@ -85,11 +109,66 @@ type Mutation {
     # The 'User' document's ID
     id: ID!
   ): User
+  # Delete an existing document in the collection of 'Post'
+  deletePost(
+    # The 'Post' document's ID
+    id: ID!
+  ): Post
+  # Create a new document in the collection of 'Post'
+  createPost(
+    # 'Post' input values
+    data: PostInput!
+  ): Post!
   # Create a new document in the collection of 'Community'
   createCommunity(
     # 'Community' input values
     data: CommunityInput!
   ): Community!
+}
+
+type Post {
+  community: Community!
+  # The document's ID.
+  _id: ID!
+  creator: User!
+  message: String!
+  title: String!
+  # The document's timestamp.
+  _ts: Long!
+}
+
+# Allow manipulating the relationship between the types 'Post' and 'Community' using the field 'Post.community'.
+input PostCommunityRelation {
+  # Create a document of type 'Community' and associate it with the current document.
+  create: CommunityInput
+  # Connect a document of type 'Community' with the current document using its ID.
+  connect: ID
+}
+
+# Allow manipulating the relationship between the types 'Post' and 'User' using the field 'Post.creator'.
+input PostCreatorRelation {
+  # Create a document of type 'User' and associate it with the current document.
+  create: UserInput
+  # Connect a document of type 'User' with the current document using its ID.
+  connect: ID
+}
+
+# 'Post' input values
+input PostInput {
+  title: String!
+  message: String!
+  creator: PostCreatorRelation
+  community: PostCommunityRelation
+}
+
+# The pagination object for elements of type 'Post'.
+type PostPage {
+  # The elements of type 'Post' in this page.
+  data: [Post]!
+  # A cursor for elements coming after the current page.
+  after: String
+  # A cursor for elements coming before the current page.
+  before: String
 }
 
 type Query {
@@ -103,6 +182,11 @@ type Query {
     # The 'Community' document's ID
     id: ID!
   ): Community
+  # Find a document from the collection of 'Post' by its id.
+  findPostByID(
+    # The 'Post' document's ID
+    id: ID!
+  ): Post
   communities(
     # The number of items to return per page.
     _size: Int
@@ -114,17 +198,23 @@ type Query {
 scalar Time
 
 type User {
+  posts(
+    # The number of items to return per page.
+    _size: Int
+    # The pagination cursor.
+    _cursor: String
+  ): PostPage!
+  username: String!
   # The document's ID.
   _id: ID!
-  # The document's timestamp.
-  _ts: Long!
-  username: String!
   communities(
     # The number of items to return per page.
     _size: Int
     # The pagination cursor.
     _cursor: String
   ): CommunityPage!
+  # The document's timestamp.
+  _ts: Long!
 }
 
 # Allow manipulating the relationship between the types 'User' and 'Community'.
@@ -141,5 +231,16 @@ input UserCommunitiesRelation {
 input UserInput {
   username: String!
   communities: UserCommunitiesRelation
+  posts: UserPostsRelation
+}
+
+# Allow manipulating the relationship between the types 'User' and 'Post'.
+input UserPostsRelation {
+  # Create one or more documents of type 'Post' and associate them with the current document.
+  create: [PostInput]
+  # Connect one or more documents of type 'Post' with the current document using their IDs.
+  connect: [ID]
+  # Disconnect the given documents of type 'Post' from the current document using their IDs.
+  disconnect: [ID]
 }
 

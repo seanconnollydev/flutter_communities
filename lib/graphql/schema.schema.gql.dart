@@ -40,6 +40,7 @@ abstract class GCommunityInput
   String get name;
   String? get purpose;
   GCommunityCreatorRelation? get creator;
+  GCommunityPostsRelation? get posts;
   static Serializer<GCommunityInput> get serializer =>
       _$gCommunityInputSerializer;
   Map<String, dynamic> toJson() =>
@@ -47,6 +48,26 @@ abstract class GCommunityInput
           as Map<String, dynamic>);
   static GCommunityInput? fromJson(Map<String, dynamic> json) =>
       _i1.serializers.deserializeWith(GCommunityInput.serializer, json);
+}
+
+abstract class GCommunityPostsRelation
+    implements Built<GCommunityPostsRelation, GCommunityPostsRelationBuilder> {
+  GCommunityPostsRelation._();
+
+  factory GCommunityPostsRelation(
+          [Function(GCommunityPostsRelationBuilder b) updates]) =
+      _$GCommunityPostsRelation;
+
+  BuiltList<GPostInput>? get create;
+  BuiltList<String>? get connect;
+  BuiltList<String>? get disconnect;
+  static Serializer<GCommunityPostsRelation> get serializer =>
+      _$gCommunityPostsRelationSerializer;
+  Map<String, dynamic> toJson() =>
+      (_i1.serializers.serializeWith(GCommunityPostsRelation.serializer, this)
+          as Map<String, dynamic>);
+  static GCommunityPostsRelation? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(GCommunityPostsRelation.serializer, json);
 }
 
 abstract class GCreateUserInput
@@ -109,6 +130,61 @@ abstract class GLong implements Built<GLong, GLongBuilder> {
       (Object serialized) => GLong((serialized as String?)));
 }
 
+abstract class GPostCommunityRelation
+    implements Built<GPostCommunityRelation, GPostCommunityRelationBuilder> {
+  GPostCommunityRelation._();
+
+  factory GPostCommunityRelation(
+          [Function(GPostCommunityRelationBuilder b) updates]) =
+      _$GPostCommunityRelation;
+
+  GCommunityInput? get create;
+  String? get connect;
+  static Serializer<GPostCommunityRelation> get serializer =>
+      _$gPostCommunityRelationSerializer;
+  Map<String, dynamic> toJson() =>
+      (_i1.serializers.serializeWith(GPostCommunityRelation.serializer, this)
+          as Map<String, dynamic>);
+  static GPostCommunityRelation? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(GPostCommunityRelation.serializer, json);
+}
+
+abstract class GPostCreatorRelation
+    implements Built<GPostCreatorRelation, GPostCreatorRelationBuilder> {
+  GPostCreatorRelation._();
+
+  factory GPostCreatorRelation(
+          [Function(GPostCreatorRelationBuilder b) updates]) =
+      _$GPostCreatorRelation;
+
+  GUserInput? get create;
+  String? get connect;
+  static Serializer<GPostCreatorRelation> get serializer =>
+      _$gPostCreatorRelationSerializer;
+  Map<String, dynamic> toJson() =>
+      (_i1.serializers.serializeWith(GPostCreatorRelation.serializer, this)
+          as Map<String, dynamic>);
+  static GPostCreatorRelation? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(GPostCreatorRelation.serializer, json);
+}
+
+abstract class GPostInput implements Built<GPostInput, GPostInputBuilder> {
+  GPostInput._();
+
+  factory GPostInput([Function(GPostInputBuilder b) updates]) = _$GPostInput;
+
+  String get title;
+  String get message;
+  GPostCreatorRelation? get creator;
+  GPostCommunityRelation? get community;
+  static Serializer<GPostInput> get serializer => _$gPostInputSerializer;
+  Map<String, dynamic> toJson() =>
+      (_i1.serializers.serializeWith(GPostInput.serializer, this)
+          as Map<String, dynamic>);
+  static GPostInput? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(GPostInput.serializer, json);
+}
+
 abstract class GTime implements Built<GTime, GTimeBuilder> {
   GTime._();
 
@@ -150,10 +226,30 @@ abstract class GUserInput implements Built<GUserInput, GUserInputBuilder> {
 
   String get username;
   GUserCommunitiesRelation? get communities;
+  GUserPostsRelation? get posts;
   static Serializer<GUserInput> get serializer => _$gUserInputSerializer;
   Map<String, dynamic> toJson() =>
       (_i1.serializers.serializeWith(GUserInput.serializer, this)
           as Map<String, dynamic>);
   static GUserInput? fromJson(Map<String, dynamic> json) =>
       _i1.serializers.deserializeWith(GUserInput.serializer, json);
+}
+
+abstract class GUserPostsRelation
+    implements Built<GUserPostsRelation, GUserPostsRelationBuilder> {
+  GUserPostsRelation._();
+
+  factory GUserPostsRelation([Function(GUserPostsRelationBuilder b) updates]) =
+      _$GUserPostsRelation;
+
+  BuiltList<GPostInput>? get create;
+  BuiltList<String>? get connect;
+  BuiltList<String>? get disconnect;
+  static Serializer<GUserPostsRelation> get serializer =>
+      _$gUserPostsRelationSerializer;
+  Map<String, dynamic> toJson() =>
+      (_i1.serializers.serializeWith(GUserPostsRelation.serializer, this)
+          as Map<String, dynamic>);
+  static GUserPostsRelation? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(GUserPostsRelation.serializer, json);
 }
