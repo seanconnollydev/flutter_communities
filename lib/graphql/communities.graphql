@@ -32,8 +32,8 @@ fragment CommunityFragment on Community {
   name
 }
 
-mutation CreatePost($data: PostInput!) {
-  createPost(data: $data) {
+mutation CreatePost($input: CreatePostInput!) {
+  createPost(input: $input) {
     _id
     title
     message

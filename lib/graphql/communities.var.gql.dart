@@ -101,7 +101,7 @@ abstract class GCreatePostVars
   factory GCreatePostVars([Function(GCreatePostVarsBuilder b) updates]) =
       _$GCreatePostVars;
 
-  _i1.GPostInput get data;
+  _i1.GCreatePostInput get input;
   static Serializer<GCreatePostVars> get serializer =>
       _$gCreatePostVarsSerializer;
   Map<String, dynamic> toJson() =>

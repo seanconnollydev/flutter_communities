@@ -37,7 +37,8 @@ class CommunityScreen extends ConsumerWidget {
           floatingActionButton: FloatingActionButton(
             child: Icon(Icons.add),
             onPressed: () {
-              Navigator.of(context).pushNamed(CreatePostScreen.routeName);
+              Navigator.of(context).pushNamed(CreatePostScreen.routeName,
+                  arguments: communityId);
             },
           ),
         );

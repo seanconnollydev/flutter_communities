@@ -12,6 +12,8 @@ Serializer<GCommunityInput> _$gCommunityInputSerializer =
     new _$GCommunityInputSerializer();
 Serializer<GCommunityPostsRelation> _$gCommunityPostsRelationSerializer =
     new _$GCommunityPostsRelationSerializer();
+Serializer<GCreatePostInput> _$gCreatePostInputSerializer =
+    new _$GCreatePostInputSerializer();
 Serializer<GCreateUserInput> _$gCreateUserInputSerializer =
     new _$GCreateUserInputSerializer();
 Serializer<GLoginUserInput> _$gLoginUserInputSerializer =
@@ -235,6 +237,62 @@ class _$GCommunityPostsRelationSerializer
                   specifiedType: const FullType(
                       BuiltList, const [const FullType(String)]))!
               as BuiltList<Object>);
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GCreatePostInputSerializer
+    implements StructuredSerializer<GCreatePostInput> {
+  @override
+  final Iterable<Type> types = const [GCreatePostInput, _$GCreatePostInput];
+  @override
+  final String wireName = 'GCreatePostInput';
+
+  @override
+  Iterable<Object?> serialize(Serializers serializers, GCreatePostInput object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      'title',
+      serializers.serialize(object.title,
+          specifiedType: const FullType(String)),
+      'message',
+      serializers.serialize(object.message,
+          specifiedType: const FullType(String)),
+      'communityId',
+      serializers.serialize(object.communityId,
+          specifiedType: const FullType(String)),
+    ];
+
+    return result;
+  }
+
+  @override
+  GCreatePostInput deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GCreatePostInputBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case 'title':
+          result.title = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
+          break;
+        case 'message':
+          result.message = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
+          break;
+        case 'communityId':
+          result.communityId = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
           break;
       }
     }
@@ -1106,6 +1164,116 @@ class GCommunityPostsRelationBuilder
       }
       rethrow;
     }
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GCreatePostInput extends GCreatePostInput {
+  @override
+  final String title;
+  @override
+  final String message;
+  @override
+  final String communityId;
+
+  factory _$GCreatePostInput(
+          [void Function(GCreatePostInputBuilder)? updates]) =>
+      (new GCreatePostInputBuilder()..update(updates)).build();
+
+  _$GCreatePostInput._(
+      {required this.title, required this.message, required this.communityId})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(title, 'GCreatePostInput', 'title');
+    BuiltValueNullFieldError.checkNotNull(
+        message, 'GCreatePostInput', 'message');
+    BuiltValueNullFieldError.checkNotNull(
+        communityId, 'GCreatePostInput', 'communityId');
+  }
+
+  @override
+  GCreatePostInput rebuild(void Function(GCreatePostInputBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GCreatePostInputBuilder toBuilder() =>
+      new GCreatePostInputBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GCreatePostInput &&
+        title == other.title &&
+        message == other.message &&
+        communityId == other.communityId;
+  }
+
+  @override
+  int get hashCode {
+    return $jf($jc(
+        $jc($jc(0, title.hashCode), message.hashCode), communityId.hashCode));
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper('GCreatePostInput')
+          ..add('title', title)
+          ..add('message', message)
+          ..add('communityId', communityId))
+        .toString();
+  }
+}
+
+class GCreatePostInputBuilder
+    implements Builder<GCreatePostInput, GCreatePostInputBuilder> {
+  _$GCreatePostInput? _$v;
+
+  String? _title;
+  String? get title => _$this._title;
+  set title(String? title) => _$this._title = title;
+
+  String? _message;
+  String? get message => _$this._message;
+  set message(String? message) => _$this._message = message;
+
+  String? _communityId;
+  String? get communityId => _$this._communityId;
+  set communityId(String? communityId) => _$this._communityId = communityId;
+
+  GCreatePostInputBuilder();
+
+  GCreatePostInputBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _title = $v.title;
+      _message = $v.message;
+      _communityId = $v.communityId;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GCreatePostInput other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GCreatePostInput;
+  }
+
+  @override
+  void update(void Function(GCreatePostInputBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  _$GCreatePostInput build() {
+    final _$result = _$v ??
+        new _$GCreatePostInput._(
+            title: BuiltValueNullFieldError.checkNotNull(
+                title, 'GCreatePostInput', 'title'),
+            message: BuiltValueNullFieldError.checkNotNull(
+                message, 'GCreatePostInput', 'message'),
+            communityId: BuiltValueNullFieldError.checkNotNull(
+                communityId, 'GCreatePostInput', 'communityId'));
     replace(_$result);
     return _$result;
   }

@@ -59,6 +59,12 @@ input CommunityPostsRelation {
   disconnect: [ID]
 }
 
+input CreatePostInput {
+  title: String!
+  message: String!
+  communityId: String!
+}
+
 input CreateUserInput {
   username: String!
   password: String!
@@ -114,11 +120,7 @@ type Mutation {
     # The 'Post' document's ID
     id: ID!
   ): Post
-  # Create a new document in the collection of 'Post'
-  createPost(
-    # 'Post' input values
-    data: PostInput!
-  ): Post!
+  createPost(input: CreatePostInput!): Post!
   # Create a new document in the collection of 'Community'
   createCommunity(
     # 'Community' input values

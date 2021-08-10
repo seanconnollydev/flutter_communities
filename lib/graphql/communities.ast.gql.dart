@@ -179,9 +179,9 @@ const CreatePost = _i1.OperationDefinitionNode(
     name: _i1.NameNode(value: 'CreatePost'),
     variableDefinitions: [
       _i1.VariableDefinitionNode(
-          variable: _i1.VariableNode(name: _i1.NameNode(value: 'data')),
+          variable: _i1.VariableNode(name: _i1.NameNode(value: 'input')),
           type: _i1.NamedTypeNode(
-              name: _i1.NameNode(value: 'PostInput'), isNonNull: true),
+              name: _i1.NameNode(value: 'CreatePostInput'), isNonNull: true),
           defaultValue: _i1.DefaultValueNode(value: null),
           directives: [])
     ],
@@ -192,8 +192,8 @@ const CreatePost = _i1.OperationDefinitionNode(
           alias: null,
           arguments: [
             _i1.ArgumentNode(
-                name: _i1.NameNode(value: 'data'),
-                value: _i1.VariableNode(name: _i1.NameNode(value: 'data')))
+                name: _i1.NameNode(value: 'input'),
+                value: _i1.VariableNode(name: _i1.NameNode(value: 'input')))
           ],
           directives: [],
           selectionSet: _i1.SelectionSetNode(selections: [

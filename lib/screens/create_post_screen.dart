@@ -6,7 +6,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 class CreatePostScreen extends StatefulWidget {
   static const routeName = '/create-post';
 
-  const CreatePostScreen({Key? key}) : super(key: key);
+  final String _communityId;
+
+  const CreatePostScreen(this._communityId, {Key? key}) : super(key: key);
 
   @override
   _CreatePostScreenState createState() => _CreatePostScreenState();
@@ -23,11 +25,12 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
 
     final client = context.read(ferryClientProvider);
 
-    final request = GCreatePostReq((b) => b
-      ..vars.data.title = _title
-      ..vars.data.message = _message
-      ..vars.data.community.connect = 'TODO: Connect Community'
-      ..vars.data.creator.connect = 'TODO: Connect User');
+    final request = GCreatePostReq(
+      (b) => b
+        ..vars.input.title = _title
+        ..vars.input.message = _message
+        ..vars.input.communityId = widget._communityId,
+    );
 
     await client.request(request).first;
 

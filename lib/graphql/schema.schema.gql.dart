@@ -70,6 +70,25 @@ abstract class GCommunityPostsRelation
       _i1.serializers.deserializeWith(GCommunityPostsRelation.serializer, json);
 }
 
+abstract class GCreatePostInput
+    implements Built<GCreatePostInput, GCreatePostInputBuilder> {
+  GCreatePostInput._();
+
+  factory GCreatePostInput([Function(GCreatePostInputBuilder b) updates]) =
+      _$GCreatePostInput;
+
+  String get title;
+  String get message;
+  String get communityId;
+  static Serializer<GCreatePostInput> get serializer =>
+      _$gCreatePostInputSerializer;
+  Map<String, dynamic> toJson() =>
+      (_i1.serializers.serializeWith(GCreatePostInput.serializer, this)
+          as Map<String, dynamic>);
+  static GCreatePostInput? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(GCreatePostInput.serializer, json);
+}
+
 abstract class GCreateUserInput
     implements Built<GCreateUserInput, GCreateUserInputBuilder> {
   GCreateUserInput._();

@@ -28,7 +28,8 @@ class MyApp extends StatelessWidget {
         LoginScreen.routeName: (_) => LoginScreen(),
         CreateCommunityScreen.routeName: (_) => CreateCommunityScreen(),
         CommunityScreen.routeName: (_) => CommunityScreen(),
-        CreatePostScreen.routeName: (_) => CreatePostScreen(),
+        CreatePostScreen.routeName: (context) => CreatePostScreen(
+            ModalRoute.of(context)!.settings.arguments as String),
       },
     );
   }

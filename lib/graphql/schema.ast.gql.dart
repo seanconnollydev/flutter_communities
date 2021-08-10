@@ -231,6 +231,29 @@ const CommunityPostsRelation = _i1.InputObjectTypeDefinitionNode(
               isNonNull: false),
           defaultValue: null)
     ]);
+const CreatePostInput = _i1.InputObjectTypeDefinitionNode(
+    name: _i1.NameNode(value: 'CreatePostInput'),
+    directives: [],
+    fields: [
+      _i1.InputValueDefinitionNode(
+          name: _i1.NameNode(value: 'title'),
+          directives: [],
+          type: _i1.NamedTypeNode(
+              name: _i1.NameNode(value: 'String'), isNonNull: true),
+          defaultValue: null),
+      _i1.InputValueDefinitionNode(
+          name: _i1.NameNode(value: 'message'),
+          directives: [],
+          type: _i1.NamedTypeNode(
+              name: _i1.NameNode(value: 'String'), isNonNull: true),
+          defaultValue: null),
+      _i1.InputValueDefinitionNode(
+          name: _i1.NameNode(value: 'communityId'),
+          directives: [],
+          type: _i1.NamedTypeNode(
+              name: _i1.NameNode(value: 'String'), isNonNull: true),
+          defaultValue: null)
+    ]);
 const CreateUserInput = _i1.InputObjectTypeDefinitionNode(
     name: _i1.NameNode(value: 'CreateUserInput'),
     directives: [],
@@ -404,10 +427,11 @@ const Mutation = _i1.ObjectTypeDefinitionNode(
           directives: [],
           args: [
             _i1.InputValueDefinitionNode(
-                name: _i1.NameNode(value: 'data'),
+                name: _i1.NameNode(value: 'input'),
                 directives: [],
                 type: _i1.NamedTypeNode(
-                    name: _i1.NameNode(value: 'PostInput'), isNonNull: true),
+                    name: _i1.NameNode(value: 'CreatePostInput'),
+                    isNonNull: true),
                 defaultValue: null)
           ],
           type: _i1.NamedTypeNode(
@@ -783,6 +807,7 @@ const document = _i1.DocumentNode(definitions: [
   CommunityInput,
   CommunityPage,
   CommunityPostsRelation,
+  CreatePostInput,
   CreateUserInput,
   Date,
   LoginUserInput,

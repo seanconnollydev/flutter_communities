@@ -1,16 +1,6 @@
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-// final authProvider = StateNotifierProvider<AuthSession>((_) async {
-//   final storage = new FlutterSecureStorage();
-//   final token = await storage.read(key: 'TOKEN');
-//   final username = await storage.read(key: 'USERNAME');
-
-//   if (token == null || username == null) return Future.value(null);
-
-//   return AuthSession(token: token, username: username);
-// });
-
 final authProvider =
     StateNotifierProvider<AuthNotifier, AuthSession>((_) => AuthNotifier());
 
