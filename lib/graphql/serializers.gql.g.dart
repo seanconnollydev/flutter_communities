@@ -32,10 +32,14 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(GGetCommunitiesData_communities_data.serializer)
       ..add(GGetCommunitiesReq.serializer)
       ..add(GGetCommunitiesVars.serializer)
-      ..add(GGetCommunityData.serializer)
-      ..add(GGetCommunityData_findCommunityByID.serializer)
-      ..add(GGetCommunityReq.serializer)
-      ..add(GGetCommunityVars.serializer)
+      ..add(GGetCommunityWithPostsData.serializer)
+      ..add(GGetCommunityWithPostsData_findCommunityByID.serializer)
+      ..add(GGetCommunityWithPostsData_findCommunityByID_posts.serializer)
+      ..add(GGetCommunityWithPostsData_findCommunityByID_posts_data.serializer)
+      ..add(GGetCommunityWithPostsData_findCommunityByID_posts_data_creator
+          .serializer)
+      ..add(GGetCommunityWithPostsReq.serializer)
+      ..add(GGetCommunityWithPostsVars.serializer)
       ..add(GLoginUserData.serializer)
       ..add(GLoginUserInput.serializer)
       ..add(GLoginUserReq.serializer)
@@ -43,6 +47,10 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(GLong.serializer)
       ..add(GPostCommunityRelation.serializer)
       ..add(GPostCreatorRelation.serializer)
+      ..add(GPostFragmentData.serializer)
+      ..add(GPostFragmentData_creator.serializer)
+      ..add(GPostFragmentReq.serializer)
+      ..add(GPostFragmentVars.serializer)
       ..add(GPostInput.serializer)
       ..add(GTime.serializer)
       ..add(GUserCommunitiesRelation.serializer)
@@ -61,6 +69,13 @@ Serializers _$serializers = (new Serializers().toBuilder()
           const FullType(BuiltList,
               const [const FullType(GGetCommunitiesData_communities_data)]),
           () => new ListBuilder<GGetCommunitiesData_communities_data>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [
+            const FullType(
+                GGetCommunityWithPostsData_findCommunityByID_posts_data)
+          ]),
+          () => new ListBuilder<
+              GGetCommunityWithPostsData_findCommunityByID_posts_data>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(GPostInput)]),
           () => new ListBuilder<GPostInput>())

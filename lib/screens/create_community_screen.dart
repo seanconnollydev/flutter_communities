@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_communities/graphql/communities.req.gql.dart';
+import 'package:flutter_communities/graphql/create_community.req.gql.dart';
 import 'package:flutter_communities/providers/ferry.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -20,7 +20,6 @@ class _CreateCommunityScreenState extends State<CreateCommunityScreen> {
   String? _purpose;
 
   void _save() async {
-    print('_save');
     _formKey.currentState?.save();
 
     final client = context.read(ferryClientProvider);

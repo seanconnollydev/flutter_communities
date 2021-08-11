@@ -1,15 +1,16 @@
 import 'package:ferry/ferry.dart';
 import 'package:ferry_flutter/ferry_flutter.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_communities/graphql/communities.data.gql.dart';
-import 'package:flutter_communities/graphql/communities.req.gql.dart';
-import 'package:flutter_communities/graphql/communities.var.gql.dart';
+import 'package:flutter_communities/graphql/get_community_with_posts.data.gql.dart';
+import 'package:flutter_communities/graphql/get_community_with_posts.req.gql.dart';
+import 'package:flutter_communities/graphql/get_community_with_posts.var.gql.dart';
 import 'package:flutter_communities/providers/ferry.dart';
 import 'package:flutter_communities/screens/create_post_screen.dart';
+import 'package:flutter_communities/widgets/post_card.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-typedef GetCommunityResponse
-    = OperationResponse<GGetCommunityData, GGetCommunityVars>?;
+typedef GetCommunityResponse = OperationResponse<GGetCommunityWithPostsData,
+    GGetCommunityWithPostsVars>?;
 
 class CommunityScreen extends ConsumerWidget {
   static const routeName = '/community';
@@ -19,11 +20,13 @@ class CommunityScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, ScopedReader watch) {
     final communityId = ModalRoute.of(context)!.settings.arguments as String;
+    print('>>> communityId: $communityId');
     final _client = watch(ferryClientProvider);
 
     return Operation(
       client: _client,
-      operationRequest: GGetCommunityReq((b) => b..vars.id = communityId),
+      operationRequest:
+          GGetCommunityWithPostsReq((b) => b..vars.id = communityId),
       builder: (
         context,
         GetCommunityResponse response,
@@ -60,8 +63,11 @@ class _CommunityScreenBody extends StatelessWidget {
       return Center(child: CircularProgressIndicator());
     }
 
-    return Center(
-      child: Text(community.G_id),
+    final posts = _response!.data!.findCommunityByID!.posts.data;
+
+    return ListView.builder(
+      itemCount: posts.length,
+      itemBuilder: (_, i) => PostCard(posts[i]),
     );
   }
 }

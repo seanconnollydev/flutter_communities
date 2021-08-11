@@ -1,0 +1,9 @@
+fragment PostFragment on Post {
+  _id
+  title
+  message
+  creator {
+    _id
+    username
+  }
+}

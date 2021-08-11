@@ -1,9 +1,9 @@
 import 'package:ferry/ferry.dart';
 import 'package:ferry_flutter/ferry_flutter.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_communities/graphql/communities.data.gql.dart';
-import 'package:flutter_communities/graphql/communities.req.gql.dart';
-import 'package:flutter_communities/graphql/communities.var.gql.dart';
+import 'package:flutter_communities/graphql/get_communities.data.gql.dart';
+import 'package:flutter_communities/graphql/get_communities.req.gql.dart';
+import 'package:flutter_communities/graphql/get_communities.var.gql.dart';
 import 'package:flutter_communities/providers/auth.dart';
 import 'package:flutter_communities/providers/ferry.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
