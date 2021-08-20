@@ -1,5 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
+import 'package:flutter_communities/graphql/post_fragment.ast.gql.dart' as _i2;
 import 'package:gql/ast.dart' as _i1;
 
 const CreatePost = _i1.OperationDefinitionNode(
@@ -25,24 +26,8 @@ const CreatePost = _i1.OperationDefinitionNode(
           ],
           directives: [],
           selectionSet: _i1.SelectionSetNode(selections: [
-            _i1.FieldNode(
-                name: _i1.NameNode(value: '_id'),
-                alias: null,
-                arguments: [],
-                directives: [],
-                selectionSet: null),
-            _i1.FieldNode(
-                name: _i1.NameNode(value: 'title'),
-                alias: null,
-                arguments: [],
-                directives: [],
-                selectionSet: null),
-            _i1.FieldNode(
-                name: _i1.NameNode(value: 'message'),
-                alias: null,
-                arguments: [],
-                directives: [],
-                selectionSet: null)
+            _i1.FragmentSpreadNode(
+                name: _i1.NameNode(value: 'PostFragment'), directives: [])
           ]))
     ]));
-const document = _i1.DocumentNode(definitions: [CreatePost]);
+const document = _i1.DocumentNode(definitions: [CreatePost, _i2.PostFragment]);

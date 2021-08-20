@@ -1,7 +1,7 @@
+# import './post_fragment.graphql'
+
 mutation CreatePost($input: CreatePostInput!) {
   createPost(input: $input) {
-    _id
-    title
-    message
+    ...PostFragment
   }
 }

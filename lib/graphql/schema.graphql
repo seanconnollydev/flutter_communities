@@ -174,11 +174,13 @@ type PostPage {
 }
 
 type Query {
-  # Find a document from the collection of 'User' by its id.
-  findUserByID(
-    # The 'User' document's ID
+  getPostsByCommunityId(
+    # The number of items to return per page.
+    _size: Int
+    # The pagination cursor.
+    _cursor: String
     id: ID!
-  ): User
+  ): QueryGetPostsByCommunityIdPage!
   # Find a document from the collection of 'Community' by its id.
   findCommunityByID(
     # The 'Community' document's ID
@@ -189,12 +191,27 @@ type Query {
     # The 'Post' document's ID
     id: ID!
   ): Post
+  # Find a document from the collection of 'User' by its id.
+  findUserByID(
+    # The 'User' document's ID
+    id: ID!
+  ): User
   communities(
     # The number of items to return per page.
     _size: Int
     # The pagination cursor.
     _cursor: String
   ): CommunityPage!
+}
+
+# The pagination object for elements of type 'Post'.
+type QueryGetPostsByCommunityIdPage {
+  # The elements of type 'Post' in this page.
+  data: [Post]!
+  # A cursor for elements coming after the current page.
+  after: String
+  # A cursor for elements coming before the current page.
+  before: String
 }
 
 scalar Time

@@ -28,7 +28,8 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
       (b) => b
         ..vars.input.title = _title
         ..vars.input.message = _message
-        ..vars.input.communityId = widget._communityId,
+        ..vars.input.communityId = widget._communityId
+        ..updateCacheHandlerKey = 'createPostHandler',
     );
 
     await client.request(request).first;

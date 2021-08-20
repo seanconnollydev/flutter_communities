@@ -590,9 +590,21 @@ const Query = _i1.ObjectTypeDefinitionNode(
     interfaces: [],
     fields: [
       _i1.FieldDefinitionNode(
-          name: _i1.NameNode(value: 'findUserByID'),
+          name: _i1.NameNode(value: 'getPostsByCommunityId'),
           directives: [],
           args: [
+            _i1.InputValueDefinitionNode(
+                name: _i1.NameNode(value: '_size'),
+                directives: [],
+                type: _i1.NamedTypeNode(
+                    name: _i1.NameNode(value: 'Int'), isNonNull: false),
+                defaultValue: null),
+            _i1.InputValueDefinitionNode(
+                name: _i1.NameNode(value: '_cursor'),
+                directives: [],
+                type: _i1.NamedTypeNode(
+                    name: _i1.NameNode(value: 'String'), isNonNull: false),
+                defaultValue: null),
             _i1.InputValueDefinitionNode(
                 name: _i1.NameNode(value: 'id'),
                 directives: [],
@@ -601,7 +613,8 @@ const Query = _i1.ObjectTypeDefinitionNode(
                 defaultValue: null)
           ],
           type: _i1.NamedTypeNode(
-              name: _i1.NameNode(value: 'User'), isNonNull: false)),
+              name: _i1.NameNode(value: 'QueryGetPostsByCommunityIdPage'),
+              isNonNull: true)),
       _i1.FieldDefinitionNode(
           name: _i1.NameNode(value: 'findCommunityByID'),
           directives: [],
@@ -629,6 +642,19 @@ const Query = _i1.ObjectTypeDefinitionNode(
           type: _i1.NamedTypeNode(
               name: _i1.NameNode(value: 'Post'), isNonNull: false)),
       _i1.FieldDefinitionNode(
+          name: _i1.NameNode(value: 'findUserByID'),
+          directives: [],
+          args: [
+            _i1.InputValueDefinitionNode(
+                name: _i1.NameNode(value: 'id'),
+                directives: [],
+                type: _i1.NamedTypeNode(
+                    name: _i1.NameNode(value: 'ID'), isNonNull: true),
+                defaultValue: null)
+          ],
+          type: _i1.NamedTypeNode(
+              name: _i1.NameNode(value: 'User'), isNonNull: false)),
+      _i1.FieldDefinitionNode(
           name: _i1.NameNode(value: 'communities'),
           directives: [],
           args: [
@@ -647,6 +673,32 @@ const Query = _i1.ObjectTypeDefinitionNode(
           ],
           type: _i1.NamedTypeNode(
               name: _i1.NameNode(value: 'CommunityPage'), isNonNull: true))
+    ]);
+const QueryGetPostsByCommunityIdPage = _i1.ObjectTypeDefinitionNode(
+    name: _i1.NameNode(value: 'QueryGetPostsByCommunityIdPage'),
+    directives: [],
+    interfaces: [],
+    fields: [
+      _i1.FieldDefinitionNode(
+          name: _i1.NameNode(value: 'data'),
+          directives: [],
+          args: [],
+          type: _i1.ListTypeNode(
+              type: _i1.NamedTypeNode(
+                  name: _i1.NameNode(value: 'Post'), isNonNull: false),
+              isNonNull: true)),
+      _i1.FieldDefinitionNode(
+          name: _i1.NameNode(value: 'after'),
+          directives: [],
+          args: [],
+          type: _i1.NamedTypeNode(
+              name: _i1.NameNode(value: 'String'), isNonNull: false)),
+      _i1.FieldDefinitionNode(
+          name: _i1.NameNode(value: 'before'),
+          directives: [],
+          args: [],
+          type: _i1.NamedTypeNode(
+              name: _i1.NameNode(value: 'String'), isNonNull: false))
     ]);
 const Time = _i1.ScalarTypeDefinitionNode(
     name: _i1.NameNode(value: 'Time'), directives: []);
@@ -819,6 +871,7 @@ const document = _i1.DocumentNode(definitions: [
   PostInput,
   PostPage,
   Query,
+  QueryGetPostsByCommunityIdPage,
   Time,
   User,
   UserCommunitiesRelation,

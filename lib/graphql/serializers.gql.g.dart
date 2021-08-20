@@ -19,6 +19,7 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(GCreateCommunityVars.serializer)
       ..add(GCreatePostData.serializer)
       ..add(GCreatePostData_createPost.serializer)
+      ..add(GCreatePostData_createPost_creator.serializer)
       ..add(GCreatePostInput.serializer)
       ..add(GCreatePostReq.serializer)
       ..add(GCreatePostVars.serializer)
@@ -34,9 +35,9 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(GGetCommunitiesVars.serializer)
       ..add(GGetCommunityWithPostsData.serializer)
       ..add(GGetCommunityWithPostsData_findCommunityByID.serializer)
-      ..add(GGetCommunityWithPostsData_findCommunityByID_posts.serializer)
-      ..add(GGetCommunityWithPostsData_findCommunityByID_posts_data.serializer)
-      ..add(GGetCommunityWithPostsData_findCommunityByID_posts_data_creator
+      ..add(GGetCommunityWithPostsData_getPostsByCommunityId.serializer)
+      ..add(GGetCommunityWithPostsData_getPostsByCommunityId_data.serializer)
+      ..add(GGetCommunityWithPostsData_getPostsByCommunityId_data_creator
           .serializer)
       ..add(GGetCommunityWithPostsReq.serializer)
       ..add(GGetCommunityWithPostsVars.serializer)
@@ -72,10 +73,10 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..addBuilderFactory(
           const FullType(BuiltList, const [
             const FullType(
-                GGetCommunityWithPostsData_findCommunityByID_posts_data)
+                GGetCommunityWithPostsData_getPostsByCommunityId_data)
           ]),
           () => new ListBuilder<
-              GGetCommunityWithPostsData_findCommunityByID_posts_data>())
+              GGetCommunityWithPostsData_getPostsByCommunityId_data>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(GPostInput)]),
           () => new ListBuilder<GPostInput>())

@@ -24,6 +24,7 @@ abstract class GGetCommunityWithPostsData
   @BuiltValueField(wireName: '__typename')
   String get G__typename;
   GGetCommunityWithPostsData_findCommunityByID? get findCommunityByID;
+  GGetCommunityWithPostsData_getPostsByCommunityId get getPostsByCommunityId;
   static Serializer<GGetCommunityWithPostsData> get serializer =>
       _$gGetCommunityWithPostsDataSerializer;
   Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
@@ -53,7 +54,6 @@ abstract class GGetCommunityWithPostsData_findCommunityByID
   String get G_id;
   String get name;
   String? get purpose;
-  GGetCommunityWithPostsData_findCommunityByID_posts get posts;
   static Serializer<GGetCommunityWithPostsData_findCommunityByID>
       get serializer => _$gGetCommunityWithPostsDataFindCommunityByIDSerializer;
   Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
@@ -65,48 +65,47 @@ abstract class GGetCommunityWithPostsData_findCommunityByID
           GGetCommunityWithPostsData_findCommunityByID.serializer, json);
 }
 
-abstract class GGetCommunityWithPostsData_findCommunityByID_posts
+abstract class GGetCommunityWithPostsData_getPostsByCommunityId
     implements
-        Built<GGetCommunityWithPostsData_findCommunityByID_posts,
-            GGetCommunityWithPostsData_findCommunityByID_postsBuilder> {
-  GGetCommunityWithPostsData_findCommunityByID_posts._();
+        Built<GGetCommunityWithPostsData_getPostsByCommunityId,
+            GGetCommunityWithPostsData_getPostsByCommunityIdBuilder> {
+  GGetCommunityWithPostsData_getPostsByCommunityId._();
 
-  factory GGetCommunityWithPostsData_findCommunityByID_posts(
-      [Function(GGetCommunityWithPostsData_findCommunityByID_postsBuilder b)
-          updates]) = _$GGetCommunityWithPostsData_findCommunityByID_posts;
+  factory GGetCommunityWithPostsData_getPostsByCommunityId(
+      [Function(GGetCommunityWithPostsData_getPostsByCommunityIdBuilder b)
+          updates]) = _$GGetCommunityWithPostsData_getPostsByCommunityId;
 
   static void _initializeBuilder(
-          GGetCommunityWithPostsData_findCommunityByID_postsBuilder b) =>
-      b..G__typename = 'PostPage';
+          GGetCommunityWithPostsData_getPostsByCommunityIdBuilder b) =>
+      b..G__typename = 'QueryGetPostsByCommunityIdPage';
   @BuiltValueField(wireName: '__typename')
   String get G__typename;
-  BuiltList<GGetCommunityWithPostsData_findCommunityByID_posts_data> get data;
-  static Serializer<GGetCommunityWithPostsData_findCommunityByID_posts>
+  BuiltList<GGetCommunityWithPostsData_getPostsByCommunityId_data> get data;
+  static Serializer<GGetCommunityWithPostsData_getPostsByCommunityId>
       get serializer =>
-          _$gGetCommunityWithPostsDataFindCommunityByIDPostsSerializer;
+          _$gGetCommunityWithPostsDataGetPostsByCommunityIdSerializer;
   Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
-          GGetCommunityWithPostsData_findCommunityByID_posts.serializer, this)
+          GGetCommunityWithPostsData_getPostsByCommunityId.serializer, this)
       as Map<String, dynamic>);
-  static GGetCommunityWithPostsData_findCommunityByID_posts? fromJson(
+  static GGetCommunityWithPostsData_getPostsByCommunityId? fromJson(
           Map<String, dynamic> json) =>
       _i1.serializers.deserializeWith(
-          GGetCommunityWithPostsData_findCommunityByID_posts.serializer, json);
+          GGetCommunityWithPostsData_getPostsByCommunityId.serializer, json);
 }
 
-abstract class GGetCommunityWithPostsData_findCommunityByID_posts_data
+abstract class GGetCommunityWithPostsData_getPostsByCommunityId_data
     implements
-        Built<GGetCommunityWithPostsData_findCommunityByID_posts_data,
-            GGetCommunityWithPostsData_findCommunityByID_posts_dataBuilder>,
+        Built<GGetCommunityWithPostsData_getPostsByCommunityId_data,
+            GGetCommunityWithPostsData_getPostsByCommunityId_dataBuilder>,
         _i3.GPostFragment {
-  GGetCommunityWithPostsData_findCommunityByID_posts_data._();
+  GGetCommunityWithPostsData_getPostsByCommunityId_data._();
 
-  factory GGetCommunityWithPostsData_findCommunityByID_posts_data(
-      [Function(
-              GGetCommunityWithPostsData_findCommunityByID_posts_dataBuilder b)
-          updates]) = _$GGetCommunityWithPostsData_findCommunityByID_posts_data;
+  factory GGetCommunityWithPostsData_getPostsByCommunityId_data(
+      [Function(GGetCommunityWithPostsData_getPostsByCommunityId_dataBuilder b)
+          updates]) = _$GGetCommunityWithPostsData_getPostsByCommunityId_data;
 
   static void _initializeBuilder(
-          GGetCommunityWithPostsData_findCommunityByID_posts_dataBuilder b) =>
+          GGetCommunityWithPostsData_getPostsByCommunityId_dataBuilder b) =>
       b..G__typename = 'Post';
   @BuiltValueField(wireName: '__typename')
   String get G__typename;
@@ -114,36 +113,36 @@ abstract class GGetCommunityWithPostsData_findCommunityByID_posts_data
   String get G_id;
   String get title;
   String get message;
-  GGetCommunityWithPostsData_findCommunityByID_posts_data_creator get creator;
-  static Serializer<GGetCommunityWithPostsData_findCommunityByID_posts_data>
+  GGetCommunityWithPostsData_getPostsByCommunityId_data_creator get creator;
+  static Serializer<GGetCommunityWithPostsData_getPostsByCommunityId_data>
       get serializer =>
-          _$gGetCommunityWithPostsDataFindCommunityByIDPostsDataSerializer;
+          _$gGetCommunityWithPostsDataGetPostsByCommunityIdDataSerializer;
   Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
-      GGetCommunityWithPostsData_findCommunityByID_posts_data.serializer,
+      GGetCommunityWithPostsData_getPostsByCommunityId_data.serializer,
       this) as Map<String, dynamic>);
-  static GGetCommunityWithPostsData_findCommunityByID_posts_data? fromJson(
+  static GGetCommunityWithPostsData_getPostsByCommunityId_data? fromJson(
           Map<String, dynamic> json) =>
       _i1.serializers.deserializeWith(
-          GGetCommunityWithPostsData_findCommunityByID_posts_data.serializer,
+          GGetCommunityWithPostsData_getPostsByCommunityId_data.serializer,
           json);
 }
 
-abstract class GGetCommunityWithPostsData_findCommunityByID_posts_data_creator
+abstract class GGetCommunityWithPostsData_getPostsByCommunityId_data_creator
     implements
-        Built<GGetCommunityWithPostsData_findCommunityByID_posts_data_creator,
-            GGetCommunityWithPostsData_findCommunityByID_posts_data_creatorBuilder>,
+        Built<GGetCommunityWithPostsData_getPostsByCommunityId_data_creator,
+            GGetCommunityWithPostsData_getPostsByCommunityId_data_creatorBuilder>,
         _i3.GPostFragment_creator {
-  GGetCommunityWithPostsData_findCommunityByID_posts_data_creator._();
+  GGetCommunityWithPostsData_getPostsByCommunityId_data_creator._();
 
-  factory GGetCommunityWithPostsData_findCommunityByID_posts_data_creator(
+  factory GGetCommunityWithPostsData_getPostsByCommunityId_data_creator(
           [Function(
-                  GGetCommunityWithPostsData_findCommunityByID_posts_data_creatorBuilder
+                  GGetCommunityWithPostsData_getPostsByCommunityId_data_creatorBuilder
                       b)
               updates]) =
-      _$GGetCommunityWithPostsData_findCommunityByID_posts_data_creator;
+      _$GGetCommunityWithPostsData_getPostsByCommunityId_data_creator;
 
   static void _initializeBuilder(
-          GGetCommunityWithPostsData_findCommunityByID_posts_data_creatorBuilder
+          GGetCommunityWithPostsData_getPostsByCommunityId_data_creatorBuilder
               b) =>
       b..G__typename = 'User';
   @BuiltValueField(wireName: '__typename')
@@ -152,16 +151,15 @@ abstract class GGetCommunityWithPostsData_findCommunityByID_posts_data_creator
   String get G_id;
   String get username;
   static Serializer<
-          GGetCommunityWithPostsData_findCommunityByID_posts_data_creator>
+          GGetCommunityWithPostsData_getPostsByCommunityId_data_creator>
       get serializer =>
-          _$gGetCommunityWithPostsDataFindCommunityByIDPostsDataCreatorSerializer;
+          _$gGetCommunityWithPostsDataGetPostsByCommunityIdDataCreatorSerializer;
   Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
-      GGetCommunityWithPostsData_findCommunityByID_posts_data_creator
-          .serializer,
+      GGetCommunityWithPostsData_getPostsByCommunityId_data_creator.serializer,
       this) as Map<String, dynamic>);
-  static GGetCommunityWithPostsData_findCommunityByID_posts_data_creator?
+  static GGetCommunityWithPostsData_getPostsByCommunityId_data_creator?
       fromJson(Map<String, dynamic> json) => _i1.serializers.deserializeWith(
-          GGetCommunityWithPostsData_findCommunityByID_posts_data_creator
+          GGetCommunityWithPostsData_getPostsByCommunityId_data_creator
               .serializer,
           json);
 }

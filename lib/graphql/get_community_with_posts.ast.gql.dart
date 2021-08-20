@@ -47,32 +47,32 @@ const GetCommunityWithPosts = _i1.OperationDefinitionNode(
                 alias: null,
                 arguments: [],
                 directives: [],
-                selectionSet: null),
+                selectionSet: null)
+          ])),
+      _i1.FieldNode(
+          name: _i1.NameNode(value: 'getPostsByCommunityId'),
+          alias: null,
+          arguments: [
+            _i1.ArgumentNode(
+                name: _i1.NameNode(value: 'id'),
+                value: _i1.VariableNode(name: _i1.NameNode(value: 'id'))),
+            _i1.ArgumentNode(
+                name: _i1.NameNode(value: '_size'),
+                value: _i1.VariableNode(name: _i1.NameNode(value: 'size'))),
+            _i1.ArgumentNode(
+                name: _i1.NameNode(value: '_cursor'),
+                value: _i1.VariableNode(name: _i1.NameNode(value: 'cursor')))
+          ],
+          directives: [],
+          selectionSet: _i1.SelectionSetNode(selections: [
             _i1.FieldNode(
-                name: _i1.NameNode(value: 'posts'),
+                name: _i1.NameNode(value: 'data'),
                 alias: null,
-                arguments: [
-                  _i1.ArgumentNode(
-                      name: _i1.NameNode(value: '_size'),
-                      value:
-                          _i1.VariableNode(name: _i1.NameNode(value: 'size'))),
-                  _i1.ArgumentNode(
-                      name: _i1.NameNode(value: '_cursor'),
-                      value:
-                          _i1.VariableNode(name: _i1.NameNode(value: 'cursor')))
-                ],
+                arguments: [],
                 directives: [],
                 selectionSet: _i1.SelectionSetNode(selections: [
-                  _i1.FieldNode(
-                      name: _i1.NameNode(value: 'data'),
-                      alias: null,
-                      arguments: [],
-                      directives: [],
-                      selectionSet: _i1.SelectionSetNode(selections: [
-                        _i1.FragmentSpreadNode(
-                            name: _i1.NameNode(value: 'PostFragment'),
-                            directives: [])
-                      ]))
+                  _i1.FragmentSpreadNode(
+                      name: _i1.NameNode(value: 'PostFragment'), directives: [])
                 ]))
           ]))
     ]));

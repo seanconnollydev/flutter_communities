@@ -63,7 +63,7 @@ class _CommunityScreenBody extends StatelessWidget {
       return Center(child: CircularProgressIndicator());
     }
 
-    final posts = _response!.data!.findCommunityByID!.posts.data;
+    final posts = _response!.data!.getPostsByCommunityId.data;
 
     return ListView.builder(
       itemCount: posts.length,
