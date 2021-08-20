@@ -187,7 +187,21 @@ class _$GGetCommunityWithPostsData_getPostsByCommunityIdSerializer
                 GGetCommunityWithPostsData_getPostsByCommunityId_data)
           ])),
     ];
-
+    Object? value;
+    value = object.after;
+    if (value != null) {
+      result
+        ..add('after')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.before;
+    if (value != null) {
+      result
+        ..add('before')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     return result;
   }
 
@@ -214,6 +228,14 @@ class _$GGetCommunityWithPostsData_getPostsByCommunityIdSerializer
                 const FullType(
                     GGetCommunityWithPostsData_getPostsByCommunityId_data)
               ]))! as BuiltList<Object>);
+          break;
+        case 'after':
+          result.after = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
+          break;
+        case 'before':
+          result.before = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
           break;
       }
     }
@@ -649,6 +671,10 @@ class _$GGetCommunityWithPostsData_getPostsByCommunityId
   final String G__typename;
   @override
   final BuiltList<GGetCommunityWithPostsData_getPostsByCommunityId_data> data;
+  @override
+  final String? after;
+  @override
+  final String? before;
 
   factory _$GGetCommunityWithPostsData_getPostsByCommunityId(
           [void Function(
@@ -659,7 +685,7 @@ class _$GGetCommunityWithPostsData_getPostsByCommunityId
           .build();
 
   _$GGetCommunityWithPostsData_getPostsByCommunityId._(
-      {required this.G__typename, required this.data})
+      {required this.G__typename, required this.data, this.after, this.before})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(G__typename,
         'GGetCommunityWithPostsData_getPostsByCommunityId', 'G__typename');
@@ -683,12 +709,16 @@ class _$GGetCommunityWithPostsData_getPostsByCommunityId
     if (identical(other, this)) return true;
     return other is GGetCommunityWithPostsData_getPostsByCommunityId &&
         G__typename == other.G__typename &&
-        data == other.data;
+        data == other.data &&
+        after == other.after &&
+        before == other.before;
   }
 
   @override
   int get hashCode {
-    return $jf($jc($jc(0, G__typename.hashCode), data.hashCode));
+    return $jf($jc(
+        $jc($jc($jc(0, G__typename.hashCode), data.hashCode), after.hashCode),
+        before.hashCode));
   }
 
   @override
@@ -696,7 +726,9 @@ class _$GGetCommunityWithPostsData_getPostsByCommunityId
     return (newBuiltValueToStringHelper(
             'GGetCommunityWithPostsData_getPostsByCommunityId')
           ..add('G__typename', G__typename)
-          ..add('data', data))
+          ..add('data', data)
+          ..add('after', after)
+          ..add('before', before))
         .toString();
   }
 }
@@ -721,6 +753,14 @@ class GGetCommunityWithPostsData_getPostsByCommunityIdBuilder
               data) =>
       _$this._data = data;
 
+  String? _after;
+  String? get after => _$this._after;
+  set after(String? after) => _$this._after = after;
+
+  String? _before;
+  String? get before => _$this._before;
+  set before(String? before) => _$this._before = before;
+
   GGetCommunityWithPostsData_getPostsByCommunityIdBuilder() {
     GGetCommunityWithPostsData_getPostsByCommunityId._initializeBuilder(this);
   }
@@ -730,6 +770,8 @@ class GGetCommunityWithPostsData_getPostsByCommunityIdBuilder
     if ($v != null) {
       _G__typename = $v.G__typename;
       _data = $v.data.toBuilder();
+      _after = $v.after;
+      _before = $v.before;
       _$v = null;
     }
     return this;
@@ -758,7 +800,9 @@ class GGetCommunityWithPostsData_getPostsByCommunityIdBuilder
                   G__typename,
                   'GGetCommunityWithPostsData_getPostsByCommunityId',
                   'G__typename'),
-              data: data.build());
+              data: data.build(),
+              after: after,
+              before: before);
     } catch (_) {
       late String _$failedField;
       try {

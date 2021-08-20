@@ -81,6 +81,8 @@ abstract class GGetCommunityWithPostsData_getPostsByCommunityId
   @BuiltValueField(wireName: '__typename')
   String get G__typename;
   BuiltList<GGetCommunityWithPostsData_getPostsByCommunityId_data> get data;
+  String? get after;
+  String? get before;
   static Serializer<GGetCommunityWithPostsData_getPostsByCommunityId>
       get serializer =>
           _$gGetCommunityWithPostsDataGetPostsByCommunityIdSerializer;

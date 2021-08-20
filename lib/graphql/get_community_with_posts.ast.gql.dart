@@ -73,7 +73,19 @@ const GetCommunityWithPosts = _i1.OperationDefinitionNode(
                 selectionSet: _i1.SelectionSetNode(selections: [
                   _i1.FragmentSpreadNode(
                       name: _i1.NameNode(value: 'PostFragment'), directives: [])
-                ]))
+                ])),
+            _i1.FieldNode(
+                name: _i1.NameNode(value: 'after'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null),
+            _i1.FieldNode(
+                name: _i1.NameNode(value: 'before'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null)
           ]))
     ]));
 const document = _i1.DocumentNode(definitions: [

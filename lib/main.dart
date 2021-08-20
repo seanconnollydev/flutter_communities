@@ -27,7 +27,8 @@ class MyApp extends StatelessWidget {
         RegistrationScreen.routeName: (_) => RegistrationScreen(),
         LoginScreen.routeName: (_) => LoginScreen(),
         CreateCommunityScreen.routeName: (_) => CreateCommunityScreen(),
-        CommunityScreen.routeName: (_) => CommunityScreen(),
+        CommunityScreen.routeName: (context) => CommunityScreen(
+            ModalRoute.of(context)!.settings.arguments as String),
         CreatePostScreen.routeName: (context) => CreatePostScreen(
             ModalRoute.of(context)!.settings.arguments as String),
       },

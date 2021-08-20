@@ -10,5 +10,7 @@ query GetCommunityWithPosts($id: ID!, $size: Int, $cursor: String) {
     data {
       ...PostFragment
     }
+    after
+    before
   }
 }
