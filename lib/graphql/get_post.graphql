@@ -1,0 +1,7 @@
+# import './post_fragment.graphql'
+
+query GetPost($id: ID!) {
+  findPostByID(id: $id) {
+    ...PostFragment
+  }
+}

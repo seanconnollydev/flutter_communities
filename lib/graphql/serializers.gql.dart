@@ -53,6 +53,15 @@ import 'package:flutter_communities/graphql/get_community_with_posts.req.gql.dar
     show GGetPostsByCommunityIdReq;
 import 'package:flutter_communities/graphql/get_community_with_posts.var.gql.dart'
     show GGetPostsByCommunityIdVars;
+import 'package:flutter_communities/graphql/get_post.data.gql.dart'
+    show
+        GGetPostData,
+        GGetPostData_findPostByID,
+        GGetPostData_findPostByID_creator;
+import 'package:flutter_communities/graphql/get_post.req.gql.dart'
+    show GGetPostReq;
+import 'package:flutter_communities/graphql/get_post.var.gql.dart'
+    show GGetPostVars;
 import 'package:flutter_communities/graphql/login_user.data.gql.dart'
     show GLoginUserData;
 import 'package:flutter_communities/graphql/login_user.req.gql.dart'
@@ -121,6 +130,11 @@ final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   GGetCommunityData_findCommunityByID,
   GGetCommunityReq,
   GGetCommunityVars,
+  GGetPostData,
+  GGetPostData_findPostByID,
+  GGetPostData_findPostByID_creator,
+  GGetPostReq,
+  GGetPostVars,
   GGetPostsByCommunityIdData,
   GGetPostsByCommunityIdData_getPostsByCommunityId,
   GGetPostsByCommunityIdData_getPostsByCommunityId_data,

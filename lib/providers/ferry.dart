@@ -57,7 +57,7 @@ UpdateCacheHandler<GCreatePostData, GCreatePostVars> createPostHandler = (
     (b) => b
       ..vars.id = response.operationRequest.vars.input.communityId
       ..vars.size = 10
-      ..requestId = 'GetCommunityWithPostsReq',
+      ..requestId = 'GGetPostsByCommunityIdReq',
   );
   final communityWithPostsData = proxy.readQuery(request);
   final newPost = response.data?.createPost;

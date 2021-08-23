@@ -36,7 +36,7 @@ class _CommunityScreenState extends State<CommunityScreen> {
     _client = context.read(ferryClientProvider);
 
     _request = GGetPostsByCommunityIdReq((b) => b
-      ..requestId = 'GetCommunityWithPostsReq'
+      ..requestId = 'GGetPostsByCommunityIdReq'
       ..vars.id = widget._communityId
       ..vars.size = 10);
 
