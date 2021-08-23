@@ -33,14 +33,17 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(GGetCommunitiesData_communities_data.serializer)
       ..add(GGetCommunitiesReq.serializer)
       ..add(GGetCommunitiesVars.serializer)
-      ..add(GGetCommunityWithPostsData.serializer)
-      ..add(GGetCommunityWithPostsData_findCommunityByID.serializer)
-      ..add(GGetCommunityWithPostsData_getPostsByCommunityId.serializer)
-      ..add(GGetCommunityWithPostsData_getPostsByCommunityId_data.serializer)
-      ..add(GGetCommunityWithPostsData_getPostsByCommunityId_data_creator
+      ..add(GGetCommunityData.serializer)
+      ..add(GGetCommunityData_findCommunityByID.serializer)
+      ..add(GGetCommunityReq.serializer)
+      ..add(GGetCommunityVars.serializer)
+      ..add(GGetPostsByCommunityIdData.serializer)
+      ..add(GGetPostsByCommunityIdData_getPostsByCommunityId.serializer)
+      ..add(GGetPostsByCommunityIdData_getPostsByCommunityId_data.serializer)
+      ..add(GGetPostsByCommunityIdData_getPostsByCommunityId_data_creator
           .serializer)
-      ..add(GGetCommunityWithPostsReq.serializer)
-      ..add(GGetCommunityWithPostsVars.serializer)
+      ..add(GGetPostsByCommunityIdReq.serializer)
+      ..add(GGetPostsByCommunityIdVars.serializer)
       ..add(GLoginUserData.serializer)
       ..add(GLoginUserInput.serializer)
       ..add(GLoginUserReq.serializer)
@@ -73,10 +76,10 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..addBuilderFactory(
           const FullType(BuiltList, const [
             const FullType(
-                GGetCommunityWithPostsData_getPostsByCommunityId_data)
+                GGetPostsByCommunityIdData_getPostsByCommunityId_data)
           ]),
           () => new ListBuilder<
-              GGetCommunityWithPostsData_getPostsByCommunityId_data>())
+              GGetPostsByCommunityIdData_getPostsByCommunityId_data>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(GPostInput)]),
           () => new ListBuilder<GPostInput>())

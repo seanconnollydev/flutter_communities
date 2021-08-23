@@ -6,22 +6,22 @@ part of 'get_community_with_posts.var.gql.dart';
 // BuiltValueGenerator
 // **************************************************************************
 
-Serializer<GGetCommunityWithPostsVars> _$gGetCommunityWithPostsVarsSerializer =
-    new _$GGetCommunityWithPostsVarsSerializer();
+Serializer<GGetPostsByCommunityIdVars> _$gGetPostsByCommunityIdVarsSerializer =
+    new _$GGetPostsByCommunityIdVarsSerializer();
 
-class _$GGetCommunityWithPostsVarsSerializer
-    implements StructuredSerializer<GGetCommunityWithPostsVars> {
+class _$GGetPostsByCommunityIdVarsSerializer
+    implements StructuredSerializer<GGetPostsByCommunityIdVars> {
   @override
   final Iterable<Type> types = const [
-    GGetCommunityWithPostsVars,
-    _$GGetCommunityWithPostsVars
+    GGetPostsByCommunityIdVars,
+    _$GGetPostsByCommunityIdVars
   ];
   @override
-  final String wireName = 'GGetCommunityWithPostsVars';
+  final String wireName = 'GGetPostsByCommunityIdVars';
 
   @override
   Iterable<Object?> serialize(
-      Serializers serializers, GGetCommunityWithPostsVars object,
+      Serializers serializers, GGetPostsByCommunityIdVars object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object?>[
       'id',
@@ -45,10 +45,10 @@ class _$GGetCommunityWithPostsVarsSerializer
   }
 
   @override
-  GGetCommunityWithPostsVars deserialize(
+  GGetPostsByCommunityIdVars deserialize(
       Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = new GGetCommunityWithPostsVarsBuilder();
+    final result = new GGetPostsByCommunityIdVarsBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -75,7 +75,7 @@ class _$GGetCommunityWithPostsVarsSerializer
   }
 }
 
-class _$GGetCommunityWithPostsVars extends GGetCommunityWithPostsVars {
+class _$GGetPostsByCommunityIdVars extends GGetPostsByCommunityIdVars {
   @override
   final String id;
   @override
@@ -83,29 +83,29 @@ class _$GGetCommunityWithPostsVars extends GGetCommunityWithPostsVars {
   @override
   final String? cursor;
 
-  factory _$GGetCommunityWithPostsVars(
-          [void Function(GGetCommunityWithPostsVarsBuilder)? updates]) =>
-      (new GGetCommunityWithPostsVarsBuilder()..update(updates)).build();
+  factory _$GGetPostsByCommunityIdVars(
+          [void Function(GGetPostsByCommunityIdVarsBuilder)? updates]) =>
+      (new GGetPostsByCommunityIdVarsBuilder()..update(updates)).build();
 
-  _$GGetCommunityWithPostsVars._({required this.id, this.size, this.cursor})
+  _$GGetPostsByCommunityIdVars._({required this.id, this.size, this.cursor})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
-        id, 'GGetCommunityWithPostsVars', 'id');
+        id, 'GGetPostsByCommunityIdVars', 'id');
   }
 
   @override
-  GGetCommunityWithPostsVars rebuild(
-          void Function(GGetCommunityWithPostsVarsBuilder) updates) =>
+  GGetPostsByCommunityIdVars rebuild(
+          void Function(GGetPostsByCommunityIdVarsBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  GGetCommunityWithPostsVarsBuilder toBuilder() =>
-      new GGetCommunityWithPostsVarsBuilder()..replace(this);
+  GGetPostsByCommunityIdVarsBuilder toBuilder() =>
+      new GGetPostsByCommunityIdVarsBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is GGetCommunityWithPostsVars &&
+    return other is GGetPostsByCommunityIdVars &&
         id == other.id &&
         size == other.size &&
         cursor == other.cursor;
@@ -118,7 +118,7 @@ class _$GGetCommunityWithPostsVars extends GGetCommunityWithPostsVars {
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('GGetCommunityWithPostsVars')
+    return (newBuiltValueToStringHelper('GGetPostsByCommunityIdVars')
           ..add('id', id)
           ..add('size', size)
           ..add('cursor', cursor))
@@ -126,10 +126,10 @@ class _$GGetCommunityWithPostsVars extends GGetCommunityWithPostsVars {
   }
 }
 
-class GGetCommunityWithPostsVarsBuilder
+class GGetPostsByCommunityIdVarsBuilder
     implements
-        Builder<GGetCommunityWithPostsVars, GGetCommunityWithPostsVarsBuilder> {
-  _$GGetCommunityWithPostsVars? _$v;
+        Builder<GGetPostsByCommunityIdVars, GGetPostsByCommunityIdVarsBuilder> {
+  _$GGetPostsByCommunityIdVars? _$v;
 
   String? _id;
   String? get id => _$this._id;
@@ -143,9 +143,9 @@ class GGetCommunityWithPostsVarsBuilder
   String? get cursor => _$this._cursor;
   set cursor(String? cursor) => _$this._cursor = cursor;
 
-  GGetCommunityWithPostsVarsBuilder();
+  GGetPostsByCommunityIdVarsBuilder();
 
-  GGetCommunityWithPostsVarsBuilder get _$this {
+  GGetPostsByCommunityIdVarsBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
       _id = $v.id;
@@ -157,22 +157,22 @@ class GGetCommunityWithPostsVarsBuilder
   }
 
   @override
-  void replace(GGetCommunityWithPostsVars other) {
+  void replace(GGetPostsByCommunityIdVars other) {
     ArgumentError.checkNotNull(other, 'other');
-    _$v = other as _$GGetCommunityWithPostsVars;
+    _$v = other as _$GGetPostsByCommunityIdVars;
   }
 
   @override
-  void update(void Function(GGetCommunityWithPostsVarsBuilder)? updates) {
+  void update(void Function(GGetPostsByCommunityIdVarsBuilder)? updates) {
     if (updates != null) updates(this);
   }
 
   @override
-  _$GGetCommunityWithPostsVars build() {
+  _$GGetPostsByCommunityIdVars build() {
     final _$result = _$v ??
-        new _$GGetCommunityWithPostsVars._(
+        new _$GGetPostsByCommunityIdVars._(
             id: BuiltValueNullFieldError.checkNotNull(
-                id, 'GGetCommunityWithPostsVars', 'id'),
+                id, 'GGetPostsByCommunityIdVars', 'id'),
             size: size,
             cursor: cursor);
     replace(_$result);

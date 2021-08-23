@@ -6,34 +6,31 @@ part of 'get_community_with_posts.data.gql.dart';
 // BuiltValueGenerator
 // **************************************************************************
 
-Serializer<GGetCommunityWithPostsData> _$gGetCommunityWithPostsDataSerializer =
-    new _$GGetCommunityWithPostsDataSerializer();
-Serializer<GGetCommunityWithPostsData_findCommunityByID>
-    _$gGetCommunityWithPostsDataFindCommunityByIDSerializer =
-    new _$GGetCommunityWithPostsData_findCommunityByIDSerializer();
-Serializer<GGetCommunityWithPostsData_getPostsByCommunityId>
-    _$gGetCommunityWithPostsDataGetPostsByCommunityIdSerializer =
-    new _$GGetCommunityWithPostsData_getPostsByCommunityIdSerializer();
-Serializer<GGetCommunityWithPostsData_getPostsByCommunityId_data>
-    _$gGetCommunityWithPostsDataGetPostsByCommunityIdDataSerializer =
-    new _$GGetCommunityWithPostsData_getPostsByCommunityId_dataSerializer();
-Serializer<GGetCommunityWithPostsData_getPostsByCommunityId_data_creator>
-    _$gGetCommunityWithPostsDataGetPostsByCommunityIdDataCreatorSerializer =
-    new _$GGetCommunityWithPostsData_getPostsByCommunityId_data_creatorSerializer();
+Serializer<GGetPostsByCommunityIdData> _$gGetPostsByCommunityIdDataSerializer =
+    new _$GGetPostsByCommunityIdDataSerializer();
+Serializer<GGetPostsByCommunityIdData_getPostsByCommunityId>
+    _$gGetPostsByCommunityIdDataGetPostsByCommunityIdSerializer =
+    new _$GGetPostsByCommunityIdData_getPostsByCommunityIdSerializer();
+Serializer<GGetPostsByCommunityIdData_getPostsByCommunityId_data>
+    _$gGetPostsByCommunityIdDataGetPostsByCommunityIdDataSerializer =
+    new _$GGetPostsByCommunityIdData_getPostsByCommunityId_dataSerializer();
+Serializer<GGetPostsByCommunityIdData_getPostsByCommunityId_data_creator>
+    _$gGetPostsByCommunityIdDataGetPostsByCommunityIdDataCreatorSerializer =
+    new _$GGetPostsByCommunityIdData_getPostsByCommunityId_data_creatorSerializer();
 
-class _$GGetCommunityWithPostsDataSerializer
-    implements StructuredSerializer<GGetCommunityWithPostsData> {
+class _$GGetPostsByCommunityIdDataSerializer
+    implements StructuredSerializer<GGetPostsByCommunityIdData> {
   @override
   final Iterable<Type> types = const [
-    GGetCommunityWithPostsData,
-    _$GGetCommunityWithPostsData
+    GGetPostsByCommunityIdData,
+    _$GGetPostsByCommunityIdData
   ];
   @override
-  final String wireName = 'GGetCommunityWithPostsData';
+  final String wireName = 'GGetPostsByCommunityIdData';
 
   @override
   Iterable<Object?> serialize(
-      Serializers serializers, GGetCommunityWithPostsData object,
+      Serializers serializers, GGetPostsByCommunityIdData object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object?>[
       '__typename',
@@ -42,25 +39,17 @@ class _$GGetCommunityWithPostsDataSerializer
       'getPostsByCommunityId',
       serializers.serialize(object.getPostsByCommunityId,
           specifiedType:
-              const FullType(GGetCommunityWithPostsData_getPostsByCommunityId)),
+              const FullType(GGetPostsByCommunityIdData_getPostsByCommunityId)),
     ];
-    Object? value;
-    value = object.findCommunityByID;
-    if (value != null) {
-      result
-        ..add('findCommunityByID')
-        ..add(serializers.serialize(value,
-            specifiedType:
-                const FullType(GGetCommunityWithPostsData_findCommunityByID)));
-    }
+
     return result;
   }
 
   @override
-  GGetCommunityWithPostsData deserialize(
+  GGetPostsByCommunityIdData deserialize(
       Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = new GGetCommunityWithPostsDataBuilder();
+    final result = new GGetPostsByCommunityIdDataBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -71,18 +60,12 @@ class _$GGetCommunityWithPostsDataSerializer
         case '__typename':
           result.G__typename = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
-          break;
-        case 'findCommunityByID':
-          result.findCommunityByID.replace(serializers.deserialize(value,
-                  specifiedType: const FullType(
-                      GGetCommunityWithPostsData_findCommunityByID))!
-              as GGetCommunityWithPostsData_findCommunityByID);
           break;
         case 'getPostsByCommunityId':
           result.getPostsByCommunityId.replace(serializers.deserialize(value,
                   specifiedType: const FullType(
-                      GGetCommunityWithPostsData_getPostsByCommunityId))!
-              as GGetCommunityWithPostsData_getPostsByCommunityId);
+                      GGetPostsByCommunityIdData_getPostsByCommunityId))!
+              as GGetPostsByCommunityIdData_getPostsByCommunityId);
           break;
       }
     }
@@ -91,90 +74,20 @@ class _$GGetCommunityWithPostsDataSerializer
   }
 }
 
-class _$GGetCommunityWithPostsData_findCommunityByIDSerializer
+class _$GGetPostsByCommunityIdData_getPostsByCommunityIdSerializer
     implements
-        StructuredSerializer<GGetCommunityWithPostsData_findCommunityByID> {
+        StructuredSerializer<GGetPostsByCommunityIdData_getPostsByCommunityId> {
   @override
   final Iterable<Type> types = const [
-    GGetCommunityWithPostsData_findCommunityByID,
-    _$GGetCommunityWithPostsData_findCommunityByID
+    GGetPostsByCommunityIdData_getPostsByCommunityId,
+    _$GGetPostsByCommunityIdData_getPostsByCommunityId
   ];
   @override
-  final String wireName = 'GGetCommunityWithPostsData_findCommunityByID';
+  final String wireName = 'GGetPostsByCommunityIdData_getPostsByCommunityId';
 
   @override
   Iterable<Object?> serialize(Serializers serializers,
-      GGetCommunityWithPostsData_findCommunityByID object,
-      {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object?>[
-      '__typename',
-      serializers.serialize(object.G__typename,
-          specifiedType: const FullType(String)),
-      '_id',
-      serializers.serialize(object.G_id, specifiedType: const FullType(String)),
-      'name',
-      serializers.serialize(object.name, specifiedType: const FullType(String)),
-    ];
-    Object? value;
-    value = object.purpose;
-    if (value != null) {
-      result
-        ..add('purpose')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
-    }
-    return result;
-  }
-
-  @override
-  GGetCommunityWithPostsData_findCommunityByID deserialize(
-      Serializers serializers, Iterable<Object?> serialized,
-      {FullType specifiedType = FullType.unspecified}) {
-    final result = new GGetCommunityWithPostsData_findCommunityByIDBuilder();
-
-    final iterator = serialized.iterator;
-    while (iterator.moveNext()) {
-      final key = iterator.current as String;
-      iterator.moveNext();
-      final Object? value = iterator.current;
-      switch (key) {
-        case '__typename':
-          result.G__typename = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
-          break;
-        case '_id':
-          result.G_id = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
-          break;
-        case 'name':
-          result.name = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
-          break;
-        case 'purpose':
-          result.purpose = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
-          break;
-      }
-    }
-
-    return result.build();
-  }
-}
-
-class _$GGetCommunityWithPostsData_getPostsByCommunityIdSerializer
-    implements
-        StructuredSerializer<GGetCommunityWithPostsData_getPostsByCommunityId> {
-  @override
-  final Iterable<Type> types = const [
-    GGetCommunityWithPostsData_getPostsByCommunityId,
-    _$GGetCommunityWithPostsData_getPostsByCommunityId
-  ];
-  @override
-  final String wireName = 'GGetCommunityWithPostsData_getPostsByCommunityId';
-
-  @override
-  Iterable<Object?> serialize(Serializers serializers,
-      GGetCommunityWithPostsData_getPostsByCommunityId object,
+      GGetPostsByCommunityIdData_getPostsByCommunityId object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object?>[
       '__typename',
@@ -184,7 +97,7 @@ class _$GGetCommunityWithPostsData_getPostsByCommunityIdSerializer
       serializers.serialize(object.data,
           specifiedType: const FullType(BuiltList, const [
             const FullType(
-                GGetCommunityWithPostsData_getPostsByCommunityId_data)
+                GGetPostsByCommunityIdData_getPostsByCommunityId_data)
           ])),
     ];
     Object? value;
@@ -206,11 +119,11 @@ class _$GGetCommunityWithPostsData_getPostsByCommunityIdSerializer
   }
 
   @override
-  GGetCommunityWithPostsData_getPostsByCommunityId deserialize(
+  GGetPostsByCommunityIdData_getPostsByCommunityId deserialize(
       Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
     final result =
-        new GGetCommunityWithPostsData_getPostsByCommunityIdBuilder();
+        new GGetPostsByCommunityIdData_getPostsByCommunityIdBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -226,7 +139,7 @@ class _$GGetCommunityWithPostsData_getPostsByCommunityIdSerializer
           result.data.replace(serializers.deserialize(value,
               specifiedType: const FullType(BuiltList, const [
                 const FullType(
-                    GGetCommunityWithPostsData_getPostsByCommunityId_data)
+                    GGetPostsByCommunityIdData_getPostsByCommunityId_data)
               ]))! as BuiltList<Object>);
           break;
         case 'after':
@@ -244,22 +157,22 @@ class _$GGetCommunityWithPostsData_getPostsByCommunityIdSerializer
   }
 }
 
-class _$GGetCommunityWithPostsData_getPostsByCommunityId_dataSerializer
+class _$GGetPostsByCommunityIdData_getPostsByCommunityId_dataSerializer
     implements
         StructuredSerializer<
-            GGetCommunityWithPostsData_getPostsByCommunityId_data> {
+            GGetPostsByCommunityIdData_getPostsByCommunityId_data> {
   @override
   final Iterable<Type> types = const [
-    GGetCommunityWithPostsData_getPostsByCommunityId_data,
-    _$GGetCommunityWithPostsData_getPostsByCommunityId_data
+    GGetPostsByCommunityIdData_getPostsByCommunityId_data,
+    _$GGetPostsByCommunityIdData_getPostsByCommunityId_data
   ];
   @override
   final String wireName =
-      'GGetCommunityWithPostsData_getPostsByCommunityId_data';
+      'GGetPostsByCommunityIdData_getPostsByCommunityId_data';
 
   @override
   Iterable<Object?> serialize(Serializers serializers,
-      GGetCommunityWithPostsData_getPostsByCommunityId_data object,
+      GGetPostsByCommunityIdData_getPostsByCommunityId_data object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object?>[
       '__typename',
@@ -276,18 +189,18 @@ class _$GGetCommunityWithPostsData_getPostsByCommunityId_dataSerializer
       'creator',
       serializers.serialize(object.creator,
           specifiedType: const FullType(
-              GGetCommunityWithPostsData_getPostsByCommunityId_data_creator)),
+              GGetPostsByCommunityIdData_getPostsByCommunityId_data_creator)),
     ];
 
     return result;
   }
 
   @override
-  GGetCommunityWithPostsData_getPostsByCommunityId_data deserialize(
+  GGetPostsByCommunityIdData_getPostsByCommunityId_data deserialize(
       Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
     final result =
-        new GGetCommunityWithPostsData_getPostsByCommunityId_dataBuilder();
+        new GGetPostsByCommunityIdData_getPostsByCommunityId_dataBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -314,8 +227,8 @@ class _$GGetCommunityWithPostsData_getPostsByCommunityId_dataSerializer
         case 'creator':
           result.creator.replace(serializers.deserialize(value,
                   specifiedType: const FullType(
-                      GGetCommunityWithPostsData_getPostsByCommunityId_data_creator))!
-              as GGetCommunityWithPostsData_getPostsByCommunityId_data_creator);
+                      GGetPostsByCommunityIdData_getPostsByCommunityId_data_creator))!
+              as GGetPostsByCommunityIdData_getPostsByCommunityId_data_creator);
           break;
       }
     }
@@ -324,22 +237,22 @@ class _$GGetCommunityWithPostsData_getPostsByCommunityId_dataSerializer
   }
 }
 
-class _$GGetCommunityWithPostsData_getPostsByCommunityId_data_creatorSerializer
+class _$GGetPostsByCommunityIdData_getPostsByCommunityId_data_creatorSerializer
     implements
         StructuredSerializer<
-            GGetCommunityWithPostsData_getPostsByCommunityId_data_creator> {
+            GGetPostsByCommunityIdData_getPostsByCommunityId_data_creator> {
   @override
   final Iterable<Type> types = const [
-    GGetCommunityWithPostsData_getPostsByCommunityId_data_creator,
-    _$GGetCommunityWithPostsData_getPostsByCommunityId_data_creator
+    GGetPostsByCommunityIdData_getPostsByCommunityId_data_creator,
+    _$GGetPostsByCommunityIdData_getPostsByCommunityId_data_creator
   ];
   @override
   final String wireName =
-      'GGetCommunityWithPostsData_getPostsByCommunityId_data_creator';
+      'GGetPostsByCommunityIdData_getPostsByCommunityId_data_creator';
 
   @override
   Iterable<Object?> serialize(Serializers serializers,
-      GGetCommunityWithPostsData_getPostsByCommunityId_data_creator object,
+      GGetPostsByCommunityIdData_getPostsByCommunityId_data_creator object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object?>[
       '__typename',
@@ -356,11 +269,11 @@ class _$GGetCommunityWithPostsData_getPostsByCommunityId_data_creatorSerializer
   }
 
   @override
-  GGetCommunityWithPostsData_getPostsByCommunityId_data_creator deserialize(
+  GGetPostsByCommunityIdData_getPostsByCommunityId_data_creator deserialize(
       Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
     final result =
-        new GGetCommunityWithPostsData_getPostsByCommunityId_data_creatorBuilder();
+        new GGetPostsByCommunityIdData_getPostsByCommunityId_data_creatorBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -387,101 +300,84 @@ class _$GGetCommunityWithPostsData_getPostsByCommunityId_data_creatorSerializer
   }
 }
 
-class _$GGetCommunityWithPostsData extends GGetCommunityWithPostsData {
+class _$GGetPostsByCommunityIdData extends GGetPostsByCommunityIdData {
   @override
   final String G__typename;
   @override
-  final GGetCommunityWithPostsData_findCommunityByID? findCommunityByID;
-  @override
-  final GGetCommunityWithPostsData_getPostsByCommunityId getPostsByCommunityId;
+  final GGetPostsByCommunityIdData_getPostsByCommunityId getPostsByCommunityId;
 
-  factory _$GGetCommunityWithPostsData(
-          [void Function(GGetCommunityWithPostsDataBuilder)? updates]) =>
-      (new GGetCommunityWithPostsDataBuilder()..update(updates)).build();
+  factory _$GGetPostsByCommunityIdData(
+          [void Function(GGetPostsByCommunityIdDataBuilder)? updates]) =>
+      (new GGetPostsByCommunityIdDataBuilder()..update(updates)).build();
 
-  _$GGetCommunityWithPostsData._(
-      {required this.G__typename,
-      this.findCommunityByID,
-      required this.getPostsByCommunityId})
+  _$GGetPostsByCommunityIdData._(
+      {required this.G__typename, required this.getPostsByCommunityId})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
-        G__typename, 'GGetCommunityWithPostsData', 'G__typename');
+        G__typename, 'GGetPostsByCommunityIdData', 'G__typename');
     BuiltValueNullFieldError.checkNotNull(getPostsByCommunityId,
-        'GGetCommunityWithPostsData', 'getPostsByCommunityId');
+        'GGetPostsByCommunityIdData', 'getPostsByCommunityId');
   }
 
   @override
-  GGetCommunityWithPostsData rebuild(
-          void Function(GGetCommunityWithPostsDataBuilder) updates) =>
+  GGetPostsByCommunityIdData rebuild(
+          void Function(GGetPostsByCommunityIdDataBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  GGetCommunityWithPostsDataBuilder toBuilder() =>
-      new GGetCommunityWithPostsDataBuilder()..replace(this);
+  GGetPostsByCommunityIdDataBuilder toBuilder() =>
+      new GGetPostsByCommunityIdDataBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is GGetCommunityWithPostsData &&
+    return other is GGetPostsByCommunityIdData &&
         G__typename == other.G__typename &&
-        findCommunityByID == other.findCommunityByID &&
         getPostsByCommunityId == other.getPostsByCommunityId;
   }
 
   @override
   int get hashCode {
-    return $jf($jc(
-        $jc($jc(0, G__typename.hashCode), findCommunityByID.hashCode),
-        getPostsByCommunityId.hashCode));
+    return $jf(
+        $jc($jc(0, G__typename.hashCode), getPostsByCommunityId.hashCode));
   }
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('GGetCommunityWithPostsData')
+    return (newBuiltValueToStringHelper('GGetPostsByCommunityIdData')
           ..add('G__typename', G__typename)
-          ..add('findCommunityByID', findCommunityByID)
           ..add('getPostsByCommunityId', getPostsByCommunityId))
         .toString();
   }
 }
 
-class GGetCommunityWithPostsDataBuilder
+class GGetPostsByCommunityIdDataBuilder
     implements
-        Builder<GGetCommunityWithPostsData, GGetCommunityWithPostsDataBuilder> {
-  _$GGetCommunityWithPostsData? _$v;
+        Builder<GGetPostsByCommunityIdData, GGetPostsByCommunityIdDataBuilder> {
+  _$GGetPostsByCommunityIdData? _$v;
 
   String? _G__typename;
   String? get G__typename => _$this._G__typename;
   set G__typename(String? G__typename) => _$this._G__typename = G__typename;
 
-  GGetCommunityWithPostsData_findCommunityByIDBuilder? _findCommunityByID;
-  GGetCommunityWithPostsData_findCommunityByIDBuilder get findCommunityByID =>
-      _$this._findCommunityByID ??=
-          new GGetCommunityWithPostsData_findCommunityByIDBuilder();
-  set findCommunityByID(
-          GGetCommunityWithPostsData_findCommunityByIDBuilder?
-              findCommunityByID) =>
-      _$this._findCommunityByID = findCommunityByID;
-
-  GGetCommunityWithPostsData_getPostsByCommunityIdBuilder?
+  GGetPostsByCommunityIdData_getPostsByCommunityIdBuilder?
       _getPostsByCommunityId;
-  GGetCommunityWithPostsData_getPostsByCommunityIdBuilder
+  GGetPostsByCommunityIdData_getPostsByCommunityIdBuilder
       get getPostsByCommunityId => _$this._getPostsByCommunityId ??=
-          new GGetCommunityWithPostsData_getPostsByCommunityIdBuilder();
+          new GGetPostsByCommunityIdData_getPostsByCommunityIdBuilder();
   set getPostsByCommunityId(
-          GGetCommunityWithPostsData_getPostsByCommunityIdBuilder?
+          GGetPostsByCommunityIdData_getPostsByCommunityIdBuilder?
               getPostsByCommunityId) =>
       _$this._getPostsByCommunityId = getPostsByCommunityId;
 
-  GGetCommunityWithPostsDataBuilder() {
-    GGetCommunityWithPostsData._initializeBuilder(this);
+  GGetPostsByCommunityIdDataBuilder() {
+    GGetPostsByCommunityIdData._initializeBuilder(this);
   }
 
-  GGetCommunityWithPostsDataBuilder get _$this {
+  GGetPostsByCommunityIdDataBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
       _G__typename = $v.G__typename;
-      _findCommunityByID = $v.findCommunityByID?.toBuilder();
       _getPostsByCommunityId = $v.getPostsByCommunityId.toBuilder();
       _$v = null;
     }
@@ -489,36 +385,33 @@ class GGetCommunityWithPostsDataBuilder
   }
 
   @override
-  void replace(GGetCommunityWithPostsData other) {
+  void replace(GGetPostsByCommunityIdData other) {
     ArgumentError.checkNotNull(other, 'other');
-    _$v = other as _$GGetCommunityWithPostsData;
+    _$v = other as _$GGetPostsByCommunityIdData;
   }
 
   @override
-  void update(void Function(GGetCommunityWithPostsDataBuilder)? updates) {
+  void update(void Function(GGetPostsByCommunityIdDataBuilder)? updates) {
     if (updates != null) updates(this);
   }
 
   @override
-  _$GGetCommunityWithPostsData build() {
-    _$GGetCommunityWithPostsData _$result;
+  _$GGetPostsByCommunityIdData build() {
+    _$GGetPostsByCommunityIdData _$result;
     try {
       _$result = _$v ??
-          new _$GGetCommunityWithPostsData._(
+          new _$GGetPostsByCommunityIdData._(
               G__typename: BuiltValueNullFieldError.checkNotNull(
-                  G__typename, 'GGetCommunityWithPostsData', 'G__typename'),
-              findCommunityByID: _findCommunityByID?.build(),
+                  G__typename, 'GGetPostsByCommunityIdData', 'G__typename'),
               getPostsByCommunityId: getPostsByCommunityId.build());
     } catch (_) {
       late String _$failedField;
       try {
-        _$failedField = 'findCommunityByID';
-        _findCommunityByID?.build();
         _$failedField = 'getPostsByCommunityId';
         getPostsByCommunityId.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
-            'GGetCommunityWithPostsData', _$failedField, e.toString());
+            'GGetPostsByCommunityIdData', _$failedField, e.toString());
       }
       rethrow;
     }
@@ -527,187 +420,49 @@ class GGetCommunityWithPostsDataBuilder
   }
 }
 
-class _$GGetCommunityWithPostsData_findCommunityByID
-    extends GGetCommunityWithPostsData_findCommunityByID {
+class _$GGetPostsByCommunityIdData_getPostsByCommunityId
+    extends GGetPostsByCommunityIdData_getPostsByCommunityId {
   @override
   final String G__typename;
   @override
-  final String G_id;
-  @override
-  final String name;
-  @override
-  final String? purpose;
-
-  factory _$GGetCommunityWithPostsData_findCommunityByID(
-          [void Function(GGetCommunityWithPostsData_findCommunityByIDBuilder)?
-              updates]) =>
-      (new GGetCommunityWithPostsData_findCommunityByIDBuilder()
-            ..update(updates))
-          .build();
-
-  _$GGetCommunityWithPostsData_findCommunityByID._(
-      {required this.G__typename,
-      required this.G_id,
-      required this.name,
-      this.purpose})
-      : super._() {
-    BuiltValueNullFieldError.checkNotNull(G__typename,
-        'GGetCommunityWithPostsData_findCommunityByID', 'G__typename');
-    BuiltValueNullFieldError.checkNotNull(
-        G_id, 'GGetCommunityWithPostsData_findCommunityByID', 'G_id');
-    BuiltValueNullFieldError.checkNotNull(
-        name, 'GGetCommunityWithPostsData_findCommunityByID', 'name');
-  }
-
-  @override
-  GGetCommunityWithPostsData_findCommunityByID rebuild(
-          void Function(GGetCommunityWithPostsData_findCommunityByIDBuilder)
-              updates) =>
-      (toBuilder()..update(updates)).build();
-
-  @override
-  GGetCommunityWithPostsData_findCommunityByIDBuilder toBuilder() =>
-      new GGetCommunityWithPostsData_findCommunityByIDBuilder()..replace(this);
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(other, this)) return true;
-    return other is GGetCommunityWithPostsData_findCommunityByID &&
-        G__typename == other.G__typename &&
-        G_id == other.G_id &&
-        name == other.name &&
-        purpose == other.purpose;
-  }
-
-  @override
-  int get hashCode {
-    return $jf($jc(
-        $jc($jc($jc(0, G__typename.hashCode), G_id.hashCode), name.hashCode),
-        purpose.hashCode));
-  }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper(
-            'GGetCommunityWithPostsData_findCommunityByID')
-          ..add('G__typename', G__typename)
-          ..add('G_id', G_id)
-          ..add('name', name)
-          ..add('purpose', purpose))
-        .toString();
-  }
-}
-
-class GGetCommunityWithPostsData_findCommunityByIDBuilder
-    implements
-        Builder<GGetCommunityWithPostsData_findCommunityByID,
-            GGetCommunityWithPostsData_findCommunityByIDBuilder> {
-  _$GGetCommunityWithPostsData_findCommunityByID? _$v;
-
-  String? _G__typename;
-  String? get G__typename => _$this._G__typename;
-  set G__typename(String? G__typename) => _$this._G__typename = G__typename;
-
-  String? _G_id;
-  String? get G_id => _$this._G_id;
-  set G_id(String? G_id) => _$this._G_id = G_id;
-
-  String? _name;
-  String? get name => _$this._name;
-  set name(String? name) => _$this._name = name;
-
-  String? _purpose;
-  String? get purpose => _$this._purpose;
-  set purpose(String? purpose) => _$this._purpose = purpose;
-
-  GGetCommunityWithPostsData_findCommunityByIDBuilder() {
-    GGetCommunityWithPostsData_findCommunityByID._initializeBuilder(this);
-  }
-
-  GGetCommunityWithPostsData_findCommunityByIDBuilder get _$this {
-    final $v = _$v;
-    if ($v != null) {
-      _G__typename = $v.G__typename;
-      _G_id = $v.G_id;
-      _name = $v.name;
-      _purpose = $v.purpose;
-      _$v = null;
-    }
-    return this;
-  }
-
-  @override
-  void replace(GGetCommunityWithPostsData_findCommunityByID other) {
-    ArgumentError.checkNotNull(other, 'other');
-    _$v = other as _$GGetCommunityWithPostsData_findCommunityByID;
-  }
-
-  @override
-  void update(
-      void Function(GGetCommunityWithPostsData_findCommunityByIDBuilder)?
-          updates) {
-    if (updates != null) updates(this);
-  }
-
-  @override
-  _$GGetCommunityWithPostsData_findCommunityByID build() {
-    final _$result = _$v ??
-        new _$GGetCommunityWithPostsData_findCommunityByID._(
-            G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
-                'GGetCommunityWithPostsData_findCommunityByID', 'G__typename'),
-            G_id: BuiltValueNullFieldError.checkNotNull(
-                G_id, 'GGetCommunityWithPostsData_findCommunityByID', 'G_id'),
-            name: BuiltValueNullFieldError.checkNotNull(
-                name, 'GGetCommunityWithPostsData_findCommunityByID', 'name'),
-            purpose: purpose);
-    replace(_$result);
-    return _$result;
-  }
-}
-
-class _$GGetCommunityWithPostsData_getPostsByCommunityId
-    extends GGetCommunityWithPostsData_getPostsByCommunityId {
-  @override
-  final String G__typename;
-  @override
-  final BuiltList<GGetCommunityWithPostsData_getPostsByCommunityId_data> data;
+  final BuiltList<GGetPostsByCommunityIdData_getPostsByCommunityId_data> data;
   @override
   final String? after;
   @override
   final String? before;
 
-  factory _$GGetCommunityWithPostsData_getPostsByCommunityId(
+  factory _$GGetPostsByCommunityIdData_getPostsByCommunityId(
           [void Function(
-                  GGetCommunityWithPostsData_getPostsByCommunityIdBuilder)?
+                  GGetPostsByCommunityIdData_getPostsByCommunityIdBuilder)?
               updates]) =>
-      (new GGetCommunityWithPostsData_getPostsByCommunityIdBuilder()
+      (new GGetPostsByCommunityIdData_getPostsByCommunityIdBuilder()
             ..update(updates))
           .build();
 
-  _$GGetCommunityWithPostsData_getPostsByCommunityId._(
+  _$GGetPostsByCommunityIdData_getPostsByCommunityId._(
       {required this.G__typename, required this.data, this.after, this.before})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(G__typename,
-        'GGetCommunityWithPostsData_getPostsByCommunityId', 'G__typename');
+        'GGetPostsByCommunityIdData_getPostsByCommunityId', 'G__typename');
     BuiltValueNullFieldError.checkNotNull(
-        data, 'GGetCommunityWithPostsData_getPostsByCommunityId', 'data');
+        data, 'GGetPostsByCommunityIdData_getPostsByCommunityId', 'data');
   }
 
   @override
-  GGetCommunityWithPostsData_getPostsByCommunityId rebuild(
-          void Function(GGetCommunityWithPostsData_getPostsByCommunityIdBuilder)
+  GGetPostsByCommunityIdData_getPostsByCommunityId rebuild(
+          void Function(GGetPostsByCommunityIdData_getPostsByCommunityIdBuilder)
               updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  GGetCommunityWithPostsData_getPostsByCommunityIdBuilder toBuilder() =>
-      new GGetCommunityWithPostsData_getPostsByCommunityIdBuilder()
+  GGetPostsByCommunityIdData_getPostsByCommunityIdBuilder toBuilder() =>
+      new GGetPostsByCommunityIdData_getPostsByCommunityIdBuilder()
         ..replace(this);
 
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is GGetCommunityWithPostsData_getPostsByCommunityId &&
+    return other is GGetPostsByCommunityIdData_getPostsByCommunityId &&
         G__typename == other.G__typename &&
         data == other.data &&
         after == other.after &&
@@ -724,7 +479,7 @@ class _$GGetCommunityWithPostsData_getPostsByCommunityId
   @override
   String toString() {
     return (newBuiltValueToStringHelper(
-            'GGetCommunityWithPostsData_getPostsByCommunityId')
+            'GGetPostsByCommunityIdData_getPostsByCommunityId')
           ..add('G__typename', G__typename)
           ..add('data', data)
           ..add('after', after)
@@ -733,23 +488,23 @@ class _$GGetCommunityWithPostsData_getPostsByCommunityId
   }
 }
 
-class GGetCommunityWithPostsData_getPostsByCommunityIdBuilder
+class GGetPostsByCommunityIdData_getPostsByCommunityIdBuilder
     implements
-        Builder<GGetCommunityWithPostsData_getPostsByCommunityId,
-            GGetCommunityWithPostsData_getPostsByCommunityIdBuilder> {
-  _$GGetCommunityWithPostsData_getPostsByCommunityId? _$v;
+        Builder<GGetPostsByCommunityIdData_getPostsByCommunityId,
+            GGetPostsByCommunityIdData_getPostsByCommunityIdBuilder> {
+  _$GGetPostsByCommunityIdData_getPostsByCommunityId? _$v;
 
   String? _G__typename;
   String? get G__typename => _$this._G__typename;
   set G__typename(String? G__typename) => _$this._G__typename = G__typename;
 
-  ListBuilder<GGetCommunityWithPostsData_getPostsByCommunityId_data>? _data;
+  ListBuilder<GGetPostsByCommunityIdData_getPostsByCommunityId_data>? _data;
   ListBuilder<
-      GGetCommunityWithPostsData_getPostsByCommunityId_data> get data => _$this
+      GGetPostsByCommunityIdData_getPostsByCommunityId_data> get data => _$this
           ._data ??=
-      new ListBuilder<GGetCommunityWithPostsData_getPostsByCommunityId_data>();
+      new ListBuilder<GGetPostsByCommunityIdData_getPostsByCommunityId_data>();
   set data(
-          ListBuilder<GGetCommunityWithPostsData_getPostsByCommunityId_data>?
+          ListBuilder<GGetPostsByCommunityIdData_getPostsByCommunityId_data>?
               data) =>
       _$this._data = data;
 
@@ -761,11 +516,11 @@ class GGetCommunityWithPostsData_getPostsByCommunityIdBuilder
   String? get before => _$this._before;
   set before(String? before) => _$this._before = before;
 
-  GGetCommunityWithPostsData_getPostsByCommunityIdBuilder() {
-    GGetCommunityWithPostsData_getPostsByCommunityId._initializeBuilder(this);
+  GGetPostsByCommunityIdData_getPostsByCommunityIdBuilder() {
+    GGetPostsByCommunityIdData_getPostsByCommunityId._initializeBuilder(this);
   }
 
-  GGetCommunityWithPostsData_getPostsByCommunityIdBuilder get _$this {
+  GGetPostsByCommunityIdData_getPostsByCommunityIdBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
       _G__typename = $v.G__typename;
@@ -778,27 +533,27 @@ class GGetCommunityWithPostsData_getPostsByCommunityIdBuilder
   }
 
   @override
-  void replace(GGetCommunityWithPostsData_getPostsByCommunityId other) {
+  void replace(GGetPostsByCommunityIdData_getPostsByCommunityId other) {
     ArgumentError.checkNotNull(other, 'other');
-    _$v = other as _$GGetCommunityWithPostsData_getPostsByCommunityId;
+    _$v = other as _$GGetPostsByCommunityIdData_getPostsByCommunityId;
   }
 
   @override
   void update(
-      void Function(GGetCommunityWithPostsData_getPostsByCommunityIdBuilder)?
+      void Function(GGetPostsByCommunityIdData_getPostsByCommunityIdBuilder)?
           updates) {
     if (updates != null) updates(this);
   }
 
   @override
-  _$GGetCommunityWithPostsData_getPostsByCommunityId build() {
-    _$GGetCommunityWithPostsData_getPostsByCommunityId _$result;
+  _$GGetPostsByCommunityIdData_getPostsByCommunityId build() {
+    _$GGetPostsByCommunityIdData_getPostsByCommunityId _$result;
     try {
       _$result = _$v ??
-          new _$GGetCommunityWithPostsData_getPostsByCommunityId._(
+          new _$GGetPostsByCommunityIdData_getPostsByCommunityId._(
               G__typename: BuiltValueNullFieldError.checkNotNull(
                   G__typename,
-                  'GGetCommunityWithPostsData_getPostsByCommunityId',
+                  'GGetPostsByCommunityIdData_getPostsByCommunityId',
                   'G__typename'),
               data: data.build(),
               after: after,
@@ -810,7 +565,7 @@ class GGetCommunityWithPostsData_getPostsByCommunityIdBuilder
         data.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
-            'GGetCommunityWithPostsData_getPostsByCommunityId',
+            'GGetPostsByCommunityIdData_getPostsByCommunityId',
             _$failedField,
             e.toString());
       }
@@ -821,8 +576,8 @@ class GGetCommunityWithPostsData_getPostsByCommunityIdBuilder
   }
 }
 
-class _$GGetCommunityWithPostsData_getPostsByCommunityId_data
-    extends GGetCommunityWithPostsData_getPostsByCommunityId_data {
+class _$GGetPostsByCommunityIdData_getPostsByCommunityId_data
+    extends GGetPostsByCommunityIdData_getPostsByCommunityId_data {
   @override
   final String G__typename;
   @override
@@ -832,17 +587,17 @@ class _$GGetCommunityWithPostsData_getPostsByCommunityId_data
   @override
   final String message;
   @override
-  final GGetCommunityWithPostsData_getPostsByCommunityId_data_creator creator;
+  final GGetPostsByCommunityIdData_getPostsByCommunityId_data_creator creator;
 
-  factory _$GGetCommunityWithPostsData_getPostsByCommunityId_data(
+  factory _$GGetPostsByCommunityIdData_getPostsByCommunityId_data(
           [void Function(
-                  GGetCommunityWithPostsData_getPostsByCommunityId_dataBuilder)?
+                  GGetPostsByCommunityIdData_getPostsByCommunityId_dataBuilder)?
               updates]) =>
-      (new GGetCommunityWithPostsData_getPostsByCommunityId_dataBuilder()
+      (new GGetPostsByCommunityIdData_getPostsByCommunityId_dataBuilder()
             ..update(updates))
           .build();
 
-  _$GGetCommunityWithPostsData_getPostsByCommunityId_data._(
+  _$GGetPostsByCommunityIdData_getPostsByCommunityId_data._(
       {required this.G__typename,
       required this.G_id,
       required this.title,
@@ -850,33 +605,33 @@ class _$GGetCommunityWithPostsData_getPostsByCommunityId_data
       required this.creator})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(G__typename,
-        'GGetCommunityWithPostsData_getPostsByCommunityId_data', 'G__typename');
+        'GGetPostsByCommunityIdData_getPostsByCommunityId_data', 'G__typename');
     BuiltValueNullFieldError.checkNotNull(
-        G_id, 'GGetCommunityWithPostsData_getPostsByCommunityId_data', 'G_id');
+        G_id, 'GGetPostsByCommunityIdData_getPostsByCommunityId_data', 'G_id');
     BuiltValueNullFieldError.checkNotNull(title,
-        'GGetCommunityWithPostsData_getPostsByCommunityId_data', 'title');
+        'GGetPostsByCommunityIdData_getPostsByCommunityId_data', 'title');
     BuiltValueNullFieldError.checkNotNull(message,
-        'GGetCommunityWithPostsData_getPostsByCommunityId_data', 'message');
+        'GGetPostsByCommunityIdData_getPostsByCommunityId_data', 'message');
     BuiltValueNullFieldError.checkNotNull(creator,
-        'GGetCommunityWithPostsData_getPostsByCommunityId_data', 'creator');
+        'GGetPostsByCommunityIdData_getPostsByCommunityId_data', 'creator');
   }
 
   @override
-  GGetCommunityWithPostsData_getPostsByCommunityId_data rebuild(
+  GGetPostsByCommunityIdData_getPostsByCommunityId_data rebuild(
           void Function(
-                  GGetCommunityWithPostsData_getPostsByCommunityId_dataBuilder)
+                  GGetPostsByCommunityIdData_getPostsByCommunityId_dataBuilder)
               updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  GGetCommunityWithPostsData_getPostsByCommunityId_dataBuilder toBuilder() =>
-      new GGetCommunityWithPostsData_getPostsByCommunityId_dataBuilder()
+  GGetPostsByCommunityIdData_getPostsByCommunityId_dataBuilder toBuilder() =>
+      new GGetPostsByCommunityIdData_getPostsByCommunityId_dataBuilder()
         ..replace(this);
 
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is GGetCommunityWithPostsData_getPostsByCommunityId_data &&
+    return other is GGetPostsByCommunityIdData_getPostsByCommunityId_data &&
         G__typename == other.G__typename &&
         G_id == other.G_id &&
         title == other.title &&
@@ -897,7 +652,7 @@ class _$GGetCommunityWithPostsData_getPostsByCommunityId_data
   @override
   String toString() {
     return (newBuiltValueToStringHelper(
-            'GGetCommunityWithPostsData_getPostsByCommunityId_data')
+            'GGetPostsByCommunityIdData_getPostsByCommunityId_data')
           ..add('G__typename', G__typename)
           ..add('G_id', G_id)
           ..add('title', title)
@@ -907,11 +662,11 @@ class _$GGetCommunityWithPostsData_getPostsByCommunityId_data
   }
 }
 
-class GGetCommunityWithPostsData_getPostsByCommunityId_dataBuilder
+class GGetPostsByCommunityIdData_getPostsByCommunityId_dataBuilder
     implements
-        Builder<GGetCommunityWithPostsData_getPostsByCommunityId_data,
-            GGetCommunityWithPostsData_getPostsByCommunityId_dataBuilder> {
-  _$GGetCommunityWithPostsData_getPostsByCommunityId_data? _$v;
+        Builder<GGetPostsByCommunityIdData_getPostsByCommunityId_data,
+            GGetPostsByCommunityIdData_getPostsByCommunityId_dataBuilder> {
+  _$GGetPostsByCommunityIdData_getPostsByCommunityId_data? _$v;
 
   String? _G__typename;
   String? get G__typename => _$this._G__typename;
@@ -929,22 +684,22 @@ class GGetCommunityWithPostsData_getPostsByCommunityId_dataBuilder
   String? get message => _$this._message;
   set message(String? message) => _$this._message = message;
 
-  GGetCommunityWithPostsData_getPostsByCommunityId_data_creatorBuilder?
+  GGetPostsByCommunityIdData_getPostsByCommunityId_data_creatorBuilder?
       _creator;
-  GGetCommunityWithPostsData_getPostsByCommunityId_data_creatorBuilder
+  GGetPostsByCommunityIdData_getPostsByCommunityId_data_creatorBuilder
       get creator => _$this._creator ??=
-          new GGetCommunityWithPostsData_getPostsByCommunityId_data_creatorBuilder();
+          new GGetPostsByCommunityIdData_getPostsByCommunityId_data_creatorBuilder();
   set creator(
-          GGetCommunityWithPostsData_getPostsByCommunityId_data_creatorBuilder?
+          GGetPostsByCommunityIdData_getPostsByCommunityId_data_creatorBuilder?
               creator) =>
       _$this._creator = creator;
 
-  GGetCommunityWithPostsData_getPostsByCommunityId_dataBuilder() {
-    GGetCommunityWithPostsData_getPostsByCommunityId_data._initializeBuilder(
+  GGetPostsByCommunityIdData_getPostsByCommunityId_dataBuilder() {
+    GGetPostsByCommunityIdData_getPostsByCommunityId_data._initializeBuilder(
         this);
   }
 
-  GGetCommunityWithPostsData_getPostsByCommunityId_dataBuilder get _$this {
+  GGetPostsByCommunityIdData_getPostsByCommunityId_dataBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
       _G__typename = $v.G__typename;
@@ -958,40 +713,40 @@ class GGetCommunityWithPostsData_getPostsByCommunityId_dataBuilder
   }
 
   @override
-  void replace(GGetCommunityWithPostsData_getPostsByCommunityId_data other) {
+  void replace(GGetPostsByCommunityIdData_getPostsByCommunityId_data other) {
     ArgumentError.checkNotNull(other, 'other');
-    _$v = other as _$GGetCommunityWithPostsData_getPostsByCommunityId_data;
+    _$v = other as _$GGetPostsByCommunityIdData_getPostsByCommunityId_data;
   }
 
   @override
   void update(
       void Function(
-              GGetCommunityWithPostsData_getPostsByCommunityId_dataBuilder)?
+              GGetPostsByCommunityIdData_getPostsByCommunityId_dataBuilder)?
           updates) {
     if (updates != null) updates(this);
   }
 
   @override
-  _$GGetCommunityWithPostsData_getPostsByCommunityId_data build() {
-    _$GGetCommunityWithPostsData_getPostsByCommunityId_data _$result;
+  _$GGetPostsByCommunityIdData_getPostsByCommunityId_data build() {
+    _$GGetPostsByCommunityIdData_getPostsByCommunityId_data _$result;
     try {
       _$result = _$v ??
-          new _$GGetCommunityWithPostsData_getPostsByCommunityId_data._(
+          new _$GGetPostsByCommunityIdData_getPostsByCommunityId_data._(
               G__typename: BuiltValueNullFieldError.checkNotNull(
                   G__typename,
-                  'GGetCommunityWithPostsData_getPostsByCommunityId_data',
+                  'GGetPostsByCommunityIdData_getPostsByCommunityId_data',
                   'G__typename'),
               G_id: BuiltValueNullFieldError.checkNotNull(
                   G_id,
-                  'GGetCommunityWithPostsData_getPostsByCommunityId_data',
+                  'GGetPostsByCommunityIdData_getPostsByCommunityId_data',
                   'G_id'),
               title: BuiltValueNullFieldError.checkNotNull(
                   title,
-                  'GGetCommunityWithPostsData_getPostsByCommunityId_data',
+                  'GGetPostsByCommunityIdData_getPostsByCommunityId_data',
                   'title'),
               message: BuiltValueNullFieldError.checkNotNull(
                   message,
-                  'GGetCommunityWithPostsData_getPostsByCommunityId_data',
+                  'GGetPostsByCommunityIdData_getPostsByCommunityId_data',
                   'message'),
               creator: creator.build());
     } catch (_) {
@@ -1001,7 +756,7 @@ class GGetCommunityWithPostsData_getPostsByCommunityId_dataBuilder
         creator.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
-            'GGetCommunityWithPostsData_getPostsByCommunityId_data',
+            'GGetPostsByCommunityIdData_getPostsByCommunityId_data',
             _$failedField,
             e.toString());
       }
@@ -1012,8 +767,8 @@ class GGetCommunityWithPostsData_getPostsByCommunityId_dataBuilder
   }
 }
 
-class _$GGetCommunityWithPostsData_getPostsByCommunityId_data_creator
-    extends GGetCommunityWithPostsData_getPostsByCommunityId_data_creator {
+class _$GGetPostsByCommunityIdData_getPostsByCommunityId_data_creator
+    extends GGetPostsByCommunityIdData_getPostsByCommunityId_data_creator {
   @override
   final String G__typename;
   @override
@@ -1021,49 +776,49 @@ class _$GGetCommunityWithPostsData_getPostsByCommunityId_data_creator
   @override
   final String username;
 
-  factory _$GGetCommunityWithPostsData_getPostsByCommunityId_data_creator(
+  factory _$GGetPostsByCommunityIdData_getPostsByCommunityId_data_creator(
           [void Function(
-                  GGetCommunityWithPostsData_getPostsByCommunityId_data_creatorBuilder)?
+                  GGetPostsByCommunityIdData_getPostsByCommunityId_data_creatorBuilder)?
               updates]) =>
-      (new GGetCommunityWithPostsData_getPostsByCommunityId_data_creatorBuilder()
+      (new GGetPostsByCommunityIdData_getPostsByCommunityId_data_creatorBuilder()
             ..update(updates))
           .build();
 
-  _$GGetCommunityWithPostsData_getPostsByCommunityId_data_creator._(
+  _$GGetPostsByCommunityIdData_getPostsByCommunityId_data_creator._(
       {required this.G__typename, required this.G_id, required this.username})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         G__typename,
-        'GGetCommunityWithPostsData_getPostsByCommunityId_data_creator',
+        'GGetPostsByCommunityIdData_getPostsByCommunityId_data_creator',
         'G__typename');
     BuiltValueNullFieldError.checkNotNull(
         G_id,
-        'GGetCommunityWithPostsData_getPostsByCommunityId_data_creator',
+        'GGetPostsByCommunityIdData_getPostsByCommunityId_data_creator',
         'G_id');
     BuiltValueNullFieldError.checkNotNull(
         username,
-        'GGetCommunityWithPostsData_getPostsByCommunityId_data_creator',
+        'GGetPostsByCommunityIdData_getPostsByCommunityId_data_creator',
         'username');
   }
 
   @override
-  GGetCommunityWithPostsData_getPostsByCommunityId_data_creator rebuild(
+  GGetPostsByCommunityIdData_getPostsByCommunityId_data_creator rebuild(
           void Function(
-                  GGetCommunityWithPostsData_getPostsByCommunityId_data_creatorBuilder)
+                  GGetPostsByCommunityIdData_getPostsByCommunityId_data_creatorBuilder)
               updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  GGetCommunityWithPostsData_getPostsByCommunityId_data_creatorBuilder
+  GGetPostsByCommunityIdData_getPostsByCommunityId_data_creatorBuilder
       toBuilder() =>
-          new GGetCommunityWithPostsData_getPostsByCommunityId_data_creatorBuilder()
+          new GGetPostsByCommunityIdData_getPostsByCommunityId_data_creatorBuilder()
             ..replace(this);
 
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other
-            is GGetCommunityWithPostsData_getPostsByCommunityId_data_creator &&
+            is GGetPostsByCommunityIdData_getPostsByCommunityId_data_creator &&
         G__typename == other.G__typename &&
         G_id == other.G_id &&
         username == other.username;
@@ -1078,7 +833,7 @@ class _$GGetCommunityWithPostsData_getPostsByCommunityId_data_creator
   @override
   String toString() {
     return (newBuiltValueToStringHelper(
-            'GGetCommunityWithPostsData_getPostsByCommunityId_data_creator')
+            'GGetPostsByCommunityIdData_getPostsByCommunityId_data_creator')
           ..add('G__typename', G__typename)
           ..add('G_id', G_id)
           ..add('username', username))
@@ -1086,11 +841,11 @@ class _$GGetCommunityWithPostsData_getPostsByCommunityId_data_creator
   }
 }
 
-class GGetCommunityWithPostsData_getPostsByCommunityId_data_creatorBuilder
+class GGetPostsByCommunityIdData_getPostsByCommunityId_data_creatorBuilder
     implements
-        Builder<GGetCommunityWithPostsData_getPostsByCommunityId_data_creator,
-            GGetCommunityWithPostsData_getPostsByCommunityId_data_creatorBuilder> {
-  _$GGetCommunityWithPostsData_getPostsByCommunityId_data_creator? _$v;
+        Builder<GGetPostsByCommunityIdData_getPostsByCommunityId_data_creator,
+            GGetPostsByCommunityIdData_getPostsByCommunityId_data_creatorBuilder> {
+  _$GGetPostsByCommunityIdData_getPostsByCommunityId_data_creator? _$v;
 
   String? _G__typename;
   String? get G__typename => _$this._G__typename;
@@ -1104,12 +859,12 @@ class GGetCommunityWithPostsData_getPostsByCommunityId_data_creatorBuilder
   String? get username => _$this._username;
   set username(String? username) => _$this._username = username;
 
-  GGetCommunityWithPostsData_getPostsByCommunityId_data_creatorBuilder() {
-    GGetCommunityWithPostsData_getPostsByCommunityId_data_creator
+  GGetPostsByCommunityIdData_getPostsByCommunityId_data_creatorBuilder() {
+    GGetPostsByCommunityIdData_getPostsByCommunityId_data_creator
         ._initializeBuilder(this);
   }
 
-  GGetCommunityWithPostsData_getPostsByCommunityId_data_creatorBuilder
+  GGetPostsByCommunityIdData_getPostsByCommunityId_data_creatorBuilder
       get _$this {
     final $v = _$v;
     if ($v != null) {
@@ -1123,35 +878,35 @@ class GGetCommunityWithPostsData_getPostsByCommunityId_data_creatorBuilder
 
   @override
   void replace(
-      GGetCommunityWithPostsData_getPostsByCommunityId_data_creator other) {
+      GGetPostsByCommunityIdData_getPostsByCommunityId_data_creator other) {
     ArgumentError.checkNotNull(other, 'other');
     _$v = other
-        as _$GGetCommunityWithPostsData_getPostsByCommunityId_data_creator;
+        as _$GGetPostsByCommunityIdData_getPostsByCommunityId_data_creator;
   }
 
   @override
   void update(
       void Function(
-              GGetCommunityWithPostsData_getPostsByCommunityId_data_creatorBuilder)?
+              GGetPostsByCommunityIdData_getPostsByCommunityId_data_creatorBuilder)?
           updates) {
     if (updates != null) updates(this);
   }
 
   @override
-  _$GGetCommunityWithPostsData_getPostsByCommunityId_data_creator build() {
+  _$GGetPostsByCommunityIdData_getPostsByCommunityId_data_creator build() {
     final _$result = _$v ??
-        new _$GGetCommunityWithPostsData_getPostsByCommunityId_data_creator._(
+        new _$GGetPostsByCommunityIdData_getPostsByCommunityId_data_creator._(
             G__typename: BuiltValueNullFieldError.checkNotNull(
                 G__typename,
-                'GGetCommunityWithPostsData_getPostsByCommunityId_data_creator',
+                'GGetPostsByCommunityIdData_getPostsByCommunityId_data_creator',
                 'G__typename'),
             G_id: BuiltValueNullFieldError.checkNotNull(
                 G_id,
-                'GGetCommunityWithPostsData_getPostsByCommunityId_data_creator',
+                'GGetPostsByCommunityIdData_getPostsByCommunityId_data_creator',
                 'G_id'),
             username: BuiltValueNullFieldError.checkNotNull(
                 username,
-                'GGetCommunityWithPostsData_getPostsByCommunityId_data_creator',
+                'GGetPostsByCommunityIdData_getPostsByCommunityId_data_creator',
                 'username'));
     replace(_$result);
     return _$result;

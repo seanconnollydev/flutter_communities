@@ -6,23 +6,23 @@ import 'package:flutter_communities/graphql/serializers.gql.dart' as _i1;
 
 part 'get_community_with_posts.var.gql.g.dart';
 
-abstract class GGetCommunityWithPostsVars
+abstract class GGetPostsByCommunityIdVars
     implements
-        Built<GGetCommunityWithPostsVars, GGetCommunityWithPostsVarsBuilder> {
-  GGetCommunityWithPostsVars._();
+        Built<GGetPostsByCommunityIdVars, GGetPostsByCommunityIdVarsBuilder> {
+  GGetPostsByCommunityIdVars._();
 
-  factory GGetCommunityWithPostsVars(
-          [Function(GGetCommunityWithPostsVarsBuilder b) updates]) =
-      _$GGetCommunityWithPostsVars;
+  factory GGetPostsByCommunityIdVars(
+          [Function(GGetPostsByCommunityIdVarsBuilder b) updates]) =
+      _$GGetPostsByCommunityIdVars;
 
   String get id;
   int? get size;
   String? get cursor;
-  static Serializer<GGetCommunityWithPostsVars> get serializer =>
-      _$gGetCommunityWithPostsVarsSerializer;
+  static Serializer<GGetPostsByCommunityIdVars> get serializer =>
+      _$gGetPostsByCommunityIdVarsSerializer;
   Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
-      GGetCommunityWithPostsVars.serializer, this) as Map<String, dynamic>);
-  static GGetCommunityWithPostsVars? fromJson(Map<String, dynamic> json) =>
+      GGetPostsByCommunityIdVars.serializer, this) as Map<String, dynamic>);
+  static GGetPostsByCommunityIdVars? fromJson(Map<String, dynamic> json) =>
       _i1.serializers
-          .deserializeWith(GGetCommunityWithPostsVars.serializer, json);
+          .deserializeWith(GGetPostsByCommunityIdVars.serializer, json);
 }

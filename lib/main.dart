@@ -3,6 +3,7 @@ import 'package:flutter_communities/screens/community_screen.dart';
 import 'package:flutter_communities/screens/create_community_screen.dart';
 import 'package:flutter_communities/screens/create_post_screen.dart';
 import 'package:flutter_communities/screens/login_screen.dart';
+import 'package:flutter_communities/screens/post_screen.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -31,6 +32,8 @@ class MyApp extends StatelessWidget {
             ModalRoute.of(context)!.settings.arguments as String),
         CreatePostScreen.routeName: (context) => CreatePostScreen(
             ModalRoute.of(context)!.settings.arguments as String),
+        PostScreen.routeName: (context) => PostScreen(
+            ModalRoute.of(context)!.settings.arguments as PostScreenArguments)
       },
     );
   }

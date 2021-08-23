@@ -6,12 +6,13 @@ import 'package:flutter_communities/graphql/get_community_with_posts.var.gql.dar
 import 'package:flutter_communities/graphql/post_fragment.data.gql.dart';
 import 'package:flutter_communities/providers/ferry.dart';
 import 'package:flutter_communities/screens/create_post_screen.dart';
+import 'package:flutter_communities/widgets/community_app_bar.dart';
 import 'package:flutter_communities/widgets/post_card.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
-typedef GetCommunityResponse = OperationResponse<GGetCommunityWithPostsData,
-    GGetCommunityWithPostsVars>?;
+typedef GetCommunityResponse = OperationResponse<GGetPostsByCommunityIdData,
+    GGetPostsByCommunityIdVars>?;
 
 class CommunityScreen extends StatefulWidget {
   static const routeName = '/community';
@@ -28,14 +29,13 @@ class _CommunityScreenState extends State<CommunityScreen> {
   final PagingController<String?, GPostFragment> _pagingController =
       PagingController(firstPageKey: null);
   late Client _client;
-  late GGetCommunityWithPostsReq _request;
-  String? _communityName;
+  late GGetPostsByCommunityIdReq _request;
 
   @override
   void initState() {
     _client = context.read(ferryClientProvider);
 
-    _request = GGetCommunityWithPostsReq((b) => b
+    _request = GGetPostsByCommunityIdReq((b) => b
       ..requestId = 'GetCommunityWithPostsReq'
       ..vars.id = widget._communityId
       ..vars.size = 10);
@@ -63,8 +63,6 @@ class _CommunityScreenState extends State<CommunityScreen> {
     });
 
     _client.request(_request).listen((event) {
-      _communityName = event.data?.findCommunityByID?.name;
-
       _pagingController.value = PagingState(
         nextPageKey: event.data?.getPostsByCommunityId.after,
         error: event.graphqlErrors,
@@ -78,13 +76,12 @@ class _CommunityScreenState extends State<CommunityScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(_communityName ?? ''),
-      ),
+      appBar: CommunityAppBar(widget._communityId),
       body: PagedListView<String?, GPostFragment>(
         pagingController: _pagingController,
         builderDelegate: PagedChildBuilderDelegate<GPostFragment>(
-          itemBuilder: (context, item, index) => PostCard(item),
+          itemBuilder: (context, item, index) =>
+              PostCard(item, widget._communityId),
         ),
       ),
       floatingActionButton: FloatingActionButton(

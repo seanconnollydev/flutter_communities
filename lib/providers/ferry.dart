@@ -53,7 +53,7 @@ UpdateCacheHandler<GCreatePostData, GCreatePostVars> createPostHandler = (
   proxy,
   response,
 ) {
-  final request = GGetCommunityWithPostsReq(
+  final request = GGetPostsByCommunityIdReq(
     (b) => b
       ..vars.id = response.operationRequest.vars.input.communityId
       ..vars.size = 10
@@ -64,7 +64,7 @@ UpdateCacheHandler<GCreatePostData, GCreatePostVars> createPostHandler = (
 
   if (communityWithPostsData != null && newPost != null) {
     final toAdd =
-        GGetCommunityWithPostsData_getPostsByCommunityId_data.fromJson(
+        GGetPostsByCommunityIdData_getPostsByCommunityId_data.fromJson(
             newPost.toJson());
 
     if (toAdd != null) {

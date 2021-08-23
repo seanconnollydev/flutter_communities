@@ -37,17 +37,22 @@ import 'package:flutter_communities/graphql/get_communities.req.gql.dart'
     show GGetCommunitiesReq;
 import 'package:flutter_communities/graphql/get_communities.var.gql.dart'
     show GGetCommunitiesVars;
+import 'package:flutter_communities/graphql/get_community.data.gql.dart'
+    show GGetCommunityData, GGetCommunityData_findCommunityByID;
+import 'package:flutter_communities/graphql/get_community.req.gql.dart'
+    show GGetCommunityReq;
+import 'package:flutter_communities/graphql/get_community.var.gql.dart'
+    show GGetCommunityVars;
 import 'package:flutter_communities/graphql/get_community_with_posts.data.gql.dart'
     show
-        GGetCommunityWithPostsData,
-        GGetCommunityWithPostsData_findCommunityByID,
-        GGetCommunityWithPostsData_getPostsByCommunityId,
-        GGetCommunityWithPostsData_getPostsByCommunityId_data,
-        GGetCommunityWithPostsData_getPostsByCommunityId_data_creator;
+        GGetPostsByCommunityIdData,
+        GGetPostsByCommunityIdData_getPostsByCommunityId,
+        GGetPostsByCommunityIdData_getPostsByCommunityId_data,
+        GGetPostsByCommunityIdData_getPostsByCommunityId_data_creator;
 import 'package:flutter_communities/graphql/get_community_with_posts.req.gql.dart'
-    show GGetCommunityWithPostsReq;
+    show GGetPostsByCommunityIdReq;
 import 'package:flutter_communities/graphql/get_community_with_posts.var.gql.dart'
-    show GGetCommunityWithPostsVars;
+    show GGetPostsByCommunityIdVars;
 import 'package:flutter_communities/graphql/login_user.data.gql.dart'
     show GLoginUserData;
 import 'package:flutter_communities/graphql/login_user.req.gql.dart'
@@ -112,13 +117,16 @@ final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   GGetCommunitiesData_communities_data,
   GGetCommunitiesReq,
   GGetCommunitiesVars,
-  GGetCommunityWithPostsData,
-  GGetCommunityWithPostsData_findCommunityByID,
-  GGetCommunityWithPostsData_getPostsByCommunityId,
-  GGetCommunityWithPostsData_getPostsByCommunityId_data,
-  GGetCommunityWithPostsData_getPostsByCommunityId_data_creator,
-  GGetCommunityWithPostsReq,
-  GGetCommunityWithPostsVars,
+  GGetCommunityData,
+  GGetCommunityData_findCommunityByID,
+  GGetCommunityReq,
+  GGetCommunityVars,
+  GGetPostsByCommunityIdData,
+  GGetPostsByCommunityIdData_getPostsByCommunityId,
+  GGetPostsByCommunityIdData_getPostsByCommunityId_data,
+  GGetPostsByCommunityIdData_getPostsByCommunityId_data_creator,
+  GGetPostsByCommunityIdReq,
+  GGetPostsByCommunityIdVars,
   GLoginUserData,
   GLoginUserInput,
   GLoginUserReq,

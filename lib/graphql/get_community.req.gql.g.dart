@@ -1,32 +1,28 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'get_community_with_posts.req.gql.dart';
+part of 'get_community.req.gql.dart';
 
 // **************************************************************************
 // BuiltValueGenerator
 // **************************************************************************
 
-Serializer<GGetPostsByCommunityIdReq> _$gGetPostsByCommunityIdReqSerializer =
-    new _$GGetPostsByCommunityIdReqSerializer();
+Serializer<GGetCommunityReq> _$gGetCommunityReqSerializer =
+    new _$GGetCommunityReqSerializer();
 
-class _$GGetPostsByCommunityIdReqSerializer
-    implements StructuredSerializer<GGetPostsByCommunityIdReq> {
+class _$GGetCommunityReqSerializer
+    implements StructuredSerializer<GGetCommunityReq> {
   @override
-  final Iterable<Type> types = const [
-    GGetPostsByCommunityIdReq,
-    _$GGetPostsByCommunityIdReq
-  ];
+  final Iterable<Type> types = const [GGetCommunityReq, _$GGetCommunityReq];
   @override
-  final String wireName = 'GGetPostsByCommunityIdReq';
+  final String wireName = 'GGetCommunityReq';
 
   @override
-  Iterable<Object?> serialize(
-      Serializers serializers, GGetPostsByCommunityIdReq object,
+  Iterable<Object?> serialize(Serializers serializers, GGetCommunityReq object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object?>[
       'vars',
       serializers.serialize(object.vars,
-          specifiedType: const FullType(_i3.GGetPostsByCommunityIdVars)),
+          specifiedType: const FullType(_i3.GGetCommunityVars)),
       'operation',
       serializers.serialize(object.operation,
           specifiedType: const FullType(_i4.Operation)),
@@ -47,7 +43,7 @@ class _$GGetPostsByCommunityIdReqSerializer
       result
         ..add('optimisticResponse')
         ..add(serializers.serialize(value,
-            specifiedType: const FullType(_i2.GGetPostsByCommunityIdData)));
+            specifiedType: const FullType(_i2.GGetCommunityData)));
     }
     value = object.updateCacheHandlerKey;
     if (value != null) {
@@ -75,10 +71,10 @@ class _$GGetPostsByCommunityIdReqSerializer
   }
 
   @override
-  GGetPostsByCommunityIdReq deserialize(
+  GGetCommunityReq deserialize(
       Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = new GGetPostsByCommunityIdReqBuilder();
+    final result = new GGetCommunityReqBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -88,9 +84,8 @@ class _$GGetPostsByCommunityIdReqSerializer
       switch (key) {
         case 'vars':
           result.vars.replace(serializers.deserialize(value,
-                  specifiedType:
-                      const FullType(_i3.GGetPostsByCommunityIdVars))!
-              as _i3.GGetPostsByCommunityIdVars);
+                  specifiedType: const FullType(_i3.GGetCommunityVars))!
+              as _i3.GGetCommunityVars);
           break;
         case 'operation':
           result.operation = serializers.deserialize(value,
@@ -102,9 +97,8 @@ class _$GGetPostsByCommunityIdReqSerializer
           break;
         case 'optimisticResponse':
           result.optimisticResponse.replace(serializers.deserialize(value,
-                  specifiedType:
-                      const FullType(_i2.GGetPostsByCommunityIdData))!
-              as _i2.GGetPostsByCommunityIdData);
+                  specifiedType: const FullType(_i2.GGetCommunityData))!
+              as _i2.GGetCommunityData);
           break;
         case 'updateCacheHandlerKey':
           result.updateCacheHandlerKey = serializers.deserialize(value,
@@ -133,19 +127,18 @@ class _$GGetPostsByCommunityIdReqSerializer
   }
 }
 
-class _$GGetPostsByCommunityIdReq extends GGetPostsByCommunityIdReq {
+class _$GGetCommunityReq extends GGetCommunityReq {
   @override
-  final _i3.GGetPostsByCommunityIdVars vars;
+  final _i3.GGetCommunityVars vars;
   @override
   final _i4.Operation operation;
   @override
   final String? requestId;
   @override
-  final _i2.GGetPostsByCommunityIdData? Function(
-          _i2.GGetPostsByCommunityIdData?, _i2.GGetPostsByCommunityIdData?)?
-      updateResult;
+  final _i2.GGetCommunityData? Function(
+      _i2.GGetCommunityData?, _i2.GGetCommunityData?)? updateResult;
   @override
-  final _i2.GGetPostsByCommunityIdData? optimisticResponse;
+  final _i2.GGetCommunityData? optimisticResponse;
   @override
   final String? updateCacheHandlerKey;
   @override
@@ -155,11 +148,11 @@ class _$GGetPostsByCommunityIdReq extends GGetPostsByCommunityIdReq {
   @override
   final bool executeOnListen;
 
-  factory _$GGetPostsByCommunityIdReq(
-          [void Function(GGetPostsByCommunityIdReqBuilder)? updates]) =>
-      (new GGetPostsByCommunityIdReqBuilder()..update(updates)).build();
+  factory _$GGetCommunityReq(
+          [void Function(GGetCommunityReqBuilder)? updates]) =>
+      (new GGetCommunityReqBuilder()..update(updates)).build();
 
-  _$GGetPostsByCommunityIdReq._(
+  _$GGetCommunityReq._(
       {required this.vars,
       required this.operation,
       this.requestId,
@@ -170,28 +163,26 @@ class _$GGetPostsByCommunityIdReq extends GGetPostsByCommunityIdReq {
       this.fetchPolicy,
       required this.executeOnListen})
       : super._() {
+    BuiltValueNullFieldError.checkNotNull(vars, 'GGetCommunityReq', 'vars');
     BuiltValueNullFieldError.checkNotNull(
-        vars, 'GGetPostsByCommunityIdReq', 'vars');
+        operation, 'GGetCommunityReq', 'operation');
     BuiltValueNullFieldError.checkNotNull(
-        operation, 'GGetPostsByCommunityIdReq', 'operation');
-    BuiltValueNullFieldError.checkNotNull(
-        executeOnListen, 'GGetPostsByCommunityIdReq', 'executeOnListen');
+        executeOnListen, 'GGetCommunityReq', 'executeOnListen');
   }
 
   @override
-  GGetPostsByCommunityIdReq rebuild(
-          void Function(GGetPostsByCommunityIdReqBuilder) updates) =>
+  GGetCommunityReq rebuild(void Function(GGetCommunityReqBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  GGetPostsByCommunityIdReqBuilder toBuilder() =>
-      new GGetPostsByCommunityIdReqBuilder()..replace(this);
+  GGetCommunityReqBuilder toBuilder() =>
+      new GGetCommunityReqBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     final dynamic _$dynamicOther = other;
-    return other is GGetPostsByCommunityIdReq &&
+    return other is GGetCommunityReq &&
         vars == other.vars &&
         operation == other.operation &&
         requestId == other.requestId &&
@@ -223,7 +214,7 @@ class _$GGetPostsByCommunityIdReq extends GGetPostsByCommunityIdReq {
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('GGetPostsByCommunityIdReq')
+    return (newBuiltValueToStringHelper('GGetCommunityReq')
           ..add('vars', vars)
           ..add('operation', operation)
           ..add('requestId', requestId)
@@ -237,15 +228,14 @@ class _$GGetPostsByCommunityIdReq extends GGetPostsByCommunityIdReq {
   }
 }
 
-class GGetPostsByCommunityIdReqBuilder
-    implements
-        Builder<GGetPostsByCommunityIdReq, GGetPostsByCommunityIdReqBuilder> {
-  _$GGetPostsByCommunityIdReq? _$v;
+class GGetCommunityReqBuilder
+    implements Builder<GGetCommunityReq, GGetCommunityReqBuilder> {
+  _$GGetCommunityReq? _$v;
 
-  _i3.GGetPostsByCommunityIdVarsBuilder? _vars;
-  _i3.GGetPostsByCommunityIdVarsBuilder get vars =>
-      _$this._vars ??= new _i3.GGetPostsByCommunityIdVarsBuilder();
-  set vars(_i3.GGetPostsByCommunityIdVarsBuilder? vars) => _$this._vars = vars;
+  _i3.GGetCommunityVarsBuilder? _vars;
+  _i3.GGetCommunityVarsBuilder get vars =>
+      _$this._vars ??= new _i3.GGetCommunityVarsBuilder();
+  set vars(_i3.GGetCommunityVarsBuilder? vars) => _$this._vars = vars;
 
   _i4.Operation? _operation;
   _i4.Operation? get operation => _$this._operation;
@@ -255,25 +245,21 @@ class GGetPostsByCommunityIdReqBuilder
   String? get requestId => _$this._requestId;
   set requestId(String? requestId) => _$this._requestId = requestId;
 
-  _i2.GGetPostsByCommunityIdData? Function(
-          _i2.GGetPostsByCommunityIdData?, _i2.GGetPostsByCommunityIdData?)?
-      _updateResult;
-  _i2.GGetPostsByCommunityIdData? Function(
-          _i2.GGetPostsByCommunityIdData?, _i2.GGetPostsByCommunityIdData?)?
+  _i2.GGetCommunityData? Function(
+      _i2.GGetCommunityData?, _i2.GGetCommunityData?)? _updateResult;
+  _i2.GGetCommunityData? Function(
+          _i2.GGetCommunityData?, _i2.GGetCommunityData?)?
       get updateResult => _$this._updateResult;
   set updateResult(
-          _i2.GGetPostsByCommunityIdData? Function(
-                  _i2.GGetPostsByCommunityIdData?,
-                  _i2.GGetPostsByCommunityIdData?)?
+          _i2.GGetCommunityData? Function(
+                  _i2.GGetCommunityData?, _i2.GGetCommunityData?)?
               updateResult) =>
       _$this._updateResult = updateResult;
 
-  _i2.GGetPostsByCommunityIdDataBuilder? _optimisticResponse;
-  _i2.GGetPostsByCommunityIdDataBuilder get optimisticResponse =>
-      _$this._optimisticResponse ??=
-          new _i2.GGetPostsByCommunityIdDataBuilder();
-  set optimisticResponse(
-          _i2.GGetPostsByCommunityIdDataBuilder? optimisticResponse) =>
+  _i2.GGetCommunityDataBuilder? _optimisticResponse;
+  _i2.GGetCommunityDataBuilder get optimisticResponse =>
+      _$this._optimisticResponse ??= new _i2.GGetCommunityDataBuilder();
+  set optimisticResponse(_i2.GGetCommunityDataBuilder? optimisticResponse) =>
       _$this._optimisticResponse = optimisticResponse;
 
   String? _updateCacheHandlerKey;
@@ -298,11 +284,11 @@ class GGetPostsByCommunityIdReqBuilder
   set executeOnListen(bool? executeOnListen) =>
       _$this._executeOnListen = executeOnListen;
 
-  GGetPostsByCommunityIdReqBuilder() {
-    GGetPostsByCommunityIdReq._initializeBuilder(this);
+  GGetCommunityReqBuilder() {
+    GGetCommunityReq._initializeBuilder(this);
   }
 
-  GGetPostsByCommunityIdReqBuilder get _$this {
+  GGetCommunityReqBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
       _vars = $v.vars.toBuilder();
@@ -320,25 +306,25 @@ class GGetPostsByCommunityIdReqBuilder
   }
 
   @override
-  void replace(GGetPostsByCommunityIdReq other) {
+  void replace(GGetCommunityReq other) {
     ArgumentError.checkNotNull(other, 'other');
-    _$v = other as _$GGetPostsByCommunityIdReq;
+    _$v = other as _$GGetCommunityReq;
   }
 
   @override
-  void update(void Function(GGetPostsByCommunityIdReqBuilder)? updates) {
+  void update(void Function(GGetCommunityReqBuilder)? updates) {
     if (updates != null) updates(this);
   }
 
   @override
-  _$GGetPostsByCommunityIdReq build() {
-    _$GGetPostsByCommunityIdReq _$result;
+  _$GGetCommunityReq build() {
+    _$GGetCommunityReq _$result;
     try {
       _$result = _$v ??
-          new _$GGetPostsByCommunityIdReq._(
+          new _$GGetCommunityReq._(
               vars: vars.build(),
               operation: BuiltValueNullFieldError.checkNotNull(
-                  operation, 'GGetPostsByCommunityIdReq', 'operation'),
+                  operation, 'GGetCommunityReq', 'operation'),
               requestId: requestId,
               updateResult: updateResult,
               optimisticResponse: _optimisticResponse?.build(),
@@ -346,9 +332,7 @@ class GGetPostsByCommunityIdReqBuilder
               updateCacheHandlerContext: updateCacheHandlerContext,
               fetchPolicy: fetchPolicy,
               executeOnListen: BuiltValueNullFieldError.checkNotNull(
-                  executeOnListen,
-                  'GGetPostsByCommunityIdReq',
-                  'executeOnListen'));
+                  executeOnListen, 'GGetCommunityReq', 'executeOnListen'));
     } catch (_) {
       late String _$failedField;
       try {
@@ -359,7 +343,7 @@ class GGetPostsByCommunityIdReqBuilder
         _optimisticResponse?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
-            'GGetPostsByCommunityIdReq', _$failedField, e.toString());
+            'GGetCommunityReq', _$failedField, e.toString());
       }
       rethrow;
     }
