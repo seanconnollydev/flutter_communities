@@ -196,6 +196,7 @@ type Query {
     # The 'User' document's ID
     id: ID!
   ): User
+  throwsError: Community!
   communities(
     # The number of items to return per page.
     _size: Int

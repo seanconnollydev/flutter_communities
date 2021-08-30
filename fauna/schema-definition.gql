@@ -7,6 +7,7 @@ type Mutation {
 type Query {
   communities: [Community!]!
   getPostsByCommunityId(id: ID!): [Post]! @resolver(name: "get_posts_by_community_id", paginated: true)
+  throwsError: Community! @resolver(name: "throws_error")
 }
 
 type User {

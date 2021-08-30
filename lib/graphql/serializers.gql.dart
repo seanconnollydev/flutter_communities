@@ -91,6 +91,12 @@ import 'package:flutter_communities/graphql/schema.schema.gql.dart'
         GUserCommunitiesRelation,
         GUserInput,
         GUserPostsRelation;
+import 'package:flutter_communities/graphql/throws_error.data.gql.dart'
+    show GThrowsErrorData, GThrowsErrorData_throwsError;
+import 'package:flutter_communities/graphql/throws_error.req.gql.dart'
+    show GThrowsErrorReq;
+import 'package:flutter_communities/graphql/throws_error.var.gql.dart'
+    show GThrowsErrorVars;
 import 'package:gql_code_builder/src/serializers/operation_serializer.dart'
     show OperationSerializer;
 
@@ -153,6 +159,10 @@ final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   GPostFragmentReq,
   GPostFragmentVars,
   GPostInput,
+  GThrowsErrorData,
+  GThrowsErrorData_throwsError,
+  GThrowsErrorReq,
+  GThrowsErrorVars,
   GTime,
   GUserCommunitiesRelation,
   GUserInput,

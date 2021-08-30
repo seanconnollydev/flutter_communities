@@ -18,7 +18,7 @@ class PostScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, ScopedReader watch) {
-    final _client = watch(ferryClientProvider);
+    final client = watch(ferryClientProvider);
 
     return Operation(
         operationRequest: GGetPostReq((b) => b..vars.id = _args.postId),
@@ -28,7 +28,7 @@ class PostScreen extends ConsumerWidget {
             body: _PostScreenBody(resp, _args.communityId),
           );
         },
-        client: _client);
+        client: client);
   }
 }
 

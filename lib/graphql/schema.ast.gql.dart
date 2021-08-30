@@ -655,6 +655,12 @@ const Query = _i1.ObjectTypeDefinitionNode(
           type: _i1.NamedTypeNode(
               name: _i1.NameNode(value: 'User'), isNonNull: false)),
       _i1.FieldDefinitionNode(
+          name: _i1.NameNode(value: 'throwsError'),
+          directives: [],
+          args: [],
+          type: _i1.NamedTypeNode(
+              name: _i1.NameNode(value: 'Community'), isNonNull: true)),
+      _i1.FieldDefinitionNode(
           name: _i1.NameNode(value: 'communities'),
           directives: [],
           args: [

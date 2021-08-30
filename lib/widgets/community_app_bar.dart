@@ -16,7 +16,7 @@ class CommunityAppBar extends ConsumerWidget with PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context, ScopedReader watch) {
-    final _client = watch(ferryClientProvider);
+    final client = watch(ferryClientProvider);
 
     return Operation(
       operationRequest: GGetCommunityReq((b) => b..vars.id = _communityId),
@@ -29,7 +29,7 @@ class CommunityAppBar extends ConsumerWidget with PreferredSizeWidget {
           title: Text(resp?.data?.findCommunityByID?.name ?? ''),
         );
       },
-      client: _client,
+      client: client,
     );
   }
 }

@@ -20,13 +20,14 @@ final ferryClientProvider = Provider<Client>((ref) {
   print('>>> token $token');
 
   return Client(
-      link: HttpLink("https://graphql.fauna.com/graphql", defaultHeaders: {
-        'Authorization': 'Bearer $token',
-      }),
-      updateCacheHandlers: {
-        'createCommunityHandler': createCommunityHandler,
-        'createPostHandler': createPostHandler,
-      });
+    link: HttpLink("https://graphql.fauna.com/graphql", defaultHeaders: {
+      'Authorization': 'Bearer $token',
+    }),
+    updateCacheHandlers: {
+      'createCommunityHandler': createCommunityHandler,
+      'createPostHandler': createPostHandler,
+    },
+  );
 });
 
 UpdateCacheHandler<GCreateCommunityData, GCreateCommunityVars>

@@ -28,12 +28,12 @@ class CommunityScreen extends StatefulWidget {
 class _CommunityScreenState extends State<CommunityScreen> {
   final PagingController<String?, GPostFragment> _pagingController =
       PagingController(firstPageKey: null);
-  late Client _client;
+  late Client client;
   late GGetPostsByCommunityIdReq _request;
 
   @override
   void initState() {
-    _client = context.read(ferryClientProvider);
+    client = context.read(ferryClientProvider);
 
     _request = GGetPostsByCommunityIdReq((b) => b
       ..requestId = 'GGetPostsByCommunityIdReq'
@@ -58,11 +58,11 @@ class _CommunityScreenState extends State<CommunityScreen> {
             return result;
           });
 
-        _client.requestController.add(nextReq);
+        client.requestController.add(nextReq);
       }
     });
 
-    _client.request(_request).listen((event) {
+    client.request(_request).listen((event) {
       _pagingController.value = PagingState(
         nextPageKey: event.data?.getPostsByCommunityId.after,
         error: event.graphqlErrors,

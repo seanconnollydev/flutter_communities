@@ -6,6 +6,7 @@ import 'package:flutter_communities/graphql/get_communities.req.gql.dart';
 import 'package:flutter_communities/graphql/get_communities.var.gql.dart';
 import 'package:flutter_communities/providers/auth.dart';
 import 'package:flutter_communities/providers/ferry.dart';
+import 'package:flutter_communities/screens/error_demo_screen.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'community_screen.dart';
@@ -35,6 +36,13 @@ class HomeScreen extends ConsumerWidget {
                   await context.read(authProvider.notifier).clearSession();
                   Navigator.of(context).popUntil((route) => false);
                   Navigator.of(context).pushNamed(routeName);
+                },
+              ),
+              ListTile(
+                title: Text('Error Demo'),
+                onTap: () {
+                  Navigator.of(context)
+                      .popAndPushNamed(ErrorDemoScreen.routeName);
                 },
               )
             ],
@@ -122,10 +130,10 @@ class _CommunityList extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, ScopedReader watch) {
-    final _client = watch(ferryClientProvider);
+    final client = watch(ferryClientProvider);
 
     return Operation(
-      client: _client,
+      client: client,
       operationRequest: GGetCommunitiesReq(),
       builder: (
         context,
