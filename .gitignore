@@ -21,3 +21,5 @@ doc/api/
 *.js.map
 
 .fvm
+
+.DS_Store
