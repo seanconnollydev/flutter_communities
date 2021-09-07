@@ -1,13 +1,9 @@
-import 'package:ferry/ferry.dart';
-import 'package:ferry_flutter/ferry_flutter.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_communities/graphql/get_communities.data.gql.dart';
-import 'package:flutter_communities/graphql/get_communities.req.gql.dart';
-import 'package:flutter_communities/graphql/get_communities.var.gql.dart';
 import 'package:flutter_communities/providers/auth.dart';
 import 'package:flutter_communities/providers/ferry.dart';
 import 'package:flutter_communities/screens/error_demo_screen.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_communities/providers/community.dart';
 
 import 'community_screen.dart';
 import 'create_community_screen.dart';
@@ -130,20 +126,18 @@ class _CommunityList extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, ScopedReader watch) {
-    final client = watch(ferryClientProvider);
+    final repository = watch(communityRepositoryProvider);
 
-    return Operation(
-      client: client,
-      operationRequest: GGetCommunitiesReq(),
+    return StreamBuilder<GetCommunitiesResponse>(
+      stream: repository.getCommunities(),
       builder: (
         context,
-        OperationResponse<GGetCommunitiesData, GGetCommunitiesVars>? response,
-        error,
+        response,
       ) {
-        if (response == null || response.loading == true) {
+        if (response.data?.loading == true) {
           return Center(child: CircularProgressIndicator());
         }
-        final communities = response.data?.communities.data;
+        final communities = response.data?.data?.communities.data;
         if (communities != null && communities.isEmpty == false) {
           return ListView.separated(
               itemBuilder: (context, i) {
