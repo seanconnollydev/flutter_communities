@@ -17,7 +17,24 @@ class CommunityRepository {
   const CommunityRepository(this._client);
 
   Stream<ThrowsErrorResponse> throwsError() {
-    return _client.request(GThrowsErrorReq());
+    return _request(GThrowsErrorReq());
+  }
+
+  Stream<OperationResponse<TData, TVars>> _request<TData, TVars>(
+      OperationRequest<TData, TVars> request) {
+    final stream = _client.request(request);
+    stream.listen((resp) {
+      if (resp.graphqlErrors?.isNotEmpty == true) {
+        print('[GraphQL Errors]:');
+        resp.graphqlErrors?.forEach((gqlError) {
+          print(' - ${gqlError.message}');
+        });
+      }
+      if (resp.linkException != null) {
+        print('[Link Exception]: ${resp.linkException}');
+      }
+    });
+    return stream;
   }
 }
 
