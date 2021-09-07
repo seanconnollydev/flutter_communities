@@ -24,15 +24,20 @@ class CommunityRepository {
       OperationRequest<TData, TVars> request) {
     final stream = _client.request(request);
     stream.listen((resp) {
+      print('');
+      print('╔╣ Request  ║ ${request.operation.operationName}');
+      print('║    Vars   ║ TODO');
+      print('╠═ Response');
+      print('║    Data   ║ ${resp.data}');
+
       if (resp.graphqlErrors?.isNotEmpty == true) {
-        print('[GraphQL Errors]:');
+        print('║    Errors ║ ${resp.graphqlErrors?.length ?? ''}');
         resp.graphqlErrors?.forEach((gqlError) {
-          print(' - ${gqlError.message}');
+          print('║    - ${gqlError.message}');
         });
       }
-      if (resp.linkException != null) {
-        print('[Link Exception]: ${resp.linkException}');
-      }
+
+      print('╚═════════════════════════════════════════════════════════');
     });
     return stream;
   }
