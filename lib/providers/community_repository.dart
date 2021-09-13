@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:ferry/ferry.dart';
 import 'package:flutter_communities/graphql/get_communities.data.gql.dart';
 import 'package:flutter_communities/graphql/get_communities.req.gql.dart';
@@ -28,7 +27,6 @@ class CommunityRepository {
   }
 
   Stream<GetCommunitiesResponse> getCommunities() {
-    print('>>> getCommunities');
     return _request(GGetCommunitiesReq());
   }
 
