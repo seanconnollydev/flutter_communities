@@ -28,6 +28,7 @@ class CommunityRepository {
   }
 
   Stream<GetCommunitiesResponse> getCommunities() {
+    print('>>> getCommunities');
     return _request(GGetCommunitiesReq());
   }
 

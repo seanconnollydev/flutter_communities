@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_communities/providers/auth.dart';
-import 'package:flutter_communities/providers/ferry.dart';
 import 'package:flutter_communities/screens/error_demo_screen.dart';
+import 'package:flutter_communities/widgets/query_stream.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_communities/providers/community_repository.dart';
 
@@ -128,16 +128,10 @@ class _CommunityList extends ConsumerWidget {
   Widget build(BuildContext context, ScopedReader watch) {
     final repository = watch(communityRepositoryProvider);
 
-    return StreamBuilder<GetCommunitiesResponse>(
+    return QueryStream<GetCommunitiesResponse>(
       stream: repository.getCommunities(),
-      builder: (
-        context,
-        response,
-      ) {
-        if (response.data?.loading == true) {
-          return Center(child: CircularProgressIndicator());
-        }
-        final communities = response.data?.data?.communities.data;
+      builder: (context, response, _) {
+        final communities = response?.data?.communities.data;
         if (communities != null && communities.isEmpty == false) {
           return ListView.separated(
               itemBuilder: (context, i) {
