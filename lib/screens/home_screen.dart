@@ -3,7 +3,7 @@ import 'package:flutter_communities/providers/auth.dart';
 import 'package:flutter_communities/providers/ferry.dart';
 import 'package:flutter_communities/screens/error_demo_screen.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_communities/providers/community.dart';
+import 'package:flutter_communities/providers/community_repository.dart';
 
 import 'community_screen.dart';
 import 'create_community_screen.dart';

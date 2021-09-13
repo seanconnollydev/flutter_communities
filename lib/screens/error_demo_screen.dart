@@ -9,7 +9,7 @@ import 'package:flutter_communities/graphql/throws_error.ast.gql.dart';
 import 'package:flutter_communities/graphql/throws_error.data.gql.dart';
 import 'package:flutter_communities/graphql/throws_error.req.gql.dart';
 import 'package:flutter_communities/graphql/throws_error.var.gql.dart';
-import 'package:flutter_communities/providers/community.dart';
+import 'package:flutter_communities/providers/community_repository.dart';
 import 'package:flutter_communities/providers/ferry.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:ferry/ferry.dart';
 import 'package:flutter_communities/graphql/get_communities.data.gql.dart';
 import 'package:flutter_communities/graphql/get_communities.req.gql.dart';
@@ -17,6 +19,8 @@ final communityRepositoryProvider = Provider<CommunityRepository>((ref) {
 class CommunityRepository {
   final Client _client;
 
+  static const _encoder = JsonEncoder.withIndent(' ');
+
   const CommunityRepository(this._client);
 
   Stream<ThrowsErrorResponse> throwsError() {
@@ -30,13 +34,18 @@ class CommunityRepository {
   Stream<OperationResponse<TData, TVars>> _request<TData, TVars>(
       OperationRequest<TData, TVars> request) {
     final stream = _client.request(request);
+    final vars = _encoder.convert(request.vars);
+
     stream.listen((resp) {
+      final data = _encoder.convert(resp.data);
+
       print('');
       print('╔╣ Request  ║ ${request.operation.operationName}');
-      print('║    Vars   ║ TODO');
+      print('╠═══════ Vars ═══════');
+      print(' $vars');
       print('╠═ Response');
       print('╠═══════ Data ═══════');
-      print('${resp.data}');
+      print(' $data');
 
       if (resp.graphqlErrors?.isNotEmpty == true) {
         print('║    Errors ║ ${resp.graphqlErrors?.length ?? ''}');
