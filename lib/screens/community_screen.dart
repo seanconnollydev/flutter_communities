@@ -77,11 +77,19 @@ class _CommunityScreenState extends State<CommunityScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CommunityAppBar(widget._communityId),
-      body: PagedListView<String?, GPostFragment>(
-        pagingController: _pagingController,
-        builderDelegate: PagedChildBuilderDelegate<GPostFragment>(
-          itemBuilder: (context, item, index) =>
-              PostCard(item, widget._communityId),
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: PagedListView<String?, GPostFragment>(
+          pagingController: _pagingController,
+          builderDelegate: PagedChildBuilderDelegate<GPostFragment>(
+            itemBuilder: (context, item, index) => Container(
+              margin: EdgeInsets.symmetric(vertical: 4),
+              child: PostCard(
+                item,
+                widget._communityId,
+              ),
+            ),
+          ),
         ),
       ),
       floatingActionButton: FloatingActionButton(

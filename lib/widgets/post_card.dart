@@ -10,10 +10,29 @@ class PostCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return Card(
+      elevation: 4,
       child: InkWell(
-        child: Column(
-          children: [Text(_post.creator.username), Text(_post.title)],
+        child: Container(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                _post.creator.username,
+                style: theme.textTheme.subtitle1?.copyWith(fontSize: 12),
+              ),
+              Container(
+                margin: EdgeInsets.symmetric(vertical: 8),
+                child: Text(
+                  _post.title,
+                  style: theme.textTheme.bodyText1?.copyWith(fontSize: 16),
+                ),
+              ),
+            ],
+          ),
         ),
         onTap: () => Navigator.of(context).pushNamed(
           PostScreen.routeName,
