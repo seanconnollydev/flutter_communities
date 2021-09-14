@@ -23,6 +23,11 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(GCreatePostInput.serializer)
       ..add(GCreatePostReq.serializer)
       ..add(GCreatePostVars.serializer)
+      ..add(GCreatePostVoteData.serializer)
+      ..add(GCreatePostVoteData_createPostVote.serializer)
+      ..add(GCreatePostVoteInput.serializer)
+      ..add(GCreatePostVoteReq.serializer)
+      ..add(GCreatePostVoteVars.serializer)
       ..add(GCreateUserData.serializer)
       ..add(GCreateUserInput.serializer)
       ..add(GCreateUserReq.serializer)
@@ -61,6 +66,11 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(GPostFragmentReq.serializer)
       ..add(GPostFragmentVars.serializer)
       ..add(GPostInput.serializer)
+      ..add(GPostVoteInput.serializer)
+      ..add(GPostVotePostRelation.serializer)
+      ..add(GPostVoteType.serializer)
+      ..add(GPostVoteUserRelation.serializer)
+      ..add(GPostVotesRelation.serializer)
       ..add(GThrowsErrorData.serializer)
       ..add(GThrowsErrorData_throwsError.serializer)
       ..add(GThrowsErrorReq.serializer)
@@ -69,6 +79,7 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(GUserCommunitiesRelation.serializer)
       ..add(GUserInput.serializer)
       ..add(GUserPostsRelation.serializer)
+      ..add(GUserVotesRelation.serializer)
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(GCommunityInput)]),
           () => new ListBuilder<GCommunityInput>())
@@ -101,6 +112,24 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(GPostInput)]),
           () => new ListBuilder<GPostInput>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(GPostVoteInput)]),
+          () => new ListBuilder<GPostVoteInput>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(GPostVoteInput)]),
+          () => new ListBuilder<GPostVoteInput>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(String)]),
           () => new ListBuilder<String>())

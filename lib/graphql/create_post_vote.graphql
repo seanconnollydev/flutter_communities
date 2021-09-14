@@ -1,0 +1,7 @@
+mutation CreatePostVote($input: CreatePostVoteInput!) {
+  createPostVote(input: $input) {
+    _id
+    upVotes
+    downVotes
+  }
+}

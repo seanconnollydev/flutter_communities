@@ -22,6 +22,12 @@ import 'package:flutter_communities/graphql/create_post.req.gql.dart'
     show GCreatePostReq;
 import 'package:flutter_communities/graphql/create_post.var.gql.dart'
     show GCreatePostVars;
+import 'package:flutter_communities/graphql/create_post_vote.data.gql.dart'
+    show GCreatePostVoteData, GCreatePostVoteData_createPostVote;
+import 'package:flutter_communities/graphql/create_post_vote.req.gql.dart'
+    show GCreatePostVoteReq;
+import 'package:flutter_communities/graphql/create_post_vote.var.gql.dart'
+    show GCreatePostVoteVars;
 import 'package:flutter_communities/graphql/create_user.data.gql.dart'
     show GCreateUserData;
 import 'package:flutter_communities/graphql/create_user.req.gql.dart'
@@ -80,6 +86,7 @@ import 'package:flutter_communities/graphql/schema.schema.gql.dart'
         GCommunityInput,
         GCommunityPostsRelation,
         GCreatePostInput,
+        GCreatePostVoteInput,
         GCreateUserInput,
         GDate,
         GLoginUserInput,
@@ -87,10 +94,16 @@ import 'package:flutter_communities/graphql/schema.schema.gql.dart'
         GPostCommunityRelation,
         GPostCreatorRelation,
         GPostInput,
+        GPostVoteInput,
+        GPostVotePostRelation,
+        GPostVoteType,
+        GPostVoteUserRelation,
+        GPostVotesRelation,
         GTime,
         GUserCommunitiesRelation,
         GUserInput,
-        GUserPostsRelation;
+        GUserPostsRelation,
+        GUserVotesRelation;
 import 'package:flutter_communities/graphql/throws_error.data.gql.dart'
     show GThrowsErrorData, GThrowsErrorData_throwsError;
 import 'package:flutter_communities/graphql/throws_error.req.gql.dart'
@@ -122,6 +135,11 @@ final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   GCreatePostInput,
   GCreatePostReq,
   GCreatePostVars,
+  GCreatePostVoteData,
+  GCreatePostVoteData_createPostVote,
+  GCreatePostVoteInput,
+  GCreatePostVoteReq,
+  GCreatePostVoteVars,
   GCreateUserData,
   GCreateUserInput,
   GCreateUserReq,
@@ -159,6 +177,11 @@ final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   GPostFragmentReq,
   GPostFragmentVars,
   GPostInput,
+  GPostVoteInput,
+  GPostVotePostRelation,
+  GPostVoteType,
+  GPostVoteUserRelation,
+  GPostVotesRelation,
   GThrowsErrorData,
   GThrowsErrorData_throwsError,
   GThrowsErrorReq,
@@ -166,6 +189,7 @@ final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   GTime,
   GUserCommunitiesRelation,
   GUserInput,
-  GUserPostsRelation
+  GUserPostsRelation,
+  GUserVotesRelation
 ])
 final Serializers serializers = _serializersBuilder.build();

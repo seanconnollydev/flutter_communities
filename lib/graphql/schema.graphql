@@ -65,6 +65,11 @@ input CreatePostInput {
   communityId: String!
 }
 
+input CreatePostVoteInput {
+  postId: ID!
+  type: PostVoteType!
+}
+
 input CreateUserInput {
   username: String!
   password: String!
@@ -104,6 +109,7 @@ type Mutation {
     # 'Post' input values
     data: PostInput!
   ): Post
+  createPostVote(input: CreatePostVoteInput!): Post!
   loginUser(input: LoginUserInput!): String!
   # Delete an existing document in the collection of 'Community'
   deleteCommunity(
@@ -121,20 +127,40 @@ type Mutation {
     id: ID!
   ): Post
   createPost(input: CreatePostInput!): Post!
+  # Update an existing document in the collection of 'PostVote'
+  updatePostVote(
+    # The 'PostVote' document's ID
+    id: ID!
+    # 'PostVote' input values
+    data: PostVoteInput!
+  ): PostVote
   # Create a new document in the collection of 'Community'
   createCommunity(
     # 'Community' input values
     data: CommunityInput!
   ): Community!
+  # Delete an existing document in the collection of 'PostVote'
+  deletePostVote(
+    # The 'PostVote' document's ID
+    id: ID!
+  ): PostVote
 }
 
 type Post {
   community: Community!
+  votes(
+    # The number of items to return per page.
+    _size: Int
+    # The pagination cursor.
+    _cursor: String
+  ): PostVotePage!
   # The document's ID.
   _id: ID!
   creator: User!
+  upVotes: Int!
   message: String!
   title: String!
+  downVotes: Int!
   # The document's timestamp.
   _ts: Long!
 }
@@ -161,6 +187,9 @@ input PostInput {
   message: String!
   creator: PostCreatorRelation
   community: PostCommunityRelation
+  upVotes: Int!
+  downVotes: Int!
+  votes: PostVotesRelation
 }
 
 # The pagination object for elements of type 'Post'.
@@ -171,6 +200,64 @@ type PostPage {
   after: String
   # A cursor for elements coming before the current page.
   before: String
+}
+
+type PostVote {
+  post: Post!
+  # The document's ID.
+  _id: ID!
+  type: PostVoteType!
+  user: User!
+  # The document's timestamp.
+  _ts: Long!
+}
+
+# 'PostVote' input values
+input PostVoteInput {
+  post: PostVotePostRelation
+  user: PostVoteUserRelation
+  type: PostVoteType!
+}
+
+# The pagination object for elements of type 'PostVote'.
+type PostVotePage {
+  # The elements of type 'PostVote' in this page.
+  data: [PostVote]!
+  # A cursor for elements coming after the current page.
+  after: String
+  # A cursor for elements coming before the current page.
+  before: String
+}
+
+# Allow manipulating the relationship between the types 'PostVote' and 'Post' using the field 'PostVote.post'.
+input PostVotePostRelation {
+  # Create a document of type 'Post' and associate it with the current document.
+  create: PostInput
+  # Connect a document of type 'Post' with the current document using its ID.
+  connect: ID
+}
+
+# Allow manipulating the relationship between the types 'Post' and 'PostVote'.
+input PostVotesRelation {
+  # Create one or more documents of type 'PostVote' and associate them with the current document.
+  create: [PostVoteInput]
+  # Connect one or more documents of type 'PostVote' with the current document using their IDs.
+  connect: [ID]
+  # Disconnect the given documents of type 'PostVote' from the current document using their IDs.
+  disconnect: [ID]
+}
+
+enum PostVoteType {
+  UpVote
+  DownVote
+}
+
+# Allow manipulating the relationship between the types 'PostVote' and 'User' using the field 'PostVote.user'.
+input PostVoteUserRelation {
+  # Create a document of type 'User' and associate it with the current document.
+  create: UserInput
+  # Connect a document of type 'User' with the current document using its ID.
+  connect: ID
 }
 
 type Query {
@@ -203,6 +290,11 @@ type Query {
     # The pagination cursor.
     _cursor: String
   ): CommunityPage!
+  # Find a document from the collection of 'PostVote' by its id.
+  findPostVoteByID(
+    # The 'PostVote' document's ID
+    id: ID!
+  ): PostVote
 }
 
 # The pagination object for elements of type 'Post'.
@@ -218,6 +310,12 @@ type QueryGetPostsByCommunityIdPage {
 scalar Time
 
 type User {
+  votes(
+    # The number of items to return per page.
+    _size: Int
+    # The pagination cursor.
+    _cursor: String
+  ): PostVotePage!
   posts(
     # The number of items to return per page.
     _size: Int
@@ -252,6 +350,7 @@ input UserInput {
   username: String!
   communities: UserCommunitiesRelation
   posts: UserPostsRelation
+  votes: UserVotesRelation
 }
 
 # Allow manipulating the relationship between the types 'User' and 'Post'.
@@ -261,6 +360,16 @@ input UserPostsRelation {
   # Connect one or more documents of type 'Post' with the current document using their IDs.
   connect: [ID]
   # Disconnect the given documents of type 'Post' from the current document using their IDs.
+  disconnect: [ID]
+}
+
+# Allow manipulating the relationship between the types 'User' and 'PostVote'.
+input UserVotesRelation {
+  # Create one or more documents of type 'PostVote' and associate them with the current document.
+  create: [PostVoteInput]
+  # Connect one or more documents of type 'PostVote' with the current document using their IDs.
+  connect: [ID]
+  # Disconnect the given documents of type 'PostVote' from the current document using their IDs.
   disconnect: [ID]
 }
 

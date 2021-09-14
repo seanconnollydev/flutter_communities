@@ -1,5 +1,6 @@
 type Mutation {
   createPost(input: CreatePostInput!): Post! @resolver(name: "create_post")
+  createPostVote(input: CreatePostVoteInput!): Post! @resolver(name: "create_post_vote")
   createUser(input: CreateUserInput!): String! @resolver(name: "create_user")
   loginUser(input: LoginUserInput!): String! @resolver(name: "login_user")
 }
@@ -14,6 +15,7 @@ type User {
   username: String! @unique
   communities: [Community!] @relation(name: "user_communities")
   posts: [Post!] @relation(name: "user_posts")
+  votes: [PostVote!] @relation(name: "user_post_votes")
 }
 
 input CreatePostInput {
@@ -32,6 +34,11 @@ input LoginUserInput {
   password: String!
 }
 
+input CreatePostVoteInput {
+  postId: ID!
+  type: PostVoteType!
+}
+
 type Community {
   name: String!
   purpose: String
@@ -44,4 +51,18 @@ type Post {
   message: String!
   creator: User! @relation(name: "user_posts")
   community: Community! @relation(name: "community_posts")
+  upVotes: Int!
+  downVotes: Int!
+  votes: [PostVote!] @relation(name: "post_votes")
+}
+
+type PostVote {
+  post: Post! @relation(name: "post_votes")
+  user: User! @relation(name: "user_post_votes")
+  type: PostVoteType!
+}
+
+enum PostVoteType {
+  UpVote
+  DownVote
 }
