@@ -31,6 +31,32 @@ class PostCard extends StatelessWidget {
                   style: theme.textTheme.bodyText1?.copyWith(fontSize: 16),
                 ),
               ),
+              Container(
+                decoration:
+                    BoxDecoration(border: Border.all(color: Colors.grey)),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    IconButton(
+                      iconSize: 12,
+                      constraints: BoxConstraints(),
+                      onPressed: () {},
+                      icon: Icon(
+                        Icons.arrow_upward,
+                      ),
+                    ),
+                    Text('0'),
+                    IconButton(
+                      iconSize: 12,
+                      constraints: BoxConstraints(),
+                      onPressed: () {},
+                      icon: Icon(
+                        Icons.arrow_downward,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             ],
           ),
         ),
