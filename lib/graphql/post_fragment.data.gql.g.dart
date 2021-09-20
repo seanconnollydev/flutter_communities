@@ -33,6 +33,11 @@ class _$GPostFragmentDataSerializer
       'message',
       serializers.serialize(object.message,
           specifiedType: const FullType(String)),
+      'upVotes',
+      serializers.serialize(object.upVotes, specifiedType: const FullType(int)),
+      'downVotes',
+      serializers.serialize(object.downVotes,
+          specifiedType: const FullType(int)),
       'creator',
       serializers.serialize(object.creator,
           specifiedType: const FullType(GPostFragmentData_creator)),
@@ -68,6 +73,14 @@ class _$GPostFragmentDataSerializer
         case 'message':
           result.message = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
+          break;
+        case 'upVotes':
+          result.upVotes = serializers.deserialize(value,
+              specifiedType: const FullType(int)) as int;
+          break;
+        case 'downVotes':
+          result.downVotes = serializers.deserialize(value,
+              specifiedType: const FullType(int)) as int;
           break;
         case 'creator':
           result.creator.replace(serializers.deserialize(value,
@@ -150,6 +163,10 @@ class _$GPostFragmentData extends GPostFragmentData {
   @override
   final String message;
   @override
+  final int upVotes;
+  @override
+  final int downVotes;
+  @override
   final GPostFragmentData_creator creator;
 
   factory _$GPostFragmentData(
@@ -161,6 +178,8 @@ class _$GPostFragmentData extends GPostFragmentData {
       required this.G_id,
       required this.title,
       required this.message,
+      required this.upVotes,
+      required this.downVotes,
       required this.creator})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
@@ -169,6 +188,10 @@ class _$GPostFragmentData extends GPostFragmentData {
     BuiltValueNullFieldError.checkNotNull(title, 'GPostFragmentData', 'title');
     BuiltValueNullFieldError.checkNotNull(
         message, 'GPostFragmentData', 'message');
+    BuiltValueNullFieldError.checkNotNull(
+        upVotes, 'GPostFragmentData', 'upVotes');
+    BuiltValueNullFieldError.checkNotNull(
+        downVotes, 'GPostFragmentData', 'downVotes');
     BuiltValueNullFieldError.checkNotNull(
         creator, 'GPostFragmentData', 'creator');
   }
@@ -189,6 +212,8 @@ class _$GPostFragmentData extends GPostFragmentData {
         G_id == other.G_id &&
         title == other.title &&
         message == other.message &&
+        upVotes == other.upVotes &&
+        downVotes == other.downVotes &&
         creator == other.creator;
   }
 
@@ -196,9 +221,13 @@ class _$GPostFragmentData extends GPostFragmentData {
   int get hashCode {
     return $jf($jc(
         $jc(
-            $jc($jc($jc(0, G__typename.hashCode), G_id.hashCode),
-                title.hashCode),
-            message.hashCode),
+            $jc(
+                $jc(
+                    $jc($jc($jc(0, G__typename.hashCode), G_id.hashCode),
+                        title.hashCode),
+                    message.hashCode),
+                upVotes.hashCode),
+            downVotes.hashCode),
         creator.hashCode));
   }
 
@@ -209,6 +238,8 @@ class _$GPostFragmentData extends GPostFragmentData {
           ..add('G_id', G_id)
           ..add('title', title)
           ..add('message', message)
+          ..add('upVotes', upVotes)
+          ..add('downVotes', downVotes)
           ..add('creator', creator))
         .toString();
   }
@@ -234,6 +265,14 @@ class GPostFragmentDataBuilder
   String? get message => _$this._message;
   set message(String? message) => _$this._message = message;
 
+  int? _upVotes;
+  int? get upVotes => _$this._upVotes;
+  set upVotes(int? upVotes) => _$this._upVotes = upVotes;
+
+  int? _downVotes;
+  int? get downVotes => _$this._downVotes;
+  set downVotes(int? downVotes) => _$this._downVotes = downVotes;
+
   GPostFragmentData_creatorBuilder? _creator;
   GPostFragmentData_creatorBuilder get creator =>
       _$this._creator ??= new GPostFragmentData_creatorBuilder();
@@ -251,6 +290,8 @@ class GPostFragmentDataBuilder
       _G_id = $v.G_id;
       _title = $v.title;
       _message = $v.message;
+      _upVotes = $v.upVotes;
+      _downVotes = $v.downVotes;
       _creator = $v.creator.toBuilder();
       _$v = null;
     }
@@ -282,6 +323,10 @@ class GPostFragmentDataBuilder
                   title, 'GPostFragmentData', 'title'),
               message: BuiltValueNullFieldError.checkNotNull(
                   message, 'GPostFragmentData', 'message'),
+              upVotes: BuiltValueNullFieldError.checkNotNull(
+                  upVotes, 'GPostFragmentData', 'upVotes'),
+              downVotes: BuiltValueNullFieldError.checkNotNull(
+                  downVotes, 'GPostFragmentData', 'downVotes'),
               creator: creator.build());
     } catch (_) {
       late String _$failedField;

@@ -46,6 +46,8 @@ abstract class GCreatePostData_createPost
   String get G_id;
   String get title;
   String get message;
+  int get upVotes;
+  int get downVotes;
   GCreatePostData_createPost_creator get creator;
   static Serializer<GCreatePostData_createPost> get serializer =>
       _$gCreatePostDataCreatePostSerializer;

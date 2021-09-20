@@ -45,7 +45,7 @@ class PostCard extends StatelessWidget {
                         Icons.arrow_upward,
                       ),
                     ),
-                    Text('0'),
+                    Text('${_post.upVotes - _post.downVotes}'),
                     IconButton(
                       iconSize: 12,
                       constraints: BoxConstraints(),

@@ -28,6 +28,18 @@ const PostFragment = _i1.FragmentDefinitionNode(
           directives: [],
           selectionSet: null),
       _i1.FieldNode(
+          name: _i1.NameNode(value: 'upVotes'),
+          alias: null,
+          arguments: [],
+          directives: [],
+          selectionSet: null),
+      _i1.FieldNode(
+          name: _i1.NameNode(value: 'downVotes'),
+          alias: null,
+          arguments: [],
+          directives: [],
+          selectionSet: null),
+      _i1.FieldNode(
           name: _i1.NameNode(value: 'creator'),
           alias: null,
           arguments: [],

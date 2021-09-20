@@ -81,6 +81,8 @@ abstract class GGetPostsByCommunityIdData_getPostsByCommunityId_data
   String get G_id;
   String get title;
   String get message;
+  int get upVotes;
+  int get downVotes;
   GGetPostsByCommunityIdData_getPostsByCommunityId_data_creator get creator;
   static Serializer<GGetPostsByCommunityIdData_getPostsByCommunityId_data>
       get serializer =>

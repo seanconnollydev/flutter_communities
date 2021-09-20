@@ -45,6 +45,8 @@ abstract class GGetPostData_findPostByID
   String get G_id;
   String get title;
   String get message;
+  int get upVotes;
+  int get downVotes;
   GGetPostData_findPostByID_creator get creator;
   static Serializer<GGetPostData_findPostByID> get serializer =>
       _$gGetPostDataFindPostByIDSerializer;

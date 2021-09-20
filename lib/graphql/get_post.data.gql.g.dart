@@ -93,6 +93,11 @@ class _$GGetPostData_findPostByIDSerializer
       'message',
       serializers.serialize(object.message,
           specifiedType: const FullType(String)),
+      'upVotes',
+      serializers.serialize(object.upVotes, specifiedType: const FullType(int)),
+      'downVotes',
+      serializers.serialize(object.downVotes,
+          specifiedType: const FullType(int)),
       'creator',
       serializers.serialize(object.creator,
           specifiedType: const FullType(GGetPostData_findPostByID_creator)),
@@ -128,6 +133,14 @@ class _$GGetPostData_findPostByIDSerializer
         case 'message':
           result.message = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
+          break;
+        case 'upVotes':
+          result.upVotes = serializers.deserialize(value,
+              specifiedType: const FullType(int)) as int;
+          break;
+        case 'downVotes':
+          result.downVotes = serializers.deserialize(value,
+              specifiedType: const FullType(int)) as int;
           break;
         case 'creator':
           result.creator.replace(serializers.deserialize(value,
@@ -318,6 +331,10 @@ class _$GGetPostData_findPostByID extends GGetPostData_findPostByID {
   @override
   final String message;
   @override
+  final int upVotes;
+  @override
+  final int downVotes;
+  @override
   final GGetPostData_findPostByID_creator creator;
 
   factory _$GGetPostData_findPostByID(
@@ -329,6 +346,8 @@ class _$GGetPostData_findPostByID extends GGetPostData_findPostByID {
       required this.G_id,
       required this.title,
       required this.message,
+      required this.upVotes,
+      required this.downVotes,
       required this.creator})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
@@ -339,6 +358,10 @@ class _$GGetPostData_findPostByID extends GGetPostData_findPostByID {
         title, 'GGetPostData_findPostByID', 'title');
     BuiltValueNullFieldError.checkNotNull(
         message, 'GGetPostData_findPostByID', 'message');
+    BuiltValueNullFieldError.checkNotNull(
+        upVotes, 'GGetPostData_findPostByID', 'upVotes');
+    BuiltValueNullFieldError.checkNotNull(
+        downVotes, 'GGetPostData_findPostByID', 'downVotes');
     BuiltValueNullFieldError.checkNotNull(
         creator, 'GGetPostData_findPostByID', 'creator');
   }
@@ -360,6 +383,8 @@ class _$GGetPostData_findPostByID extends GGetPostData_findPostByID {
         G_id == other.G_id &&
         title == other.title &&
         message == other.message &&
+        upVotes == other.upVotes &&
+        downVotes == other.downVotes &&
         creator == other.creator;
   }
 
@@ -367,9 +392,13 @@ class _$GGetPostData_findPostByID extends GGetPostData_findPostByID {
   int get hashCode {
     return $jf($jc(
         $jc(
-            $jc($jc($jc(0, G__typename.hashCode), G_id.hashCode),
-                title.hashCode),
-            message.hashCode),
+            $jc(
+                $jc(
+                    $jc($jc($jc(0, G__typename.hashCode), G_id.hashCode),
+                        title.hashCode),
+                    message.hashCode),
+                upVotes.hashCode),
+            downVotes.hashCode),
         creator.hashCode));
   }
 
@@ -380,6 +409,8 @@ class _$GGetPostData_findPostByID extends GGetPostData_findPostByID {
           ..add('G_id', G_id)
           ..add('title', title)
           ..add('message', message)
+          ..add('upVotes', upVotes)
+          ..add('downVotes', downVotes)
           ..add('creator', creator))
         .toString();
   }
@@ -406,6 +437,14 @@ class GGetPostData_findPostByIDBuilder
   String? get message => _$this._message;
   set message(String? message) => _$this._message = message;
 
+  int? _upVotes;
+  int? get upVotes => _$this._upVotes;
+  set upVotes(int? upVotes) => _$this._upVotes = upVotes;
+
+  int? _downVotes;
+  int? get downVotes => _$this._downVotes;
+  set downVotes(int? downVotes) => _$this._downVotes = downVotes;
+
   GGetPostData_findPostByID_creatorBuilder? _creator;
   GGetPostData_findPostByID_creatorBuilder get creator =>
       _$this._creator ??= new GGetPostData_findPostByID_creatorBuilder();
@@ -423,6 +462,8 @@ class GGetPostData_findPostByIDBuilder
       _G_id = $v.G_id;
       _title = $v.title;
       _message = $v.message;
+      _upVotes = $v.upVotes;
+      _downVotes = $v.downVotes;
       _creator = $v.creator.toBuilder();
       _$v = null;
     }
@@ -454,6 +495,10 @@ class GGetPostData_findPostByIDBuilder
                   title, 'GGetPostData_findPostByID', 'title'),
               message: BuiltValueNullFieldError.checkNotNull(
                   message, 'GGetPostData_findPostByID', 'message'),
+              upVotes: BuiltValueNullFieldError.checkNotNull(
+                  upVotes, 'GGetPostData_findPostByID', 'upVotes'),
+              downVotes: BuiltValueNullFieldError.checkNotNull(
+                  downVotes, 'GGetPostData_findPostByID', 'downVotes'),
               creator: creator.build());
     } catch (_) {
       late String _$failedField;

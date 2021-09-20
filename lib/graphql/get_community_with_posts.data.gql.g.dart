@@ -186,6 +186,11 @@ class _$GGetPostsByCommunityIdData_getPostsByCommunityId_dataSerializer
       'message',
       serializers.serialize(object.message,
           specifiedType: const FullType(String)),
+      'upVotes',
+      serializers.serialize(object.upVotes, specifiedType: const FullType(int)),
+      'downVotes',
+      serializers.serialize(object.downVotes,
+          specifiedType: const FullType(int)),
       'creator',
       serializers.serialize(object.creator,
           specifiedType: const FullType(
@@ -223,6 +228,14 @@ class _$GGetPostsByCommunityIdData_getPostsByCommunityId_dataSerializer
         case 'message':
           result.message = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
+          break;
+        case 'upVotes':
+          result.upVotes = serializers.deserialize(value,
+              specifiedType: const FullType(int)) as int;
+          break;
+        case 'downVotes':
+          result.downVotes = serializers.deserialize(value,
+              specifiedType: const FullType(int)) as int;
           break;
         case 'creator':
           result.creator.replace(serializers.deserialize(value,
@@ -587,6 +600,10 @@ class _$GGetPostsByCommunityIdData_getPostsByCommunityId_data
   @override
   final String message;
   @override
+  final int upVotes;
+  @override
+  final int downVotes;
+  @override
   final GGetPostsByCommunityIdData_getPostsByCommunityId_data_creator creator;
 
   factory _$GGetPostsByCommunityIdData_getPostsByCommunityId_data(
@@ -602,6 +619,8 @@ class _$GGetPostsByCommunityIdData_getPostsByCommunityId_data
       required this.G_id,
       required this.title,
       required this.message,
+      required this.upVotes,
+      required this.downVotes,
       required this.creator})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(G__typename,
@@ -612,6 +631,10 @@ class _$GGetPostsByCommunityIdData_getPostsByCommunityId_data
         'GGetPostsByCommunityIdData_getPostsByCommunityId_data', 'title');
     BuiltValueNullFieldError.checkNotNull(message,
         'GGetPostsByCommunityIdData_getPostsByCommunityId_data', 'message');
+    BuiltValueNullFieldError.checkNotNull(upVotes,
+        'GGetPostsByCommunityIdData_getPostsByCommunityId_data', 'upVotes');
+    BuiltValueNullFieldError.checkNotNull(downVotes,
+        'GGetPostsByCommunityIdData_getPostsByCommunityId_data', 'downVotes');
     BuiltValueNullFieldError.checkNotNull(creator,
         'GGetPostsByCommunityIdData_getPostsByCommunityId_data', 'creator');
   }
@@ -636,6 +659,8 @@ class _$GGetPostsByCommunityIdData_getPostsByCommunityId_data
         G_id == other.G_id &&
         title == other.title &&
         message == other.message &&
+        upVotes == other.upVotes &&
+        downVotes == other.downVotes &&
         creator == other.creator;
   }
 
@@ -643,9 +668,13 @@ class _$GGetPostsByCommunityIdData_getPostsByCommunityId_data
   int get hashCode {
     return $jf($jc(
         $jc(
-            $jc($jc($jc(0, G__typename.hashCode), G_id.hashCode),
-                title.hashCode),
-            message.hashCode),
+            $jc(
+                $jc(
+                    $jc($jc($jc(0, G__typename.hashCode), G_id.hashCode),
+                        title.hashCode),
+                    message.hashCode),
+                upVotes.hashCode),
+            downVotes.hashCode),
         creator.hashCode));
   }
 
@@ -657,6 +686,8 @@ class _$GGetPostsByCommunityIdData_getPostsByCommunityId_data
           ..add('G_id', G_id)
           ..add('title', title)
           ..add('message', message)
+          ..add('upVotes', upVotes)
+          ..add('downVotes', downVotes)
           ..add('creator', creator))
         .toString();
   }
@@ -684,6 +715,14 @@ class GGetPostsByCommunityIdData_getPostsByCommunityId_dataBuilder
   String? get message => _$this._message;
   set message(String? message) => _$this._message = message;
 
+  int? _upVotes;
+  int? get upVotes => _$this._upVotes;
+  set upVotes(int? upVotes) => _$this._upVotes = upVotes;
+
+  int? _downVotes;
+  int? get downVotes => _$this._downVotes;
+  set downVotes(int? downVotes) => _$this._downVotes = downVotes;
+
   GGetPostsByCommunityIdData_getPostsByCommunityId_data_creatorBuilder?
       _creator;
   GGetPostsByCommunityIdData_getPostsByCommunityId_data_creatorBuilder
@@ -706,6 +745,8 @@ class GGetPostsByCommunityIdData_getPostsByCommunityId_dataBuilder
       _G_id = $v.G_id;
       _title = $v.title;
       _message = $v.message;
+      _upVotes = $v.upVotes;
+      _downVotes = $v.downVotes;
       _creator = $v.creator.toBuilder();
       _$v = null;
     }
@@ -737,17 +778,17 @@ class GGetPostsByCommunityIdData_getPostsByCommunityId_dataBuilder
                   'GGetPostsByCommunityIdData_getPostsByCommunityId_data',
                   'G__typename'),
               G_id: BuiltValueNullFieldError.checkNotNull(
-                  G_id,
-                  'GGetPostsByCommunityIdData_getPostsByCommunityId_data',
-                  'G_id'),
+                  G_id, 'GGetPostsByCommunityIdData_getPostsByCommunityId_data', 'G_id'),
               title: BuiltValueNullFieldError.checkNotNull(
-                  title,
-                  'GGetPostsByCommunityIdData_getPostsByCommunityId_data',
-                  'title'),
+                  title, 'GGetPostsByCommunityIdData_getPostsByCommunityId_data', 'title'),
               message: BuiltValueNullFieldError.checkNotNull(
-                  message,
+                  message, 'GGetPostsByCommunityIdData_getPostsByCommunityId_data', 'message'),
+              upVotes: BuiltValueNullFieldError.checkNotNull(
+                  upVotes, 'GGetPostsByCommunityIdData_getPostsByCommunityId_data', 'upVotes'),
+              downVotes: BuiltValueNullFieldError.checkNotNull(
+                  downVotes,
                   'GGetPostsByCommunityIdData_getPostsByCommunityId_data',
-                  'message'),
+                  'downVotes'),
               creator: creator.build());
     } catch (_) {
       late String _$failedField;

@@ -23,3 +23,6 @@ doc/api/
 .fvm
 
 .DS_Store
+
+.flutter-plugins
+.flutter-plugins-dependencies

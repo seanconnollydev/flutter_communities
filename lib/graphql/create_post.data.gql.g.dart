@@ -90,6 +90,11 @@ class _$GCreatePostData_createPostSerializer
       'message',
       serializers.serialize(object.message,
           specifiedType: const FullType(String)),
+      'upVotes',
+      serializers.serialize(object.upVotes, specifiedType: const FullType(int)),
+      'downVotes',
+      serializers.serialize(object.downVotes,
+          specifiedType: const FullType(int)),
       'creator',
       serializers.serialize(object.creator,
           specifiedType: const FullType(GCreatePostData_createPost_creator)),
@@ -125,6 +130,14 @@ class _$GCreatePostData_createPostSerializer
         case 'message':
           result.message = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
+          break;
+        case 'upVotes':
+          result.upVotes = serializers.deserialize(value,
+              specifiedType: const FullType(int)) as int;
+          break;
+        case 'downVotes':
+          result.downVotes = serializers.deserialize(value,
+              specifiedType: const FullType(int)) as int;
           break;
         case 'creator':
           result.creator.replace(serializers.deserialize(value,
@@ -319,6 +332,10 @@ class _$GCreatePostData_createPost extends GCreatePostData_createPost {
   @override
   final String message;
   @override
+  final int upVotes;
+  @override
+  final int downVotes;
+  @override
   final GCreatePostData_createPost_creator creator;
 
   factory _$GCreatePostData_createPost(
@@ -330,6 +347,8 @@ class _$GCreatePostData_createPost extends GCreatePostData_createPost {
       required this.G_id,
       required this.title,
       required this.message,
+      required this.upVotes,
+      required this.downVotes,
       required this.creator})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
@@ -340,6 +359,10 @@ class _$GCreatePostData_createPost extends GCreatePostData_createPost {
         title, 'GCreatePostData_createPost', 'title');
     BuiltValueNullFieldError.checkNotNull(
         message, 'GCreatePostData_createPost', 'message');
+    BuiltValueNullFieldError.checkNotNull(
+        upVotes, 'GCreatePostData_createPost', 'upVotes');
+    BuiltValueNullFieldError.checkNotNull(
+        downVotes, 'GCreatePostData_createPost', 'downVotes');
     BuiltValueNullFieldError.checkNotNull(
         creator, 'GCreatePostData_createPost', 'creator');
   }
@@ -361,6 +384,8 @@ class _$GCreatePostData_createPost extends GCreatePostData_createPost {
         G_id == other.G_id &&
         title == other.title &&
         message == other.message &&
+        upVotes == other.upVotes &&
+        downVotes == other.downVotes &&
         creator == other.creator;
   }
 
@@ -368,9 +393,13 @@ class _$GCreatePostData_createPost extends GCreatePostData_createPost {
   int get hashCode {
     return $jf($jc(
         $jc(
-            $jc($jc($jc(0, G__typename.hashCode), G_id.hashCode),
-                title.hashCode),
-            message.hashCode),
+            $jc(
+                $jc(
+                    $jc($jc($jc(0, G__typename.hashCode), G_id.hashCode),
+                        title.hashCode),
+                    message.hashCode),
+                upVotes.hashCode),
+            downVotes.hashCode),
         creator.hashCode));
   }
 
@@ -381,6 +410,8 @@ class _$GCreatePostData_createPost extends GCreatePostData_createPost {
           ..add('G_id', G_id)
           ..add('title', title)
           ..add('message', message)
+          ..add('upVotes', upVotes)
+          ..add('downVotes', downVotes)
           ..add('creator', creator))
         .toString();
   }
@@ -407,6 +438,14 @@ class GCreatePostData_createPostBuilder
   String? get message => _$this._message;
   set message(String? message) => _$this._message = message;
 
+  int? _upVotes;
+  int? get upVotes => _$this._upVotes;
+  set upVotes(int? upVotes) => _$this._upVotes = upVotes;
+
+  int? _downVotes;
+  int? get downVotes => _$this._downVotes;
+  set downVotes(int? downVotes) => _$this._downVotes = downVotes;
+
   GCreatePostData_createPost_creatorBuilder? _creator;
   GCreatePostData_createPost_creatorBuilder get creator =>
       _$this._creator ??= new GCreatePostData_createPost_creatorBuilder();
@@ -424,6 +463,8 @@ class GCreatePostData_createPostBuilder
       _G_id = $v.G_id;
       _title = $v.title;
       _message = $v.message;
+      _upVotes = $v.upVotes;
+      _downVotes = $v.downVotes;
       _creator = $v.creator.toBuilder();
       _$v = null;
     }
@@ -455,6 +496,10 @@ class GCreatePostData_createPostBuilder
                   title, 'GCreatePostData_createPost', 'title'),
               message: BuiltValueNullFieldError.checkNotNull(
                   message, 'GCreatePostData_createPost', 'message'),
+              upVotes: BuiltValueNullFieldError.checkNotNull(
+                  upVotes, 'GCreatePostData_createPost', 'upVotes'),
+              downVotes: BuiltValueNullFieldError.checkNotNull(
+                  downVotes, 'GCreatePostData_createPost', 'downVotes'),
               creator: creator.build());
     } catch (_) {
       late String _$failedField;

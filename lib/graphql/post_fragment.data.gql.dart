@@ -11,6 +11,8 @@ abstract class GPostFragment {
   String get G_id;
   String get title;
   String get message;
+  int get upVotes;
+  int get downVotes;
   GPostFragment_creator get creator;
   Map<String, dynamic> toJson();
 }
@@ -39,6 +41,8 @@ abstract class GPostFragmentData
   String get G_id;
   String get title;
   String get message;
+  int get upVotes;
+  int get downVotes;
   GPostFragmentData_creator get creator;
   static Serializer<GPostFragmentData> get serializer =>
       _$gPostFragmentDataSerializer;
