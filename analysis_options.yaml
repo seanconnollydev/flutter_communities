@@ -1,5 +1,0 @@
-analyzer:
-  exclude:
-    - '**/*.g.dart'
-    - '**/*.gql.dart'
-  

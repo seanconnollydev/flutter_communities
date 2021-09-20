@@ -1,16 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_communities/graphql/post_fragment.data.gql.dart';
+import 'package:flutter_communities/graphql/schema.schema.gql.dart';
+import 'package:flutter_communities/providers/community_repository.dart';
 import 'package:flutter_communities/screens/post_screen.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class PostCard extends StatelessWidget {
+class PostCard extends ConsumerWidget {
   final GPostFragment _post;
   final String _communityId;
 
   const PostCard(this._post, this._communityId, {Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, watch) {
     final theme = Theme.of(context);
+    final repository = watch(communityRepositoryProvider);
 
     return Card(
       elevation: 4,
@@ -40,7 +44,10 @@ class PostCard extends StatelessWidget {
                     IconButton(
                       iconSize: 12,
                       constraints: BoxConstraints(),
-                      onPressed: () {},
+                      onPressed: () {
+                        repository.createPostVote(
+                            _post.G_id, GPostVoteType.UpVote);
+                      },
                       icon: Icon(
                         Icons.arrow_upward,
                       ),
@@ -49,7 +56,10 @@ class PostCard extends StatelessWidget {
                     IconButton(
                       iconSize: 12,
                       constraints: BoxConstraints(),
-                      onPressed: () {},
+                      onPressed: () {
+                        repository.createPostVote(
+                            _post.G_id, GPostVoteType.UpVote);
+                      },
                       icon: Icon(
                         Icons.arrow_downward,
                       ),
