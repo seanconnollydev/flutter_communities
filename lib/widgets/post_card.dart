@@ -45,8 +45,7 @@ class PostCard extends ConsumerWidget {
                       iconSize: 12,
                       constraints: BoxConstraints(),
                       onPressed: () {
-                        repository.createPostVote(
-                            _post.G_id, GPostVoteType.UpVote);
+                        repository.createPostVote(_post, GPostVoteType.UpVote);
                       },
                       icon: Icon(
                         Icons.arrow_upward,
@@ -57,8 +56,7 @@ class PostCard extends ConsumerWidget {
                       iconSize: 12,
                       constraints: BoxConstraints(),
                       onPressed: () {
-                        repository.createPostVote(
-                            _post.G_id, GPostVoteType.UpVote);
+                        repository.createPostVote(_post, GPostVoteType.UpVote);
                       },
                       icon: Icon(
                         Icons.arrow_downward,

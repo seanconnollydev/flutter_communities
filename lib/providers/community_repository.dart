@@ -4,6 +4,7 @@ import 'package:flutter_communities/graphql/create_post_vote.req.gql.dart';
 import 'package:flutter_communities/graphql/get_communities.data.gql.dart';
 import 'package:flutter_communities/graphql/get_communities.req.gql.dart';
 import 'package:flutter_communities/graphql/get_communities.var.gql.dart';
+import 'package:flutter_communities/graphql/post_fragment.data.gql.dart';
 import 'package:flutter_communities/graphql/schema.schema.gql.dart';
 import 'package:flutter_communities/graphql/throws_error.data.gql.dart';
 import 'package:flutter_communities/graphql/throws_error.req.gql.dart';
@@ -32,12 +33,19 @@ class CommunityRepository {
     return _request(GGetCommunitiesReq());
   }
 
-  Stream createPostVote(String postId, GPostVoteType voteType) {
+  Stream createPostVote(GPostFragment post, GPostVoteType voteType) {
     return _request(
       GCreatePostVoteReq(
         (b) => b
-          ..vars.input.postId = postId
-          ..vars.input.type = voteType,
+          ..vars.input.postId = post.G_id
+          ..vars.input.type = voteType
+          ..optimisticResponse.createPostVote.G_id = post.G_id
+          ..optimisticResponse.createPostVote.upVotes =
+              voteType == GPostVoteType.UpVote ? post.upVotes + 1 : post.upVotes
+          ..optimisticResponse.createPostVote.downVotes =
+              voteType == GPostVoteType.DownVote
+                  ? post.downVotes + 1
+                  : post.downVotes,
       ),
     );
   }
