@@ -15,7 +15,8 @@ type User {
   username: String! @unique
   communities: [Community!] @relation(name: "user_communities")
   posts: [Post!] @relation(name: "user_posts")
-  votes: [PostVote!] @relation(name: "user_post_votes")
+  post_votes: [PostVote!] @relation(name: "user_post_votes")
+  post_comments: [PostComment!] @relation(name: "user_post_comments")
 }
 
 input CreatePostInput {
@@ -54,6 +55,7 @@ type Post {
   upVotes: Int!
   downVotes: Int!
   votes: [PostVote!] @relation(name: "post_votes")
+  comments: [PostComment!] @relation(name: "post_comments")
 }
 
 type PostVote {
@@ -65,4 +67,10 @@ type PostVote {
 enum PostVoteType {
   UpVote
   DownVote
+}
+
+type PostComment {
+  message: String!
+  creator: User! @relation(name: "user_post_comments")
+  post: Post! @relation(name: "post_comments")
 }

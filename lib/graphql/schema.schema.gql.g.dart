@@ -40,6 +40,15 @@ Serializer<GCreateUserInput> _$gCreateUserInputSerializer =
     new _$GCreateUserInputSerializer();
 Serializer<GLoginUserInput> _$gLoginUserInputSerializer =
     new _$GLoginUserInputSerializer();
+Serializer<GPostCommentCreatorRelation>
+    _$gPostCommentCreatorRelationSerializer =
+    new _$GPostCommentCreatorRelationSerializer();
+Serializer<GPostCommentInput> _$gPostCommentInputSerializer =
+    new _$GPostCommentInputSerializer();
+Serializer<GPostCommentPostRelation> _$gPostCommentPostRelationSerializer =
+    new _$GPostCommentPostRelationSerializer();
+Serializer<GPostCommentsRelation> _$gPostCommentsRelationSerializer =
+    new _$GPostCommentsRelationSerializer();
 Serializer<GPostCommunityRelation> _$gPostCommunityRelationSerializer =
     new _$GPostCommunityRelationSerializer();
 Serializer<GPostCreatorRelation> _$gPostCreatorRelationSerializer =
@@ -58,10 +67,12 @@ Serializer<GPostVoteUserRelation> _$gPostVoteUserRelationSerializer =
 Serializer<GUserCommunitiesRelation> _$gUserCommunitiesRelationSerializer =
     new _$GUserCommunitiesRelationSerializer();
 Serializer<GUserInput> _$gUserInputSerializer = new _$GUserInputSerializer();
+Serializer<GUserPost_commentsRelation> _$gUserPostCommentsRelationSerializer =
+    new _$GUserPost_commentsRelationSerializer();
+Serializer<GUserPost_votesRelation> _$gUserPostVotesRelationSerializer =
+    new _$GUserPost_votesRelationSerializer();
 Serializer<GUserPostsRelation> _$gUserPostsRelationSerializer =
     new _$GUserPostsRelationSerializer();
-Serializer<GUserVotesRelation> _$gUserVotesRelationSerializer =
-    new _$GUserVotesRelationSerializer();
 
 class _$GCommunityCreatorRelationSerializer
     implements StructuredSerializer<GCommunityCreatorRelation> {
@@ -486,6 +497,272 @@ class _$GLoginUserInputSerializer
   }
 }
 
+class _$GPostCommentCreatorRelationSerializer
+    implements StructuredSerializer<GPostCommentCreatorRelation> {
+  @override
+  final Iterable<Type> types = const [
+    GPostCommentCreatorRelation,
+    _$GPostCommentCreatorRelation
+  ];
+  @override
+  final String wireName = 'GPostCommentCreatorRelation';
+
+  @override
+  Iterable<Object?> serialize(
+      Serializers serializers, GPostCommentCreatorRelation object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[];
+    Object? value;
+    value = object.create;
+    if (value != null) {
+      result
+        ..add('create')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(GUserInput)));
+    }
+    value = object.connect;
+    if (value != null) {
+      result
+        ..add('connect')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    return result;
+  }
+
+  @override
+  GPostCommentCreatorRelation deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GPostCommentCreatorRelationBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case 'create':
+          result.create.replace(serializers.deserialize(value,
+              specifiedType: const FullType(GUserInput))! as GUserInput);
+          break;
+        case 'connect':
+          result.connect = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GPostCommentInputSerializer
+    implements StructuredSerializer<GPostCommentInput> {
+  @override
+  final Iterable<Type> types = const [GPostCommentInput, _$GPostCommentInput];
+  @override
+  final String wireName = 'GPostCommentInput';
+
+  @override
+  Iterable<Object?> serialize(Serializers serializers, GPostCommentInput object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      'message',
+      serializers.serialize(object.message,
+          specifiedType: const FullType(String)),
+    ];
+    Object? value;
+    value = object.creator;
+    if (value != null) {
+      result
+        ..add('creator')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(GPostCommentCreatorRelation)));
+    }
+    value = object.post;
+    if (value != null) {
+      result
+        ..add('post')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(GPostCommentPostRelation)));
+    }
+    return result;
+  }
+
+  @override
+  GPostCommentInput deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GPostCommentInputBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case 'message':
+          result.message = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
+          break;
+        case 'creator':
+          result.creator.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(GPostCommentCreatorRelation))!
+              as GPostCommentCreatorRelation);
+          break;
+        case 'post':
+          result.post.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(GPostCommentPostRelation))!
+              as GPostCommentPostRelation);
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GPostCommentPostRelationSerializer
+    implements StructuredSerializer<GPostCommentPostRelation> {
+  @override
+  final Iterable<Type> types = const [
+    GPostCommentPostRelation,
+    _$GPostCommentPostRelation
+  ];
+  @override
+  final String wireName = 'GPostCommentPostRelation';
+
+  @override
+  Iterable<Object?> serialize(
+      Serializers serializers, GPostCommentPostRelation object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[];
+    Object? value;
+    value = object.create;
+    if (value != null) {
+      result
+        ..add('create')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(GPostInput)));
+    }
+    value = object.connect;
+    if (value != null) {
+      result
+        ..add('connect')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    return result;
+  }
+
+  @override
+  GPostCommentPostRelation deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GPostCommentPostRelationBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case 'create':
+          result.create.replace(serializers.deserialize(value,
+              specifiedType: const FullType(GPostInput))! as GPostInput);
+          break;
+        case 'connect':
+          result.connect = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GPostCommentsRelationSerializer
+    implements StructuredSerializer<GPostCommentsRelation> {
+  @override
+  final Iterable<Type> types = const [
+    GPostCommentsRelation,
+    _$GPostCommentsRelation
+  ];
+  @override
+  final String wireName = 'GPostCommentsRelation';
+
+  @override
+  Iterable<Object?> serialize(
+      Serializers serializers, GPostCommentsRelation object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[];
+    Object? value;
+    value = object.create;
+    if (value != null) {
+      result
+        ..add('create')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(
+                BuiltList, const [const FullType(GPostCommentInput)])));
+    }
+    value = object.connect;
+    if (value != null) {
+      result
+        ..add('connect')
+        ..add(serializers.serialize(value,
+            specifiedType:
+                const FullType(BuiltList, const [const FullType(String)])));
+    }
+    value = object.disconnect;
+    if (value != null) {
+      result
+        ..add('disconnect')
+        ..add(serializers.serialize(value,
+            specifiedType:
+                const FullType(BuiltList, const [const FullType(String)])));
+    }
+    return result;
+  }
+
+  @override
+  GPostCommentsRelation deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GPostCommentsRelationBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case 'create':
+          result.create.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(GPostCommentInput)]))!
+              as BuiltList<Object>);
+          break;
+        case 'connect':
+          result.connect.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(String)]))!
+              as BuiltList<Object>);
+          break;
+        case 'disconnect':
+          result.disconnect.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(String)]))!
+              as BuiltList<Object>);
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
 class _$GPostCommunityRelationSerializer
     implements StructuredSerializer<GPostCommunityRelation> {
   @override
@@ -651,6 +928,13 @@ class _$GPostInputSerializer implements StructuredSerializer<GPostInput> {
         ..add(serializers.serialize(value,
             specifiedType: const FullType(GPostVotesRelation)));
     }
+    value = object.comments;
+    if (value != null) {
+      result
+        ..add('comments')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(GPostCommentsRelation)));
+    }
     return result;
   }
 
@@ -695,6 +979,11 @@ class _$GPostInputSerializer implements StructuredSerializer<GPostInput> {
           result.votes.replace(serializers.deserialize(value,
                   specifiedType: const FullType(GPostVotesRelation))!
               as GPostVotesRelation);
+          break;
+        case 'comments':
+          result.comments.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(GPostCommentsRelation))!
+              as GPostCommentsRelation);
           break;
       }
     }
@@ -1092,12 +1381,19 @@ class _$GUserInputSerializer implements StructuredSerializer<GUserInput> {
         ..add(serializers.serialize(value,
             specifiedType: const FullType(GUserPostsRelation)));
     }
-    value = object.votes;
+    value = object.post_votes;
     if (value != null) {
       result
-        ..add('votes')
+        ..add('post_votes')
         ..add(serializers.serialize(value,
-            specifiedType: const FullType(GUserVotesRelation)));
+            specifiedType: const FullType(GUserPost_votesRelation)));
+    }
+    value = object.post_comments;
+    if (value != null) {
+      result
+        ..add('post_comments')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(GUserPost_commentsRelation)));
     }
     return result;
   }
@@ -1127,10 +1423,175 @@ class _$GUserInputSerializer implements StructuredSerializer<GUserInput> {
                   specifiedType: const FullType(GUserPostsRelation))!
               as GUserPostsRelation);
           break;
-        case 'votes':
-          result.votes.replace(serializers.deserialize(value,
-                  specifiedType: const FullType(GUserVotesRelation))!
-              as GUserVotesRelation);
+        case 'post_votes':
+          result.post_votes.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(GUserPost_votesRelation))!
+              as GUserPost_votesRelation);
+          break;
+        case 'post_comments':
+          result.post_comments.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(GUserPost_commentsRelation))!
+              as GUserPost_commentsRelation);
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GUserPost_commentsRelationSerializer
+    implements StructuredSerializer<GUserPost_commentsRelation> {
+  @override
+  final Iterable<Type> types = const [
+    GUserPost_commentsRelation,
+    _$GUserPost_commentsRelation
+  ];
+  @override
+  final String wireName = 'GUserPost_commentsRelation';
+
+  @override
+  Iterable<Object?> serialize(
+      Serializers serializers, GUserPost_commentsRelation object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[];
+    Object? value;
+    value = object.create;
+    if (value != null) {
+      result
+        ..add('create')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(
+                BuiltList, const [const FullType(GPostCommentInput)])));
+    }
+    value = object.connect;
+    if (value != null) {
+      result
+        ..add('connect')
+        ..add(serializers.serialize(value,
+            specifiedType:
+                const FullType(BuiltList, const [const FullType(String)])));
+    }
+    value = object.disconnect;
+    if (value != null) {
+      result
+        ..add('disconnect')
+        ..add(serializers.serialize(value,
+            specifiedType:
+                const FullType(BuiltList, const [const FullType(String)])));
+    }
+    return result;
+  }
+
+  @override
+  GUserPost_commentsRelation deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GUserPost_commentsRelationBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case 'create':
+          result.create.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(GPostCommentInput)]))!
+              as BuiltList<Object>);
+          break;
+        case 'connect':
+          result.connect.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(String)]))!
+              as BuiltList<Object>);
+          break;
+        case 'disconnect':
+          result.disconnect.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(String)]))!
+              as BuiltList<Object>);
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GUserPost_votesRelationSerializer
+    implements StructuredSerializer<GUserPost_votesRelation> {
+  @override
+  final Iterable<Type> types = const [
+    GUserPost_votesRelation,
+    _$GUserPost_votesRelation
+  ];
+  @override
+  final String wireName = 'GUserPost_votesRelation';
+
+  @override
+  Iterable<Object?> serialize(
+      Serializers serializers, GUserPost_votesRelation object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[];
+    Object? value;
+    value = object.create;
+    if (value != null) {
+      result
+        ..add('create')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(
+                BuiltList, const [const FullType(GPostVoteInput)])));
+    }
+    value = object.connect;
+    if (value != null) {
+      result
+        ..add('connect')
+        ..add(serializers.serialize(value,
+            specifiedType:
+                const FullType(BuiltList, const [const FullType(String)])));
+    }
+    value = object.disconnect;
+    if (value != null) {
+      result
+        ..add('disconnect')
+        ..add(serializers.serialize(value,
+            specifiedType:
+                const FullType(BuiltList, const [const FullType(String)])));
+    }
+    return result;
+  }
+
+  @override
+  GUserPost_votesRelation deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GUserPost_votesRelationBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case 'create':
+          result.create.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(GPostVoteInput)]))!
+              as BuiltList<Object>);
+          break;
+        case 'connect':
+          result.connect.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(String)]))!
+              as BuiltList<Object>);
+          break;
+        case 'disconnect':
+          result.disconnect.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(String)]))!
+              as BuiltList<Object>);
           break;
       }
     }
@@ -1195,83 +1656,6 @@ class _$GUserPostsRelationSerializer
           result.create.replace(serializers.deserialize(value,
                   specifiedType: const FullType(
                       BuiltList, const [const FullType(GPostInput)]))!
-              as BuiltList<Object>);
-          break;
-        case 'connect':
-          result.connect.replace(serializers.deserialize(value,
-                  specifiedType: const FullType(
-                      BuiltList, const [const FullType(String)]))!
-              as BuiltList<Object>);
-          break;
-        case 'disconnect':
-          result.disconnect.replace(serializers.deserialize(value,
-                  specifiedType: const FullType(
-                      BuiltList, const [const FullType(String)]))!
-              as BuiltList<Object>);
-          break;
-      }
-    }
-
-    return result.build();
-  }
-}
-
-class _$GUserVotesRelationSerializer
-    implements StructuredSerializer<GUserVotesRelation> {
-  @override
-  final Iterable<Type> types = const [GUserVotesRelation, _$GUserVotesRelation];
-  @override
-  final String wireName = 'GUserVotesRelation';
-
-  @override
-  Iterable<Object?> serialize(
-      Serializers serializers, GUserVotesRelation object,
-      {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object?>[];
-    Object? value;
-    value = object.create;
-    if (value != null) {
-      result
-        ..add('create')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(
-                BuiltList, const [const FullType(GPostVoteInput)])));
-    }
-    value = object.connect;
-    if (value != null) {
-      result
-        ..add('connect')
-        ..add(serializers.serialize(value,
-            specifiedType:
-                const FullType(BuiltList, const [const FullType(String)])));
-    }
-    value = object.disconnect;
-    if (value != null) {
-      result
-        ..add('disconnect')
-        ..add(serializers.serialize(value,
-            specifiedType:
-                const FullType(BuiltList, const [const FullType(String)])));
-    }
-    return result;
-  }
-
-  @override
-  GUserVotesRelation deserialize(
-      Serializers serializers, Iterable<Object?> serialized,
-      {FullType specifiedType = FullType.unspecified}) {
-    final result = new GUserVotesRelationBuilder();
-
-    final iterator = serialized.iterator;
-    while (iterator.moveNext()) {
-      final key = iterator.current as String;
-      iterator.moveNext();
-      final Object? value = iterator.current;
-      switch (key) {
-        case 'create':
-          result.create.replace(serializers.deserialize(value,
-                  specifiedType: const FullType(
-                      BuiltList, const [const FullType(GPostVoteInput)]))!
               as BuiltList<Object>);
           break;
         case 'connect':
@@ -2199,6 +2583,455 @@ class GLongBuilder implements Builder<GLong, GLongBuilder> {
   }
 }
 
+class _$GPostCommentCreatorRelation extends GPostCommentCreatorRelation {
+  @override
+  final GUserInput? create;
+  @override
+  final String? connect;
+
+  factory _$GPostCommentCreatorRelation(
+          [void Function(GPostCommentCreatorRelationBuilder)? updates]) =>
+      (new GPostCommentCreatorRelationBuilder()..update(updates)).build();
+
+  _$GPostCommentCreatorRelation._({this.create, this.connect}) : super._();
+
+  @override
+  GPostCommentCreatorRelation rebuild(
+          void Function(GPostCommentCreatorRelationBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GPostCommentCreatorRelationBuilder toBuilder() =>
+      new GPostCommentCreatorRelationBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GPostCommentCreatorRelation &&
+        create == other.create &&
+        connect == other.connect;
+  }
+
+  @override
+  int get hashCode {
+    return $jf($jc($jc(0, create.hashCode), connect.hashCode));
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper('GPostCommentCreatorRelation')
+          ..add('create', create)
+          ..add('connect', connect))
+        .toString();
+  }
+}
+
+class GPostCommentCreatorRelationBuilder
+    implements
+        Builder<GPostCommentCreatorRelation,
+            GPostCommentCreatorRelationBuilder> {
+  _$GPostCommentCreatorRelation? _$v;
+
+  GUserInputBuilder? _create;
+  GUserInputBuilder get create => _$this._create ??= new GUserInputBuilder();
+  set create(GUserInputBuilder? create) => _$this._create = create;
+
+  String? _connect;
+  String? get connect => _$this._connect;
+  set connect(String? connect) => _$this._connect = connect;
+
+  GPostCommentCreatorRelationBuilder();
+
+  GPostCommentCreatorRelationBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _create = $v.create?.toBuilder();
+      _connect = $v.connect;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GPostCommentCreatorRelation other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GPostCommentCreatorRelation;
+  }
+
+  @override
+  void update(void Function(GPostCommentCreatorRelationBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  _$GPostCommentCreatorRelation build() {
+    _$GPostCommentCreatorRelation _$result;
+    try {
+      _$result = _$v ??
+          new _$GPostCommentCreatorRelation._(
+              create: _create?.build(), connect: connect);
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'create';
+        _create?.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            'GPostCommentCreatorRelation', _$failedField, e.toString());
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GPostCommentInput extends GPostCommentInput {
+  @override
+  final String message;
+  @override
+  final GPostCommentCreatorRelation? creator;
+  @override
+  final GPostCommentPostRelation? post;
+
+  factory _$GPostCommentInput(
+          [void Function(GPostCommentInputBuilder)? updates]) =>
+      (new GPostCommentInputBuilder()..update(updates)).build();
+
+  _$GPostCommentInput._({required this.message, this.creator, this.post})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        message, 'GPostCommentInput', 'message');
+  }
+
+  @override
+  GPostCommentInput rebuild(void Function(GPostCommentInputBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GPostCommentInputBuilder toBuilder() =>
+      new GPostCommentInputBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GPostCommentInput &&
+        message == other.message &&
+        creator == other.creator &&
+        post == other.post;
+  }
+
+  @override
+  int get hashCode {
+    return $jf(
+        $jc($jc($jc(0, message.hashCode), creator.hashCode), post.hashCode));
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper('GPostCommentInput')
+          ..add('message', message)
+          ..add('creator', creator)
+          ..add('post', post))
+        .toString();
+  }
+}
+
+class GPostCommentInputBuilder
+    implements Builder<GPostCommentInput, GPostCommentInputBuilder> {
+  _$GPostCommentInput? _$v;
+
+  String? _message;
+  String? get message => _$this._message;
+  set message(String? message) => _$this._message = message;
+
+  GPostCommentCreatorRelationBuilder? _creator;
+  GPostCommentCreatorRelationBuilder get creator =>
+      _$this._creator ??= new GPostCommentCreatorRelationBuilder();
+  set creator(GPostCommentCreatorRelationBuilder? creator) =>
+      _$this._creator = creator;
+
+  GPostCommentPostRelationBuilder? _post;
+  GPostCommentPostRelationBuilder get post =>
+      _$this._post ??= new GPostCommentPostRelationBuilder();
+  set post(GPostCommentPostRelationBuilder? post) => _$this._post = post;
+
+  GPostCommentInputBuilder();
+
+  GPostCommentInputBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _message = $v.message;
+      _creator = $v.creator?.toBuilder();
+      _post = $v.post?.toBuilder();
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GPostCommentInput other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GPostCommentInput;
+  }
+
+  @override
+  void update(void Function(GPostCommentInputBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  _$GPostCommentInput build() {
+    _$GPostCommentInput _$result;
+    try {
+      _$result = _$v ??
+          new _$GPostCommentInput._(
+              message: BuiltValueNullFieldError.checkNotNull(
+                  message, 'GPostCommentInput', 'message'),
+              creator: _creator?.build(),
+              post: _post?.build());
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'creator';
+        _creator?.build();
+        _$failedField = 'post';
+        _post?.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            'GPostCommentInput', _$failedField, e.toString());
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GPostCommentPostRelation extends GPostCommentPostRelation {
+  @override
+  final GPostInput? create;
+  @override
+  final String? connect;
+
+  factory _$GPostCommentPostRelation(
+          [void Function(GPostCommentPostRelationBuilder)? updates]) =>
+      (new GPostCommentPostRelationBuilder()..update(updates)).build();
+
+  _$GPostCommentPostRelation._({this.create, this.connect}) : super._();
+
+  @override
+  GPostCommentPostRelation rebuild(
+          void Function(GPostCommentPostRelationBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GPostCommentPostRelationBuilder toBuilder() =>
+      new GPostCommentPostRelationBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GPostCommentPostRelation &&
+        create == other.create &&
+        connect == other.connect;
+  }
+
+  @override
+  int get hashCode {
+    return $jf($jc($jc(0, create.hashCode), connect.hashCode));
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper('GPostCommentPostRelation')
+          ..add('create', create)
+          ..add('connect', connect))
+        .toString();
+  }
+}
+
+class GPostCommentPostRelationBuilder
+    implements
+        Builder<GPostCommentPostRelation, GPostCommentPostRelationBuilder> {
+  _$GPostCommentPostRelation? _$v;
+
+  GPostInputBuilder? _create;
+  GPostInputBuilder get create => _$this._create ??= new GPostInputBuilder();
+  set create(GPostInputBuilder? create) => _$this._create = create;
+
+  String? _connect;
+  String? get connect => _$this._connect;
+  set connect(String? connect) => _$this._connect = connect;
+
+  GPostCommentPostRelationBuilder();
+
+  GPostCommentPostRelationBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _create = $v.create?.toBuilder();
+      _connect = $v.connect;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GPostCommentPostRelation other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GPostCommentPostRelation;
+  }
+
+  @override
+  void update(void Function(GPostCommentPostRelationBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  _$GPostCommentPostRelation build() {
+    _$GPostCommentPostRelation _$result;
+    try {
+      _$result = _$v ??
+          new _$GPostCommentPostRelation._(
+              create: _create?.build(), connect: connect);
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'create';
+        _create?.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            'GPostCommentPostRelation', _$failedField, e.toString());
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GPostCommentsRelation extends GPostCommentsRelation {
+  @override
+  final BuiltList<GPostCommentInput>? create;
+  @override
+  final BuiltList<String>? connect;
+  @override
+  final BuiltList<String>? disconnect;
+
+  factory _$GPostCommentsRelation(
+          [void Function(GPostCommentsRelationBuilder)? updates]) =>
+      (new GPostCommentsRelationBuilder()..update(updates)).build();
+
+  _$GPostCommentsRelation._({this.create, this.connect, this.disconnect})
+      : super._();
+
+  @override
+  GPostCommentsRelation rebuild(
+          void Function(GPostCommentsRelationBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GPostCommentsRelationBuilder toBuilder() =>
+      new GPostCommentsRelationBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GPostCommentsRelation &&
+        create == other.create &&
+        connect == other.connect &&
+        disconnect == other.disconnect;
+  }
+
+  @override
+  int get hashCode {
+    return $jf($jc(
+        $jc($jc(0, create.hashCode), connect.hashCode), disconnect.hashCode));
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper('GPostCommentsRelation')
+          ..add('create', create)
+          ..add('connect', connect)
+          ..add('disconnect', disconnect))
+        .toString();
+  }
+}
+
+class GPostCommentsRelationBuilder
+    implements Builder<GPostCommentsRelation, GPostCommentsRelationBuilder> {
+  _$GPostCommentsRelation? _$v;
+
+  ListBuilder<GPostCommentInput>? _create;
+  ListBuilder<GPostCommentInput> get create =>
+      _$this._create ??= new ListBuilder<GPostCommentInput>();
+  set create(ListBuilder<GPostCommentInput>? create) => _$this._create = create;
+
+  ListBuilder<String>? _connect;
+  ListBuilder<String> get connect =>
+      _$this._connect ??= new ListBuilder<String>();
+  set connect(ListBuilder<String>? connect) => _$this._connect = connect;
+
+  ListBuilder<String>? _disconnect;
+  ListBuilder<String> get disconnect =>
+      _$this._disconnect ??= new ListBuilder<String>();
+  set disconnect(ListBuilder<String>? disconnect) =>
+      _$this._disconnect = disconnect;
+
+  GPostCommentsRelationBuilder();
+
+  GPostCommentsRelationBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _create = $v.create?.toBuilder();
+      _connect = $v.connect?.toBuilder();
+      _disconnect = $v.disconnect?.toBuilder();
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GPostCommentsRelation other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GPostCommentsRelation;
+  }
+
+  @override
+  void update(void Function(GPostCommentsRelationBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  _$GPostCommentsRelation build() {
+    _$GPostCommentsRelation _$result;
+    try {
+      _$result = _$v ??
+          new _$GPostCommentsRelation._(
+              create: _create?.build(),
+              connect: _connect?.build(),
+              disconnect: _disconnect?.build());
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'create';
+        _create?.build();
+        _$failedField = 'connect';
+        _connect?.build();
+        _$failedField = 'disconnect';
+        _disconnect?.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            'GPostCommentsRelation', _$failedField, e.toString());
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
+}
+
 class _$GPostCommunityRelation extends GPostCommunityRelation {
   @override
   final GCommunityInput? create;
@@ -2417,6 +3250,8 @@ class _$GPostInput extends GPostInput {
   final int downVotes;
   @override
   final GPostVotesRelation? votes;
+  @override
+  final GPostCommentsRelation? comments;
 
   factory _$GPostInput([void Function(GPostInputBuilder)? updates]) =>
       (new GPostInputBuilder()..update(updates)).build();
@@ -2428,7 +3263,8 @@ class _$GPostInput extends GPostInput {
       this.community,
       required this.upVotes,
       required this.downVotes,
-      this.votes})
+      this.votes,
+      this.comments})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(title, 'GPostInput', 'title');
     BuiltValueNullFieldError.checkNotNull(message, 'GPostInput', 'message');
@@ -2453,7 +3289,8 @@ class _$GPostInput extends GPostInput {
         community == other.community &&
         upVotes == other.upVotes &&
         downVotes == other.downVotes &&
-        votes == other.votes;
+        votes == other.votes &&
+        comments == other.comments;
   }
 
   @override
@@ -2462,12 +3299,14 @@ class _$GPostInput extends GPostInput {
         $jc(
             $jc(
                 $jc(
-                    $jc($jc($jc(0, title.hashCode), message.hashCode),
-                        creator.hashCode),
-                    community.hashCode),
-                upVotes.hashCode),
-            downVotes.hashCode),
-        votes.hashCode));
+                    $jc(
+                        $jc($jc($jc(0, title.hashCode), message.hashCode),
+                            creator.hashCode),
+                        community.hashCode),
+                    upVotes.hashCode),
+                downVotes.hashCode),
+            votes.hashCode),
+        comments.hashCode));
   }
 
   @override
@@ -2479,7 +3318,8 @@ class _$GPostInput extends GPostInput {
           ..add('community', community)
           ..add('upVotes', upVotes)
           ..add('downVotes', downVotes)
-          ..add('votes', votes))
+          ..add('votes', votes)
+          ..add('comments', comments))
         .toString();
   }
 }
@@ -2520,6 +3360,12 @@ class GPostInputBuilder implements Builder<GPostInput, GPostInputBuilder> {
       _$this._votes ??= new GPostVotesRelationBuilder();
   set votes(GPostVotesRelationBuilder? votes) => _$this._votes = votes;
 
+  GPostCommentsRelationBuilder? _comments;
+  GPostCommentsRelationBuilder get comments =>
+      _$this._comments ??= new GPostCommentsRelationBuilder();
+  set comments(GPostCommentsRelationBuilder? comments) =>
+      _$this._comments = comments;
+
   GPostInputBuilder();
 
   GPostInputBuilder get _$this {
@@ -2532,6 +3378,7 @@ class GPostInputBuilder implements Builder<GPostInput, GPostInputBuilder> {
       _upVotes = $v.upVotes;
       _downVotes = $v.downVotes;
       _votes = $v.votes?.toBuilder();
+      _comments = $v.comments?.toBuilder();
       _$v = null;
     }
     return this;
@@ -2564,7 +3411,8 @@ class GPostInputBuilder implements Builder<GPostInput, GPostInputBuilder> {
                   upVotes, 'GPostInput', 'upVotes'),
               downVotes: BuiltValueNullFieldError.checkNotNull(
                   downVotes, 'GPostInput', 'downVotes'),
-              votes: _votes?.build());
+              votes: _votes?.build(),
+              comments: _comments?.build());
     } catch (_) {
       late String _$failedField;
       try {
@@ -2575,6 +3423,8 @@ class GPostInputBuilder implements Builder<GPostInput, GPostInputBuilder> {
 
         _$failedField = 'votes';
         _votes?.build();
+        _$failedField = 'comments';
+        _comments?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             'GPostInput', _$failedField, e.toString());
@@ -3234,13 +4084,19 @@ class _$GUserInput extends GUserInput {
   @override
   final GUserPostsRelation? posts;
   @override
-  final GUserVotesRelation? votes;
+  final GUserPost_votesRelation? post_votes;
+  @override
+  final GUserPost_commentsRelation? post_comments;
 
   factory _$GUserInput([void Function(GUserInputBuilder)? updates]) =>
       (new GUserInputBuilder()..update(updates)).build();
 
   _$GUserInput._(
-      {required this.username, this.communities, this.posts, this.votes})
+      {required this.username,
+      this.communities,
+      this.posts,
+      this.post_votes,
+      this.post_comments})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(username, 'GUserInput', 'username');
   }
@@ -3259,15 +4115,18 @@ class _$GUserInput extends GUserInput {
         username == other.username &&
         communities == other.communities &&
         posts == other.posts &&
-        votes == other.votes;
+        post_votes == other.post_votes &&
+        post_comments == other.post_comments;
   }
 
   @override
   int get hashCode {
     return $jf($jc(
-        $jc($jc($jc(0, username.hashCode), communities.hashCode),
-            posts.hashCode),
-        votes.hashCode));
+        $jc(
+            $jc($jc($jc(0, username.hashCode), communities.hashCode),
+                posts.hashCode),
+            post_votes.hashCode),
+        post_comments.hashCode));
   }
 
   @override
@@ -3276,7 +4135,8 @@ class _$GUserInput extends GUserInput {
           ..add('username', username)
           ..add('communities', communities)
           ..add('posts', posts)
-          ..add('votes', votes))
+          ..add('post_votes', post_votes)
+          ..add('post_comments', post_comments))
         .toString();
   }
 }
@@ -3299,10 +4159,17 @@ class GUserInputBuilder implements Builder<GUserInput, GUserInputBuilder> {
       _$this._posts ??= new GUserPostsRelationBuilder();
   set posts(GUserPostsRelationBuilder? posts) => _$this._posts = posts;
 
-  GUserVotesRelationBuilder? _votes;
-  GUserVotesRelationBuilder get votes =>
-      _$this._votes ??= new GUserVotesRelationBuilder();
-  set votes(GUserVotesRelationBuilder? votes) => _$this._votes = votes;
+  GUserPost_votesRelationBuilder? _post_votes;
+  GUserPost_votesRelationBuilder get post_votes =>
+      _$this._post_votes ??= new GUserPost_votesRelationBuilder();
+  set post_votes(GUserPost_votesRelationBuilder? post_votes) =>
+      _$this._post_votes = post_votes;
+
+  GUserPost_commentsRelationBuilder? _post_comments;
+  GUserPost_commentsRelationBuilder get post_comments =>
+      _$this._post_comments ??= new GUserPost_commentsRelationBuilder();
+  set post_comments(GUserPost_commentsRelationBuilder? post_comments) =>
+      _$this._post_comments = post_comments;
 
   GUserInputBuilder();
 
@@ -3312,7 +4179,8 @@ class GUserInputBuilder implements Builder<GUserInput, GUserInputBuilder> {
       _username = $v.username;
       _communities = $v.communities?.toBuilder();
       _posts = $v.posts?.toBuilder();
-      _votes = $v.votes?.toBuilder();
+      _post_votes = $v.post_votes?.toBuilder();
+      _post_comments = $v.post_comments?.toBuilder();
       _$v = null;
     }
     return this;
@@ -3339,7 +4207,8 @@ class GUserInputBuilder implements Builder<GUserInput, GUserInputBuilder> {
                   username, 'GUserInput', 'username'),
               communities: _communities?.build(),
               posts: _posts?.build(),
-              votes: _votes?.build());
+              post_votes: _post_votes?.build(),
+              post_comments: _post_comments?.build());
     } catch (_) {
       late String _$failedField;
       try {
@@ -3347,11 +4216,259 @@ class GUserInputBuilder implements Builder<GUserInput, GUserInputBuilder> {
         _communities?.build();
         _$failedField = 'posts';
         _posts?.build();
-        _$failedField = 'votes';
-        _votes?.build();
+        _$failedField = 'post_votes';
+        _post_votes?.build();
+        _$failedField = 'post_comments';
+        _post_comments?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             'GUserInput', _$failedField, e.toString());
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GUserPost_commentsRelation extends GUserPost_commentsRelation {
+  @override
+  final BuiltList<GPostCommentInput>? create;
+  @override
+  final BuiltList<String>? connect;
+  @override
+  final BuiltList<String>? disconnect;
+
+  factory _$GUserPost_commentsRelation(
+          [void Function(GUserPost_commentsRelationBuilder)? updates]) =>
+      (new GUserPost_commentsRelationBuilder()..update(updates)).build();
+
+  _$GUserPost_commentsRelation._({this.create, this.connect, this.disconnect})
+      : super._();
+
+  @override
+  GUserPost_commentsRelation rebuild(
+          void Function(GUserPost_commentsRelationBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GUserPost_commentsRelationBuilder toBuilder() =>
+      new GUserPost_commentsRelationBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GUserPost_commentsRelation &&
+        create == other.create &&
+        connect == other.connect &&
+        disconnect == other.disconnect;
+  }
+
+  @override
+  int get hashCode {
+    return $jf($jc(
+        $jc($jc(0, create.hashCode), connect.hashCode), disconnect.hashCode));
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper('GUserPost_commentsRelation')
+          ..add('create', create)
+          ..add('connect', connect)
+          ..add('disconnect', disconnect))
+        .toString();
+  }
+}
+
+class GUserPost_commentsRelationBuilder
+    implements
+        Builder<GUserPost_commentsRelation, GUserPost_commentsRelationBuilder> {
+  _$GUserPost_commentsRelation? _$v;
+
+  ListBuilder<GPostCommentInput>? _create;
+  ListBuilder<GPostCommentInput> get create =>
+      _$this._create ??= new ListBuilder<GPostCommentInput>();
+  set create(ListBuilder<GPostCommentInput>? create) => _$this._create = create;
+
+  ListBuilder<String>? _connect;
+  ListBuilder<String> get connect =>
+      _$this._connect ??= new ListBuilder<String>();
+  set connect(ListBuilder<String>? connect) => _$this._connect = connect;
+
+  ListBuilder<String>? _disconnect;
+  ListBuilder<String> get disconnect =>
+      _$this._disconnect ??= new ListBuilder<String>();
+  set disconnect(ListBuilder<String>? disconnect) =>
+      _$this._disconnect = disconnect;
+
+  GUserPost_commentsRelationBuilder();
+
+  GUserPost_commentsRelationBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _create = $v.create?.toBuilder();
+      _connect = $v.connect?.toBuilder();
+      _disconnect = $v.disconnect?.toBuilder();
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GUserPost_commentsRelation other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GUserPost_commentsRelation;
+  }
+
+  @override
+  void update(void Function(GUserPost_commentsRelationBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  _$GUserPost_commentsRelation build() {
+    _$GUserPost_commentsRelation _$result;
+    try {
+      _$result = _$v ??
+          new _$GUserPost_commentsRelation._(
+              create: _create?.build(),
+              connect: _connect?.build(),
+              disconnect: _disconnect?.build());
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'create';
+        _create?.build();
+        _$failedField = 'connect';
+        _connect?.build();
+        _$failedField = 'disconnect';
+        _disconnect?.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            'GUserPost_commentsRelation', _$failedField, e.toString());
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GUserPost_votesRelation extends GUserPost_votesRelation {
+  @override
+  final BuiltList<GPostVoteInput>? create;
+  @override
+  final BuiltList<String>? connect;
+  @override
+  final BuiltList<String>? disconnect;
+
+  factory _$GUserPost_votesRelation(
+          [void Function(GUserPost_votesRelationBuilder)? updates]) =>
+      (new GUserPost_votesRelationBuilder()..update(updates)).build();
+
+  _$GUserPost_votesRelation._({this.create, this.connect, this.disconnect})
+      : super._();
+
+  @override
+  GUserPost_votesRelation rebuild(
+          void Function(GUserPost_votesRelationBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GUserPost_votesRelationBuilder toBuilder() =>
+      new GUserPost_votesRelationBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GUserPost_votesRelation &&
+        create == other.create &&
+        connect == other.connect &&
+        disconnect == other.disconnect;
+  }
+
+  @override
+  int get hashCode {
+    return $jf($jc(
+        $jc($jc(0, create.hashCode), connect.hashCode), disconnect.hashCode));
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper('GUserPost_votesRelation')
+          ..add('create', create)
+          ..add('connect', connect)
+          ..add('disconnect', disconnect))
+        .toString();
+  }
+}
+
+class GUserPost_votesRelationBuilder
+    implements
+        Builder<GUserPost_votesRelation, GUserPost_votesRelationBuilder> {
+  _$GUserPost_votesRelation? _$v;
+
+  ListBuilder<GPostVoteInput>? _create;
+  ListBuilder<GPostVoteInput> get create =>
+      _$this._create ??= new ListBuilder<GPostVoteInput>();
+  set create(ListBuilder<GPostVoteInput>? create) => _$this._create = create;
+
+  ListBuilder<String>? _connect;
+  ListBuilder<String> get connect =>
+      _$this._connect ??= new ListBuilder<String>();
+  set connect(ListBuilder<String>? connect) => _$this._connect = connect;
+
+  ListBuilder<String>? _disconnect;
+  ListBuilder<String> get disconnect =>
+      _$this._disconnect ??= new ListBuilder<String>();
+  set disconnect(ListBuilder<String>? disconnect) =>
+      _$this._disconnect = disconnect;
+
+  GUserPost_votesRelationBuilder();
+
+  GUserPost_votesRelationBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _create = $v.create?.toBuilder();
+      _connect = $v.connect?.toBuilder();
+      _disconnect = $v.disconnect?.toBuilder();
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GUserPost_votesRelation other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GUserPost_votesRelation;
+  }
+
+  @override
+  void update(void Function(GUserPost_votesRelationBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  _$GUserPost_votesRelation build() {
+    _$GUserPost_votesRelation _$result;
+    try {
+      _$result = _$v ??
+          new _$GUserPost_votesRelation._(
+              create: _create?.build(),
+              connect: _connect?.build(),
+              disconnect: _disconnect?.build());
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'create';
+        _create?.build();
+        _$failedField = 'connect';
+        _connect?.build();
+        _$failedField = 'disconnect';
+        _disconnect?.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            'GUserPost_votesRelation', _$failedField, e.toString());
       }
       rethrow;
     }
@@ -3474,128 +4591,6 @@ class GUserPostsRelationBuilder
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             'GUserPostsRelation', _$failedField, e.toString());
-      }
-      rethrow;
-    }
-    replace(_$result);
-    return _$result;
-  }
-}
-
-class _$GUserVotesRelation extends GUserVotesRelation {
-  @override
-  final BuiltList<GPostVoteInput>? create;
-  @override
-  final BuiltList<String>? connect;
-  @override
-  final BuiltList<String>? disconnect;
-
-  factory _$GUserVotesRelation(
-          [void Function(GUserVotesRelationBuilder)? updates]) =>
-      (new GUserVotesRelationBuilder()..update(updates)).build();
-
-  _$GUserVotesRelation._({this.create, this.connect, this.disconnect})
-      : super._();
-
-  @override
-  GUserVotesRelation rebuild(
-          void Function(GUserVotesRelationBuilder) updates) =>
-      (toBuilder()..update(updates)).build();
-
-  @override
-  GUserVotesRelationBuilder toBuilder() =>
-      new GUserVotesRelationBuilder()..replace(this);
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(other, this)) return true;
-    return other is GUserVotesRelation &&
-        create == other.create &&
-        connect == other.connect &&
-        disconnect == other.disconnect;
-  }
-
-  @override
-  int get hashCode {
-    return $jf($jc(
-        $jc($jc(0, create.hashCode), connect.hashCode), disconnect.hashCode));
-  }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('GUserVotesRelation')
-          ..add('create', create)
-          ..add('connect', connect)
-          ..add('disconnect', disconnect))
-        .toString();
-  }
-}
-
-class GUserVotesRelationBuilder
-    implements Builder<GUserVotesRelation, GUserVotesRelationBuilder> {
-  _$GUserVotesRelation? _$v;
-
-  ListBuilder<GPostVoteInput>? _create;
-  ListBuilder<GPostVoteInput> get create =>
-      _$this._create ??= new ListBuilder<GPostVoteInput>();
-  set create(ListBuilder<GPostVoteInput>? create) => _$this._create = create;
-
-  ListBuilder<String>? _connect;
-  ListBuilder<String> get connect =>
-      _$this._connect ??= new ListBuilder<String>();
-  set connect(ListBuilder<String>? connect) => _$this._connect = connect;
-
-  ListBuilder<String>? _disconnect;
-  ListBuilder<String> get disconnect =>
-      _$this._disconnect ??= new ListBuilder<String>();
-  set disconnect(ListBuilder<String>? disconnect) =>
-      _$this._disconnect = disconnect;
-
-  GUserVotesRelationBuilder();
-
-  GUserVotesRelationBuilder get _$this {
-    final $v = _$v;
-    if ($v != null) {
-      _create = $v.create?.toBuilder();
-      _connect = $v.connect?.toBuilder();
-      _disconnect = $v.disconnect?.toBuilder();
-      _$v = null;
-    }
-    return this;
-  }
-
-  @override
-  void replace(GUserVotesRelation other) {
-    ArgumentError.checkNotNull(other, 'other');
-    _$v = other as _$GUserVotesRelation;
-  }
-
-  @override
-  void update(void Function(GUserVotesRelationBuilder)? updates) {
-    if (updates != null) updates(this);
-  }
-
-  @override
-  _$GUserVotesRelation build() {
-    _$GUserVotesRelation _$result;
-    try {
-      _$result = _$v ??
-          new _$GUserVotesRelation._(
-              create: _create?.build(),
-              connect: _connect?.build(),
-              disconnect: _disconnect?.build());
-    } catch (_) {
-      late String _$failedField;
-      try {
-        _$failedField = 'create';
-        _create?.build();
-        _$failedField = 'connect';
-        _connect?.build();
-        _$failedField = 'disconnect';
-        _disconnect?.build();
-      } catch (e) {
-        throw new BuiltValueNestedFieldError(
-            'GUserVotesRelation', _$failedField, e.toString());
       }
       rethrow;
     }

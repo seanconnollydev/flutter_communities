@@ -63,6 +63,9 @@ import 'package:flutter_communities/graphql/get_post.data.gql.dart'
     show
         GGetPostData,
         GGetPostData_findPostByID,
+        GGetPostData_findPostByID_comments,
+        GGetPostData_findPostByID_comments_data,
+        GGetPostData_findPostByID_comments_data_creator,
         GGetPostData_findPostByID_creator;
 import 'package:flutter_communities/graphql/get_post.req.gql.dart'
     show GGetPostReq;
@@ -74,6 +77,12 @@ import 'package:flutter_communities/graphql/login_user.req.gql.dart'
     show GLoginUserReq;
 import 'package:flutter_communities/graphql/login_user.var.gql.dart'
     show GLoginUserVars;
+import 'package:flutter_communities/graphql/post_comment_fragment.data.gql.dart'
+    show GPostCommentFragmentData, GPostCommentFragmentData_creator;
+import 'package:flutter_communities/graphql/post_comment_fragment.req.gql.dart'
+    show GPostCommentFragmentReq;
+import 'package:flutter_communities/graphql/post_comment_fragment.var.gql.dart'
+    show GPostCommentFragmentVars;
 import 'package:flutter_communities/graphql/post_fragment.data.gql.dart'
     show GPostFragmentData, GPostFragmentData_creator;
 import 'package:flutter_communities/graphql/post_fragment.req.gql.dart'
@@ -91,6 +100,10 @@ import 'package:flutter_communities/graphql/schema.schema.gql.dart'
         GDate,
         GLoginUserInput,
         GLong,
+        GPostCommentCreatorRelation,
+        GPostCommentInput,
+        GPostCommentPostRelation,
+        GPostCommentsRelation,
         GPostCommunityRelation,
         GPostCreatorRelation,
         GPostInput,
@@ -102,8 +115,9 @@ import 'package:flutter_communities/graphql/schema.schema.gql.dart'
         GTime,
         GUserCommunitiesRelation,
         GUserInput,
-        GUserPostsRelation,
-        GUserVotesRelation;
+        GUserPost_commentsRelation,
+        GUserPost_votesRelation,
+        GUserPostsRelation;
 import 'package:flutter_communities/graphql/throws_error.data.gql.dart'
     show GThrowsErrorData, GThrowsErrorData_throwsError;
 import 'package:flutter_communities/graphql/throws_error.req.gql.dart'
@@ -156,6 +170,9 @@ final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   GGetCommunityVars,
   GGetPostData,
   GGetPostData_findPostByID,
+  GGetPostData_findPostByID_comments,
+  GGetPostData_findPostByID_comments_data,
+  GGetPostData_findPostByID_comments_data_creator,
   GGetPostData_findPostByID_creator,
   GGetPostReq,
   GGetPostVars,
@@ -170,6 +187,14 @@ final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   GLoginUserReq,
   GLoginUserVars,
   GLong,
+  GPostCommentCreatorRelation,
+  GPostCommentFragmentData,
+  GPostCommentFragmentData_creator,
+  GPostCommentFragmentReq,
+  GPostCommentFragmentVars,
+  GPostCommentInput,
+  GPostCommentPostRelation,
+  GPostCommentsRelation,
   GPostCommunityRelation,
   GPostCreatorRelation,
   GPostFragmentData,
@@ -189,7 +214,8 @@ final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   GTime,
   GUserCommunitiesRelation,
   GUserInput,
-  GUserPostsRelation,
-  GUserVotesRelation
+  GUserPost_commentsRelation,
+  GUserPost_votesRelation,
+  GUserPostsRelation
 ])
 final Serializers serializers = _serializersBuilder.build();

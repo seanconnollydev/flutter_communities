@@ -44,6 +44,9 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(GGetCommunityVars.serializer)
       ..add(GGetPostData.serializer)
       ..add(GGetPostData_findPostByID.serializer)
+      ..add(GGetPostData_findPostByID_comments.serializer)
+      ..add(GGetPostData_findPostByID_comments_data.serializer)
+      ..add(GGetPostData_findPostByID_comments_data_creator.serializer)
       ..add(GGetPostData_findPostByID_creator.serializer)
       ..add(GGetPostReq.serializer)
       ..add(GGetPostVars.serializer)
@@ -59,6 +62,14 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(GLoginUserReq.serializer)
       ..add(GLoginUserVars.serializer)
       ..add(GLong.serializer)
+      ..add(GPostCommentCreatorRelation.serializer)
+      ..add(GPostCommentFragmentData.serializer)
+      ..add(GPostCommentFragmentData_creator.serializer)
+      ..add(GPostCommentFragmentReq.serializer)
+      ..add(GPostCommentFragmentVars.serializer)
+      ..add(GPostCommentInput.serializer)
+      ..add(GPostCommentPostRelation.serializer)
+      ..add(GPostCommentsRelation.serializer)
       ..add(GPostCommunityRelation.serializer)
       ..add(GPostCreatorRelation.serializer)
       ..add(GPostFragmentData.serializer)
@@ -78,8 +89,9 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(GTime.serializer)
       ..add(GUserCommunitiesRelation.serializer)
       ..add(GUserInput.serializer)
+      ..add(GUserPost_commentsRelation.serializer)
+      ..add(GUserPost_votesRelation.serializer)
       ..add(GUserPostsRelation.serializer)
-      ..add(GUserVotesRelation.serializer)
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(GCommunityInput)]),
           () => new ListBuilder<GCommunityInput>())
@@ -94,12 +106,34 @@ Serializers _$serializers = (new Serializers().toBuilder()
               const [const FullType(GGetCommunitiesData_communities_data)]),
           () => new ListBuilder<GGetCommunitiesData_communities_data>())
       ..addBuilderFactory(
+          const FullType(BuiltList,
+              const [const FullType(GGetPostData_findPostByID_comments_data)]),
+          () => new ListBuilder<GGetPostData_findPostByID_comments_data>())
+      ..addBuilderFactory(
           const FullType(BuiltList, const [
             const FullType(
                 GGetPostsByCommunityIdData_getPostsByCommunityId_data)
           ]),
           () => new ListBuilder<
               GGetPostsByCommunityIdData_getPostsByCommunityId_data>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(GPostCommentInput)]),
+          () => new ListBuilder<GPostCommentInput>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(GPostCommentInput)]),
+          () => new ListBuilder<GPostCommentInput>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(GPostInput)]),
           () => new ListBuilder<GPostInput>())

@@ -348,6 +348,53 @@ const Mutation = _i1.ObjectTypeDefinitionNode(
           type: _i1.NamedTypeNode(
               name: _i1.NameNode(value: 'String'), isNonNull: true)),
       _i1.FieldDefinitionNode(
+          name: _i1.NameNode(value: 'updatePostComment'),
+          directives: [],
+          args: [
+            _i1.InputValueDefinitionNode(
+                name: _i1.NameNode(value: 'id'),
+                directives: [],
+                type: _i1.NamedTypeNode(
+                    name: _i1.NameNode(value: 'ID'), isNonNull: true),
+                defaultValue: null),
+            _i1.InputValueDefinitionNode(
+                name: _i1.NameNode(value: 'data'),
+                directives: [],
+                type: _i1.NamedTypeNode(
+                    name: _i1.NameNode(value: 'PostCommentInput'),
+                    isNonNull: true),
+                defaultValue: null)
+          ],
+          type: _i1.NamedTypeNode(
+              name: _i1.NameNode(value: 'PostComment'), isNonNull: false)),
+      _i1.FieldDefinitionNode(
+          name: _i1.NameNode(value: 'createPostComment'),
+          directives: [],
+          args: [
+            _i1.InputValueDefinitionNode(
+                name: _i1.NameNode(value: 'data'),
+                directives: [],
+                type: _i1.NamedTypeNode(
+                    name: _i1.NameNode(value: 'PostCommentInput'),
+                    isNonNull: true),
+                defaultValue: null)
+          ],
+          type: _i1.NamedTypeNode(
+              name: _i1.NameNode(value: 'PostComment'), isNonNull: true)),
+      _i1.FieldDefinitionNode(
+          name: _i1.NameNode(value: 'deletePostComment'),
+          directives: [],
+          args: [
+            _i1.InputValueDefinitionNode(
+                name: _i1.NameNode(value: 'id'),
+                directives: [],
+                type: _i1.NamedTypeNode(
+                    name: _i1.NameNode(value: 'ID'), isNonNull: true),
+                defaultValue: null)
+          ],
+          type: _i1.NamedTypeNode(
+              name: _i1.NameNode(value: 'PostComment'), isNonNull: false)),
+      _i1.FieldDefinitionNode(
           name: _i1.NameNode(value: 'updateCommunity'),
           directives: [],
           args: [
@@ -576,6 +623,25 @@ const Post = _i1.ObjectTypeDefinitionNode(
           type: _i1.NamedTypeNode(
               name: _i1.NameNode(value: 'String'), isNonNull: true)),
       _i1.FieldDefinitionNode(
+          name: _i1.NameNode(value: 'comments'),
+          directives: [],
+          args: [
+            _i1.InputValueDefinitionNode(
+                name: _i1.NameNode(value: '_size'),
+                directives: [],
+                type: _i1.NamedTypeNode(
+                    name: _i1.NameNode(value: 'Int'), isNonNull: false),
+                defaultValue: null),
+            _i1.InputValueDefinitionNode(
+                name: _i1.NameNode(value: '_cursor'),
+                directives: [],
+                type: _i1.NamedTypeNode(
+                    name: _i1.NameNode(value: 'String'), isNonNull: false),
+                defaultValue: null)
+          ],
+          type: _i1.NamedTypeNode(
+              name: _i1.NameNode(value: 'PostCommentPage'), isNonNull: true)),
+      _i1.FieldDefinitionNode(
           name: _i1.NameNode(value: 'downVotes'),
           directives: [],
           args: [],
@@ -587,6 +653,157 @@ const Post = _i1.ObjectTypeDefinitionNode(
           args: [],
           type: _i1.NamedTypeNode(
               name: _i1.NameNode(value: 'Long'), isNonNull: true))
+    ]);
+const PostComment = _i1.ObjectTypeDefinitionNode(
+    name: _i1.NameNode(value: 'PostComment'),
+    directives: [],
+    interfaces: [],
+    fields: [
+      _i1.FieldDefinitionNode(
+          name: _i1.NameNode(value: 'post'),
+          directives: [],
+          args: [],
+          type: _i1.NamedTypeNode(
+              name: _i1.NameNode(value: 'Post'), isNonNull: true)),
+      _i1.FieldDefinitionNode(
+          name: _i1.NameNode(value: '_id'),
+          directives: [],
+          args: [],
+          type: _i1.NamedTypeNode(
+              name: _i1.NameNode(value: 'ID'), isNonNull: true)),
+      _i1.FieldDefinitionNode(
+          name: _i1.NameNode(value: 'creator'),
+          directives: [],
+          args: [],
+          type: _i1.NamedTypeNode(
+              name: _i1.NameNode(value: 'User'), isNonNull: true)),
+      _i1.FieldDefinitionNode(
+          name: _i1.NameNode(value: 'message'),
+          directives: [],
+          args: [],
+          type: _i1.NamedTypeNode(
+              name: _i1.NameNode(value: 'String'), isNonNull: true)),
+      _i1.FieldDefinitionNode(
+          name: _i1.NameNode(value: '_ts'),
+          directives: [],
+          args: [],
+          type: _i1.NamedTypeNode(
+              name: _i1.NameNode(value: 'Long'), isNonNull: true))
+    ]);
+const PostCommentCreatorRelation = _i1.InputObjectTypeDefinitionNode(
+    name: _i1.NameNode(value: 'PostCommentCreatorRelation'),
+    directives: [],
+    fields: [
+      _i1.InputValueDefinitionNode(
+          name: _i1.NameNode(value: 'create'),
+          directives: [],
+          type: _i1.NamedTypeNode(
+              name: _i1.NameNode(value: 'UserInput'), isNonNull: false),
+          defaultValue: null),
+      _i1.InputValueDefinitionNode(
+          name: _i1.NameNode(value: 'connect'),
+          directives: [],
+          type: _i1.NamedTypeNode(
+              name: _i1.NameNode(value: 'ID'), isNonNull: false),
+          defaultValue: null)
+    ]);
+const PostCommentInput = _i1.InputObjectTypeDefinitionNode(
+    name: _i1.NameNode(value: 'PostCommentInput'),
+    directives: [],
+    fields: [
+      _i1.InputValueDefinitionNode(
+          name: _i1.NameNode(value: 'message'),
+          directives: [],
+          type: _i1.NamedTypeNode(
+              name: _i1.NameNode(value: 'String'), isNonNull: true),
+          defaultValue: null),
+      _i1.InputValueDefinitionNode(
+          name: _i1.NameNode(value: 'creator'),
+          directives: [],
+          type: _i1.NamedTypeNode(
+              name: _i1.NameNode(value: 'PostCommentCreatorRelation'),
+              isNonNull: false),
+          defaultValue: null),
+      _i1.InputValueDefinitionNode(
+          name: _i1.NameNode(value: 'post'),
+          directives: [],
+          type: _i1.NamedTypeNode(
+              name: _i1.NameNode(value: 'PostCommentPostRelation'),
+              isNonNull: false),
+          defaultValue: null)
+    ]);
+const PostCommentPage = _i1.ObjectTypeDefinitionNode(
+    name: _i1.NameNode(value: 'PostCommentPage'),
+    directives: [],
+    interfaces: [],
+    fields: [
+      _i1.FieldDefinitionNode(
+          name: _i1.NameNode(value: 'data'),
+          directives: [],
+          args: [],
+          type: _i1.ListTypeNode(
+              type: _i1.NamedTypeNode(
+                  name: _i1.NameNode(value: 'PostComment'), isNonNull: false),
+              isNonNull: true)),
+      _i1.FieldDefinitionNode(
+          name: _i1.NameNode(value: 'after'),
+          directives: [],
+          args: [],
+          type: _i1.NamedTypeNode(
+              name: _i1.NameNode(value: 'String'), isNonNull: false)),
+      _i1.FieldDefinitionNode(
+          name: _i1.NameNode(value: 'before'),
+          directives: [],
+          args: [],
+          type: _i1.NamedTypeNode(
+              name: _i1.NameNode(value: 'String'), isNonNull: false))
+    ]);
+const PostCommentPostRelation = _i1.InputObjectTypeDefinitionNode(
+    name: _i1.NameNode(value: 'PostCommentPostRelation'),
+    directives: [],
+    fields: [
+      _i1.InputValueDefinitionNode(
+          name: _i1.NameNode(value: 'create'),
+          directives: [],
+          type: _i1.NamedTypeNode(
+              name: _i1.NameNode(value: 'PostInput'), isNonNull: false),
+          defaultValue: null),
+      _i1.InputValueDefinitionNode(
+          name: _i1.NameNode(value: 'connect'),
+          directives: [],
+          type: _i1.NamedTypeNode(
+              name: _i1.NameNode(value: 'ID'), isNonNull: false),
+          defaultValue: null)
+    ]);
+const PostCommentsRelation = _i1.InputObjectTypeDefinitionNode(
+    name: _i1.NameNode(value: 'PostCommentsRelation'),
+    directives: [],
+    fields: [
+      _i1.InputValueDefinitionNode(
+          name: _i1.NameNode(value: 'create'),
+          directives: [],
+          type: _i1.ListTypeNode(
+              type: _i1.NamedTypeNode(
+                  name: _i1.NameNode(value: 'PostCommentInput'),
+                  isNonNull: false),
+              isNonNull: false),
+          defaultValue: null),
+      _i1.InputValueDefinitionNode(
+          name: _i1.NameNode(value: 'connect'),
+          directives: [],
+          type: _i1.ListTypeNode(
+              type: _i1.NamedTypeNode(
+                  name: _i1.NameNode(value: 'ID'), isNonNull: false),
+              isNonNull: false),
+          defaultValue: null),
+      _i1.InputValueDefinitionNode(
+          name: _i1.NameNode(value: 'disconnect'),
+          directives: [],
+          type: _i1.ListTypeNode(
+              type: _i1.NamedTypeNode(
+                  name: _i1.NameNode(value: 'ID'), isNonNull: false),
+              isNonNull: false),
+          defaultValue: null)
     ]);
 const PostCommunityRelation = _i1.InputObjectTypeDefinitionNode(
     name: _i1.NameNode(value: 'PostCommunityRelation'),
@@ -669,6 +886,13 @@ const PostInput = _i1.InputObjectTypeDefinitionNode(
           directives: [],
           type: _i1.NamedTypeNode(
               name: _i1.NameNode(value: 'PostVotesRelation'), isNonNull: false),
+          defaultValue: null),
+      _i1.InputValueDefinitionNode(
+          name: _i1.NameNode(value: 'comments'),
+          directives: [],
+          type: _i1.NamedTypeNode(
+              name: _i1.NameNode(value: 'PostCommentsRelation'),
+              isNonNull: false),
           defaultValue: null)
     ]);
 const PostPage = _i1.ObjectTypeDefinitionNode(
@@ -963,7 +1187,20 @@ const Query = _i1.ObjectTypeDefinitionNode(
                 defaultValue: null)
           ],
           type: _i1.NamedTypeNode(
-              name: _i1.NameNode(value: 'PostVote'), isNonNull: false))
+              name: _i1.NameNode(value: 'PostVote'), isNonNull: false)),
+      _i1.FieldDefinitionNode(
+          name: _i1.NameNode(value: 'findPostCommentByID'),
+          directives: [],
+          args: [
+            _i1.InputValueDefinitionNode(
+                name: _i1.NameNode(value: 'id'),
+                directives: [],
+                type: _i1.NamedTypeNode(
+                    name: _i1.NameNode(value: 'ID'), isNonNull: true),
+                defaultValue: null)
+          ],
+          type: _i1.NamedTypeNode(
+              name: _i1.NameNode(value: 'PostComment'), isNonNull: false))
     ]);
 const QueryGetPostsByCommunityIdPage = _i1.ObjectTypeDefinitionNode(
     name: _i1.NameNode(value: 'QueryGetPostsByCommunityIdPage'),
@@ -999,25 +1236,6 @@ const User = _i1.ObjectTypeDefinitionNode(
     interfaces: [],
     fields: [
       _i1.FieldDefinitionNode(
-          name: _i1.NameNode(value: 'votes'),
-          directives: [],
-          args: [
-            _i1.InputValueDefinitionNode(
-                name: _i1.NameNode(value: '_size'),
-                directives: [],
-                type: _i1.NamedTypeNode(
-                    name: _i1.NameNode(value: 'Int'), isNonNull: false),
-                defaultValue: null),
-            _i1.InputValueDefinitionNode(
-                name: _i1.NameNode(value: '_cursor'),
-                directives: [],
-                type: _i1.NamedTypeNode(
-                    name: _i1.NameNode(value: 'String'), isNonNull: false),
-                defaultValue: null)
-          ],
-          type: _i1.NamedTypeNode(
-              name: _i1.NameNode(value: 'PostVotePage'), isNonNull: true)),
-      _i1.FieldDefinitionNode(
           name: _i1.NameNode(value: 'posts'),
           directives: [],
           args: [
@@ -1049,6 +1267,25 @@ const User = _i1.ObjectTypeDefinitionNode(
           type: _i1.NamedTypeNode(
               name: _i1.NameNode(value: 'ID'), isNonNull: true)),
       _i1.FieldDefinitionNode(
+          name: _i1.NameNode(value: 'post_comments'),
+          directives: [],
+          args: [
+            _i1.InputValueDefinitionNode(
+                name: _i1.NameNode(value: '_size'),
+                directives: [],
+                type: _i1.NamedTypeNode(
+                    name: _i1.NameNode(value: 'Int'), isNonNull: false),
+                defaultValue: null),
+            _i1.InputValueDefinitionNode(
+                name: _i1.NameNode(value: '_cursor'),
+                directives: [],
+                type: _i1.NamedTypeNode(
+                    name: _i1.NameNode(value: 'String'), isNonNull: false),
+                defaultValue: null)
+          ],
+          type: _i1.NamedTypeNode(
+              name: _i1.NameNode(value: 'PostCommentPage'), isNonNull: true)),
+      _i1.FieldDefinitionNode(
           name: _i1.NameNode(value: 'communities'),
           directives: [],
           args: [
@@ -1067,6 +1304,25 @@ const User = _i1.ObjectTypeDefinitionNode(
           ],
           type: _i1.NamedTypeNode(
               name: _i1.NameNode(value: 'CommunityPage'), isNonNull: true)),
+      _i1.FieldDefinitionNode(
+          name: _i1.NameNode(value: 'post_votes'),
+          directives: [],
+          args: [
+            _i1.InputValueDefinitionNode(
+                name: _i1.NameNode(value: '_size'),
+                directives: [],
+                type: _i1.NamedTypeNode(
+                    name: _i1.NameNode(value: 'Int'), isNonNull: false),
+                defaultValue: null),
+            _i1.InputValueDefinitionNode(
+                name: _i1.NameNode(value: '_cursor'),
+                directives: [],
+                type: _i1.NamedTypeNode(
+                    name: _i1.NameNode(value: 'String'), isNonNull: false),
+                defaultValue: null)
+          ],
+          type: _i1.NamedTypeNode(
+              name: _i1.NameNode(value: 'PostVotePage'), isNonNull: true)),
       _i1.FieldDefinitionNode(
           name: _i1.NameNode(value: '_ts'),
           directives: [],
@@ -1128,14 +1384,22 @@ const UserInput = _i1.InputObjectTypeDefinitionNode(
               name: _i1.NameNode(value: 'UserPostsRelation'), isNonNull: false),
           defaultValue: null),
       _i1.InputValueDefinitionNode(
-          name: _i1.NameNode(value: 'votes'),
+          name: _i1.NameNode(value: 'post_votes'),
           directives: [],
           type: _i1.NamedTypeNode(
-              name: _i1.NameNode(value: 'UserVotesRelation'), isNonNull: false),
+              name: _i1.NameNode(value: 'UserPost_votesRelation'),
+              isNonNull: false),
+          defaultValue: null),
+      _i1.InputValueDefinitionNode(
+          name: _i1.NameNode(value: 'post_comments'),
+          directives: [],
+          type: _i1.NamedTypeNode(
+              name: _i1.NameNode(value: 'UserPost_commentsRelation'),
+              isNonNull: false),
           defaultValue: null)
     ]);
-const UserPostsRelation = _i1.InputObjectTypeDefinitionNode(
-    name: _i1.NameNode(value: 'UserPostsRelation'),
+const UserPost_commentsRelation = _i1.InputObjectTypeDefinitionNode(
+    name: _i1.NameNode(value: 'UserPost_commentsRelation'),
     directives: [],
     fields: [
       _i1.InputValueDefinitionNode(
@@ -1143,7 +1407,8 @@ const UserPostsRelation = _i1.InputObjectTypeDefinitionNode(
           directives: [],
           type: _i1.ListTypeNode(
               type: _i1.NamedTypeNode(
-                  name: _i1.NameNode(value: 'PostInput'), isNonNull: false),
+                  name: _i1.NameNode(value: 'PostCommentInput'),
+                  isNonNull: false),
               isNonNull: false),
           defaultValue: null),
       _i1.InputValueDefinitionNode(
@@ -1163,8 +1428,8 @@ const UserPostsRelation = _i1.InputObjectTypeDefinitionNode(
               isNonNull: false),
           defaultValue: null)
     ]);
-const UserVotesRelation = _i1.InputObjectTypeDefinitionNode(
-    name: _i1.NameNode(value: 'UserVotesRelation'),
+const UserPost_votesRelation = _i1.InputObjectTypeDefinitionNode(
+    name: _i1.NameNode(value: 'UserPost_votesRelation'),
     directives: [],
     fields: [
       _i1.InputValueDefinitionNode(
@@ -1173,6 +1438,35 @@ const UserVotesRelation = _i1.InputObjectTypeDefinitionNode(
           type: _i1.ListTypeNode(
               type: _i1.NamedTypeNode(
                   name: _i1.NameNode(value: 'PostVoteInput'), isNonNull: false),
+              isNonNull: false),
+          defaultValue: null),
+      _i1.InputValueDefinitionNode(
+          name: _i1.NameNode(value: 'connect'),
+          directives: [],
+          type: _i1.ListTypeNode(
+              type: _i1.NamedTypeNode(
+                  name: _i1.NameNode(value: 'ID'), isNonNull: false),
+              isNonNull: false),
+          defaultValue: null),
+      _i1.InputValueDefinitionNode(
+          name: _i1.NameNode(value: 'disconnect'),
+          directives: [],
+          type: _i1.ListTypeNode(
+              type: _i1.NamedTypeNode(
+                  name: _i1.NameNode(value: 'ID'), isNonNull: false),
+              isNonNull: false),
+          defaultValue: null)
+    ]);
+const UserPostsRelation = _i1.InputObjectTypeDefinitionNode(
+    name: _i1.NameNode(value: 'UserPostsRelation'),
+    directives: [],
+    fields: [
+      _i1.InputValueDefinitionNode(
+          name: _i1.NameNode(value: 'create'),
+          directives: [],
+          type: _i1.ListTypeNode(
+              type: _i1.NamedTypeNode(
+                  name: _i1.NameNode(value: 'PostInput'), isNonNull: false),
               isNonNull: false),
           defaultValue: null),
       _i1.InputValueDefinitionNode(
@@ -1212,6 +1506,12 @@ const document = _i1.DocumentNode(definitions: [
   Long,
   Mutation,
   Post,
+  PostComment,
+  PostCommentCreatorRelation,
+  PostCommentInput,
+  PostCommentPage,
+  PostCommentPostRelation,
+  PostCommentsRelation,
   PostCommunityRelation,
   PostCreatorRelation,
   PostInput,
@@ -1229,6 +1529,7 @@ const document = _i1.DocumentNode(definitions: [
   User,
   UserCommunitiesRelation,
   UserInput,
-  UserPostsRelation,
-  UserVotesRelation
+  UserPost_commentsRelation,
+  UserPost_votesRelation,
+  UserPostsRelation
 ]);

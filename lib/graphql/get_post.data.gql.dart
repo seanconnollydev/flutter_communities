@@ -1,7 +1,10 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
+import 'package:built_collection/built_collection.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
+import 'package:flutter_communities/graphql/post_comment_fragment.data.gql.dart'
+    as _i3;
 import 'package:flutter_communities/graphql/post_fragment.data.gql.dart' as _i2;
 import 'package:flutter_communities/graphql/serializers.gql.dart' as _i1;
 
@@ -48,6 +51,7 @@ abstract class GGetPostData_findPostByID
   int get upVotes;
   int get downVotes;
   GGetPostData_findPostByID_creator get creator;
+  GGetPostData_findPostByID_comments get comments;
   static Serializer<GGetPostData_findPostByID> get serializer =>
       _$gGetPostDataFindPostByIDSerializer;
   Map<String, dynamic> toJson() =>
@@ -85,4 +89,93 @@ abstract class GGetPostData_findPostByID_creator
           Map<String, dynamic> json) =>
       _i1.serializers
           .deserializeWith(GGetPostData_findPostByID_creator.serializer, json);
+}
+
+abstract class GGetPostData_findPostByID_comments
+    implements
+        Built<GGetPostData_findPostByID_comments,
+            GGetPostData_findPostByID_commentsBuilder> {
+  GGetPostData_findPostByID_comments._();
+
+  factory GGetPostData_findPostByID_comments(
+          [Function(GGetPostData_findPostByID_commentsBuilder b) updates]) =
+      _$GGetPostData_findPostByID_comments;
+
+  static void _initializeBuilder(GGetPostData_findPostByID_commentsBuilder b) =>
+      b..G__typename = 'PostCommentPage';
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  BuiltList<GGetPostData_findPostByID_comments_data> get data;
+  String? get after;
+  String? get before;
+  static Serializer<GGetPostData_findPostByID_comments> get serializer =>
+      _$gGetPostDataFindPostByIDCommentsSerializer;
+  Map<String, dynamic> toJson() => (_i1.serializers
+          .serializeWith(GGetPostData_findPostByID_comments.serializer, this)
+      as Map<String, dynamic>);
+  static GGetPostData_findPostByID_comments? fromJson(
+          Map<String, dynamic> json) =>
+      _i1.serializers
+          .deserializeWith(GGetPostData_findPostByID_comments.serializer, json);
+}
+
+abstract class GGetPostData_findPostByID_comments_data
+    implements
+        Built<GGetPostData_findPostByID_comments_data,
+            GGetPostData_findPostByID_comments_dataBuilder>,
+        _i3.GPostCommentFragment {
+  GGetPostData_findPostByID_comments_data._();
+
+  factory GGetPostData_findPostByID_comments_data(
+      [Function(GGetPostData_findPostByID_comments_dataBuilder b)
+          updates]) = _$GGetPostData_findPostByID_comments_data;
+
+  static void _initializeBuilder(
+          GGetPostData_findPostByID_comments_dataBuilder b) =>
+      b..G__typename = 'PostComment';
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  @BuiltValueField(wireName: '_id')
+  String get G_id;
+  GGetPostData_findPostByID_comments_data_creator get creator;
+  String get message;
+  static Serializer<GGetPostData_findPostByID_comments_data> get serializer =>
+      _$gGetPostDataFindPostByIDCommentsDataSerializer;
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+          GGetPostData_findPostByID_comments_data.serializer, this)
+      as Map<String, dynamic>);
+  static GGetPostData_findPostByID_comments_data? fromJson(
+          Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+          GGetPostData_findPostByID_comments_data.serializer, json);
+}
+
+abstract class GGetPostData_findPostByID_comments_data_creator
+    implements
+        Built<GGetPostData_findPostByID_comments_data_creator,
+            GGetPostData_findPostByID_comments_data_creatorBuilder>,
+        _i3.GPostCommentFragment_creator {
+  GGetPostData_findPostByID_comments_data_creator._();
+
+  factory GGetPostData_findPostByID_comments_data_creator(
+      [Function(GGetPostData_findPostByID_comments_data_creatorBuilder b)
+          updates]) = _$GGetPostData_findPostByID_comments_data_creator;
+
+  static void _initializeBuilder(
+          GGetPostData_findPostByID_comments_data_creatorBuilder b) =>
+      b..G__typename = 'User';
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  @BuiltValueField(wireName: '_id')
+  String get G_id;
+  String get username;
+  static Serializer<GGetPostData_findPostByID_comments_data_creator>
+      get serializer => _$gGetPostDataFindPostByIDCommentsDataCreatorSerializer;
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+          GGetPostData_findPostByID_comments_data_creator.serializer, this)
+      as Map<String, dynamic>);
+  static GGetPostData_findPostByID_comments_data_creator? fromJson(
+          Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+          GGetPostData_findPostByID_comments_data_creator.serializer, json);
 }

@@ -4,6 +4,9 @@ import 'package:flutter_communities/graphql/create_post_vote.req.gql.dart';
 import 'package:flutter_communities/graphql/get_communities.data.gql.dart';
 import 'package:flutter_communities/graphql/get_communities.req.gql.dart';
 import 'package:flutter_communities/graphql/get_communities.var.gql.dart';
+import 'package:flutter_communities/graphql/get_post.data.gql.dart';
+import 'package:flutter_communities/graphql/get_post.req.gql.dart';
+import 'package:flutter_communities/graphql/get_post.var.gql.dart';
 import 'package:flutter_communities/graphql/post_fragment.data.gql.dart';
 import 'package:flutter_communities/graphql/schema.schema.gql.dart';
 import 'package:flutter_communities/graphql/throws_error.data.gql.dart';
@@ -50,6 +53,10 @@ class CommunityRepository {
     );
   }
 
+  Stream<GetPostResponse> getPost(String postId) {
+    return _request(GGetPostReq((b) => b..vars.id = postId));
+  }
+
   Stream<OperationResponse<TData, TVars>> _request<TData, TVars>(
       OperationRequest<TData, TVars> request) {
     final stream = _client.request(request);
@@ -84,3 +91,5 @@ typedef GetCommunitiesResponse
 
 typedef ThrowsErrorResponse
     = OperationResponse<GThrowsErrorData, GThrowsErrorVars>;
+
+typedef GetPostResponse = OperationResponse<GGetPostData, GGetPostVars>?;
