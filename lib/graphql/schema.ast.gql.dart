@@ -231,6 +231,23 @@ const CommunityPostsRelation = _i1.InputObjectTypeDefinitionNode(
               isNonNull: false),
           defaultValue: null)
     ]);
+const CreatePostCommentInput = _i1.InputObjectTypeDefinitionNode(
+    name: _i1.NameNode(value: 'CreatePostCommentInput'),
+    directives: [],
+    fields: [
+      _i1.InputValueDefinitionNode(
+          name: _i1.NameNode(value: 'message'),
+          directives: [],
+          type: _i1.NamedTypeNode(
+              name: _i1.NameNode(value: 'String'), isNonNull: true),
+          defaultValue: null),
+      _i1.InputValueDefinitionNode(
+          name: _i1.NameNode(value: 'postId'),
+          directives: [],
+          type: _i1.NamedTypeNode(
+              name: _i1.NameNode(value: 'String'), isNonNull: true),
+          defaultValue: null)
+    ]);
 const CreatePostInput = _i1.InputObjectTypeDefinitionNode(
     name: _i1.NameNode(value: 'CreatePostInput'),
     directives: [],
@@ -372,10 +389,10 @@ const Mutation = _i1.ObjectTypeDefinitionNode(
           directives: [],
           args: [
             _i1.InputValueDefinitionNode(
-                name: _i1.NameNode(value: 'data'),
+                name: _i1.NameNode(value: 'input'),
                 directives: [],
                 type: _i1.NamedTypeNode(
-                    name: _i1.NameNode(value: 'PostCommentInput'),
+                    name: _i1.NameNode(value: 'CreatePostCommentInput'),
                     isNonNull: true),
                 defaultValue: null)
           ],
@@ -1498,6 +1515,7 @@ const document = _i1.DocumentNode(definitions: [
   CommunityInput,
   CommunityPage,
   CommunityPostsRelation,
+  CreatePostCommentInput,
   CreatePostInput,
   CreatePostVoteInput,
   CreateUserInput,

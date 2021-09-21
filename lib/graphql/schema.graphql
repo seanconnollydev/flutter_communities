@@ -59,6 +59,11 @@ input CommunityPostsRelation {
   disconnect: [ID]
 }
 
+input CreatePostCommentInput {
+  message: String!
+  postId: String!
+}
+
 input CreatePostInput {
   title: String!
   message: String!
@@ -102,11 +107,7 @@ type Mutation {
     # 'PostComment' input values
     data: PostCommentInput!
   ): PostComment
-  # Create a new document in the collection of 'PostComment'
-  createPostComment(
-    # 'PostComment' input values
-    data: PostCommentInput!
-  ): PostComment!
+  createPostComment(input: CreatePostCommentInput!): PostComment!
   # Delete an existing document in the collection of 'PostComment'
   deletePostComment(
     # The 'PostComment' document's ID

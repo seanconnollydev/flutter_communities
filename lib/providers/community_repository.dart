@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:ferry/ferry.dart';
+import 'package:flutter_communities/graphql/create_post_comment.req.gql.dart';
 import 'package:flutter_communities/graphql/create_post_vote.req.gql.dart';
 import 'package:flutter_communities/graphql/get_communities.data.gql.dart';
 import 'package:flutter_communities/graphql/get_communities.req.gql.dart';
@@ -7,6 +8,9 @@ import 'package:flutter_communities/graphql/get_communities.var.gql.dart';
 import 'package:flutter_communities/graphql/get_post.data.gql.dart';
 import 'package:flutter_communities/graphql/get_post.req.gql.dart';
 import 'package:flutter_communities/graphql/get_post.var.gql.dart';
+import 'package:flutter_communities/graphql/get_post_comments.data.gql.dart';
+import 'package:flutter_communities/graphql/get_post_comments.req.gql.dart';
+import 'package:flutter_communities/graphql/get_post_comments.var.gql.dart';
 import 'package:flutter_communities/graphql/post_fragment.data.gql.dart';
 import 'package:flutter_communities/graphql/schema.schema.gql.dart';
 import 'package:flutter_communities/graphql/throws_error.data.gql.dart';
@@ -54,7 +58,31 @@ class CommunityRepository {
   }
 
   Stream<GetPostResponse> getPost(String postId) {
-    return _request(GGetPostReq((b) => b..vars.id = postId));
+    return _request(
+      GGetPostReq((b) => b
+        ..vars.id = postId
+        ..requestId = 'GGetPostReq'),
+    );
+  }
+
+  Stream createPostComment(String postId, String message) {
+    return _request(
+      GCreatePostCommentReq(
+        (b) => b
+          ..vars.input.postId = postId
+          ..vars.input.message = message
+          ..updateCacheHandlerKey = 'createPostCommentHandler',
+      ),
+    );
+  }
+
+  Stream<GetPostCommentsResponse> getPostComments(
+      String postId, String cursor) {
+    return _request(GGetPostCommentsReq(
+      (b) => b
+        ..vars.postId = postId
+        ..vars.cursor = cursor,
+    ));
   }
 
   Stream<OperationResponse<TData, TVars>> _request<TData, TVars>(
@@ -93,3 +121,6 @@ typedef ThrowsErrorResponse
     = OperationResponse<GThrowsErrorData, GThrowsErrorVars>;
 
 typedef GetPostResponse = OperationResponse<GGetPostData, GGetPostVars>?;
+
+typedef GetPostCommentsResponse
+    = OperationResponse<GGetPostCommentsData, GGetPostCommentsVars>;

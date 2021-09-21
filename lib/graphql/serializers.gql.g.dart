@@ -17,6 +17,12 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(GCreateCommunityData_createCommunity.serializer)
       ..add(GCreateCommunityReq.serializer)
       ..add(GCreateCommunityVars.serializer)
+      ..add(GCreatePostCommentData.serializer)
+      ..add(GCreatePostCommentData_createPostComment.serializer)
+      ..add(GCreatePostCommentData_createPostComment_creator.serializer)
+      ..add(GCreatePostCommentInput.serializer)
+      ..add(GCreatePostCommentReq.serializer)
+      ..add(GCreatePostCommentVars.serializer)
       ..add(GCreatePostData.serializer)
       ..add(GCreatePostData_createPost.serializer)
       ..add(GCreatePostData_createPost_creator.serializer)
@@ -42,6 +48,13 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(GGetCommunityData_findCommunityByID.serializer)
       ..add(GGetCommunityReq.serializer)
       ..add(GGetCommunityVars.serializer)
+      ..add(GGetPostCommentsData.serializer)
+      ..add(GGetPostCommentsData_findPostByID.serializer)
+      ..add(GGetPostCommentsData_findPostByID_comments.serializer)
+      ..add(GGetPostCommentsData_findPostByID_comments_data.serializer)
+      ..add(GGetPostCommentsData_findPostByID_comments_data_creator.serializer)
+      ..add(GGetPostCommentsReq.serializer)
+      ..add(GGetPostCommentsVars.serializer)
       ..add(GGetPostData.serializer)
       ..add(GGetPostData_findPostByID.serializer)
       ..add(GGetPostData_findPostByID_comments.serializer)
@@ -105,6 +118,12 @@ Serializers _$serializers = (new Serializers().toBuilder()
           const FullType(BuiltList,
               const [const FullType(GGetCommunitiesData_communities_data)]),
           () => new ListBuilder<GGetCommunitiesData_communities_data>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [
+            const FullType(GGetPostCommentsData_findPostByID_comments_data)
+          ]),
+          () => new ListBuilder<
+              GGetPostCommentsData_findPostByID_comments_data>())
       ..addBuilderFactory(
           const FullType(BuiltList,
               const [const FullType(GGetPostData_findPostByID_comments_data)]),

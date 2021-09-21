@@ -32,6 +32,8 @@ Serializer<GCommunityInput> _$gCommunityInputSerializer =
     new _$GCommunityInputSerializer();
 Serializer<GCommunityPostsRelation> _$gCommunityPostsRelationSerializer =
     new _$GCommunityPostsRelationSerializer();
+Serializer<GCreatePostCommentInput> _$gCreatePostCommentInputSerializer =
+    new _$GCreatePostCommentInputSerializer();
 Serializer<GCreatePostInput> _$gCreatePostInputSerializer =
     new _$GCreatePostInputSerializer();
 Serializer<GCreatePostVoteInput> _$gCreatePostVoteInputSerializer =
@@ -282,6 +284,59 @@ class _$GCommunityPostsRelationSerializer
                   specifiedType: const FullType(
                       BuiltList, const [const FullType(String)]))!
               as BuiltList<Object>);
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GCreatePostCommentInputSerializer
+    implements StructuredSerializer<GCreatePostCommentInput> {
+  @override
+  final Iterable<Type> types = const [
+    GCreatePostCommentInput,
+    _$GCreatePostCommentInput
+  ];
+  @override
+  final String wireName = 'GCreatePostCommentInput';
+
+  @override
+  Iterable<Object?> serialize(
+      Serializers serializers, GCreatePostCommentInput object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      'message',
+      serializers.serialize(object.message,
+          specifiedType: const FullType(String)),
+      'postId',
+      serializers.serialize(object.postId,
+          specifiedType: const FullType(String)),
+    ];
+
+    return result;
+  }
+
+  @override
+  GCreatePostCommentInput deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GCreatePostCommentInputBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case 'message':
+          result.message = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
+          break;
+        case 'postId':
+          result.postId = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
           break;
       }
     }
@@ -2029,6 +2084,104 @@ class GCommunityPostsRelationBuilder
       }
       rethrow;
     }
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GCreatePostCommentInput extends GCreatePostCommentInput {
+  @override
+  final String message;
+  @override
+  final String postId;
+
+  factory _$GCreatePostCommentInput(
+          [void Function(GCreatePostCommentInputBuilder)? updates]) =>
+      (new GCreatePostCommentInputBuilder()..update(updates)).build();
+
+  _$GCreatePostCommentInput._({required this.message, required this.postId})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        message, 'GCreatePostCommentInput', 'message');
+    BuiltValueNullFieldError.checkNotNull(
+        postId, 'GCreatePostCommentInput', 'postId');
+  }
+
+  @override
+  GCreatePostCommentInput rebuild(
+          void Function(GCreatePostCommentInputBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GCreatePostCommentInputBuilder toBuilder() =>
+      new GCreatePostCommentInputBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GCreatePostCommentInput &&
+        message == other.message &&
+        postId == other.postId;
+  }
+
+  @override
+  int get hashCode {
+    return $jf($jc($jc(0, message.hashCode), postId.hashCode));
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper('GCreatePostCommentInput')
+          ..add('message', message)
+          ..add('postId', postId))
+        .toString();
+  }
+}
+
+class GCreatePostCommentInputBuilder
+    implements
+        Builder<GCreatePostCommentInput, GCreatePostCommentInputBuilder> {
+  _$GCreatePostCommentInput? _$v;
+
+  String? _message;
+  String? get message => _$this._message;
+  set message(String? message) => _$this._message = message;
+
+  String? _postId;
+  String? get postId => _$this._postId;
+  set postId(String? postId) => _$this._postId = postId;
+
+  GCreatePostCommentInputBuilder();
+
+  GCreatePostCommentInputBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _message = $v.message;
+      _postId = $v.postId;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GCreatePostCommentInput other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GCreatePostCommentInput;
+  }
+
+  @override
+  void update(void Function(GCreatePostCommentInputBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  _$GCreatePostCommentInput build() {
+    final _$result = _$v ??
+        new _$GCreatePostCommentInput._(
+            message: BuiltValueNullFieldError.checkNotNull(
+                message, 'GCreatePostCommentInput', 'message'),
+            postId: BuiltValueNullFieldError.checkNotNull(
+                postId, 'GCreatePostCommentInput', 'postId'));
     replace(_$result);
     return _$result;
   }

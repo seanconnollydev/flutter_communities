@@ -1,8 +1,6 @@
-import 'package:ferry/ferry.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_communities/graphql/post_comment_fragment.data.gql.dart';
 import 'package:flutter_communities/providers/community_repository.dart';
-import 'package:flutter_communities/providers/ferry.dart';
 import 'package:flutter_communities/widgets/community_app_bar.dart';
 import 'package:flutter_communities/widgets/post_card.dart';
 import 'package:flutter_communities/widgets/query_stream.dart';
@@ -26,6 +24,14 @@ class PostScreen extends ConsumerWidget {
         return Scaffold(
           appBar: CommunityAppBar(_args.communityId),
           body: _PostScreenBody(resp, _args.communityId),
+          floatingActionButton: FloatingActionButton(
+            child: Icon(Icons.chat_bubble),
+            onPressed: () {
+              showDialog(
+                  context: context,
+                  builder: (_) => _AddCommentDialog(_args.postId));
+            },
+          ),
         );
       },
     );
@@ -58,9 +64,10 @@ class _PostScreenBody extends StatelessWidget {
               PostCard(post, _communityId),
               Divider(),
               Text(post.message),
+              Divider(),
             ]),
           ),
-          _PostComments(_resp),
+          _PostComments(post.G_id, _resp),
         ],
       ),
     );
@@ -68,9 +75,10 @@ class _PostScreenBody extends StatelessWidget {
 }
 
 class _PostComments extends StatefulWidget {
+  final String _postId;
   final GetPostResponse _resp;
 
-  const _PostComments(this._resp, {Key? key}) : super(key: key);
+  const _PostComments(this._postId, this._resp, {Key? key}) : super(key: key);
 
   @override
   __PostCommentsState createState() => __PostCommentsState();
@@ -79,46 +87,52 @@ class _PostComments extends StatefulWidget {
 class __PostCommentsState extends State<_PostComments> {
   final PagingController<String?, GPostCommentFragment> _pagingController =
       PagingController(firstPageKey: null);
-  late Client client;
+  late CommunityRepository _repository;
 
   @override
   void initState() {
-    client = context.read(ferryClientProvider);
+    _repository = context.read(communityRepositoryProvider);
 
-    // _request = GGetPostsByCommunityIdReq((b) => b
-    //   ..requestId = 'GGetPostsByCommunityIdReq'
-    //   ..vars.id = widget._communityId
-    //   ..vars.size = 10);
+    _pagingController.addPageRequestListener((pageKey) {
+      if (pageKey != null) {
+        _repository.getPostComments(widget._postId, pageKey).first.then(
+          (pageResp) {
+            final data = pageResp.data?.findPostByID?.comments.data;
+            if (data != null) {
+              _pagingController
+                  .appendLastPage(List<GPostCommentFragment>.from(data));
+            }
+          },
+        );
+      }
+    });
 
-    // _pagingController.addPageRequestListener((pageKey) {
-    //   if (pageKey != null) {
-    //     final nextReq = _request.rebuild((b) => b
-    //       ..vars.cursor = pageKey
-    //       ..updateResult = (previous, result) {
-    //         if (previous != null && result != null) {
-    //           return previous.rebuild((b) => b
-    //             ..getPostsByCommunityId.after =
-    //                 result.getPostsByCommunityId.after
-    //             ..getPostsByCommunityId.before =
-    //                 result.getPostsByCommunityId.before
-    //             ..getPostsByCommunityId
-    //                 .data
-    //                 .addAll(result.getPostsByCommunityId.data));
-    //         }
-    //         return result;
-    //       });
-
-    //     client.requestController.add(nextReq);
-    //   }
-    // });
-
-    _pagingController.value = PagingState(
-      nextPageKey: widget._resp?.data?.findPostByID?.comments.after,
-      error: widget._resp?.graphqlErrors,
-      itemList: widget._resp?.data?.findPostByID?.comments.data.toList(),
-    );
+    setFirstPage();
 
     super.initState();
+  }
+
+  @override
+  void didUpdateWidget(covariant _PostComments oldWidget) {
+    setFirstPage();
+    super.didUpdateWidget(oldWidget);
+  }
+
+  @override
+  void dispose() {
+    _pagingController.dispose();
+    super.dispose();
+  }
+
+  void setFirstPage() {
+    final data = widget._resp?.data?.findPostByID?.comments.data;
+    if (data != null) {
+      _pagingController.value = PagingState(
+        nextPageKey: widget._resp?.data?.findPostByID?.comments.after,
+        error: widget._resp?.graphqlErrors,
+        itemList: List<GPostCommentFragment>.from(data),
+      );
+    }
   }
 
   @override
@@ -128,8 +142,40 @@ class __PostCommentsState extends State<_PostComments> {
       builderDelegate: PagedChildBuilderDelegate<GPostCommentFragment>(
         itemBuilder: (context, item, index) => Container(
           margin: EdgeInsets.symmetric(vertical: 4),
-          child: Text(item.message),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 16),
+            child: Text(item.message),
+          ),
         ),
+      ),
+    );
+  }
+}
+
+class _AddCommentDialog extends StatefulWidget {
+  final String _postId;
+
+  const _AddCommentDialog(this._postId, {Key? key}) : super(key: key);
+
+  @override
+  _AddCommentDialogState createState() => _AddCommentDialogState();
+}
+
+class _AddCommentDialogState extends State<_AddCommentDialog> {
+  final textController = TextEditingController();
+
+  @override
+  Widget build(BuildContext context) {
+    return AlertDialog(
+      title: Text('Add a Comment'),
+      content: TextField(
+        autofocus: true,
+        controller: textController,
+        onSubmitted: (value) async {
+          final repository = context.read(communityRepositoryProvider);
+          await repository.createPostComment(widget._postId, value).first;
+          Navigator.of(context).pop();
+        },
       ),
     );
   }

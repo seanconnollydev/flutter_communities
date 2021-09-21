@@ -3,10 +3,14 @@ import 'package:flutter_communities/graphql/create_community.data.gql.dart';
 import 'package:flutter_communities/graphql/create_community.var.gql.dart';
 import 'package:flutter_communities/graphql/create_post.data.gql.dart';
 import 'package:flutter_communities/graphql/create_post.var.gql.dart';
+import 'package:flutter_communities/graphql/create_post_comment.data.gql.dart';
+import 'package:flutter_communities/graphql/create_post_comment.var.gql.dart';
 import 'package:flutter_communities/graphql/get_communities.data.gql.dart';
 import 'package:flutter_communities/graphql/get_communities.req.gql.dart';
 import 'package:flutter_communities/graphql/get_community_with_posts.data.gql.dart';
 import 'package:flutter_communities/graphql/get_community_with_posts.req.gql.dart';
+import 'package:flutter_communities/graphql/get_post.data.gql.dart';
+import 'package:flutter_communities/graphql/get_post.req.gql.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gql_http_link/gql_http_link.dart';
@@ -26,6 +30,7 @@ final ferryClientProvider = Provider<Client>((ref) {
     updateCacheHandlers: {
       'createCommunityHandler': createCommunityHandler,
       'createPostHandler': createPostHandler,
+      'createPostCommentHandler': createPostCommentHandler,
     },
   );
 });
@@ -73,6 +78,32 @@ UpdateCacheHandler<GCreatePostData, GCreatePostVars> createPostHandler = (
           request,
           communityWithPostsData
               .rebuild((b) => b..getPostsByCommunityId.data.insert(0, toAdd)));
+    }
+  }
+};
+
+UpdateCacheHandler<GCreatePostCommentData, GCreatePostCommentVars>
+    createPostCommentHandler = (
+  proxy,
+  response,
+) {
+  final request = GGetPostReq(
+    (b) => b
+      ..vars.id = response.operationRequest.vars.input.postId
+      ..requestId = 'GGetPostReq',
+  );
+  final postData = proxy.readQuery(request);
+  final newPostComment = response.data?.createPostComment;
+
+  if (postData != null && newPostComment != null) {
+    final toAdd = GGetPostData_findPostByID_comments_data.fromJson(
+        newPostComment.toJson());
+
+    if (toAdd != null) {
+      proxy.writeQuery(
+          request,
+          postData
+              .rebuild((b) => b..findPostByID.comments.data.insert(0, toAdd)));
     }
   }
 };
