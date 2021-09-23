@@ -94,12 +94,13 @@ class CommunityRepository {
       final data = _encoder.convert(resp.data);
 
       print('');
-      print('╔╣ Request  ║ ${request.operation.operationName}');
+      print(
+          '╔╣ Request  ║ ${request.operation.operationName} ║ ${resp.dataSource}');
       print('╠═══════ Vars ═══════');
-      print(' $vars');
+      print('$vars');
       print('╠═ Response');
       print('╠═══════ Data ═══════');
-      print(' $data');
+      print('$data');
 
       if (resp.graphqlErrors?.isNotEmpty == true) {
         print('║    Errors ║ ${resp.graphqlErrors?.length ?? ''}');

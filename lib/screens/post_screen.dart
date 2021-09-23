@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_communities/graphql/post_comment_fragment.data.gql.dart';
 import 'package:flutter_communities/providers/community_repository.dart';
+import 'package:flutter_communities/widgets/comment_card.dart';
 import 'package:flutter_communities/widgets/community_app_bar.dart';
 import 'package:flutter_communities/widgets/post_card.dart';
 import 'package:flutter_communities/widgets/query_stream.dart';
@@ -140,10 +141,7 @@ class __PostCommentsState extends State<_PostComments> {
       builderDelegate: PagedChildBuilderDelegate<GPostCommentFragment>(
         itemBuilder: (context, item, index) => Container(
           margin: EdgeInsets.symmetric(vertical: 4),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 16),
-            child: Text(item.message),
-          ),
+          child: CommentCard(item),
         ),
       ),
     );
