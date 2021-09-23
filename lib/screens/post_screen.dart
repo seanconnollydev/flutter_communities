@@ -18,22 +18,20 @@ class PostScreen extends ConsumerWidget {
   Widget build(BuildContext context, ScopedReader watch) {
     final repository = watch(communityRepositoryProvider);
 
-    return QueryStream<GetPostResponse>(
-      stream: repository.getPost(_args.postId),
-      builder: (context, resp, error) {
-        return Scaffold(
-          appBar: CommunityAppBar(_args.communityId),
-          body: _PostScreenBody(resp, _args.communityId),
-          floatingActionButton: FloatingActionButton(
-            child: Icon(Icons.chat_bubble),
-            onPressed: () {
-              showDialog(
-                  context: context,
-                  builder: (_) => _AddCommentDialog(_args.postId));
-            },
-          ),
-        );
-      },
+    return Scaffold(
+      appBar: CommunityAppBar(_args.communityId),
+      body: QueryStream<GetPostResponse>(
+          stream: repository.getPost(_args.postId),
+          builder: (context, resp, error) =>
+              _PostScreenBody(resp, _args.communityId)),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.chat_bubble),
+        onPressed: () {
+          showDialog(
+              context: context,
+              builder: (_) => _AddCommentDialog(_args.postId));
+        },
+      ),
     );
   }
 }
