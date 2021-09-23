@@ -72,10 +72,10 @@ import 'package:flutter_communities/graphql/get_post.data.gql.dart'
     show
         GGetPostData,
         GGetPostData_findPostByID,
-        GGetPostData_findPostByID_comments,
-        GGetPostData_findPostByID_comments_data,
-        GGetPostData_findPostByID_comments_data_creator,
-        GGetPostData_findPostByID_creator;
+        GGetPostData_findPostByID_creator,
+        GGetPostData_getPostCommentsByPostId,
+        GGetPostData_getPostCommentsByPostId_data,
+        GGetPostData_getPostCommentsByPostId_data_creator;
 import 'package:flutter_communities/graphql/get_post.req.gql.dart'
     show GGetPostReq;
 import 'package:flutter_communities/graphql/get_post.var.gql.dart'
@@ -83,10 +83,9 @@ import 'package:flutter_communities/graphql/get_post.var.gql.dart'
 import 'package:flutter_communities/graphql/get_post_comments.data.gql.dart'
     show
         GGetPostCommentsData,
-        GGetPostCommentsData_findPostByID,
-        GGetPostCommentsData_findPostByID_comments,
-        GGetPostCommentsData_findPostByID_comments_data,
-        GGetPostCommentsData_findPostByID_comments_data_creator;
+        GGetPostCommentsData_getPostCommentsByPostId,
+        GGetPostCommentsData_getPostCommentsByPostId_data,
+        GGetPostCommentsData_getPostCommentsByPostId_data_creator;
 import 'package:flutter_communities/graphql/get_post_comments.req.gql.dart'
     show GGetPostCommentsReq;
 import 'package:flutter_communities/graphql/get_post_comments.var.gql.dart'
@@ -196,18 +195,17 @@ final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   GGetCommunityReq,
   GGetCommunityVars,
   GGetPostCommentsData,
-  GGetPostCommentsData_findPostByID,
-  GGetPostCommentsData_findPostByID_comments,
-  GGetPostCommentsData_findPostByID_comments_data,
-  GGetPostCommentsData_findPostByID_comments_data_creator,
+  GGetPostCommentsData_getPostCommentsByPostId,
+  GGetPostCommentsData_getPostCommentsByPostId_data,
+  GGetPostCommentsData_getPostCommentsByPostId_data_creator,
   GGetPostCommentsReq,
   GGetPostCommentsVars,
   GGetPostData,
   GGetPostData_findPostByID,
-  GGetPostData_findPostByID_comments,
-  GGetPostData_findPostByID_comments_data,
-  GGetPostData_findPostByID_comments_data_creator,
   GGetPostData_findPostByID_creator,
+  GGetPostData_getPostCommentsByPostId,
+  GGetPostData_getPostCommentsByPostId_data,
+  GGetPostData_getPostCommentsByPostId_data_creator,
   GGetPostReq,
   GGetPostVars,
   GGetPostsByCommunityIdData,

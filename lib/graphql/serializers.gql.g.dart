@@ -49,18 +49,18 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(GGetCommunityReq.serializer)
       ..add(GGetCommunityVars.serializer)
       ..add(GGetPostCommentsData.serializer)
-      ..add(GGetPostCommentsData_findPostByID.serializer)
-      ..add(GGetPostCommentsData_findPostByID_comments.serializer)
-      ..add(GGetPostCommentsData_findPostByID_comments_data.serializer)
-      ..add(GGetPostCommentsData_findPostByID_comments_data_creator.serializer)
+      ..add(GGetPostCommentsData_getPostCommentsByPostId.serializer)
+      ..add(GGetPostCommentsData_getPostCommentsByPostId_data.serializer)
+      ..add(
+          GGetPostCommentsData_getPostCommentsByPostId_data_creator.serializer)
       ..add(GGetPostCommentsReq.serializer)
       ..add(GGetPostCommentsVars.serializer)
       ..add(GGetPostData.serializer)
       ..add(GGetPostData_findPostByID.serializer)
-      ..add(GGetPostData_findPostByID_comments.serializer)
-      ..add(GGetPostData_findPostByID_comments_data.serializer)
-      ..add(GGetPostData_findPostByID_comments_data_creator.serializer)
       ..add(GGetPostData_findPostByID_creator.serializer)
+      ..add(GGetPostData_getPostCommentsByPostId.serializer)
+      ..add(GGetPostData_getPostCommentsByPostId_data.serializer)
+      ..add(GGetPostData_getPostCommentsByPostId_data_creator.serializer)
       ..add(GGetPostReq.serializer)
       ..add(GGetPostVars.serializer)
       ..add(GGetPostsByCommunityIdData.serializer)
@@ -120,19 +120,17 @@ Serializers _$serializers = (new Serializers().toBuilder()
           () => new ListBuilder<GGetCommunitiesData_communities_data>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [
-            const FullType(GGetPostCommentsData_findPostByID_comments_data)
+            const FullType(GGetPostCommentsData_getPostCommentsByPostId_data)
           ]),
           () => new ListBuilder<
-              GGetPostCommentsData_findPostByID_comments_data>())
+              GGetPostCommentsData_getPostCommentsByPostId_data>())
       ..addBuilderFactory(
           const FullType(BuiltList,
-              const [const FullType(GGetPostData_findPostByID_comments_data)]),
-          () => new ListBuilder<GGetPostData_findPostByID_comments_data>())
+              const [const FullType(GGetPostData_getPostCommentsByPostId_data)]),
+          () => new ListBuilder<GGetPostData_getPostCommentsByPostId_data>())
       ..addBuilderFactory(
-          const FullType(BuiltList, const [
-            const FullType(
-                GGetPostsByCommunityIdData_getPostsByCommunityId_data)
-          ]),
+          const FullType(BuiltList,
+              const [const FullType(GGetPostsByCommunityIdData_getPostsByCommunityId_data)]),
           () => new ListBuilder<
               GGetPostsByCommunityIdData_getPostsByCommunityId_data>())
       ..addBuilderFactory(
@@ -183,12 +181,8 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(GPostVoteInput)]),
           () => new ListBuilder<GPostVoteInput>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(String)]),
-          () => new ListBuilder<String>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(String)]),
-          () => new ListBuilder<String>()))
+      ..addBuilderFactory(const FullType(BuiltList, const [const FullType(String)]), () => new ListBuilder<String>())
+      ..addBuilderFactory(const FullType(BuiltList, const [const FullType(String)]), () => new ListBuilder<String>()))
     .build();
 
 // ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,lines_longer_than_80_chars,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new

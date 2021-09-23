@@ -24,46 +24,43 @@ const GetPostComments = _i1.OperationDefinitionNode(
     directives: [],
     selectionSet: _i1.SelectionSetNode(selections: [
       _i1.FieldNode(
-          name: _i1.NameNode(value: 'findPostByID'),
+          name: _i1.NameNode(value: 'getPostCommentsByPostId'),
           alias: null,
           arguments: [
             _i1.ArgumentNode(
                 name: _i1.NameNode(value: 'id'),
-                value: _i1.VariableNode(name: _i1.NameNode(value: 'postId')))
+                value: _i1.VariableNode(name: _i1.NameNode(value: 'postId'))),
+            _i1.ArgumentNode(
+                name: _i1.NameNode(value: '_size'),
+                value: _i1.IntValueNode(value: '10')),
+            _i1.ArgumentNode(
+                name: _i1.NameNode(value: '_cursor'),
+                value: _i1.VariableNode(name: _i1.NameNode(value: 'cursor')))
           ],
           directives: [],
           selectionSet: _i1.SelectionSetNode(selections: [
             _i1.FieldNode(
-                name: _i1.NameNode(value: '_id'),
+                name: _i1.NameNode(value: 'data'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: _i1.SelectionSetNode(selections: [
+                  _i1.FragmentSpreadNode(
+                      name: _i1.NameNode(value: 'PostCommentFragment'),
+                      directives: [])
+                ])),
+            _i1.FieldNode(
+                name: _i1.NameNode(value: 'after'),
                 alias: null,
                 arguments: [],
                 directives: [],
                 selectionSet: null),
             _i1.FieldNode(
-                name: _i1.NameNode(value: 'comments'),
+                name: _i1.NameNode(value: 'before'),
                 alias: null,
-                arguments: [
-                  _i1.ArgumentNode(
-                      name: _i1.NameNode(value: '_size'),
-                      value: _i1.IntValueNode(value: '10')),
-                  _i1.ArgumentNode(
-                      name: _i1.NameNode(value: '_cursor'),
-                      value:
-                          _i1.VariableNode(name: _i1.NameNode(value: 'cursor')))
-                ],
+                arguments: [],
                 directives: [],
-                selectionSet: _i1.SelectionSetNode(selections: [
-                  _i1.FieldNode(
-                      name: _i1.NameNode(value: 'data'),
-                      alias: null,
-                      arguments: [],
-                      directives: [],
-                      selectionSet: _i1.SelectionSetNode(selections: [
-                        _i1.FragmentSpreadNode(
-                            name: _i1.NameNode(value: 'PostCommentFragment'),
-                            directives: [])
-                      ]))
-                ]))
+                selectionSet: null)
           ]))
     ]));
 const document =

@@ -4,12 +4,13 @@
 query GetPost($id: ID!) {
   findPostByID(id: $id) {
     ...PostFragment
-    comments(_size: 10) {
-      data {
-        ...PostCommentFragment
-      }
-      after
-      before
+  }
+
+  getPostCommentsByPostId(id: $id, _size: 10) {
+    data {
+      ...PostCommentFragment
     }
+    after
+    before
   }
 }

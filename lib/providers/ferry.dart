@@ -96,14 +96,14 @@ UpdateCacheHandler<GCreatePostCommentData, GCreatePostCommentVars>
   final newPostComment = response.data?.createPostComment;
 
   if (postData != null && newPostComment != null) {
-    final toAdd = GGetPostData_findPostByID_comments_data.fromJson(
+    final toAdd = GGetPostData_getPostCommentsByPostId_data.fromJson(
         newPostComment.toJson());
 
     if (toAdd != null) {
       proxy.writeQuery(
           request,
-          postData
-              .rebuild((b) => b..findPostByID.comments.data.insert(0, toAdd)));
+          postData.rebuild(
+              (b) => b..getPostCommentsByPostId.data.insert(0, toAdd)));
     }
   }
 };

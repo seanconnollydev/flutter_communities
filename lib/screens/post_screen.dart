@@ -96,7 +96,7 @@ class __PostCommentsState extends State<_PostComments> {
       if (pageKey != null) {
         _repository.getPostComments(widget._postId, pageKey).first.then(
           (pageResp) {
-            final data = pageResp.data?.findPostByID?.comments.data;
+            final data = pageResp.data?.getPostCommentsByPostId.data;
             if (data != null) {
               _pagingController
                   .appendLastPage(List<GPostCommentFragment>.from(data));
@@ -124,10 +124,10 @@ class __PostCommentsState extends State<_PostComments> {
   }
 
   void setFirstPage() {
-    final data = widget._resp?.data?.findPostByID?.comments.data;
+    final data = widget._resp?.data?.getPostCommentsByPostId.data;
     if (data != null) {
       _pagingController.value = PagingState(
-        nextPageKey: widget._resp?.data?.findPostByID?.comments.after,
+        nextPageKey: widget._resp?.data?.getPostCommentsByPostId.after,
         error: widget._resp?.graphqlErrors,
         itemList: List<GPostCommentFragment>.from(data),
       );

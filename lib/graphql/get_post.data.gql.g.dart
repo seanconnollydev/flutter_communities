@@ -13,15 +13,15 @@ Serializer<GGetPostData_findPostByID> _$gGetPostDataFindPostByIDSerializer =
 Serializer<GGetPostData_findPostByID_creator>
     _$gGetPostDataFindPostByIDCreatorSerializer =
     new _$GGetPostData_findPostByID_creatorSerializer();
-Serializer<GGetPostData_findPostByID_comments>
-    _$gGetPostDataFindPostByIDCommentsSerializer =
-    new _$GGetPostData_findPostByID_commentsSerializer();
-Serializer<GGetPostData_findPostByID_comments_data>
-    _$gGetPostDataFindPostByIDCommentsDataSerializer =
-    new _$GGetPostData_findPostByID_comments_dataSerializer();
-Serializer<GGetPostData_findPostByID_comments_data_creator>
-    _$gGetPostDataFindPostByIDCommentsDataCreatorSerializer =
-    new _$GGetPostData_findPostByID_comments_data_creatorSerializer();
+Serializer<GGetPostData_getPostCommentsByPostId>
+    _$gGetPostDataGetPostCommentsByPostIdSerializer =
+    new _$GGetPostData_getPostCommentsByPostIdSerializer();
+Serializer<GGetPostData_getPostCommentsByPostId_data>
+    _$gGetPostDataGetPostCommentsByPostIdDataSerializer =
+    new _$GGetPostData_getPostCommentsByPostId_dataSerializer();
+Serializer<GGetPostData_getPostCommentsByPostId_data_creator>
+    _$gGetPostDataGetPostCommentsByPostIdDataCreatorSerializer =
+    new _$GGetPostData_getPostCommentsByPostId_data_creatorSerializer();
 
 class _$GGetPostDataSerializer implements StructuredSerializer<GGetPostData> {
   @override
@@ -36,6 +36,9 @@ class _$GGetPostDataSerializer implements StructuredSerializer<GGetPostData> {
       '__typename',
       serializers.serialize(object.G__typename,
           specifiedType: const FullType(String)),
+      'getPostCommentsByPostId',
+      serializers.serialize(object.getPostCommentsByPostId,
+          specifiedType: const FullType(GGetPostData_getPostCommentsByPostId)),
     ];
     Object? value;
     value = object.findPostByID;
@@ -68,6 +71,12 @@ class _$GGetPostDataSerializer implements StructuredSerializer<GGetPostData> {
           result.findPostByID.replace(serializers.deserialize(value,
                   specifiedType: const FullType(GGetPostData_findPostByID))!
               as GGetPostData_findPostByID);
+          break;
+        case 'getPostCommentsByPostId':
+          result.getPostCommentsByPostId.replace(serializers.deserialize(value,
+                  specifiedType:
+                      const FullType(GGetPostData_getPostCommentsByPostId))!
+              as GGetPostData_getPostCommentsByPostId);
           break;
       }
     }
@@ -110,9 +119,6 @@ class _$GGetPostData_findPostByIDSerializer
       'creator',
       serializers.serialize(object.creator,
           specifiedType: const FullType(GGetPostData_findPostByID_creator)),
-      'comments',
-      serializers.serialize(object.comments,
-          specifiedType: const FullType(GGetPostData_findPostByID_comments)),
     ];
 
     return result;
@@ -159,12 +165,6 @@ class _$GGetPostData_findPostByIDSerializer
                   specifiedType:
                       const FullType(GGetPostData_findPostByID_creator))!
               as GGetPostData_findPostByID_creator);
-          break;
-        case 'comments':
-          result.comments.replace(serializers.deserialize(value,
-                  specifiedType:
-                      const FullType(GGetPostData_findPostByID_comments))!
-              as GGetPostData_findPostByID_comments);
           break;
       }
     }
@@ -232,19 +232,19 @@ class _$GGetPostData_findPostByID_creatorSerializer
   }
 }
 
-class _$GGetPostData_findPostByID_commentsSerializer
-    implements StructuredSerializer<GGetPostData_findPostByID_comments> {
+class _$GGetPostData_getPostCommentsByPostIdSerializer
+    implements StructuredSerializer<GGetPostData_getPostCommentsByPostId> {
   @override
   final Iterable<Type> types = const [
-    GGetPostData_findPostByID_comments,
-    _$GGetPostData_findPostByID_comments
+    GGetPostData_getPostCommentsByPostId,
+    _$GGetPostData_getPostCommentsByPostId
   ];
   @override
-  final String wireName = 'GGetPostData_findPostByID_comments';
+  final String wireName = 'GGetPostData_getPostCommentsByPostId';
 
   @override
   Iterable<Object?> serialize(
-      Serializers serializers, GGetPostData_findPostByID_comments object,
+      Serializers serializers, GGetPostData_getPostCommentsByPostId object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object?>[
       '__typename',
@@ -252,8 +252,9 @@ class _$GGetPostData_findPostByID_commentsSerializer
           specifiedType: const FullType(String)),
       'data',
       serializers.serialize(object.data,
-          specifiedType: const FullType(BuiltList,
-              const [const FullType(GGetPostData_findPostByID_comments_data)])),
+          specifiedType: const FullType(BuiltList, const [
+            const FullType(GGetPostData_getPostCommentsByPostId_data)
+          ])),
     ];
     Object? value;
     value = object.after;
@@ -274,10 +275,10 @@ class _$GGetPostData_findPostByID_commentsSerializer
   }
 
   @override
-  GGetPostData_findPostByID_comments deserialize(
+  GGetPostData_getPostCommentsByPostId deserialize(
       Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = new GGetPostData_findPostByID_commentsBuilder();
+    final result = new GGetPostData_getPostCommentsByPostIdBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -292,7 +293,7 @@ class _$GGetPostData_findPostByID_commentsSerializer
         case 'data':
           result.data.replace(serializers.deserialize(value,
               specifiedType: const FullType(BuiltList, const [
-                const FullType(GGetPostData_findPostByID_comments_data)
+                const FullType(GGetPostData_getPostCommentsByPostId_data)
               ]))! as BuiltList<Object>);
           break;
         case 'after':
@@ -310,19 +311,19 @@ class _$GGetPostData_findPostByID_commentsSerializer
   }
 }
 
-class _$GGetPostData_findPostByID_comments_dataSerializer
-    implements StructuredSerializer<GGetPostData_findPostByID_comments_data> {
+class _$GGetPostData_getPostCommentsByPostId_dataSerializer
+    implements StructuredSerializer<GGetPostData_getPostCommentsByPostId_data> {
   @override
   final Iterable<Type> types = const [
-    GGetPostData_findPostByID_comments_data,
-    _$GGetPostData_findPostByID_comments_data
+    GGetPostData_getPostCommentsByPostId_data,
+    _$GGetPostData_getPostCommentsByPostId_data
   ];
   @override
-  final String wireName = 'GGetPostData_findPostByID_comments_data';
+  final String wireName = 'GGetPostData_getPostCommentsByPostId_data';
 
   @override
   Iterable<Object?> serialize(
-      Serializers serializers, GGetPostData_findPostByID_comments_data object,
+      Serializers serializers, GGetPostData_getPostCommentsByPostId_data object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object?>[
       '__typename',
@@ -332,8 +333,8 @@ class _$GGetPostData_findPostByID_comments_dataSerializer
       serializers.serialize(object.G_id, specifiedType: const FullType(String)),
       'creator',
       serializers.serialize(object.creator,
-          specifiedType:
-              const FullType(GGetPostData_findPostByID_comments_data_creator)),
+          specifiedType: const FullType(
+              GGetPostData_getPostCommentsByPostId_data_creator)),
       'message',
       serializers.serialize(object.message,
           specifiedType: const FullType(String)),
@@ -343,10 +344,10 @@ class _$GGetPostData_findPostByID_comments_dataSerializer
   }
 
   @override
-  GGetPostData_findPostByID_comments_data deserialize(
+  GGetPostData_getPostCommentsByPostId_data deserialize(
       Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = new GGetPostData_findPostByID_comments_dataBuilder();
+    final result = new GGetPostData_getPostCommentsByPostId_dataBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -365,8 +366,8 @@ class _$GGetPostData_findPostByID_comments_dataSerializer
         case 'creator':
           result.creator.replace(serializers.deserialize(value,
                   specifiedType: const FullType(
-                      GGetPostData_findPostByID_comments_data_creator))!
-              as GGetPostData_findPostByID_comments_data_creator);
+                      GGetPostData_getPostCommentsByPostId_data_creator))!
+              as GGetPostData_getPostCommentsByPostId_data_creator);
           break;
         case 'message':
           result.message = serializers.deserialize(value,
@@ -379,20 +380,21 @@ class _$GGetPostData_findPostByID_comments_dataSerializer
   }
 }
 
-class _$GGetPostData_findPostByID_comments_data_creatorSerializer
+class _$GGetPostData_getPostCommentsByPostId_data_creatorSerializer
     implements
-        StructuredSerializer<GGetPostData_findPostByID_comments_data_creator> {
+        StructuredSerializer<
+            GGetPostData_getPostCommentsByPostId_data_creator> {
   @override
   final Iterable<Type> types = const [
-    GGetPostData_findPostByID_comments_data_creator,
-    _$GGetPostData_findPostByID_comments_data_creator
+    GGetPostData_getPostCommentsByPostId_data_creator,
+    _$GGetPostData_getPostCommentsByPostId_data_creator
   ];
   @override
-  final String wireName = 'GGetPostData_findPostByID_comments_data_creator';
+  final String wireName = 'GGetPostData_getPostCommentsByPostId_data_creator';
 
   @override
   Iterable<Object?> serialize(Serializers serializers,
-      GGetPostData_findPostByID_comments_data_creator object,
+      GGetPostData_getPostCommentsByPostId_data_creator object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object?>[
       '__typename',
@@ -409,10 +411,11 @@ class _$GGetPostData_findPostByID_comments_data_creatorSerializer
   }
 
   @override
-  GGetPostData_findPostByID_comments_data_creator deserialize(
+  GGetPostData_getPostCommentsByPostId_data_creator deserialize(
       Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = new GGetPostData_findPostByID_comments_data_creatorBuilder();
+    final result =
+        new GGetPostData_getPostCommentsByPostId_data_creatorBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -444,13 +447,21 @@ class _$GGetPostData extends GGetPostData {
   final String G__typename;
   @override
   final GGetPostData_findPostByID? findPostByID;
+  @override
+  final GGetPostData_getPostCommentsByPostId getPostCommentsByPostId;
 
   factory _$GGetPostData([void Function(GGetPostDataBuilder)? updates]) =>
       (new GGetPostDataBuilder()..update(updates)).build();
 
-  _$GGetPostData._({required this.G__typename, this.findPostByID}) : super._() {
+  _$GGetPostData._(
+      {required this.G__typename,
+      this.findPostByID,
+      required this.getPostCommentsByPostId})
+      : super._() {
     BuiltValueNullFieldError.checkNotNull(
         G__typename, 'GGetPostData', 'G__typename');
+    BuiltValueNullFieldError.checkNotNull(
+        getPostCommentsByPostId, 'GGetPostData', 'getPostCommentsByPostId');
   }
 
   @override
@@ -465,19 +476,22 @@ class _$GGetPostData extends GGetPostData {
     if (identical(other, this)) return true;
     return other is GGetPostData &&
         G__typename == other.G__typename &&
-        findPostByID == other.findPostByID;
+        findPostByID == other.findPostByID &&
+        getPostCommentsByPostId == other.getPostCommentsByPostId;
   }
 
   @override
   int get hashCode {
-    return $jf($jc($jc(0, G__typename.hashCode), findPostByID.hashCode));
+    return $jf($jc($jc($jc(0, G__typename.hashCode), findPostByID.hashCode),
+        getPostCommentsByPostId.hashCode));
   }
 
   @override
   String toString() {
     return (newBuiltValueToStringHelper('GGetPostData')
           ..add('G__typename', G__typename)
-          ..add('findPostByID', findPostByID))
+          ..add('findPostByID', findPostByID)
+          ..add('getPostCommentsByPostId', getPostCommentsByPostId))
         .toString();
   }
 }
@@ -496,6 +510,15 @@ class GGetPostDataBuilder
   set findPostByID(GGetPostData_findPostByIDBuilder? findPostByID) =>
       _$this._findPostByID = findPostByID;
 
+  GGetPostData_getPostCommentsByPostIdBuilder? _getPostCommentsByPostId;
+  GGetPostData_getPostCommentsByPostIdBuilder get getPostCommentsByPostId =>
+      _$this._getPostCommentsByPostId ??=
+          new GGetPostData_getPostCommentsByPostIdBuilder();
+  set getPostCommentsByPostId(
+          GGetPostData_getPostCommentsByPostIdBuilder?
+              getPostCommentsByPostId) =>
+      _$this._getPostCommentsByPostId = getPostCommentsByPostId;
+
   GGetPostDataBuilder() {
     GGetPostData._initializeBuilder(this);
   }
@@ -505,6 +528,7 @@ class GGetPostDataBuilder
     if ($v != null) {
       _G__typename = $v.G__typename;
       _findPostByID = $v.findPostByID?.toBuilder();
+      _getPostCommentsByPostId = $v.getPostCommentsByPostId.toBuilder();
       _$v = null;
     }
     return this;
@@ -529,12 +553,15 @@ class GGetPostDataBuilder
           new _$GGetPostData._(
               G__typename: BuiltValueNullFieldError.checkNotNull(
                   G__typename, 'GGetPostData', 'G__typename'),
-              findPostByID: _findPostByID?.build());
+              findPostByID: _findPostByID?.build(),
+              getPostCommentsByPostId: getPostCommentsByPostId.build());
     } catch (_) {
       late String _$failedField;
       try {
         _$failedField = 'findPostByID';
         _findPostByID?.build();
+        _$failedField = 'getPostCommentsByPostId';
+        getPostCommentsByPostId.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             'GGetPostData', _$failedField, e.toString());
@@ -561,8 +588,6 @@ class _$GGetPostData_findPostByID extends GGetPostData_findPostByID {
   final int downVotes;
   @override
   final GGetPostData_findPostByID_creator creator;
-  @override
-  final GGetPostData_findPostByID_comments comments;
 
   factory _$GGetPostData_findPostByID(
           [void Function(GGetPostData_findPostByIDBuilder)? updates]) =>
@@ -575,8 +600,7 @@ class _$GGetPostData_findPostByID extends GGetPostData_findPostByID {
       required this.message,
       required this.upVotes,
       required this.downVotes,
-      required this.creator,
-      required this.comments})
+      required this.creator})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         G__typename, 'GGetPostData_findPostByID', 'G__typename');
@@ -592,8 +616,6 @@ class _$GGetPostData_findPostByID extends GGetPostData_findPostByID {
         downVotes, 'GGetPostData_findPostByID', 'downVotes');
     BuiltValueNullFieldError.checkNotNull(
         creator, 'GGetPostData_findPostByID', 'creator');
-    BuiltValueNullFieldError.checkNotNull(
-        comments, 'GGetPostData_findPostByID', 'comments');
   }
 
   @override
@@ -615,8 +637,7 @@ class _$GGetPostData_findPostByID extends GGetPostData_findPostByID {
         message == other.message &&
         upVotes == other.upVotes &&
         downVotes == other.downVotes &&
-        creator == other.creator &&
-        comments == other.comments;
+        creator == other.creator;
   }
 
   @override
@@ -625,14 +646,12 @@ class _$GGetPostData_findPostByID extends GGetPostData_findPostByID {
         $jc(
             $jc(
                 $jc(
-                    $jc(
-                        $jc($jc($jc(0, G__typename.hashCode), G_id.hashCode),
-                            title.hashCode),
-                        message.hashCode),
-                    upVotes.hashCode),
-                downVotes.hashCode),
-            creator.hashCode),
-        comments.hashCode));
+                    $jc($jc($jc(0, G__typename.hashCode), G_id.hashCode),
+                        title.hashCode),
+                    message.hashCode),
+                upVotes.hashCode),
+            downVotes.hashCode),
+        creator.hashCode));
   }
 
   @override
@@ -644,8 +663,7 @@ class _$GGetPostData_findPostByID extends GGetPostData_findPostByID {
           ..add('message', message)
           ..add('upVotes', upVotes)
           ..add('downVotes', downVotes)
-          ..add('creator', creator)
-          ..add('comments', comments))
+          ..add('creator', creator))
         .toString();
   }
 }
@@ -685,12 +703,6 @@ class GGetPostData_findPostByIDBuilder
   set creator(GGetPostData_findPostByID_creatorBuilder? creator) =>
       _$this._creator = creator;
 
-  GGetPostData_findPostByID_commentsBuilder? _comments;
-  GGetPostData_findPostByID_commentsBuilder get comments =>
-      _$this._comments ??= new GGetPostData_findPostByID_commentsBuilder();
-  set comments(GGetPostData_findPostByID_commentsBuilder? comments) =>
-      _$this._comments = comments;
-
   GGetPostData_findPostByIDBuilder() {
     GGetPostData_findPostByID._initializeBuilder(this);
   }
@@ -705,7 +717,6 @@ class GGetPostData_findPostByIDBuilder
       _upVotes = $v.upVotes;
       _downVotes = $v.downVotes;
       _creator = $v.creator.toBuilder();
-      _comments = $v.comments.toBuilder();
       _$v = null;
     }
     return this;
@@ -740,15 +751,12 @@ class GGetPostData_findPostByIDBuilder
                   upVotes, 'GGetPostData_findPostByID', 'upVotes'),
               downVotes: BuiltValueNullFieldError.checkNotNull(
                   downVotes, 'GGetPostData_findPostByID', 'downVotes'),
-              creator: creator.build(),
-              comments: comments.build());
+              creator: creator.build());
     } catch (_) {
       late String _$failedField;
       try {
         _$failedField = 'creator';
         creator.build();
-        _$failedField = 'comments';
-        comments.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             'GGetPostData_findPostByID', _$failedField, e.toString());
@@ -878,45 +886,45 @@ class GGetPostData_findPostByID_creatorBuilder
   }
 }
 
-class _$GGetPostData_findPostByID_comments
-    extends GGetPostData_findPostByID_comments {
+class _$GGetPostData_getPostCommentsByPostId
+    extends GGetPostData_getPostCommentsByPostId {
   @override
   final String G__typename;
   @override
-  final BuiltList<GGetPostData_findPostByID_comments_data> data;
+  final BuiltList<GGetPostData_getPostCommentsByPostId_data> data;
   @override
   final String? after;
   @override
   final String? before;
 
-  factory _$GGetPostData_findPostByID_comments(
-          [void Function(GGetPostData_findPostByID_commentsBuilder)?
+  factory _$GGetPostData_getPostCommentsByPostId(
+          [void Function(GGetPostData_getPostCommentsByPostIdBuilder)?
               updates]) =>
-      (new GGetPostData_findPostByID_commentsBuilder()..update(updates))
+      (new GGetPostData_getPostCommentsByPostIdBuilder()..update(updates))
           .build();
 
-  _$GGetPostData_findPostByID_comments._(
+  _$GGetPostData_getPostCommentsByPostId._(
       {required this.G__typename, required this.data, this.after, this.before})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
-        G__typename, 'GGetPostData_findPostByID_comments', 'G__typename');
+        G__typename, 'GGetPostData_getPostCommentsByPostId', 'G__typename');
     BuiltValueNullFieldError.checkNotNull(
-        data, 'GGetPostData_findPostByID_comments', 'data');
+        data, 'GGetPostData_getPostCommentsByPostId', 'data');
   }
 
   @override
-  GGetPostData_findPostByID_comments rebuild(
-          void Function(GGetPostData_findPostByID_commentsBuilder) updates) =>
+  GGetPostData_getPostCommentsByPostId rebuild(
+          void Function(GGetPostData_getPostCommentsByPostIdBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  GGetPostData_findPostByID_commentsBuilder toBuilder() =>
-      new GGetPostData_findPostByID_commentsBuilder()..replace(this);
+  GGetPostData_getPostCommentsByPostIdBuilder toBuilder() =>
+      new GGetPostData_getPostCommentsByPostIdBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is GGetPostData_findPostByID_comments &&
+    return other is GGetPostData_getPostCommentsByPostId &&
         G__typename == other.G__typename &&
         data == other.data &&
         after == other.after &&
@@ -932,7 +940,7 @@ class _$GGetPostData_findPostByID_comments
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('GGetPostData_findPostByID_comments')
+    return (newBuiltValueToStringHelper('GGetPostData_getPostCommentsByPostId')
           ..add('G__typename', G__typename)
           ..add('data', data)
           ..add('after', after)
@@ -941,21 +949,21 @@ class _$GGetPostData_findPostByID_comments
   }
 }
 
-class GGetPostData_findPostByID_commentsBuilder
+class GGetPostData_getPostCommentsByPostIdBuilder
     implements
-        Builder<GGetPostData_findPostByID_comments,
-            GGetPostData_findPostByID_commentsBuilder> {
-  _$GGetPostData_findPostByID_comments? _$v;
+        Builder<GGetPostData_getPostCommentsByPostId,
+            GGetPostData_getPostCommentsByPostIdBuilder> {
+  _$GGetPostData_getPostCommentsByPostId? _$v;
 
   String? _G__typename;
   String? get G__typename => _$this._G__typename;
   set G__typename(String? G__typename) => _$this._G__typename = G__typename;
 
-  ListBuilder<GGetPostData_findPostByID_comments_data>? _data;
-  ListBuilder<GGetPostData_findPostByID_comments_data> get data =>
+  ListBuilder<GGetPostData_getPostCommentsByPostId_data>? _data;
+  ListBuilder<GGetPostData_getPostCommentsByPostId_data> get data =>
       _$this._data ??=
-          new ListBuilder<GGetPostData_findPostByID_comments_data>();
-  set data(ListBuilder<GGetPostData_findPostByID_comments_data>? data) =>
+          new ListBuilder<GGetPostData_getPostCommentsByPostId_data>();
+  set data(ListBuilder<GGetPostData_getPostCommentsByPostId_data>? data) =>
       _$this._data = data;
 
   String? _after;
@@ -966,11 +974,11 @@ class GGetPostData_findPostByID_commentsBuilder
   String? get before => _$this._before;
   set before(String? before) => _$this._before = before;
 
-  GGetPostData_findPostByID_commentsBuilder() {
-    GGetPostData_findPostByID_comments._initializeBuilder(this);
+  GGetPostData_getPostCommentsByPostIdBuilder() {
+    GGetPostData_getPostCommentsByPostId._initializeBuilder(this);
   }
 
-  GGetPostData_findPostByID_commentsBuilder get _$this {
+  GGetPostData_getPostCommentsByPostIdBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
       _G__typename = $v.G__typename;
@@ -983,25 +991,25 @@ class GGetPostData_findPostByID_commentsBuilder
   }
 
   @override
-  void replace(GGetPostData_findPostByID_comments other) {
+  void replace(GGetPostData_getPostCommentsByPostId other) {
     ArgumentError.checkNotNull(other, 'other');
-    _$v = other as _$GGetPostData_findPostByID_comments;
+    _$v = other as _$GGetPostData_getPostCommentsByPostId;
   }
 
   @override
   void update(
-      void Function(GGetPostData_findPostByID_commentsBuilder)? updates) {
+      void Function(GGetPostData_getPostCommentsByPostIdBuilder)? updates) {
     if (updates != null) updates(this);
   }
 
   @override
-  _$GGetPostData_findPostByID_comments build() {
-    _$GGetPostData_findPostByID_comments _$result;
+  _$GGetPostData_getPostCommentsByPostId build() {
+    _$GGetPostData_getPostCommentsByPostId _$result;
     try {
       _$result = _$v ??
-          new _$GGetPostData_findPostByID_comments._(
+          new _$GGetPostData_getPostCommentsByPostId._(
               G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
-                  'GGetPostData_findPostByID_comments', 'G__typename'),
+                  'GGetPostData_getPostCommentsByPostId', 'G__typename'),
               data: data.build(),
               after: after,
               before: before);
@@ -1012,7 +1020,9 @@ class GGetPostData_findPostByID_commentsBuilder
         data.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
-            'GGetPostData_findPostByID_comments', _$failedField, e.toString());
+            'GGetPostData_getPostCommentsByPostId',
+            _$failedField,
+            e.toString());
       }
       rethrow;
     }
@@ -1021,53 +1031,53 @@ class GGetPostData_findPostByID_commentsBuilder
   }
 }
 
-class _$GGetPostData_findPostByID_comments_data
-    extends GGetPostData_findPostByID_comments_data {
+class _$GGetPostData_getPostCommentsByPostId_data
+    extends GGetPostData_getPostCommentsByPostId_data {
   @override
   final String G__typename;
   @override
   final String G_id;
   @override
-  final GGetPostData_findPostByID_comments_data_creator creator;
+  final GGetPostData_getPostCommentsByPostId_data_creator creator;
   @override
   final String message;
 
-  factory _$GGetPostData_findPostByID_comments_data(
-          [void Function(GGetPostData_findPostByID_comments_dataBuilder)?
+  factory _$GGetPostData_getPostCommentsByPostId_data(
+          [void Function(GGetPostData_getPostCommentsByPostId_dataBuilder)?
               updates]) =>
-      (new GGetPostData_findPostByID_comments_dataBuilder()..update(updates))
+      (new GGetPostData_getPostCommentsByPostId_dataBuilder()..update(updates))
           .build();
 
-  _$GGetPostData_findPostByID_comments_data._(
+  _$GGetPostData_getPostCommentsByPostId_data._(
       {required this.G__typename,
       required this.G_id,
       required this.creator,
       required this.message})
       : super._() {
+    BuiltValueNullFieldError.checkNotNull(G__typename,
+        'GGetPostData_getPostCommentsByPostId_data', 'G__typename');
     BuiltValueNullFieldError.checkNotNull(
-        G__typename, 'GGetPostData_findPostByID_comments_data', 'G__typename');
+        G_id, 'GGetPostData_getPostCommentsByPostId_data', 'G_id');
     BuiltValueNullFieldError.checkNotNull(
-        G_id, 'GGetPostData_findPostByID_comments_data', 'G_id');
+        creator, 'GGetPostData_getPostCommentsByPostId_data', 'creator');
     BuiltValueNullFieldError.checkNotNull(
-        creator, 'GGetPostData_findPostByID_comments_data', 'creator');
-    BuiltValueNullFieldError.checkNotNull(
-        message, 'GGetPostData_findPostByID_comments_data', 'message');
+        message, 'GGetPostData_getPostCommentsByPostId_data', 'message');
   }
 
   @override
-  GGetPostData_findPostByID_comments_data rebuild(
-          void Function(GGetPostData_findPostByID_comments_dataBuilder)
+  GGetPostData_getPostCommentsByPostId_data rebuild(
+          void Function(GGetPostData_getPostCommentsByPostId_dataBuilder)
               updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  GGetPostData_findPostByID_comments_dataBuilder toBuilder() =>
-      new GGetPostData_findPostByID_comments_dataBuilder()..replace(this);
+  GGetPostData_getPostCommentsByPostId_dataBuilder toBuilder() =>
+      new GGetPostData_getPostCommentsByPostId_dataBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is GGetPostData_findPostByID_comments_data &&
+    return other is GGetPostData_getPostCommentsByPostId_data &&
         G__typename == other.G__typename &&
         G_id == other.G_id &&
         creator == other.creator &&
@@ -1084,7 +1094,7 @@ class _$GGetPostData_findPostByID_comments_data
   @override
   String toString() {
     return (newBuiltValueToStringHelper(
-            'GGetPostData_findPostByID_comments_data')
+            'GGetPostData_getPostCommentsByPostId_data')
           ..add('G__typename', G__typename)
           ..add('G_id', G_id)
           ..add('creator', creator)
@@ -1093,11 +1103,11 @@ class _$GGetPostData_findPostByID_comments_data
   }
 }
 
-class GGetPostData_findPostByID_comments_dataBuilder
+class GGetPostData_getPostCommentsByPostId_dataBuilder
     implements
-        Builder<GGetPostData_findPostByID_comments_data,
-            GGetPostData_findPostByID_comments_dataBuilder> {
-  _$GGetPostData_findPostByID_comments_data? _$v;
+        Builder<GGetPostData_getPostCommentsByPostId_data,
+            GGetPostData_getPostCommentsByPostId_dataBuilder> {
+  _$GGetPostData_getPostCommentsByPostId_data? _$v;
 
   String? _G__typename;
   String? get G__typename => _$this._G__typename;
@@ -1107,23 +1117,23 @@ class GGetPostData_findPostByID_comments_dataBuilder
   String? get G_id => _$this._G_id;
   set G_id(String? G_id) => _$this._G_id = G_id;
 
-  GGetPostData_findPostByID_comments_data_creatorBuilder? _creator;
-  GGetPostData_findPostByID_comments_data_creatorBuilder get creator =>
+  GGetPostData_getPostCommentsByPostId_data_creatorBuilder? _creator;
+  GGetPostData_getPostCommentsByPostId_data_creatorBuilder get creator =>
       _$this._creator ??=
-          new GGetPostData_findPostByID_comments_data_creatorBuilder();
+          new GGetPostData_getPostCommentsByPostId_data_creatorBuilder();
   set creator(
-          GGetPostData_findPostByID_comments_data_creatorBuilder? creator) =>
+          GGetPostData_getPostCommentsByPostId_data_creatorBuilder? creator) =>
       _$this._creator = creator;
 
   String? _message;
   String? get message => _$this._message;
   set message(String? message) => _$this._message = message;
 
-  GGetPostData_findPostByID_comments_dataBuilder() {
-    GGetPostData_findPostByID_comments_data._initializeBuilder(this);
+  GGetPostData_getPostCommentsByPostId_dataBuilder() {
+    GGetPostData_getPostCommentsByPostId_data._initializeBuilder(this);
   }
 
-  GGetPostData_findPostByID_comments_dataBuilder get _$this {
+  GGetPostData_getPostCommentsByPostId_dataBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
       _G__typename = $v.G__typename;
@@ -1136,30 +1146,31 @@ class GGetPostData_findPostByID_comments_dataBuilder
   }
 
   @override
-  void replace(GGetPostData_findPostByID_comments_data other) {
+  void replace(GGetPostData_getPostCommentsByPostId_data other) {
     ArgumentError.checkNotNull(other, 'other');
-    _$v = other as _$GGetPostData_findPostByID_comments_data;
+    _$v = other as _$GGetPostData_getPostCommentsByPostId_data;
   }
 
   @override
   void update(
-      void Function(GGetPostData_findPostByID_comments_dataBuilder)? updates) {
+      void Function(GGetPostData_getPostCommentsByPostId_dataBuilder)?
+          updates) {
     if (updates != null) updates(this);
   }
 
   @override
-  _$GGetPostData_findPostByID_comments_data build() {
-    _$GGetPostData_findPostByID_comments_data _$result;
+  _$GGetPostData_getPostCommentsByPostId_data build() {
+    _$GGetPostData_getPostCommentsByPostId_data _$result;
     try {
       _$result = _$v ??
-          new _$GGetPostData_findPostByID_comments_data._(
+          new _$GGetPostData_getPostCommentsByPostId_data._(
               G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
-                  'GGetPostData_findPostByID_comments_data', 'G__typename'),
+                  'GGetPostData_getPostCommentsByPostId_data', 'G__typename'),
               G_id: BuiltValueNullFieldError.checkNotNull(
-                  G_id, 'GGetPostData_findPostByID_comments_data', 'G_id'),
+                  G_id, 'GGetPostData_getPostCommentsByPostId_data', 'G_id'),
               creator: creator.build(),
               message: BuiltValueNullFieldError.checkNotNull(message,
-                  'GGetPostData_findPostByID_comments_data', 'message'));
+                  'GGetPostData_getPostCommentsByPostId_data', 'message'));
     } catch (_) {
       late String _$failedField;
       try {
@@ -1167,7 +1178,7 @@ class GGetPostData_findPostByID_comments_dataBuilder
         creator.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
-            'GGetPostData_findPostByID_comments_data',
+            'GGetPostData_getPostCommentsByPostId_data',
             _$failedField,
             e.toString());
       }
@@ -1178,8 +1189,8 @@ class GGetPostData_findPostByID_comments_dataBuilder
   }
 }
 
-class _$GGetPostData_findPostByID_comments_data_creator
-    extends GGetPostData_findPostByID_comments_data_creator {
+class _$GGetPostData_getPostCommentsByPostId_data_creator
+    extends GGetPostData_getPostCommentsByPostId_data_creator {
   @override
   final String G__typename;
   @override
@@ -1187,40 +1198,41 @@ class _$GGetPostData_findPostByID_comments_data_creator
   @override
   final String username;
 
-  factory _$GGetPostData_findPostByID_comments_data_creator(
+  factory _$GGetPostData_getPostCommentsByPostId_data_creator(
           [void Function(
-                  GGetPostData_findPostByID_comments_data_creatorBuilder)?
+                  GGetPostData_getPostCommentsByPostId_data_creatorBuilder)?
               updates]) =>
-      (new GGetPostData_findPostByID_comments_data_creatorBuilder()
+      (new GGetPostData_getPostCommentsByPostId_data_creatorBuilder()
             ..update(updates))
           .build();
 
-  _$GGetPostData_findPostByID_comments_data_creator._(
+  _$GGetPostData_getPostCommentsByPostId_data_creator._(
       {required this.G__typename, required this.G_id, required this.username})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(G__typename,
-        'GGetPostData_findPostByID_comments_data_creator', 'G__typename');
+        'GGetPostData_getPostCommentsByPostId_data_creator', 'G__typename');
     BuiltValueNullFieldError.checkNotNull(
-        G_id, 'GGetPostData_findPostByID_comments_data_creator', 'G_id');
+        G_id, 'GGetPostData_getPostCommentsByPostId_data_creator', 'G_id');
     BuiltValueNullFieldError.checkNotNull(username,
-        'GGetPostData_findPostByID_comments_data_creator', 'username');
+        'GGetPostData_getPostCommentsByPostId_data_creator', 'username');
   }
 
   @override
-  GGetPostData_findPostByID_comments_data_creator rebuild(
-          void Function(GGetPostData_findPostByID_comments_data_creatorBuilder)
+  GGetPostData_getPostCommentsByPostId_data_creator rebuild(
+          void Function(
+                  GGetPostData_getPostCommentsByPostId_data_creatorBuilder)
               updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  GGetPostData_findPostByID_comments_data_creatorBuilder toBuilder() =>
-      new GGetPostData_findPostByID_comments_data_creatorBuilder()
+  GGetPostData_getPostCommentsByPostId_data_creatorBuilder toBuilder() =>
+      new GGetPostData_getPostCommentsByPostId_data_creatorBuilder()
         ..replace(this);
 
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is GGetPostData_findPostByID_comments_data_creator &&
+    return other is GGetPostData_getPostCommentsByPostId_data_creator &&
         G__typename == other.G__typename &&
         G_id == other.G_id &&
         username == other.username;
@@ -1235,7 +1247,7 @@ class _$GGetPostData_findPostByID_comments_data_creator
   @override
   String toString() {
     return (newBuiltValueToStringHelper(
-            'GGetPostData_findPostByID_comments_data_creator')
+            'GGetPostData_getPostCommentsByPostId_data_creator')
           ..add('G__typename', G__typename)
           ..add('G_id', G_id)
           ..add('username', username))
@@ -1243,11 +1255,11 @@ class _$GGetPostData_findPostByID_comments_data_creator
   }
 }
 
-class GGetPostData_findPostByID_comments_data_creatorBuilder
+class GGetPostData_getPostCommentsByPostId_data_creatorBuilder
     implements
-        Builder<GGetPostData_findPostByID_comments_data_creator,
-            GGetPostData_findPostByID_comments_data_creatorBuilder> {
-  _$GGetPostData_findPostByID_comments_data_creator? _$v;
+        Builder<GGetPostData_getPostCommentsByPostId_data_creator,
+            GGetPostData_getPostCommentsByPostId_data_creatorBuilder> {
+  _$GGetPostData_getPostCommentsByPostId_data_creator? _$v;
 
   String? _G__typename;
   String? get G__typename => _$this._G__typename;
@@ -1261,11 +1273,11 @@ class GGetPostData_findPostByID_comments_data_creatorBuilder
   String? get username => _$this._username;
   set username(String? username) => _$this._username = username;
 
-  GGetPostData_findPostByID_comments_data_creatorBuilder() {
-    GGetPostData_findPostByID_comments_data_creator._initializeBuilder(this);
+  GGetPostData_getPostCommentsByPostId_data_creatorBuilder() {
+    GGetPostData_getPostCommentsByPostId_data_creator._initializeBuilder(this);
   }
 
-  GGetPostData_findPostByID_comments_data_creatorBuilder get _$this {
+  GGetPostData_getPostCommentsByPostId_data_creatorBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
       _G__typename = $v.G__typename;
@@ -1277,30 +1289,32 @@ class GGetPostData_findPostByID_comments_data_creatorBuilder
   }
 
   @override
-  void replace(GGetPostData_findPostByID_comments_data_creator other) {
+  void replace(GGetPostData_getPostCommentsByPostId_data_creator other) {
     ArgumentError.checkNotNull(other, 'other');
-    _$v = other as _$GGetPostData_findPostByID_comments_data_creator;
+    _$v = other as _$GGetPostData_getPostCommentsByPostId_data_creator;
   }
 
   @override
   void update(
-      void Function(GGetPostData_findPostByID_comments_data_creatorBuilder)?
+      void Function(GGetPostData_getPostCommentsByPostId_data_creatorBuilder)?
           updates) {
     if (updates != null) updates(this);
   }
 
   @override
-  _$GGetPostData_findPostByID_comments_data_creator build() {
+  _$GGetPostData_getPostCommentsByPostId_data_creator build() {
     final _$result = _$v ??
-        new _$GGetPostData_findPostByID_comments_data_creator._(
+        new _$GGetPostData_getPostCommentsByPostId_data_creator._(
             G__typename: BuiltValueNullFieldError.checkNotNull(
                 G__typename,
-                'GGetPostData_findPostByID_comments_data_creator',
+                'GGetPostData_getPostCommentsByPostId_data_creator',
                 'G__typename'),
             G_id: BuiltValueNullFieldError.checkNotNull(G_id,
-                'GGetPostData_findPostByID_comments_data_creator', 'G_id'),
-            username: BuiltValueNullFieldError.checkNotNull(username,
-                'GGetPostData_findPostByID_comments_data_creator', 'username'));
+                'GGetPostData_getPostCommentsByPostId_data_creator', 'G_id'),
+            username: BuiltValueNullFieldError.checkNotNull(
+                username,
+                'GGetPostData_getPostCommentsByPostId_data_creator',
+                'username'));
     replace(_$result);
     return _$result;
   }

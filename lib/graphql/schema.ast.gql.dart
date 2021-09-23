@@ -1206,6 +1206,32 @@ const Query = _i1.ObjectTypeDefinitionNode(
           type: _i1.NamedTypeNode(
               name: _i1.NameNode(value: 'PostVote'), isNonNull: false)),
       _i1.FieldDefinitionNode(
+          name: _i1.NameNode(value: 'getPostCommentsByPostId'),
+          directives: [],
+          args: [
+            _i1.InputValueDefinitionNode(
+                name: _i1.NameNode(value: '_size'),
+                directives: [],
+                type: _i1.NamedTypeNode(
+                    name: _i1.NameNode(value: 'Int'), isNonNull: false),
+                defaultValue: null),
+            _i1.InputValueDefinitionNode(
+                name: _i1.NameNode(value: '_cursor'),
+                directives: [],
+                type: _i1.NamedTypeNode(
+                    name: _i1.NameNode(value: 'String'), isNonNull: false),
+                defaultValue: null),
+            _i1.InputValueDefinitionNode(
+                name: _i1.NameNode(value: 'id'),
+                directives: [],
+                type: _i1.NamedTypeNode(
+                    name: _i1.NameNode(value: 'ID'), isNonNull: true),
+                defaultValue: null)
+          ],
+          type: _i1.NamedTypeNode(
+              name: _i1.NameNode(value: 'QueryGetPostCommentsByPostIdPage'),
+              isNonNull: true)),
+      _i1.FieldDefinitionNode(
           name: _i1.NameNode(value: 'findPostCommentByID'),
           directives: [],
           args: [
@@ -1218,6 +1244,32 @@ const Query = _i1.ObjectTypeDefinitionNode(
           ],
           type: _i1.NamedTypeNode(
               name: _i1.NameNode(value: 'PostComment'), isNonNull: false))
+    ]);
+const QueryGetPostCommentsByPostIdPage = _i1.ObjectTypeDefinitionNode(
+    name: _i1.NameNode(value: 'QueryGetPostCommentsByPostIdPage'),
+    directives: [],
+    interfaces: [],
+    fields: [
+      _i1.FieldDefinitionNode(
+          name: _i1.NameNode(value: 'data'),
+          directives: [],
+          args: [],
+          type: _i1.ListTypeNode(
+              type: _i1.NamedTypeNode(
+                  name: _i1.NameNode(value: 'PostComment'), isNonNull: false),
+              isNonNull: true)),
+      _i1.FieldDefinitionNode(
+          name: _i1.NameNode(value: 'after'),
+          directives: [],
+          args: [],
+          type: _i1.NamedTypeNode(
+              name: _i1.NameNode(value: 'String'), isNonNull: false)),
+      _i1.FieldDefinitionNode(
+          name: _i1.NameNode(value: 'before'),
+          directives: [],
+          args: [],
+          type: _i1.NamedTypeNode(
+              name: _i1.NameNode(value: 'String'), isNonNull: false))
     ]);
 const QueryGetPostsByCommunityIdPage = _i1.ObjectTypeDefinitionNode(
     name: _i1.NameNode(value: 'QueryGetPostsByCommunityIdPage'),
@@ -1542,6 +1594,7 @@ const document = _i1.DocumentNode(definitions: [
   PostVoteType,
   PostVoteUserRelation,
   Query,
+  QueryGetPostCommentsByPostIdPage,
   QueryGetPostsByCommunityIdPage,
   Time,
   User,

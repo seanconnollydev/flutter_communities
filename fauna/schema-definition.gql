@@ -9,6 +9,7 @@ type Mutation {
 type Query {
   communities: [Community!]!
   getPostsByCommunityId(id: ID!): [Post]! @resolver(name: "get_posts_by_community_id", paginated: true)
+  getPostCommentsByPostId(id: ID!): [PostComment]! @resolver(name: "get_post_comments_by_post_id", paginated: true)
   throwsError: Community! @resolver(name: "throws_error")
 }
 

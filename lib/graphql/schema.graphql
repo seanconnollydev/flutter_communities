@@ -373,11 +373,28 @@ type Query {
     # The 'PostVote' document's ID
     id: ID!
   ): PostVote
+  getPostCommentsByPostId(
+    # The number of items to return per page.
+    _size: Int
+    # The pagination cursor.
+    _cursor: String
+    id: ID!
+  ): QueryGetPostCommentsByPostIdPage!
   # Find a document from the collection of 'PostComment' by its id.
   findPostCommentByID(
     # The 'PostComment' document's ID
     id: ID!
   ): PostComment
+}
+
+# The pagination object for elements of type 'PostComment'.
+type QueryGetPostCommentsByPostIdPage {
+  # The elements of type 'PostComment' in this page.
+  data: [PostComment]!
+  # A cursor for elements coming after the current page.
+  after: String
+  # A cursor for elements coming before the current page.
+  before: String
 }
 
 # The pagination object for elements of type 'Post'.
