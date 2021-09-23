@@ -38,6 +38,7 @@ abstract class GCommunityInput
       _$GCommunityInput;
 
   String get name;
+  String get emoji;
   String? get purpose;
   GCommunityCreatorRelation? get creator;
   GCommunityPostsRelation? get posts;
