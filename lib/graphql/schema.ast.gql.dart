@@ -122,12 +122,6 @@ const Community = _i1.ObjectTypeDefinitionNode(
           type: _i1.NamedTypeNode(
               name: _i1.NameNode(value: 'String'), isNonNull: false)),
       _i1.FieldDefinitionNode(
-          name: _i1.NameNode(value: 'emoji'),
-          directives: [],
-          args: [],
-          type: _i1.NamedTypeNode(
-              name: _i1.NameNode(value: 'String'), isNonNull: true)),
-      _i1.FieldDefinitionNode(
           name: _i1.NameNode(value: '_ts'),
           directives: [],
           args: [],
@@ -157,12 +151,6 @@ const CommunityInput = _i1.InputObjectTypeDefinitionNode(
     fields: [
       _i1.InputValueDefinitionNode(
           name: _i1.NameNode(value: 'name'),
-          directives: [],
-          type: _i1.NamedTypeNode(
-              name: _i1.NameNode(value: 'String'), isNonNull: true),
-          defaultValue: null),
-      _i1.InputValueDefinitionNode(
-          name: _i1.NameNode(value: 'emoji'),
           directives: [],
           type: _i1.NamedTypeNode(
               name: _i1.NameNode(value: 'String'), isNonNull: true),

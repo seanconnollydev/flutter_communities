@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_communities/providers/auth.dart';
 import 'package:flutter_communities/screens/community_screen.dart';
 import 'package:flutter_communities/screens/create_community_screen.dart';
 import 'package:flutter_communities/screens/create_post_screen.dart';
@@ -13,7 +14,16 @@ import 'screens/registration_screen.dart';
 
 void main() async {
   await dotenv.load();
-  runApp(ProviderScope(child: MyApp()));
+  final container = ProviderContainer();
+  final auth = container.read(authProvider.notifier);
+  await auth.initialize();
+
+  runApp(
+    UncontrolledProviderScope(
+      child: MyApp(),
+      container: container,
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {

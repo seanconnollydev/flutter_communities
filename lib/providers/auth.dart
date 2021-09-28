@@ -20,7 +20,7 @@ class AuthNotifier extends StateNotifier<AuthSession> {
     initialize();
   }
 
-  void initialize() async {
+  Future<void> initialize() async {
     final token = await storage.read(key: _tokenKey);
     if (token != null) {
       state = AuthSession(token);

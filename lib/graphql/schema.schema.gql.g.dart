@@ -149,9 +149,6 @@ class _$GCommunityInputSerializer
     final result = <Object?>[
       'name',
       serializers.serialize(object.name, specifiedType: const FullType(String)),
-      'emoji',
-      serializers.serialize(object.emoji,
-          specifiedType: const FullType(String)),
     ];
     Object? value;
     value = object.purpose;
@@ -192,10 +189,6 @@ class _$GCommunityInputSerializer
       switch (key) {
         case 'name':
           result.name = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
-          break;
-        case 'emoji':
-          result.emoji = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
           break;
         case 'purpose':
@@ -1845,8 +1838,6 @@ class _$GCommunityInput extends GCommunityInput {
   @override
   final String name;
   @override
-  final String emoji;
-  @override
   final String? purpose;
   @override
   final GCommunityCreatorRelation? creator;
@@ -1857,14 +1848,9 @@ class _$GCommunityInput extends GCommunityInput {
       (new GCommunityInputBuilder()..update(updates)).build();
 
   _$GCommunityInput._(
-      {required this.name,
-      required this.emoji,
-      this.purpose,
-      this.creator,
-      this.posts})
+      {required this.name, this.purpose, this.creator, this.posts})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(name, 'GCommunityInput', 'name');
-    BuiltValueNullFieldError.checkNotNull(emoji, 'GCommunityInput', 'emoji');
   }
 
   @override
@@ -1880,7 +1866,6 @@ class _$GCommunityInput extends GCommunityInput {
     if (identical(other, this)) return true;
     return other is GCommunityInput &&
         name == other.name &&
-        emoji == other.emoji &&
         purpose == other.purpose &&
         creator == other.creator &&
         posts == other.posts;
@@ -1889,8 +1874,7 @@ class _$GCommunityInput extends GCommunityInput {
   @override
   int get hashCode {
     return $jf($jc(
-        $jc($jc($jc($jc(0, name.hashCode), emoji.hashCode), purpose.hashCode),
-            creator.hashCode),
+        $jc($jc($jc(0, name.hashCode), purpose.hashCode), creator.hashCode),
         posts.hashCode));
   }
 
@@ -1898,7 +1882,6 @@ class _$GCommunityInput extends GCommunityInput {
   String toString() {
     return (newBuiltValueToStringHelper('GCommunityInput')
           ..add('name', name)
-          ..add('emoji', emoji)
           ..add('purpose', purpose)
           ..add('creator', creator)
           ..add('posts', posts))
@@ -1913,10 +1896,6 @@ class GCommunityInputBuilder
   String? _name;
   String? get name => _$this._name;
   set name(String? name) => _$this._name = name;
-
-  String? _emoji;
-  String? get emoji => _$this._emoji;
-  set emoji(String? emoji) => _$this._emoji = emoji;
 
   String? _purpose;
   String? get purpose => _$this._purpose;
@@ -1939,7 +1918,6 @@ class GCommunityInputBuilder
     final $v = _$v;
     if ($v != null) {
       _name = $v.name;
-      _emoji = $v.emoji;
       _purpose = $v.purpose;
       _creator = $v.creator?.toBuilder();
       _posts = $v.posts?.toBuilder();
@@ -1967,8 +1945,6 @@ class GCommunityInputBuilder
           new _$GCommunityInput._(
               name: BuiltValueNullFieldError.checkNotNull(
                   name, 'GCommunityInput', 'name'),
-              emoji: BuiltValueNullFieldError.checkNotNull(
-                  emoji, 'GCommunityInput', 'emoji'),
               purpose: purpose,
               creator: _creator?.build(),
               posts: _posts?.build());

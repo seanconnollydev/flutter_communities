@@ -27,6 +27,26 @@ final ferryClientProvider = Provider<Client>((ref) {
     link: HttpLink("https://graphql.fauna.com/graphql", defaultHeaders: {
       'Authorization': 'Bearer $token',
     }),
+    cache: Cache(
+      typePolicies: {
+        'Query': TypePolicy(
+          queryType: true,
+          fields: {
+            'findCommunityByID': FieldPolicy(
+              keyArgs: ['id'],
+              read: (existing, options) {
+                final toRef = options.toReference({
+                  '__typename': 'Community',
+                  'id': options.args['id'],
+                });
+
+                return options.readField(options.field, toRef);
+              },
+            )
+          },
+        )
+      },
+    ),
     updateCacheHandlers: {
       'createCommunityHandler': createCommunityHandler,
       'createPostHandler': createPostHandler,

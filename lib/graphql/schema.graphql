@@ -19,7 +19,6 @@ type Community {
   _id: ID!
   creator: User!
   purpose: String
-  emoji: String!
   # The document's timestamp.
   _ts: Long!
 }
@@ -35,7 +34,6 @@ input CommunityCreatorRelation {
 # 'Community' input values
 input CommunityInput {
   name: String!
-  emoji: String!
   purpose: String
   creator: CommunityCreatorRelation
   posts: CommunityPostsRelation

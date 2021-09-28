@@ -49,7 +49,6 @@ input CreatePostVoteInput {
 
 type Community {
   name: String!
-  emoji: String!
   purpose: String
   creator: User! @relation(name: "user_communities")
   posts: [Post!] @relation(name: "community_posts")
