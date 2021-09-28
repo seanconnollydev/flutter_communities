@@ -14,7 +14,6 @@ class PostCard extends ConsumerWidget {
   @override
   Widget build(BuildContext context, watch) {
     final theme = Theme.of(context);
-    final repository = watch(communityRepositoryProvider);
 
     return Card(
       elevation: 4,
@@ -44,9 +43,8 @@ class PostCard extends ConsumerWidget {
                     IconButton(
                       iconSize: 12,
                       constraints: BoxConstraints(),
-                      onPressed: () {
-                        repository.createPostVote(_post, GPostVoteType.UpVote);
-                      },
+                      onPressed: () =>
+                          _handlePostVote(context, GPostVoteType.UpVote),
                       icon: Icon(
                         Icons.arrow_upward,
                       ),
@@ -55,9 +53,8 @@ class PostCard extends ConsumerWidget {
                     IconButton(
                       iconSize: 12,
                       constraints: BoxConstraints(),
-                      onPressed: () {
-                        repository.createPostVote(_post, GPostVoteType.UpVote);
-                      },
+                      onPressed: () =>
+                          _handlePostVote(context, GPostVoteType.DownVote),
                       icon: Icon(
                         Icons.arrow_downward,
                       ),
@@ -76,6 +73,23 @@ class PostCard extends ConsumerWidget {
           ),
         ),
       ),
+    );
+  }
+
+  void _handlePostVote(BuildContext context, GPostVoteType voteType) {
+    final repository = context.read(communityRepositoryProvider);
+    repository.createPostVote(_post, voteType).listen(
+      (event) {
+        final message = event.graphqlErrors?.first.message;
+        if (message != null) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(message),
+              backgroundColor: Colors.red,
+            ),
+          );
+        }
+      },
     );
   }
 }

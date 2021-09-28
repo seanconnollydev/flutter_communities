@@ -1,7 +1,9 @@
 import 'dart:convert';
 import 'package:ferry/ferry.dart';
 import 'package:flutter_communities/graphql/create_post_comment.req.gql.dart';
+import 'package:flutter_communities/graphql/create_post_vote.data.gql.dart';
 import 'package:flutter_communities/graphql/create_post_vote.req.gql.dart';
+import 'package:flutter_communities/graphql/create_post_vote.var.gql.dart';
 import 'package:flutter_communities/graphql/get_communities.data.gql.dart';
 import 'package:flutter_communities/graphql/get_communities.req.gql.dart';
 import 'package:flutter_communities/graphql/get_communities.var.gql.dart';
@@ -45,7 +47,8 @@ class CommunityRepository {
     return _request(GGetCommunitiesReq());
   }
 
-  Stream createPostVote(GPostFragment post, GPostVoteType voteType) {
+  Stream<OperationResponse<GCreatePostVoteData, GCreatePostVoteVars>>
+      createPostVote(GPostFragment post, GPostVoteType voteType) {
     return _request(
       GCreatePostVoteReq(
         (b) => b
