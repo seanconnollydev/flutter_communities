@@ -3,6 +3,8 @@ import 'package:flutter_communities/graphql/create_post.req.gql.dart';
 import 'package:flutter_communities/providers/ferry.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../cache_handlers.dart';
+
 class CreatePostScreen extends StatefulWidget {
   static const routeName = '/create-post';
 
@@ -29,7 +31,8 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
         ..vars.input.title = _title
         ..vars.input.message = _message
         ..vars.input.communityId = widget._communityId
-        ..updateCacheHandlerKey = 'createPostHandler',
+        ..updateCacheHandlerKey =
+            CacheHandlers.key(CacheHandler.createPostHandler),
     );
 
     await client.request(request).first;

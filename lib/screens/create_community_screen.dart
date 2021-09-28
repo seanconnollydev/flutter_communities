@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_communities/cache_handlers.dart';
 import 'package:flutter_communities/graphql/create_community.req.gql.dart';
 import 'package:flutter_communities/providers/ferry.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -28,7 +29,8 @@ class _CreateCommunityScreenState extends State<CreateCommunityScreen> {
       (b) => b
         ..vars.data.name = _name
         ..vars.data.purpose = _purpose
-        ..updateCacheHandlerKey = 'createCommunityHandler',
+        ..updateCacheHandlerKey =
+            CacheHandlers.key(CacheHandler.createCommunityHandler),
     );
 
     await client.request(request).first;

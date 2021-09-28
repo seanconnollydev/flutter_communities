@@ -22,6 +22,8 @@ import 'package:flutter_communities/graphql/throws_error.var.gql.dart';
 import 'package:flutter_communities/providers/ferry.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../cache_handlers.dart';
+
 final communityRepositoryProvider = Provider<CommunityRepository>((ref) {
   final client = ref.watch(ferryClientProvider);
 
@@ -74,7 +76,8 @@ class CommunityRepository {
         (b) => b
           ..vars.input.postId = postId
           ..vars.input.message = message
-          ..updateCacheHandlerKey = 'createPostCommentHandler',
+          ..updateCacheHandlerKey =
+              CacheHandlers.key(CacheHandler.createPostCommentHandler),
       ),
     );
   }
