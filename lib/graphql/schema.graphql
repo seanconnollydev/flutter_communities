@@ -380,6 +380,7 @@ type Query {
     _cursor: String
     id: ID!
   ): QueryGetPostCommentsByPostIdPage!
+  viewer: User!
   # Find a document from the collection of 'PostComment' by its id.
   findPostCommentByID(
     # The 'PostComment' document's ID

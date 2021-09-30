@@ -1232,6 +1232,12 @@ const Query = _i1.ObjectTypeDefinitionNode(
               name: _i1.NameNode(value: 'QueryGetPostCommentsByPostIdPage'),
               isNonNull: true)),
       _i1.FieldDefinitionNode(
+          name: _i1.NameNode(value: 'viewer'),
+          directives: [],
+          args: [],
+          type: _i1.NamedTypeNode(
+              name: _i1.NameNode(value: 'User'), isNonNull: true)),
+      _i1.FieldDefinitionNode(
           name: _i1.NameNode(value: 'findPostCommentByID'),
           directives: [],
           args: [

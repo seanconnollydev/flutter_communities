@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_communities/providers/auth.dart';
 import 'package:flutter_communities/screens/error_demo_screen.dart';
+import 'package:flutter_communities/screens/user_profile_screen.dart';
 import 'package:flutter_communities/widgets/query_stream.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_communities/providers/community_repository.dart';
@@ -26,6 +27,12 @@ class HomeScreen extends ConsumerWidget {
           return Column(
             mainAxisSize: MainAxisSize.min,
             children: [
+              ListTile(
+                title: Text('Profile'),
+                onTap: () async {
+                  Navigator.of(context).pushNamed(UserProfileScreen.routeName);
+                },
+              ),
               ListTile(
                 title: Text('Logout'),
                 onTap: () async {

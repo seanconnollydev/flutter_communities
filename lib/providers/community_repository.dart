@@ -16,11 +16,13 @@ import 'package:flutter_communities/graphql/get_post.var.gql.dart';
 import 'package:flutter_communities/graphql/get_post_comments.data.gql.dart';
 import 'package:flutter_communities/graphql/get_post_comments.req.gql.dart';
 import 'package:flutter_communities/graphql/get_post_comments.var.gql.dart';
+import 'package:flutter_communities/graphql/get_viewer.req.gql.dart';
 import 'package:flutter_communities/graphql/post_fragment.data.gql.dart';
 import 'package:flutter_communities/graphql/schema.schema.gql.dart';
 import 'package:flutter_communities/graphql/throws_error.data.gql.dart';
 import 'package:flutter_communities/graphql/throws_error.req.gql.dart';
 import 'package:flutter_communities/graphql/throws_error.var.gql.dart';
+import 'package:flutter_communities/models/user.dart';
 import 'package:flutter_communities/providers/ferry.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -96,6 +98,11 @@ class CommunityRepository {
 
   Stream<GetCommunityResponse> getCommunity(String communityId) {
     return _request(GGetCommunityReq((b) => b..vars.id = communityId));
+  }
+
+  Stream<User?> getViewer() {
+    return _request(GGetViewerReq()).map((resp) =>
+        resp.data != null ? User.fromUserFragment(resp.data!.viewer) : null);
   }
 
   Stream<OperationResponse<TData, TVars>> _request<TData, TVars>(

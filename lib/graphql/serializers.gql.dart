@@ -90,6 +90,12 @@ import 'package:flutter_communities/graphql/get_post_comments.req.gql.dart'
     show GGetPostCommentsReq;
 import 'package:flutter_communities/graphql/get_post_comments.var.gql.dart'
     show GGetPostCommentsVars;
+import 'package:flutter_communities/graphql/get_viewer.data.gql.dart'
+    show GGetViewerData, GGetViewerData_viewer;
+import 'package:flutter_communities/graphql/get_viewer.req.gql.dart'
+    show GGetViewerReq;
+import 'package:flutter_communities/graphql/get_viewer.var.gql.dart'
+    show GGetViewerVars;
 import 'package:flutter_communities/graphql/login_user.data.gql.dart'
     show GLoginUserData;
 import 'package:flutter_communities/graphql/login_user.req.gql.dart'
@@ -144,6 +150,12 @@ import 'package:flutter_communities/graphql/throws_error.req.gql.dart'
     show GThrowsErrorReq;
 import 'package:flutter_communities/graphql/throws_error.var.gql.dart'
     show GThrowsErrorVars;
+import 'package:flutter_communities/graphql/user_fragment.data.gql.dart'
+    show GUserFragmentData;
+import 'package:flutter_communities/graphql/user_fragment.req.gql.dart'
+    show GUserFragmentReq;
+import 'package:flutter_communities/graphql/user_fragment.var.gql.dart'
+    show GUserFragmentVars;
 import 'package:gql_code_builder/src/serializers/operation_serializer.dart'
     show OperationSerializer;
 
@@ -214,6 +226,10 @@ final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   GGetPostsByCommunityIdData_getPostsByCommunityId_data_creator,
   GGetPostsByCommunityIdReq,
   GGetPostsByCommunityIdVars,
+  GGetViewerData,
+  GGetViewerData_viewer,
+  GGetViewerReq,
+  GGetViewerVars,
   GLoginUserData,
   GLoginUserInput,
   GLoginUserReq,
@@ -245,6 +261,9 @@ final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   GThrowsErrorVars,
   GTime,
   GUserCommunitiesRelation,
+  GUserFragmentData,
+  GUserFragmentReq,
+  GUserFragmentVars,
   GUserInput,
   GUserPost_commentsRelation,
   GUserPost_votesRelation,
