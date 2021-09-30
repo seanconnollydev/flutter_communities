@@ -22,6 +22,7 @@ import 'package:flutter_communities/graphql/schema.schema.gql.dart';
 import 'package:flutter_communities/graphql/throws_error.data.gql.dart';
 import 'package:flutter_communities/graphql/throws_error.req.gql.dart';
 import 'package:flutter_communities/graphql/throws_error.var.gql.dart';
+import 'package:flutter_communities/graphql/update_user.req.gql.dart';
 import 'package:flutter_communities/models/user.dart';
 import 'package:flutter_communities/providers/ferry.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -103,6 +104,12 @@ class CommunityRepository {
   Stream<User?> getViewer() {
     return _request(GGetViewerReq()).map((resp) =>
         resp.data != null ? User.fromUserFragment(resp.data!.viewer) : null);
+  }
+
+  Stream updateUser(String id, {String? username}) {
+    return _request(GUpdateUserReq((b) => b
+      ..vars.id = id
+      ..vars.data.username = username));
   }
 
   Stream<OperationResponse<TData, TVars>> _request<TData, TVars>(

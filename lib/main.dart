@@ -3,6 +3,7 @@ import 'package:flutter_communities/providers/auth.dart';
 import 'package:flutter_communities/screens/community_screen.dart';
 import 'package:flutter_communities/screens/create_community_screen.dart';
 import 'package:flutter_communities/screens/create_post_screen.dart';
+import 'package:flutter_communities/screens/edit_profile_screen.dart';
 import 'package:flutter_communities/screens/error_demo_screen.dart';
 import 'package:flutter_communities/screens/login_screen.dart';
 import 'package:flutter_communities/screens/post_screen.dart';
@@ -48,6 +49,7 @@ class MyApp extends StatelessWidget {
             ModalRoute.of(context)!.settings.arguments as PostScreenArguments),
         ErrorDemoScreen.routeName: (_) => ErrorDemoScreen(),
         UserProfileScreen.routeName: (_) => UserProfileScreen(),
+        EditProfileScreen.routeName: (_) => EditProfileScreen(),
       },
     );
   }

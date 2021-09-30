@@ -150,6 +150,12 @@ import 'package:flutter_communities/graphql/throws_error.req.gql.dart'
     show GThrowsErrorReq;
 import 'package:flutter_communities/graphql/throws_error.var.gql.dart'
     show GThrowsErrorVars;
+import 'package:flutter_communities/graphql/update_user.data.gql.dart'
+    show GUpdateUserData, GUpdateUserData_updateUser;
+import 'package:flutter_communities/graphql/update_user.req.gql.dart'
+    show GUpdateUserReq;
+import 'package:flutter_communities/graphql/update_user.var.gql.dart'
+    show GUpdateUserVars;
 import 'package:flutter_communities/graphql/user_fragment.data.gql.dart'
     show GUserFragmentData;
 import 'package:flutter_communities/graphql/user_fragment.req.gql.dart'
@@ -260,6 +266,10 @@ final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   GThrowsErrorReq,
   GThrowsErrorVars,
   GTime,
+  GUpdateUserData,
+  GUpdateUserData_updateUser,
+  GUpdateUserReq,
+  GUpdateUserVars,
   GUserCommunitiesRelation,
   GUserFragmentData,
   GUserFragmentReq,

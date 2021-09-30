@@ -30,7 +30,8 @@ class HomeScreen extends ConsumerWidget {
               ListTile(
                 title: Text('Profile'),
                 onTap: () async {
-                  Navigator.of(context).pushNamed(UserProfileScreen.routeName);
+                  Navigator.of(context)
+                      .popAndPushNamed(UserProfileScreen.routeName);
                 },
               ),
               ListTile(
