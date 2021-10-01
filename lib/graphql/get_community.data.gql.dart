@@ -48,6 +48,7 @@ abstract class GGetCommunityData_findCommunityByID
   @BuiltValueField(wireName: '_id')
   String get G_id;
   String get name;
+  String? get icon;
   static Serializer<GGetCommunityData_findCommunityByID> get serializer =>
       _$gGetCommunityDataFindCommunityByIDSerializer;
   Map<String, dynamic> toJson() => (_i1.serializers

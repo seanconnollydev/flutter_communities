@@ -19,6 +19,7 @@ class _CreateCommunityScreenState extends State<CreateCommunityScreen> {
   final _formKey = GlobalKey<FormState>();
   String? _name;
   String? _purpose;
+  String? _icon;
 
   void _save() async {
     _formKey.currentState?.save();
@@ -29,6 +30,7 @@ class _CreateCommunityScreenState extends State<CreateCommunityScreen> {
       (b) => b
         ..vars.data.name = _name
         ..vars.data.purpose = _purpose
+        ..vars.data.icon = _icon
         ..updateCacheHandlerKey =
             CacheHandlers.key(CacheHandler.createCommunityHandler),
     );
@@ -49,27 +51,24 @@ class _CreateCommunityScreenState extends State<CreateCommunityScreen> {
         child: Form(
           key: _formKey,
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Container(
-                alignment: Alignment.center,
-                padding: const EdgeInsets.all(8.0),
-                child: OutlinedButton(
-                  onPressed: () {
-                    print('>>> onPressed');
-                  },
-                  style: OutlinedButton.styleFrom(
-                    padding: const EdgeInsets.all(16),
-                  ),
-                  child: Text(
-                    '🌱',
-                    style: TextStyle(fontSize: 48),
+              Center(
+                child: Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  width: 100,
+                  child: TextFormField(
+                    initialValue: '😃',
+                    decoration: InputDecoration(counterText: ''),
+                    style: Theme.of(context).textTheme.headline3,
+                    textAlign: TextAlign.center,
+                    onSaved: (icon) {
+                      _icon = icon;
+                    },
+                    maxLength: 1,
+                    keyboardType: TextInputType.text,
                   ),
                 ),
-              ),
-              Text(
-                'Emoji',
-                textAlign: TextAlign.center,
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16),

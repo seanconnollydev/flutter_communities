@@ -91,7 +91,14 @@ class _$GGetCommunityData_findCommunityByIDSerializer
       'name',
       serializers.serialize(object.name, specifiedType: const FullType(String)),
     ];
-
+    Object? value;
+    value = object.icon;
+    if (value != null) {
+      result
+        ..add('icon')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     return result;
   }
 
@@ -117,6 +124,10 @@ class _$GGetCommunityData_findCommunityByIDSerializer
           break;
         case 'name':
           result.name = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
+          break;
+        case 'icon':
+          result.icon = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
           break;
       }
@@ -246,6 +257,8 @@ class _$GGetCommunityData_findCommunityByID
   final String G_id;
   @override
   final String name;
+  @override
+  final String? icon;
 
   factory _$GGetCommunityData_findCommunityByID(
           [void Function(GGetCommunityData_findCommunityByIDBuilder)?
@@ -254,7 +267,10 @@ class _$GGetCommunityData_findCommunityByID
           .build();
 
   _$GGetCommunityData_findCommunityByID._(
-      {required this.G__typename, required this.G_id, required this.name})
+      {required this.G__typename,
+      required this.G_id,
+      required this.name,
+      this.icon})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         G__typename, 'GGetCommunityData_findCommunityByID', 'G__typename');
@@ -279,13 +295,15 @@ class _$GGetCommunityData_findCommunityByID
     return other is GGetCommunityData_findCommunityByID &&
         G__typename == other.G__typename &&
         G_id == other.G_id &&
-        name == other.name;
+        name == other.name &&
+        icon == other.icon;
   }
 
   @override
   int get hashCode {
-    return $jf(
-        $jc($jc($jc(0, G__typename.hashCode), G_id.hashCode), name.hashCode));
+    return $jf($jc(
+        $jc($jc($jc(0, G__typename.hashCode), G_id.hashCode), name.hashCode),
+        icon.hashCode));
   }
 
   @override
@@ -293,7 +311,8 @@ class _$GGetCommunityData_findCommunityByID
     return (newBuiltValueToStringHelper('GGetCommunityData_findCommunityByID')
           ..add('G__typename', G__typename)
           ..add('G_id', G_id)
-          ..add('name', name))
+          ..add('name', name)
+          ..add('icon', icon))
         .toString();
   }
 }
@@ -316,6 +335,10 @@ class GGetCommunityData_findCommunityByIDBuilder
   String? get name => _$this._name;
   set name(String? name) => _$this._name = name;
 
+  String? _icon;
+  String? get icon => _$this._icon;
+  set icon(String? icon) => _$this._icon = icon;
+
   GGetCommunityData_findCommunityByIDBuilder() {
     GGetCommunityData_findCommunityByID._initializeBuilder(this);
   }
@@ -326,6 +349,7 @@ class GGetCommunityData_findCommunityByIDBuilder
       _G__typename = $v.G__typename;
       _G_id = $v.G_id;
       _name = $v.name;
+      _icon = $v.icon;
       _$v = null;
     }
     return this;
@@ -352,7 +376,8 @@ class GGetCommunityData_findCommunityByIDBuilder
             G_id: BuiltValueNullFieldError.checkNotNull(
                 G_id, 'GGetCommunityData_findCommunityByID', 'G_id'),
             name: BuiltValueNullFieldError.checkNotNull(
-                name, 'GGetCommunityData_findCommunityByID', 'name'));
+                name, 'GGetCommunityData_findCommunityByID', 'name'),
+            icon: icon);
     replace(_$result);
     return _$result;
   }

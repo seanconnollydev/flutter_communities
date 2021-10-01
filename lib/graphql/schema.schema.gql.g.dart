@@ -158,6 +158,13 @@ class _$GCommunityInputSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
+    value = object.icon;
+    if (value != null) {
+      result
+        ..add('icon')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     value = object.creator;
     if (value != null) {
       result
@@ -193,6 +200,10 @@ class _$GCommunityInputSerializer
           break;
         case 'purpose':
           result.purpose = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
+          break;
+        case 'icon':
+          result.icon = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
           break;
         case 'creator':
@@ -1422,6 +1433,13 @@ class _$GUserInputSerializer implements StructuredSerializer<GUserInput> {
           specifiedType: const FullType(String)),
     ];
     Object? value;
+    value = object.avatar;
+    if (value != null) {
+      result
+        ..add('avatar')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     value = object.communities;
     if (value != null) {
       result
@@ -1466,6 +1484,10 @@ class _$GUserInputSerializer implements StructuredSerializer<GUserInput> {
       switch (key) {
         case 'username':
           result.username = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
+          break;
+        case 'avatar':
+          result.avatar = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
           break;
         case 'communities':
@@ -1840,6 +1862,8 @@ class _$GCommunityInput extends GCommunityInput {
   @override
   final String? purpose;
   @override
+  final String? icon;
+  @override
   final GCommunityCreatorRelation? creator;
   @override
   final GCommunityPostsRelation? posts;
@@ -1848,7 +1872,7 @@ class _$GCommunityInput extends GCommunityInput {
       (new GCommunityInputBuilder()..update(updates)).build();
 
   _$GCommunityInput._(
-      {required this.name, this.purpose, this.creator, this.posts})
+      {required this.name, this.purpose, this.icon, this.creator, this.posts})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(name, 'GCommunityInput', 'name');
   }
@@ -1867,6 +1891,7 @@ class _$GCommunityInput extends GCommunityInput {
     return other is GCommunityInput &&
         name == other.name &&
         purpose == other.purpose &&
+        icon == other.icon &&
         creator == other.creator &&
         posts == other.posts;
   }
@@ -1874,7 +1899,8 @@ class _$GCommunityInput extends GCommunityInput {
   @override
   int get hashCode {
     return $jf($jc(
-        $jc($jc($jc(0, name.hashCode), purpose.hashCode), creator.hashCode),
+        $jc($jc($jc($jc(0, name.hashCode), purpose.hashCode), icon.hashCode),
+            creator.hashCode),
         posts.hashCode));
   }
 
@@ -1883,6 +1909,7 @@ class _$GCommunityInput extends GCommunityInput {
     return (newBuiltValueToStringHelper('GCommunityInput')
           ..add('name', name)
           ..add('purpose', purpose)
+          ..add('icon', icon)
           ..add('creator', creator)
           ..add('posts', posts))
         .toString();
@@ -1900,6 +1927,10 @@ class GCommunityInputBuilder
   String? _purpose;
   String? get purpose => _$this._purpose;
   set purpose(String? purpose) => _$this._purpose = purpose;
+
+  String? _icon;
+  String? get icon => _$this._icon;
+  set icon(String? icon) => _$this._icon = icon;
 
   GCommunityCreatorRelationBuilder? _creator;
   GCommunityCreatorRelationBuilder get creator =>
@@ -1919,6 +1950,7 @@ class GCommunityInputBuilder
     if ($v != null) {
       _name = $v.name;
       _purpose = $v.purpose;
+      _icon = $v.icon;
       _creator = $v.creator?.toBuilder();
       _posts = $v.posts?.toBuilder();
       _$v = null;
@@ -1946,6 +1978,7 @@ class GCommunityInputBuilder
               name: BuiltValueNullFieldError.checkNotNull(
                   name, 'GCommunityInput', 'name'),
               purpose: purpose,
+              icon: icon,
               creator: _creator?.build(),
               posts: _posts?.build());
     } catch (_) {
@@ -4233,6 +4266,8 @@ class _$GUserInput extends GUserInput {
   @override
   final String username;
   @override
+  final String? avatar;
+  @override
   final GUserCommunitiesRelation? communities;
   @override
   final GUserPostsRelation? posts;
@@ -4246,6 +4281,7 @@ class _$GUserInput extends GUserInput {
 
   _$GUserInput._(
       {required this.username,
+      this.avatar,
       this.communities,
       this.posts,
       this.post_votes,
@@ -4266,6 +4302,7 @@ class _$GUserInput extends GUserInput {
     if (identical(other, this)) return true;
     return other is GUserInput &&
         username == other.username &&
+        avatar == other.avatar &&
         communities == other.communities &&
         posts == other.posts &&
         post_votes == other.post_votes &&
@@ -4276,7 +4313,9 @@ class _$GUserInput extends GUserInput {
   int get hashCode {
     return $jf($jc(
         $jc(
-            $jc($jc($jc(0, username.hashCode), communities.hashCode),
+            $jc(
+                $jc($jc($jc(0, username.hashCode), avatar.hashCode),
+                    communities.hashCode),
                 posts.hashCode),
             post_votes.hashCode),
         post_comments.hashCode));
@@ -4286,6 +4325,7 @@ class _$GUserInput extends GUserInput {
   String toString() {
     return (newBuiltValueToStringHelper('GUserInput')
           ..add('username', username)
+          ..add('avatar', avatar)
           ..add('communities', communities)
           ..add('posts', posts)
           ..add('post_votes', post_votes)
@@ -4300,6 +4340,10 @@ class GUserInputBuilder implements Builder<GUserInput, GUserInputBuilder> {
   String? _username;
   String? get username => _$this._username;
   set username(String? username) => _$this._username = username;
+
+  String? _avatar;
+  String? get avatar => _$this._avatar;
+  set avatar(String? avatar) => _$this._avatar = avatar;
 
   GUserCommunitiesRelationBuilder? _communities;
   GUserCommunitiesRelationBuilder get communities =>
@@ -4330,6 +4374,7 @@ class GUserInputBuilder implements Builder<GUserInput, GUserInputBuilder> {
     final $v = _$v;
     if ($v != null) {
       _username = $v.username;
+      _avatar = $v.avatar;
       _communities = $v.communities?.toBuilder();
       _posts = $v.posts?.toBuilder();
       _post_votes = $v.post_votes?.toBuilder();
@@ -4358,6 +4403,7 @@ class GUserInputBuilder implements Builder<GUserInput, GUserInputBuilder> {
           new _$GUserInput._(
               username: BuiltValueNullFieldError.checkNotNull(
                   username, 'GUserInput', 'username'),
+              avatar: avatar,
               communities: _communities?.build(),
               posts: _posts?.build(),
               post_votes: _post_votes?.build(),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_communities/models/community.dart';
 import 'package:flutter_communities/providers/community_repository.dart';
 import 'package:flutter_communities/widgets/query_stream.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -14,15 +15,19 @@ class CommunityAppBar extends ConsumerWidget with PreferredSizeWidget {
   Widget build(BuildContext context, ScopedReader watch) {
     final repository = watch(communityRepositoryProvider);
 
-    return QueryStream<GetCommunityResponse>(
+    return QueryStream<Community?>(
       stream: repository.getCommunity(_communityId),
       builder: (
         context,
-        resp,
+        community,
         error,
       ) {
+        final communityName = community?.name;
+        final icon = community?.icon;
+        final title = communityName != null ? '$icon $communityName' : '';
+
         return AppBar(
-          title: Text(resp?.data?.findCommunityByID?.name ?? ''),
+          title: Text(title),
         );
       },
     );

@@ -39,6 +39,7 @@ abstract class GCommunityInput
 
   String get name;
   String? get purpose;
+  String? get icon;
   GCommunityCreatorRelation? get creator;
   GCommunityPostsRelation? get posts;
   static Serializer<GCommunityInput> get serializer =>
@@ -454,6 +455,7 @@ abstract class GUserInput implements Built<GUserInput, GUserInputBuilder> {
   factory GUserInput([Function(GUserInputBuilder b) updates]) = _$GUserInput;
 
   String get username;
+  String? get avatar;
   GUserCommunitiesRelation? get communities;
   GUserPostsRelation? get posts;
   GUserPost_votesRelation? get post_votes;

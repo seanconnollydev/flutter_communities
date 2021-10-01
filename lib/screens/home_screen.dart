@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_communities/models/community.dart';
 import 'package:flutter_communities/providers/auth.dart';
 import 'package:flutter_communities/screens/error_demo_screen.dart';
 import 'package:flutter_communities/screens/user_profile_screen.dart';
@@ -136,20 +137,19 @@ class _CommunityList extends ConsumerWidget {
   Widget build(BuildContext context, ScopedReader watch) {
     final repository = watch(communityRepositoryProvider);
 
-    return QueryStream<GetCommunitiesResponse>(
+    return QueryStream<List<Community>?>(
       stream: repository.getCommunities(),
-      builder: (context, response, _) {
-        final communities = response?.data?.communities.data;
+      builder: (context, communities, _) {
         if (communities != null && communities.isEmpty == false) {
           return ListView.separated(
               itemBuilder: (context, i) {
                 final community = communities[i];
                 return ListTile(
-                  leading: Text('🌱', style: TextStyle(fontSize: 24)),
+                  leading: Text(community.icon, style: TextStyle(fontSize: 24)),
                   title: Text(community.name),
                   onTap: () {
                     Navigator.of(context).pushNamed(CommunityScreen.routeName,
-                        arguments: community.G_id);
+                        arguments: community.id);
                   },
                 );
               },

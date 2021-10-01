@@ -49,6 +49,7 @@ abstract class GCreateCommunityData_createCommunity
   @BuiltValueField(wireName: '_id')
   String get G_id;
   String get name;
+  String? get icon;
   static Serializer<GCreateCommunityData_createCommunity> get serializer =>
       _$gCreateCommunityDataCreateCommunitySerializer;
   Map<String, dynamic> toJson() => (_i1.serializers

@@ -10,6 +10,7 @@ abstract class GCommunityFragment {
   String get G__typename;
   String get G_id;
   String get name;
+  String? get icon;
   Map<String, dynamic> toJson();
 }
 
@@ -30,6 +31,7 @@ abstract class GCommunityFragmentData
   @BuiltValueField(wireName: '_id')
   String get G_id;
   String get name;
+  String? get icon;
   static Serializer<GCommunityFragmentData> get serializer =>
       _$gCommunityFragmentDataSerializer;
   Map<String, dynamic> toJson() =>

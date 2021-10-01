@@ -32,7 +32,14 @@ class _$GCommunityFragmentDataSerializer
       'name',
       serializers.serialize(object.name, specifiedType: const FullType(String)),
     ];
-
+    Object? value;
+    value = object.icon;
+    if (value != null) {
+      result
+        ..add('icon')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     return result;
   }
 
@@ -60,6 +67,10 @@ class _$GCommunityFragmentDataSerializer
           result.name = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
           break;
+        case 'icon':
+          result.icon = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
+          break;
       }
     }
 
@@ -74,13 +85,18 @@ class _$GCommunityFragmentData extends GCommunityFragmentData {
   final String G_id;
   @override
   final String name;
+  @override
+  final String? icon;
 
   factory _$GCommunityFragmentData(
           [void Function(GCommunityFragmentDataBuilder)? updates]) =>
       (new GCommunityFragmentDataBuilder()..update(updates)).build();
 
   _$GCommunityFragmentData._(
-      {required this.G__typename, required this.G_id, required this.name})
+      {required this.G__typename,
+      required this.G_id,
+      required this.name,
+      this.icon})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         G__typename, 'GCommunityFragmentData', 'G__typename');
@@ -105,13 +121,15 @@ class _$GCommunityFragmentData extends GCommunityFragmentData {
     return other is GCommunityFragmentData &&
         G__typename == other.G__typename &&
         G_id == other.G_id &&
-        name == other.name;
+        name == other.name &&
+        icon == other.icon;
   }
 
   @override
   int get hashCode {
-    return $jf(
-        $jc($jc($jc(0, G__typename.hashCode), G_id.hashCode), name.hashCode));
+    return $jf($jc(
+        $jc($jc($jc(0, G__typename.hashCode), G_id.hashCode), name.hashCode),
+        icon.hashCode));
   }
 
   @override
@@ -119,7 +137,8 @@ class _$GCommunityFragmentData extends GCommunityFragmentData {
     return (newBuiltValueToStringHelper('GCommunityFragmentData')
           ..add('G__typename', G__typename)
           ..add('G_id', G_id)
-          ..add('name', name))
+          ..add('name', name)
+          ..add('icon', icon))
         .toString();
   }
 }
@@ -140,6 +159,10 @@ class GCommunityFragmentDataBuilder
   String? get name => _$this._name;
   set name(String? name) => _$this._name = name;
 
+  String? _icon;
+  String? get icon => _$this._icon;
+  set icon(String? icon) => _$this._icon = icon;
+
   GCommunityFragmentDataBuilder() {
     GCommunityFragmentData._initializeBuilder(this);
   }
@@ -150,6 +173,7 @@ class GCommunityFragmentDataBuilder
       _G__typename = $v.G__typename;
       _G_id = $v.G_id;
       _name = $v.name;
+      _icon = $v.icon;
       _$v = null;
     }
     return this;
@@ -175,7 +199,8 @@ class GCommunityFragmentDataBuilder
             G_id: BuiltValueNullFieldError.checkNotNull(
                 G_id, 'GCommunityFragmentData', 'G_id'),
             name: BuiltValueNullFieldError.checkNotNull(
-                name, 'GCommunityFragmentData', 'name'));
+                name, 'GCommunityFragmentData', 'name'),
+            icon: icon);
     replace(_$result);
     return _$result;
   }

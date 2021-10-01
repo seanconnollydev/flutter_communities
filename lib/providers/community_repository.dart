@@ -23,6 +23,7 @@ import 'package:flutter_communities/graphql/throws_error.data.gql.dart';
 import 'package:flutter_communities/graphql/throws_error.req.gql.dart';
 import 'package:flutter_communities/graphql/throws_error.var.gql.dart';
 import 'package:flutter_communities/graphql/update_user.req.gql.dart';
+import 'package:flutter_communities/models/community.dart';
 import 'package:flutter_communities/models/user.dart';
 import 'package:flutter_communities/providers/ferry.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -46,8 +47,11 @@ class CommunityRepository {
     return _request(GThrowsErrorReq());
   }
 
-  Stream<GetCommunitiesResponse> getCommunities() {
-    return _request(GGetCommunitiesReq());
+  Stream<List<Community>?> getCommunities() {
+    return _request(GGetCommunitiesReq()).map((resp) => resp
+        .data?.communities.data
+        .map((f) => Community.fromCommunityFragment(f)!)
+        .toList());
   }
 
   Stream<OperationResponse<GCreatePostVoteData, GCreatePostVoteVars>>
@@ -97,8 +101,10 @@ class CommunityRepository {
     ));
   }
 
-  Stream<GetCommunityResponse> getCommunity(String communityId) {
-    return _request(GGetCommunityReq((b) => b..vars.id = communityId));
+  Stream<Community?> getCommunity(String communityId) {
+    return _request(GGetCommunityReq((b) => b..vars.id = communityId)).map(
+        (resp) =>
+            Community.fromCommunityFragment(resp.data?.findCommunityByID));
   }
 
   Stream<User?> getViewer() {
