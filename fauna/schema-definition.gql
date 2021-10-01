@@ -37,6 +37,7 @@ input CreatePostCommentInput {
 input CreateUserInput {
   username: String!
   password: String!
+  avatar: String
 }
 
 input LoginUserInput {

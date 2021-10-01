@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_communities/models/user.dart';
 import 'package:flutter_communities/providers/community_repository.dart';
-import 'package:flutter_communities/widgets/emoji_button.dart';
 import 'package:flutter_communities/widgets/query_stream.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -71,7 +70,6 @@ class _UserFormState extends State<UserForm> {
       key: _formKey,
       child: Column(
         children: [
-          EmojiButton('🙋🏻‍♂️'),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 8.0),
             child: Text('username'),

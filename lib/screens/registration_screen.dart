@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_communities/graphql/create_user.req.gql.dart';
 import 'package:flutter_communities/providers/auth.dart';
 import 'package:flutter_communities/providers/ferry.dart';
+import 'package:flutter_communities/widgets/icon_selector.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'home_screen.dart';
@@ -19,6 +20,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   final _formKey = GlobalKey<FormState>();
   String? _username;
   String? _password;
+  String? _avatar;
 
   void _save() async {
     _formKey.currentState?.save();
@@ -28,7 +30,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     final request = GCreateUserReq(
       (b) => b
         ..vars.input.username = _username
-        ..vars.input.password = _password,
+        ..vars.input.password = _password
+        ..vars.input.avatar = _avatar,
     );
 
     final resp = await client.request(request).first;
@@ -50,27 +53,11 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
         child: Form(
           key: _formKey,
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Container(
-                alignment: Alignment.center,
-                padding: const EdgeInsets.all(8.0),
-                child: OutlinedButton(
-                  onPressed: () {
-                    print('>>> onPressed');
-                  },
-                  style: OutlinedButton.styleFrom(
-                    padding: const EdgeInsets.all(16),
-                  ),
-                  child: Text(
-                    '🙋🏻‍♂️',
-                    style: TextStyle(fontSize: 48),
-                  ),
-                ),
-              ),
-              Text(
-                'Emoji',
-                textAlign: TextAlign.center,
+              IconSelector(
+                initialValue: '🙋🏻‍♂️',
+                onSaved: (avatar) => _avatar = avatar,
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16),

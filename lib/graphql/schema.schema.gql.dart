@@ -137,6 +137,7 @@ abstract class GCreateUserInput
 
   String get username;
   String get password;
+  String? get avatar;
   static Serializer<GCreateUserInput> get serializer =>
       _$gCreateUserInputSerializer;
   Map<String, dynamic> toJson() =>

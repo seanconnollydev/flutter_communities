@@ -29,7 +29,14 @@ class _$GUserFragmentDataSerializer
       serializers.serialize(object.username,
           specifiedType: const FullType(String)),
     ];
-
+    Object? value;
+    value = object.avatar;
+    if (value != null) {
+      result
+        ..add('avatar')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     return result;
   }
 
@@ -57,6 +64,10 @@ class _$GUserFragmentDataSerializer
           result.username = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
           break;
+        case 'avatar':
+          result.avatar = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
+          break;
       }
     }
 
@@ -71,13 +82,18 @@ class _$GUserFragmentData extends GUserFragmentData {
   final String G_id;
   @override
   final String username;
+  @override
+  final String? avatar;
 
   factory _$GUserFragmentData(
           [void Function(GUserFragmentDataBuilder)? updates]) =>
       (new GUserFragmentDataBuilder()..update(updates)).build();
 
   _$GUserFragmentData._(
-      {required this.G__typename, required this.G_id, required this.username})
+      {required this.G__typename,
+      required this.G_id,
+      required this.username,
+      this.avatar})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         G__typename, 'GUserFragmentData', 'G__typename');
@@ -100,13 +116,16 @@ class _$GUserFragmentData extends GUserFragmentData {
     return other is GUserFragmentData &&
         G__typename == other.G__typename &&
         G_id == other.G_id &&
-        username == other.username;
+        username == other.username &&
+        avatar == other.avatar;
   }
 
   @override
   int get hashCode {
     return $jf($jc(
-        $jc($jc(0, G__typename.hashCode), G_id.hashCode), username.hashCode));
+        $jc($jc($jc(0, G__typename.hashCode), G_id.hashCode),
+            username.hashCode),
+        avatar.hashCode));
   }
 
   @override
@@ -114,7 +133,8 @@ class _$GUserFragmentData extends GUserFragmentData {
     return (newBuiltValueToStringHelper('GUserFragmentData')
           ..add('G__typename', G__typename)
           ..add('G_id', G_id)
-          ..add('username', username))
+          ..add('username', username)
+          ..add('avatar', avatar))
         .toString();
   }
 }
@@ -135,6 +155,10 @@ class GUserFragmentDataBuilder
   String? get username => _$this._username;
   set username(String? username) => _$this._username = username;
 
+  String? _avatar;
+  String? get avatar => _$this._avatar;
+  set avatar(String? avatar) => _$this._avatar = avatar;
+
   GUserFragmentDataBuilder() {
     GUserFragmentData._initializeBuilder(this);
   }
@@ -145,6 +169,7 @@ class GUserFragmentDataBuilder
       _G__typename = $v.G__typename;
       _G_id = $v.G_id;
       _username = $v.username;
+      _avatar = $v.avatar;
       _$v = null;
     }
     return this;
@@ -170,7 +195,8 @@ class GUserFragmentDataBuilder
             G_id: BuiltValueNullFieldError.checkNotNull(
                 G_id, 'GUserFragmentData', 'G_id'),
             username: BuiltValueNullFieldError.checkNotNull(
-                username, 'GUserFragmentData', 'username'));
+                username, 'GUserFragmentData', 'username'),
+            avatar: avatar);
     replace(_$result);
     return _$result;
   }

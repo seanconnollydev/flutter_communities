@@ -80,6 +80,7 @@ input CreatePostVoteInput {
 input CreateUserInput {
   username: String!
   password: String!
+  avatar: String
 }
 
 scalar Date

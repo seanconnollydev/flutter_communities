@@ -4,12 +4,14 @@ class QueryStream<T> extends StatelessWidget {
   final Stream<T> stream;
   final OperationResponseBuilder<T> builder;
   final Widget? loadingIndicator;
+  final bool? showLoadingState;
 
   const QueryStream({
     Key? key,
     required this.stream,
     required this.builder,
     this.loadingIndicator,
+    this.showLoadingState = true,
   }) : super(key: key);
 
   @override
@@ -18,7 +20,7 @@ class QueryStream<T> extends StatelessWidget {
       key: key,
       stream: stream,
       builder: (context, snapshot) {
-        if (!snapshot.hasData) {
+        if (!snapshot.hasData && showLoadingState == true) {
           return loadingIndicator ?? Center(child: CircularProgressIndicator());
         }
         return builder(context, snapshot.data, snapshot.error);

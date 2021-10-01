@@ -45,6 +45,7 @@ abstract class GGetViewerData_viewer
   @BuiltValueField(wireName: '_id')
   String get G_id;
   String get username;
+  String? get avatar;
   static Serializer<GGetViewerData_viewer> get serializer =>
       _$gGetViewerDataViewerSerializer;
   Map<String, dynamic> toJson() =>

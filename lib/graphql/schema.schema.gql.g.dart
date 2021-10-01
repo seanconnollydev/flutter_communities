@@ -483,7 +483,14 @@ class _$GCreateUserInputSerializer
       serializers.serialize(object.password,
           specifiedType: const FullType(String)),
     ];
-
+    Object? value;
+    value = object.avatar;
+    if (value != null) {
+      result
+        ..add('avatar')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     return result;
   }
 
@@ -505,6 +512,10 @@ class _$GCreateUserInputSerializer
           break;
         case 'password':
           result.password = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
+          break;
+        case 'avatar':
+          result.avatar = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
           break;
       }
@@ -2431,12 +2442,15 @@ class _$GCreateUserInput extends GCreateUserInput {
   final String username;
   @override
   final String password;
+  @override
+  final String? avatar;
 
   factory _$GCreateUserInput(
           [void Function(GCreateUserInputBuilder)? updates]) =>
       (new GCreateUserInputBuilder()..update(updates)).build();
 
-  _$GCreateUserInput._({required this.username, required this.password})
+  _$GCreateUserInput._(
+      {required this.username, required this.password, this.avatar})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         username, 'GCreateUserInput', 'username');
@@ -2457,19 +2471,22 @@ class _$GCreateUserInput extends GCreateUserInput {
     if (identical(other, this)) return true;
     return other is GCreateUserInput &&
         username == other.username &&
-        password == other.password;
+        password == other.password &&
+        avatar == other.avatar;
   }
 
   @override
   int get hashCode {
-    return $jf($jc($jc(0, username.hashCode), password.hashCode));
+    return $jf($jc(
+        $jc($jc(0, username.hashCode), password.hashCode), avatar.hashCode));
   }
 
   @override
   String toString() {
     return (newBuiltValueToStringHelper('GCreateUserInput')
           ..add('username', username)
-          ..add('password', password))
+          ..add('password', password)
+          ..add('avatar', avatar))
         .toString();
   }
 }
@@ -2486,6 +2503,10 @@ class GCreateUserInputBuilder
   String? get password => _$this._password;
   set password(String? password) => _$this._password = password;
 
+  String? _avatar;
+  String? get avatar => _$this._avatar;
+  set avatar(String? avatar) => _$this._avatar = avatar;
+
   GCreateUserInputBuilder();
 
   GCreateUserInputBuilder get _$this {
@@ -2493,6 +2514,7 @@ class GCreateUserInputBuilder
     if ($v != null) {
       _username = $v.username;
       _password = $v.password;
+      _avatar = $v.avatar;
       _$v = null;
     }
     return this;
@@ -2516,7 +2538,8 @@ class GCreateUserInputBuilder
             username: BuiltValueNullFieldError.checkNotNull(
                 username, 'GCreateUserInput', 'username'),
             password: BuiltValueNullFieldError.checkNotNull(
-                password, 'GCreateUserInput', 'password'));
+                password, 'GCreateUserInput', 'password'),
+            avatar: avatar);
     replace(_$result);
     return _$result;
   }

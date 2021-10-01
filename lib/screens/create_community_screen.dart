@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_communities/cache_handlers.dart';
 import 'package:flutter_communities/graphql/create_community.req.gql.dart';
 import 'package:flutter_communities/providers/ferry.dart';
+import 'package:flutter_communities/widgets/icon_selector.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'home_screen.dart';
@@ -53,22 +54,8 @@ class _CreateCommunityScreenState extends State<CreateCommunityScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Center(
-                child: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  width: 100,
-                  child: TextFormField(
-                    initialValue: '😃',
-                    decoration: InputDecoration(counterText: ''),
-                    style: Theme.of(context).textTheme.headline3,
-                    textAlign: TextAlign.center,
-                    onSaved: (icon) {
-                      _icon = icon;
-                    },
-                    maxLength: 1,
-                    keyboardType: TextInputType.text,
-                  ),
-                ),
+              IconSelector(
+                onSaved: (icon) => _icon = icon,
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16),

@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_communities/models/community.dart';
 import 'package:flutter_communities/providers/auth.dart';
-import 'package:flutter_communities/screens/error_demo_screen.dart';
-import 'package:flutter_communities/screens/user_profile_screen.dart';
 import 'package:flutter_communities/widgets/query_stream.dart';
+import 'package:flutter_communities/widgets/user_app_bar.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_communities/providers/community_repository.dart';
 
@@ -21,55 +20,8 @@ class HomeScreen extends ConsumerWidget {
   Widget build(BuildContext context, ScopedReader watch) {
     final _auth = watch(authProvider);
 
-    void _handleTap() {
-      showModalBottomSheet(
-        context: context,
-        builder: (_) {
-          return Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              ListTile(
-                title: Text('Profile'),
-                onTap: () async {
-                  Navigator.of(context)
-                      .popAndPushNamed(UserProfileScreen.routeName);
-                },
-              ),
-              ListTile(
-                title: Text('Logout'),
-                onTap: () async {
-                  await context.read(authProvider.notifier).clearSession();
-                  Navigator.of(context).popUntil((route) => false);
-                  Navigator.of(context).pushNamed(routeName);
-                },
-              ),
-              ListTile(
-                title: Text('Error Demo'),
-                onTap: () {
-                  Navigator.of(context)
-                      .popAndPushNamed(ErrorDemoScreen.routeName);
-                },
-              )
-            ],
-          );
-        },
-      );
-    }
-
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Flutter Communities'),
-        actions: [
-          if (_auth.isAuthenticated)
-            GestureDetector(
-              child: CircleAvatar(
-                child: Text('🙋🏻‍♂️'),
-                backgroundColor: Theme.of(context).backgroundColor,
-              ),
-              onTap: _handleTap,
-            )
-        ],
-      ),
+      appBar: UserAppBar(),
       body: _auth.isAuthenticated ? _CommunityList() : _Welcome(),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
