@@ -27,8 +27,8 @@ class _LoginScreenState extends State<LoginScreen> {
 
     final request = GLoginUserReq(
       (b) => b
-        ..vars.input.username = _username
-        ..vars.input.password = _password,
+        ..vars.data.username = _username
+        ..vars.data.password = _password,
     );
 
     final resp = await client.request(request).first;

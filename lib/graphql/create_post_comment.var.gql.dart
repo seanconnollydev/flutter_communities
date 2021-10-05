@@ -15,7 +15,7 @@ abstract class GCreatePostCommentVars
           [Function(GCreatePostCommentVarsBuilder b) updates]) =
       _$GCreatePostCommentVars;
 
-  _i1.GCreatePostCommentInput get input;
+  _i1.GCreatePostCommentInput get data;
   static Serializer<GCreatePostCommentVars> get serializer =>
       _$gCreatePostCommentVarsSerializer;
   Map<String, dynamic> toJson() =>

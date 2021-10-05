@@ -24,8 +24,8 @@ class _$GCreatePostVoteVarsSerializer
       Serializers serializers, GCreatePostVoteVars object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object?>[
-      'input',
-      serializers.serialize(object.input,
+      'data',
+      serializers.serialize(object.data,
           specifiedType: const FullType(_i1.GCreatePostVoteInput)),
     ];
 
@@ -44,8 +44,8 @@ class _$GCreatePostVoteVarsSerializer
       iterator.moveNext();
       final Object? value = iterator.current;
       switch (key) {
-        case 'input':
-          result.input.replace(serializers.deserialize(value,
+        case 'data':
+          result.data.replace(serializers.deserialize(value,
                   specifiedType: const FullType(_i1.GCreatePostVoteInput))!
               as _i1.GCreatePostVoteInput);
           break;
@@ -58,15 +58,14 @@ class _$GCreatePostVoteVarsSerializer
 
 class _$GCreatePostVoteVars extends GCreatePostVoteVars {
   @override
-  final _i1.GCreatePostVoteInput input;
+  final _i1.GCreatePostVoteInput data;
 
   factory _$GCreatePostVoteVars(
           [void Function(GCreatePostVoteVarsBuilder)? updates]) =>
       (new GCreatePostVoteVarsBuilder()..update(updates)).build();
 
-  _$GCreatePostVoteVars._({required this.input}) : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-        input, 'GCreatePostVoteVars', 'input');
+  _$GCreatePostVoteVars._({required this.data}) : super._() {
+    BuiltValueNullFieldError.checkNotNull(data, 'GCreatePostVoteVars', 'data');
   }
 
   @override
@@ -81,18 +80,18 @@ class _$GCreatePostVoteVars extends GCreatePostVoteVars {
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is GCreatePostVoteVars && input == other.input;
+    return other is GCreatePostVoteVars && data == other.data;
   }
 
   @override
   int get hashCode {
-    return $jf($jc(0, input.hashCode));
+    return $jf($jc(0, data.hashCode));
   }
 
   @override
   String toString() {
     return (newBuiltValueToStringHelper('GCreatePostVoteVars')
-          ..add('input', input))
+          ..add('data', data))
         .toString();
   }
 }
@@ -101,17 +100,17 @@ class GCreatePostVoteVarsBuilder
     implements Builder<GCreatePostVoteVars, GCreatePostVoteVarsBuilder> {
   _$GCreatePostVoteVars? _$v;
 
-  _i1.GCreatePostVoteInputBuilder? _input;
-  _i1.GCreatePostVoteInputBuilder get input =>
-      _$this._input ??= new _i1.GCreatePostVoteInputBuilder();
-  set input(_i1.GCreatePostVoteInputBuilder? input) => _$this._input = input;
+  _i1.GCreatePostVoteInputBuilder? _data;
+  _i1.GCreatePostVoteInputBuilder get data =>
+      _$this._data ??= new _i1.GCreatePostVoteInputBuilder();
+  set data(_i1.GCreatePostVoteInputBuilder? data) => _$this._data = data;
 
   GCreatePostVoteVarsBuilder();
 
   GCreatePostVoteVarsBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _input = $v.input.toBuilder();
+      _data = $v.data.toBuilder();
       _$v = null;
     }
     return this;
@@ -132,12 +131,12 @@ class GCreatePostVoteVarsBuilder
   _$GCreatePostVoteVars build() {
     _$GCreatePostVoteVars _$result;
     try {
-      _$result = _$v ?? new _$GCreatePostVoteVars._(input: input.build());
+      _$result = _$v ?? new _$GCreatePostVoteVars._(data: data.build());
     } catch (_) {
       late String _$failedField;
       try {
-        _$failedField = 'input';
-        input.build();
+        _$failedField = 'data';
+        data.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             'GCreatePostVoteVars', _$failedField, e.toString());

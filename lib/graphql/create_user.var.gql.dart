@@ -14,7 +14,7 @@ abstract class GCreateUserVars
   factory GCreateUserVars([Function(GCreateUserVarsBuilder b) updates]) =
       _$GCreateUserVars;
 
-  _i1.GCreateUserInput get input;
+  _i1.GCreateUserInput get data;
   static Serializer<GCreateUserVars> get serializer =>
       _$gCreateUserVarsSerializer;
   Map<String, dynamic> toJson() =>

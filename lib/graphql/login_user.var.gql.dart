@@ -14,7 +14,7 @@ abstract class GLoginUserVars
   factory GLoginUserVars([Function(GLoginUserVarsBuilder b) updates]) =
       _$GLoginUserVars;
 
-  _i1.GLoginUserInput get input;
+  _i1.GLoginUserInput get data;
   static Serializer<GLoginUserVars> get serializer =>
       _$gLoginUserVarsSerializer;
   Map<String, dynamic> toJson() =>

@@ -24,8 +24,8 @@ class _$GCreatePostCommentVarsSerializer
       Serializers serializers, GCreatePostCommentVars object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object?>[
-      'input',
-      serializers.serialize(object.input,
+      'data',
+      serializers.serialize(object.data,
           specifiedType: const FullType(_i1.GCreatePostCommentInput)),
     ];
 
@@ -44,8 +44,8 @@ class _$GCreatePostCommentVarsSerializer
       iterator.moveNext();
       final Object? value = iterator.current;
       switch (key) {
-        case 'input':
-          result.input.replace(serializers.deserialize(value,
+        case 'data':
+          result.data.replace(serializers.deserialize(value,
                   specifiedType: const FullType(_i1.GCreatePostCommentInput))!
               as _i1.GCreatePostCommentInput);
           break;
@@ -58,15 +58,15 @@ class _$GCreatePostCommentVarsSerializer
 
 class _$GCreatePostCommentVars extends GCreatePostCommentVars {
   @override
-  final _i1.GCreatePostCommentInput input;
+  final _i1.GCreatePostCommentInput data;
 
   factory _$GCreatePostCommentVars(
           [void Function(GCreatePostCommentVarsBuilder)? updates]) =>
       (new GCreatePostCommentVarsBuilder()..update(updates)).build();
 
-  _$GCreatePostCommentVars._({required this.input}) : super._() {
+  _$GCreatePostCommentVars._({required this.data}) : super._() {
     BuiltValueNullFieldError.checkNotNull(
-        input, 'GCreatePostCommentVars', 'input');
+        data, 'GCreatePostCommentVars', 'data');
   }
 
   @override
@@ -81,18 +81,18 @@ class _$GCreatePostCommentVars extends GCreatePostCommentVars {
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is GCreatePostCommentVars && input == other.input;
+    return other is GCreatePostCommentVars && data == other.data;
   }
 
   @override
   int get hashCode {
-    return $jf($jc(0, input.hashCode));
+    return $jf($jc(0, data.hashCode));
   }
 
   @override
   String toString() {
     return (newBuiltValueToStringHelper('GCreatePostCommentVars')
-          ..add('input', input))
+          ..add('data', data))
         .toString();
   }
 }
@@ -101,17 +101,17 @@ class GCreatePostCommentVarsBuilder
     implements Builder<GCreatePostCommentVars, GCreatePostCommentVarsBuilder> {
   _$GCreatePostCommentVars? _$v;
 
-  _i1.GCreatePostCommentInputBuilder? _input;
-  _i1.GCreatePostCommentInputBuilder get input =>
-      _$this._input ??= new _i1.GCreatePostCommentInputBuilder();
-  set input(_i1.GCreatePostCommentInputBuilder? input) => _$this._input = input;
+  _i1.GCreatePostCommentInputBuilder? _data;
+  _i1.GCreatePostCommentInputBuilder get data =>
+      _$this._data ??= new _i1.GCreatePostCommentInputBuilder();
+  set data(_i1.GCreatePostCommentInputBuilder? data) => _$this._data = data;
 
   GCreatePostCommentVarsBuilder();
 
   GCreatePostCommentVarsBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _input = $v.input.toBuilder();
+      _data = $v.data.toBuilder();
       _$v = null;
     }
     return this;
@@ -132,12 +132,12 @@ class GCreatePostCommentVarsBuilder
   _$GCreatePostCommentVars build() {
     _$GCreatePostCommentVars _$result;
     try {
-      _$result = _$v ?? new _$GCreatePostCommentVars._(input: input.build());
+      _$result = _$v ?? new _$GCreatePostCommentVars._(data: data.build());
     } catch (_) {
       late String _$failedField;
       try {
-        _$failedField = 'input';
-        input.build();
+        _$failedField = 'data';
+        data.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             'GCreatePostCommentVars', _$failedField, e.toString());

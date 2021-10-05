@@ -28,9 +28,9 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
 
     final request = GCreatePostReq(
       (b) => b
-        ..vars.input.title = _title
-        ..vars.input.message = _message
-        ..vars.input.communityId = widget._communityId
+        ..vars.data.title = _title
+        ..vars.data.message = _message
+        ..vars.data.communityId = widget._communityId
         ..updateCacheHandlerKey =
             CacheHandlers.key(CacheHandler.createPostHandler),
     );

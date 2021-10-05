@@ -20,8 +20,8 @@ class _$GCreatePostVarsSerializer
   Iterable<Object?> serialize(Serializers serializers, GCreatePostVars object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object?>[
-      'input',
-      serializers.serialize(object.input,
+      'data',
+      serializers.serialize(object.data,
           specifiedType: const FullType(_i1.GCreatePostInput)),
     ];
 
@@ -40,8 +40,8 @@ class _$GCreatePostVarsSerializer
       iterator.moveNext();
       final Object? value = iterator.current;
       switch (key) {
-        case 'input':
-          result.input.replace(serializers.deserialize(value,
+        case 'data':
+          result.data.replace(serializers.deserialize(value,
                   specifiedType: const FullType(_i1.GCreatePostInput))!
               as _i1.GCreatePostInput);
           break;
@@ -54,13 +54,13 @@ class _$GCreatePostVarsSerializer
 
 class _$GCreatePostVars extends GCreatePostVars {
   @override
-  final _i1.GCreatePostInput input;
+  final _i1.GCreatePostInput data;
 
   factory _$GCreatePostVars([void Function(GCreatePostVarsBuilder)? updates]) =>
       (new GCreatePostVarsBuilder()..update(updates)).build();
 
-  _$GCreatePostVars._({required this.input}) : super._() {
-    BuiltValueNullFieldError.checkNotNull(input, 'GCreatePostVars', 'input');
+  _$GCreatePostVars._({required this.data}) : super._() {
+    BuiltValueNullFieldError.checkNotNull(data, 'GCreatePostVars', 'data');
   }
 
   @override
@@ -74,17 +74,17 @@ class _$GCreatePostVars extends GCreatePostVars {
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is GCreatePostVars && input == other.input;
+    return other is GCreatePostVars && data == other.data;
   }
 
   @override
   int get hashCode {
-    return $jf($jc(0, input.hashCode));
+    return $jf($jc(0, data.hashCode));
   }
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('GCreatePostVars')..add('input', input))
+    return (newBuiltValueToStringHelper('GCreatePostVars')..add('data', data))
         .toString();
   }
 }
@@ -93,17 +93,17 @@ class GCreatePostVarsBuilder
     implements Builder<GCreatePostVars, GCreatePostVarsBuilder> {
   _$GCreatePostVars? _$v;
 
-  _i1.GCreatePostInputBuilder? _input;
-  _i1.GCreatePostInputBuilder get input =>
-      _$this._input ??= new _i1.GCreatePostInputBuilder();
-  set input(_i1.GCreatePostInputBuilder? input) => _$this._input = input;
+  _i1.GCreatePostInputBuilder? _data;
+  _i1.GCreatePostInputBuilder get data =>
+      _$this._data ??= new _i1.GCreatePostInputBuilder();
+  set data(_i1.GCreatePostInputBuilder? data) => _$this._data = data;
 
   GCreatePostVarsBuilder();
 
   GCreatePostVarsBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _input = $v.input.toBuilder();
+      _data = $v.data.toBuilder();
       _$v = null;
     }
     return this;
@@ -124,12 +124,12 @@ class GCreatePostVarsBuilder
   _$GCreatePostVars build() {
     _$GCreatePostVars _$result;
     try {
-      _$result = _$v ?? new _$GCreatePostVars._(input: input.build());
+      _$result = _$v ?? new _$GCreatePostVars._(data: data.build());
     } catch (_) {
       late String _$failedField;
       try {
-        _$failedField = 'input';
-        input.build();
+        _$failedField = 'data';
+        data.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             'GCreatePostVars', _$failedField, e.toString());

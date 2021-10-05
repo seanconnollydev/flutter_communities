@@ -20,8 +20,8 @@ class _$GLoginUserVarsSerializer
   Iterable<Object?> serialize(Serializers serializers, GLoginUserVars object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object?>[
-      'input',
-      serializers.serialize(object.input,
+      'data',
+      serializers.serialize(object.data,
           specifiedType: const FullType(_i1.GLoginUserInput)),
     ];
 
@@ -40,8 +40,8 @@ class _$GLoginUserVarsSerializer
       iterator.moveNext();
       final Object? value = iterator.current;
       switch (key) {
-        case 'input':
-          result.input.replace(serializers.deserialize(value,
+        case 'data':
+          result.data.replace(serializers.deserialize(value,
                   specifiedType: const FullType(_i1.GLoginUserInput))!
               as _i1.GLoginUserInput);
           break;
@@ -54,13 +54,13 @@ class _$GLoginUserVarsSerializer
 
 class _$GLoginUserVars extends GLoginUserVars {
   @override
-  final _i1.GLoginUserInput input;
+  final _i1.GLoginUserInput data;
 
   factory _$GLoginUserVars([void Function(GLoginUserVarsBuilder)? updates]) =>
       (new GLoginUserVarsBuilder()..update(updates)).build();
 
-  _$GLoginUserVars._({required this.input}) : super._() {
-    BuiltValueNullFieldError.checkNotNull(input, 'GLoginUserVars', 'input');
+  _$GLoginUserVars._({required this.data}) : super._() {
+    BuiltValueNullFieldError.checkNotNull(data, 'GLoginUserVars', 'data');
   }
 
   @override
@@ -74,17 +74,17 @@ class _$GLoginUserVars extends GLoginUserVars {
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is GLoginUserVars && input == other.input;
+    return other is GLoginUserVars && data == other.data;
   }
 
   @override
   int get hashCode {
-    return $jf($jc(0, input.hashCode));
+    return $jf($jc(0, data.hashCode));
   }
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('GLoginUserVars')..add('input', input))
+    return (newBuiltValueToStringHelper('GLoginUserVars')..add('data', data))
         .toString();
   }
 }
@@ -93,17 +93,17 @@ class GLoginUserVarsBuilder
     implements Builder<GLoginUserVars, GLoginUserVarsBuilder> {
   _$GLoginUserVars? _$v;
 
-  _i1.GLoginUserInputBuilder? _input;
-  _i1.GLoginUserInputBuilder get input =>
-      _$this._input ??= new _i1.GLoginUserInputBuilder();
-  set input(_i1.GLoginUserInputBuilder? input) => _$this._input = input;
+  _i1.GLoginUserInputBuilder? _data;
+  _i1.GLoginUserInputBuilder get data =>
+      _$this._data ??= new _i1.GLoginUserInputBuilder();
+  set data(_i1.GLoginUserInputBuilder? data) => _$this._data = data;
 
   GLoginUserVarsBuilder();
 
   GLoginUserVarsBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _input = $v.input.toBuilder();
+      _data = $v.data.toBuilder();
       _$v = null;
     }
     return this;
@@ -124,12 +124,12 @@ class GLoginUserVarsBuilder
   _$GLoginUserVars build() {
     _$GLoginUserVars _$result;
     try {
-      _$result = _$v ?? new _$GLoginUserVars._(input: input.build());
+      _$result = _$v ?? new _$GLoginUserVars._(data: data.build());
     } catch (_) {
       late String _$failedField;
       try {
-        _$failedField = 'input';
-        input.build();
+        _$failedField = 'data';
+        data.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             'GLoginUserVars', _$failedField, e.toString());

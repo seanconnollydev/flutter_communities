@@ -102,7 +102,7 @@ type Mutation {
     # 'User' input values
     data: UserInput!
   ): User
-  createUser(input: CreateUserInput!): String!
+  createUser(data: CreateUserInput!): String!
   # Update an existing document in the collection of 'PostComment'
   updatePostComment(
     # The 'PostComment' document's ID
@@ -110,7 +110,7 @@ type Mutation {
     # 'PostComment' input values
     data: PostCommentInput!
   ): PostComment
-  createPostComment(input: CreatePostCommentInput!): PostComment!
+  createPostComment(data: CreatePostCommentInput!): PostComment!
   # Delete an existing document in the collection of 'PostComment'
   deletePostComment(
     # The 'PostComment' document's ID
@@ -130,8 +130,8 @@ type Mutation {
     # 'Post' input values
     data: PostInput!
   ): Post
-  createPostVote(input: CreatePostVoteInput!): Post!
-  loginUser(input: LoginUserInput!): String!
+  createPostVote(data: CreatePostVoteInput!): Post!
+  loginUser(data: LoginUserInput!): String!
   # Delete an existing document in the collection of 'Community'
   deleteCommunity(
     # The 'Community' document's ID
@@ -147,7 +147,7 @@ type Mutation {
     # The 'Post' document's ID
     id: ID!
   ): Post
-  createPost(input: CreatePostInput!): Post!
+  createPost(data: CreatePostInput!): Post!
   # Update an existing document in the collection of 'PostVote'
   updatePostVote(
     # The 'PostVote' document's ID

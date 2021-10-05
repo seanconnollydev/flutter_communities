@@ -29,9 +29,9 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
 
     final request = GCreateUserReq(
       (b) => b
-        ..vars.input.username = _username
-        ..vars.input.password = _password
-        ..vars.input.avatar = _avatar,
+        ..vars.data.username = _username
+        ..vars.data.password = _password
+        ..vars.data.avatar = _avatar,
     );
 
     final resp = await client.request(request).first;

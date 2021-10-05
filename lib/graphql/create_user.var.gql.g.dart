@@ -20,8 +20,8 @@ class _$GCreateUserVarsSerializer
   Iterable<Object?> serialize(Serializers serializers, GCreateUserVars object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object?>[
-      'input',
-      serializers.serialize(object.input,
+      'data',
+      serializers.serialize(object.data,
           specifiedType: const FullType(_i1.GCreateUserInput)),
     ];
 
@@ -40,8 +40,8 @@ class _$GCreateUserVarsSerializer
       iterator.moveNext();
       final Object? value = iterator.current;
       switch (key) {
-        case 'input':
-          result.input.replace(serializers.deserialize(value,
+        case 'data':
+          result.data.replace(serializers.deserialize(value,
                   specifiedType: const FullType(_i1.GCreateUserInput))!
               as _i1.GCreateUserInput);
           break;
@@ -54,13 +54,13 @@ class _$GCreateUserVarsSerializer
 
 class _$GCreateUserVars extends GCreateUserVars {
   @override
-  final _i1.GCreateUserInput input;
+  final _i1.GCreateUserInput data;
 
   factory _$GCreateUserVars([void Function(GCreateUserVarsBuilder)? updates]) =>
       (new GCreateUserVarsBuilder()..update(updates)).build();
 
-  _$GCreateUserVars._({required this.input}) : super._() {
-    BuiltValueNullFieldError.checkNotNull(input, 'GCreateUserVars', 'input');
+  _$GCreateUserVars._({required this.data}) : super._() {
+    BuiltValueNullFieldError.checkNotNull(data, 'GCreateUserVars', 'data');
   }
 
   @override
@@ -74,17 +74,17 @@ class _$GCreateUserVars extends GCreateUserVars {
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is GCreateUserVars && input == other.input;
+    return other is GCreateUserVars && data == other.data;
   }
 
   @override
   int get hashCode {
-    return $jf($jc(0, input.hashCode));
+    return $jf($jc(0, data.hashCode));
   }
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('GCreateUserVars')..add('input', input))
+    return (newBuiltValueToStringHelper('GCreateUserVars')..add('data', data))
         .toString();
   }
 }
@@ -93,17 +93,17 @@ class GCreateUserVarsBuilder
     implements Builder<GCreateUserVars, GCreateUserVarsBuilder> {
   _$GCreateUserVars? _$v;
 
-  _i1.GCreateUserInputBuilder? _input;
-  _i1.GCreateUserInputBuilder get input =>
-      _$this._input ??= new _i1.GCreateUserInputBuilder();
-  set input(_i1.GCreateUserInputBuilder? input) => _$this._input = input;
+  _i1.GCreateUserInputBuilder? _data;
+  _i1.GCreateUserInputBuilder get data =>
+      _$this._data ??= new _i1.GCreateUserInputBuilder();
+  set data(_i1.GCreateUserInputBuilder? data) => _$this._data = data;
 
   GCreateUserVarsBuilder();
 
   GCreateUserVarsBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _input = $v.input.toBuilder();
+      _data = $v.data.toBuilder();
       _$v = null;
     }
     return this;
@@ -124,12 +124,12 @@ class GCreateUserVarsBuilder
   _$GCreateUserVars build() {
     _$GCreateUserVars _$result;
     try {
-      _$result = _$v ?? new _$GCreateUserVars._(input: input.build());
+      _$result = _$v ?? new _$GCreateUserVars._(data: data.build());
     } catch (_) {
       late String _$failedField;
       try {
-        _$failedField = 'input';
-        input.build();
+        _$failedField = 'data';
+        data.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             'GCreateUserVars', _$failedField, e.toString());

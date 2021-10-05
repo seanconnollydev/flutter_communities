@@ -45,7 +45,7 @@ UpdateCacheHandler<GCreatePostData, GCreatePostVars> createPostHandler = (
   response,
 ) {
   final request = RequestBuilders.getPostsByCommunityId(
-      response.operationRequest.vars.input.communityId);
+      response.operationRequest.vars.data.communityId);
   final communityWithPostsData = proxy.readQuery(request);
   final newPost = response.data?.createPost;
 
@@ -89,7 +89,7 @@ UpdateCacheHandler<GCreatePostCommentData, GCreatePostCommentVars>
   response,
 ) {
   final request =
-      RequestBuilders.getPost(response.operationRequest.vars.input.postId);
+      RequestBuilders.getPost(response.operationRequest.vars.data.postId);
   final postData = proxy.readQuery(request);
   final newPostComment = response.data?.createPostComment;
 

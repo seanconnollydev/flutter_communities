@@ -1,5 +1,5 @@
-mutation CreatePostVote($input: CreatePostVoteInput!) {
-  createPostVote(input: $input) {
+mutation CreatePostVote($data: CreatePostVoteInput!) {
+  createPostVote(data: $data) {
     _id
     upVotes
     downVotes

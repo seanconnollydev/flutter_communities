@@ -14,7 +14,7 @@ abstract class GCreatePostVoteVars
   factory GCreatePostVoteVars(
       [Function(GCreatePostVoteVarsBuilder b) updates]) = _$GCreatePostVoteVars;
 
-  _i1.GCreatePostVoteInput get input;
+  _i1.GCreatePostVoteInput get data;
   static Serializer<GCreatePostVoteVars> get serializer =>
       _$gCreatePostVoteVarsSerializer;
   Map<String, dynamic> toJson() =>

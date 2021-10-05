@@ -1,9 +1,9 @@
 type Mutation {
-  createPost(input: CreatePostInput!): Post! @resolver(name: "create_post")
-  createPostComment(input: CreatePostCommentInput!): PostComment! @resolver(name: "create_post_comment")
-  createPostVote(input: CreatePostVoteInput!): Post! @resolver(name: "create_post_vote")
-  createUser(input: CreateUserInput!): String! @resolver(name: "create_user")
-  loginUser(input: LoginUserInput!): String! @resolver(name: "login_user")
+  createPost(data: CreatePostInput!): Post! @resolver(name: "create_post")
+  createPostComment(data: CreatePostCommentInput!): PostComment! @resolver(name: "create_post_comment")
+  createPostVote(data: CreatePostVoteInput!): Post! @resolver(name: "create_post_vote")
+  createUser(data: CreateUserInput!): String! @resolver(name: "create_user")
+  loginUser(data: LoginUserInput!): String! @resolver(name: "login_user")
 }
 
 type Query {

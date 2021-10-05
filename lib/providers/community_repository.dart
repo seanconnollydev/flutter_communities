@@ -59,8 +59,8 @@ class CommunityRepository {
     return _request(
       GCreatePostVoteReq(
         (b) => b
-          ..vars.input.postId = post.G_id
-          ..vars.input.type = voteType
+          ..vars.data.postId = post.G_id
+          ..vars.data.type = voteType
           ..optimisticResponse.createPostVote.G_id = post.G_id
           ..optimisticResponse.createPostVote.upVotes =
               voteType == GPostVoteType.UpVote ? post.upVotes + 1 : post.upVotes
@@ -84,8 +84,8 @@ class CommunityRepository {
     return _request(
       GCreatePostCommentReq(
         (b) => b
-          ..vars.input.postId = postId
-          ..vars.input.message = message
+          ..vars.data.postId = postId
+          ..vars.data.message = message
           ..updateCacheHandlerKey =
               CacheHandlers.key(CacheHandler.createPostCommentHandler),
       ),

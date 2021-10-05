@@ -373,7 +373,7 @@ const Mutation = _i1.ObjectTypeDefinitionNode(
           directives: [],
           args: [
             _i1.InputValueDefinitionNode(
-                name: _i1.NameNode(value: 'input'),
+                name: _i1.NameNode(value: 'data'),
                 directives: [],
                 type: _i1.NamedTypeNode(
                     name: _i1.NameNode(value: 'CreateUserInput'),
@@ -407,7 +407,7 @@ const Mutation = _i1.ObjectTypeDefinitionNode(
           directives: [],
           args: [
             _i1.InputValueDefinitionNode(
-                name: _i1.NameNode(value: 'input'),
+                name: _i1.NameNode(value: 'data'),
                 directives: [],
                 type: _i1.NamedTypeNode(
                     name: _i1.NameNode(value: 'CreatePostCommentInput'),
@@ -473,7 +473,7 @@ const Mutation = _i1.ObjectTypeDefinitionNode(
           directives: [],
           args: [
             _i1.InputValueDefinitionNode(
-                name: _i1.NameNode(value: 'input'),
+                name: _i1.NameNode(value: 'data'),
                 directives: [],
                 type: _i1.NamedTypeNode(
                     name: _i1.NameNode(value: 'CreatePostVoteInput'),
@@ -487,7 +487,7 @@ const Mutation = _i1.ObjectTypeDefinitionNode(
           directives: [],
           args: [
             _i1.InputValueDefinitionNode(
-                name: _i1.NameNode(value: 'input'),
+                name: _i1.NameNode(value: 'data'),
                 directives: [],
                 type: _i1.NamedTypeNode(
                     name: _i1.NameNode(value: 'LoginUserInput'),
@@ -540,7 +540,7 @@ const Mutation = _i1.ObjectTypeDefinitionNode(
           directives: [],
           args: [
             _i1.InputValueDefinitionNode(
-                name: _i1.NameNode(value: 'input'),
+                name: _i1.NameNode(value: 'data'),
                 directives: [],
                 type: _i1.NamedTypeNode(
                     name: _i1.NameNode(value: 'CreatePostInput'),
