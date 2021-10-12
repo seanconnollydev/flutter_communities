@@ -1,7 +1,0 @@
-# import './user_fragment.graphql'
-
-query GetViewer{
-  viewer {
-    ...UserFragment
-  }
-}

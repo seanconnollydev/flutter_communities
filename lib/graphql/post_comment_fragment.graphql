@@ -1,8 +1,0 @@
-fragment PostCommentFragment on PostComment {
-  _id
-  creator {
-    _id
-    username
-  }
-  message
-}

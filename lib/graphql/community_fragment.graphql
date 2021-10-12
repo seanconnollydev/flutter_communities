@@ -1,5 +1,0 @@
-fragment CommunityFragment on Community {
-  _id
-  name
-  icon
-}
