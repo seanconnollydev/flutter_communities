@@ -1,2 +1,27 @@
 # This schema-definition.gql file contains the basic types, queries, and mutations for our GraphQL API.
 # Importing to Fauna will generate the necessary classes and indexes to support the schema.
+
+type Mutation {
+  createUser(data: CreateUserInput!): String! @resolver(name: "create_user")
+  login(data: LoginUserInput!): String! @resolver(name: "login_user")
+}
+
+input CreateUserInput {
+  username: String!
+  password: String!
+}
+
+input LoginUserInput {
+  username: String!
+  password: String!
+}
+
+type Community {
+  name: String!
+  purpose: String
+  icon: String
+}
+
+type User {
+  username: String! @unique
+}
