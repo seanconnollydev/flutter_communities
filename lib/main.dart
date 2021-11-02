@@ -1,9 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_communities/screens/registration_screen.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'providers/auth.dart';
 import 'screens/home_screen.dart';
 
 void main() async {
-  runApp(FlutterCommunitiesApp());
+  await dotenv.load();
+  final container = ProviderContainer();
+  final auth = container.read(authProvider.notifier);
+  await auth.initialize();
+
+  runApp(
+    UncontrolledProviderScope(
+      child: FlutterCommunitiesApp(),
+      container: container,
+    ),
+  );
 }
 
 class FlutterCommunitiesApp extends StatelessWidget {

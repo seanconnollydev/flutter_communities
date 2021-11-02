@@ -1,4 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_communities/graphql/create_user.req.gql.dart';
+import 'package:flutter_communities/providers/auth.dart';
+import 'package:flutter_communities/providers/ferry.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import 'home_screen.dart';
 
 class RegistrationScreen extends StatefulWidget {
   static const routeName = '/registration';
@@ -15,6 +21,24 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
 
   void _save() async {
     _formKey.currentState?.save();
+
+    final client = context.read(ferryClientProvider);
+
+    final request = GCreateUserReq(
+      (b) => b
+        ..vars.data.username = _username
+        ..vars.data.password = _password,
+    );
+
+    final resp = await client.request(request).first;
+    final token = resp.data?.createUser;
+
+    if (token != null) {
+      await context.read(authProvider.notifier).setSession(token);
+      Navigator.of(context)
+          .pushNamedAndRemoveUntil(HomeScreen.routeName, (_) => false);
+    }
+
     print('username: $_username; password: $_password');
   }
 
