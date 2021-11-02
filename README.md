@@ -22,6 +22,9 @@ flutter run
 
 Generate GraphQL types:
 ```bash
+flutter pub run build_runner build --delete-conflicting-outputs
+
+# For fvm users
 fvm flutter pub run build_runner build --delete-conflicting-outputs
 ```
 
