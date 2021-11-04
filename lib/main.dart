@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_communities/screens/login_screen.dart';
 import 'package:flutter_communities/screens/registration_screen.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -27,10 +28,11 @@ class FlutterCommunitiesApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      initialRoute: RegistrationScreen.routeName,
+      initialRoute: LoginScreen.routeName,
       routes: {
         HomeScreen.routeName: (_) => HomeScreen(),
         RegistrationScreen.routeName: (_) => RegistrationScreen(),
+        LoginScreen.routeName: (_) => LoginScreen(),
       },
     );
   }

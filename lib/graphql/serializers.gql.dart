@@ -7,6 +7,12 @@ import 'package:flutter_communities/graphql/create_user.req.gql.dart'
     show GCreateUserReq;
 import 'package:flutter_communities/graphql/create_user.var.gql.dart'
     show GCreateUserVars;
+import 'package:flutter_communities/graphql/login_user.data.gql.dart'
+    show GLoginUserData;
+import 'package:flutter_communities/graphql/login_user.req.gql.dart'
+    show GLoginUserReq;
+import 'package:flutter_communities/graphql/login_user.var.gql.dart'
+    show GLoginUserVars;
 import 'package:flutter_communities/graphql/schema.schema.gql.dart'
     show
         GCommunityInput,
@@ -31,7 +37,10 @@ final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   GCreateUserReq,
   GCreateUserVars,
   GDate,
+  GLoginUserData,
   GLoginUserInput,
+  GLoginUserReq,
+  GLoginUserVars,
   GLong,
   GTime,
   GUserInput
