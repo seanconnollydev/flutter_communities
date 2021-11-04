@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_communities/widgets/user_app_bar.dart';
 
 class HomeScreen extends StatelessWidget {
   static const routeName = '/';
@@ -8,10 +9,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-          title: Text(
-        'Flutter Communities',
-      )),
+      appBar: UserAppBar(),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
