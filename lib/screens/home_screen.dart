@@ -1,5 +1,11 @@
+import 'package:ferry/ferry.dart';
+import 'package:ferry_flutter/ferry_flutter.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_communities/graphql/get_communities.data.gql.dart';
+import 'package:flutter_communities/graphql/get_communities.req.gql.dart';
+import 'package:flutter_communities/graphql/get_communities.var.gql.dart';
 import 'package:flutter_communities/providers/auth.dart';
+import 'package:flutter_communities/providers/ferry.dart';
 import 'package:flutter_communities/widgets/user_app_bar.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -73,22 +79,54 @@ class _Welcome extends StatelessWidget {
   }
 }
 
-class _CommunityList extends StatelessWidget {
+class _CommunityList extends ConsumerWidget {
   const _CommunityList({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(bottom: 16),
-            child: Text('No Communities', style: TextStyle(fontSize: 24)),
+  Widget build(BuildContext context, ScopedReader watch) {
+    final client = watch(ferryClientProvider);
+
+    return Operation(
+      client: client,
+      operationRequest: GGetCommunitiesReq(),
+      builder: (
+        BuildContext context,
+        OperationResponse<GGetCommunitiesData, GGetCommunitiesVars>? response,
+        Object? error,
+      ) {
+        if (response?.loading == true)
+          return Center(child: CircularProgressIndicator());
+
+        final communities = response?.data?.communities.data;
+
+        if (communities != null && communities.isEmpty == false) {
+          return ListView.separated(
+              itemBuilder: (context, i) {
+                final community = communities[i];
+                return ListTile(
+                  title: Text(community.name),
+                  onTap: () {
+                    print('TODO: Implement');
+                  },
+                );
+              },
+              separatorBuilder: (context, i) => const Divider(),
+              itemCount: communities.length);
+        }
+
+        return Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(bottom: 16),
+                child: Text('No Communities', style: TextStyle(fontSize: 24)),
+              ),
+              Text('Tap the "+" button to create a community.'),
+            ],
           ),
-          Text('Tap the "+" button to create a community.'),
-        ],
-      ),
+        );
+      },
     );
   }
 }

@@ -24,6 +24,16 @@ input CommunityInput {
   icon: String
 }
 
+# The pagination object for elements of type 'Community'.
+type CommunityPage {
+  # The elements of type 'Community' in this page.
+  data: [Community]!
+  # A cursor for elements coming after the current page.
+  after: String
+  # A cursor for elements coming before the current page.
+  before: String
+}
+
 input CreateUserInput {
   username: String!
   password: String!
@@ -85,6 +95,12 @@ type Query {
     # The 'User' document's ID
     id: ID!
   ): User
+  communities(
+    # The number of items to return per page.
+    _size: Int
+    # The pagination cursor.
+    _cursor: String
+  ): CommunityPage!
 }
 
 scalar Time

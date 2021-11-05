@@ -6,6 +6,10 @@ type Mutation {
   login(data: LoginUserInput!): String! @resolver(name: "login_user")
 }
 
+type Query {
+  communities: [Community!]!
+}
+
 input CreateUserInput {
   username: String!
   password: String!

@@ -1,0 +1,9 @@
+query GetCommunities($size: Int, $cursor: String) {
+  communities(_size: $size, _cursor: $cursor) {
+    data {
+      _id
+      name
+      icon
+    }
+  }
+}

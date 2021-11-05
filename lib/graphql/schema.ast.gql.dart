@@ -132,6 +132,32 @@ const CommunityInput = _i1.InputObjectTypeDefinitionNode(
               name: _i1.NameNode(value: 'String'), isNonNull: false),
           defaultValue: null)
     ]);
+const CommunityPage = _i1.ObjectTypeDefinitionNode(
+    name: _i1.NameNode(value: 'CommunityPage'),
+    directives: [],
+    interfaces: [],
+    fields: [
+      _i1.FieldDefinitionNode(
+          name: _i1.NameNode(value: 'data'),
+          directives: [],
+          args: [],
+          type: _i1.ListTypeNode(
+              type: _i1.NamedTypeNode(
+                  name: _i1.NameNode(value: 'Community'), isNonNull: false),
+              isNonNull: true)),
+      _i1.FieldDefinitionNode(
+          name: _i1.NameNode(value: 'after'),
+          directives: [],
+          args: [],
+          type: _i1.NamedTypeNode(
+              name: _i1.NameNode(value: 'String'), isNonNull: false)),
+      _i1.FieldDefinitionNode(
+          name: _i1.NameNode(value: 'before'),
+          directives: [],
+          args: [],
+          type: _i1.NamedTypeNode(
+              name: _i1.NameNode(value: 'String'), isNonNull: false))
+    ]);
 const CreateUserInput = _i1.InputObjectTypeDefinitionNode(
     name: _i1.NameNode(value: 'CreateUserInput'),
     directives: [],
@@ -313,7 +339,26 @@ const Query = _i1.ObjectTypeDefinitionNode(
                 defaultValue: null)
           ],
           type: _i1.NamedTypeNode(
-              name: _i1.NameNode(value: 'User'), isNonNull: false))
+              name: _i1.NameNode(value: 'User'), isNonNull: false)),
+      _i1.FieldDefinitionNode(
+          name: _i1.NameNode(value: 'communities'),
+          directives: [],
+          args: [
+            _i1.InputValueDefinitionNode(
+                name: _i1.NameNode(value: '_size'),
+                directives: [],
+                type: _i1.NamedTypeNode(
+                    name: _i1.NameNode(value: 'Int'), isNonNull: false),
+                defaultValue: null),
+            _i1.InputValueDefinitionNode(
+                name: _i1.NameNode(value: '_cursor'),
+                directives: [],
+                type: _i1.NamedTypeNode(
+                    name: _i1.NameNode(value: 'String'), isNonNull: false),
+                defaultValue: null)
+          ],
+          type: _i1.NamedTypeNode(
+              name: _i1.NameNode(value: 'CommunityPage'), isNonNull: true))
     ]);
 const Time = _i1.ScalarTypeDefinitionNode(
     name: _i1.NameNode(value: 'Time'), directives: []);
@@ -361,6 +406,7 @@ const document = _i1.DocumentNode(definitions: [
   unique,
   Community,
   CommunityInput,
+  CommunityPage,
   CreateUserInput,
   Date,
   LoginUserInput,
