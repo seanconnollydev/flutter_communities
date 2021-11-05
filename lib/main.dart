@@ -28,7 +28,6 @@ class FlutterCommunitiesApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      initialRoute: LoginScreen.routeName,
       routes: {
         HomeScreen.routeName: (_) => HomeScreen(),
         RegistrationScreen.routeName: (_) => RegistrationScreen(),
