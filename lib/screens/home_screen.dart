@@ -9,6 +9,7 @@ import 'package:flutter_communities/providers/ferry.dart';
 import 'package:flutter_communities/widgets/user_app_bar.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import 'community_screen.dart';
 import 'login_screen.dart';
 import 'registration_screen.dart';
 
@@ -106,7 +107,8 @@ class _CommunityList extends ConsumerWidget {
                 return ListTile(
                   title: Text(community.name),
                   onTap: () {
-                    print('TODO: Implement');
+                    Navigator.of(context).pushNamed(CommunityScreen.routeName,
+                        arguments: community.G_id);
                   },
                 );
               },

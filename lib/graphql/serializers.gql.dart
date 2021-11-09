@@ -16,6 +16,12 @@ import 'package:flutter_communities/graphql/get_communities.req.gql.dart'
     show GGetCommunitiesReq;
 import 'package:flutter_communities/graphql/get_communities.var.gql.dart'
     show GGetCommunitiesVars;
+import 'package:flutter_communities/graphql/get_community.data.gql.dart'
+    show GGetCommunityData, GGetCommunityData_findCommunityByID;
+import 'package:flutter_communities/graphql/get_community.req.gql.dart'
+    show GGetCommunityReq;
+import 'package:flutter_communities/graphql/get_community.var.gql.dart'
+    show GGetCommunityVars;
 import 'package:flutter_communities/graphql/login_user.data.gql.dart'
     show GLoginUserData;
 import 'package:flutter_communities/graphql/login_user.req.gql.dart'
@@ -51,6 +57,10 @@ final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   GGetCommunitiesData_communities_data,
   GGetCommunitiesReq,
   GGetCommunitiesVars,
+  GGetCommunityData,
+  GGetCommunityData_findCommunityByID,
+  GGetCommunityReq,
+  GGetCommunityVars,
   GLoginUserData,
   GLoginUserInput,
   GLoginUserReq,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_communities/screens/community_screen.dart';
 import 'package:flutter_communities/screens/login_screen.dart';
 import 'package:flutter_communities/screens/registration_screen.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -32,6 +33,8 @@ class FlutterCommunitiesApp extends StatelessWidget {
         HomeScreen.routeName: (_) => HomeScreen(),
         RegistrationScreen.routeName: (_) => RegistrationScreen(),
         LoginScreen.routeName: (_) => LoginScreen(),
+        CommunityScreen.routeName: (context) => CommunityScreen(
+            ModalRoute.of(context)!.settings.arguments as String)
       },
     );
   }

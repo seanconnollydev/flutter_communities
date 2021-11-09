@@ -1,0 +1,6 @@
+query GetCommunity($id: ID!){
+  findCommunityByID(id: $id) {
+    _id
+    name
+  }
+}
