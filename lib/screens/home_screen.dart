@@ -10,6 +10,7 @@ import 'package:flutter_communities/widgets/user_app_bar.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'community_screen.dart';
+import 'create_community_screen.dart';
 import 'login_screen.dart';
 import 'registration_screen.dart';
 
@@ -25,6 +26,12 @@ class HomeScreen extends ConsumerWidget {
     return Scaffold(
       appBar: UserAppBar(),
       body: _auth.isAuthenticated ? _CommunityList() : _Welcome(),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        onPressed: () {
+          Navigator.of(context).pushNamed(CreateCommunityScreen.routeName);
+        },
+      ),
     );
   }
 }

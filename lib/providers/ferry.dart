@@ -1,4 +1,5 @@
 import 'package:ferry/ferry.dart';
+import 'package:flutter_communities/cache_handlers.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gql_http_link/gql_http_link.dart';
@@ -15,5 +16,6 @@ final ferryClientProvider = Provider<Client>((ref) {
     link: HttpLink("https://graphql.us.fauna.com/graphql", defaultHeaders: {
       'Authorization': 'Bearer fnAEXCAE-4AAQysj_WkAaYHR20rwEItpiqWsqVmq',
     }),
+    updateCacheHandlers: CacheHandlers.getAllHandlers(),
   );
 });

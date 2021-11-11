@@ -8,6 +8,10 @@ part of 'serializers.gql.dart';
 
 Serializers _$serializers = (new Serializers().toBuilder()
       ..add(GCommunityInput.serializer)
+      ..add(GCreateCommunityData.serializer)
+      ..add(GCreateCommunityData_createCommunity.serializer)
+      ..add(GCreateCommunityReq.serializer)
+      ..add(GCreateCommunityVars.serializer)
       ..add(GCreateUserData.serializer)
       ..add(GCreateUserInput.serializer)
       ..add(GCreateUserReq.serializer)
