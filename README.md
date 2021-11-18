@@ -1,5 +1,9 @@
-# flutter_communities
-A Flutter app built with GraphQL
+<div>
+  <h1 align="center"><a href="https://seanconnolly.dev/flutter-graphql">GraphQL for Flutter Developers 🚀 The Course</a></h1>
+  <strong>
+A comprehensive online course for Flutter developers who want to build amazing apps with Flutter and GraphQL.
+  </strong>
+</div>
 
 # Usage
 
