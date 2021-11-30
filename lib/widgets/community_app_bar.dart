@@ -15,8 +15,8 @@ class CommunityAppBar extends ConsumerWidget with PreferredSizeWidget {
   Size get preferredSize => Size.fromHeight(kToolbarHeight);
 
   @override
-  Widget build(BuildContext context, ScopedReader watch) {
-    final client = watch(ferryClientProvider);
+  Widget build(BuildContext context, ref) {
+    final client = ref.watch(ferryClientProvider);
 
     return Operation(
         operationRequest: GGetCommunityReq((b) => b..vars.id = _communityId),
