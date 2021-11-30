@@ -83,8 +83,8 @@ class _CommunityList extends ConsumerWidget {
   const _CommunityList({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context, ScopedReader watch) {
-    final client = watch(ferryClientProvider);
+  Widget build(BuildContext context, ref) {
+    final client = ref.watch(ferryClientProvider);
 
     return Operation(
       client: client,
