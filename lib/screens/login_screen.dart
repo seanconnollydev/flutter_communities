@@ -6,7 +6,7 @@ import 'package:flutter_communities/providers/ferry.dart';
 
 import 'home_screen.dart';
 
-class LoginScreen extends StatefulWidget {
+class LoginScreen extends ConsumerStatefulWidget {
   static const routeName = '/login';
 
   const LoginScreen({Key? key}) : super(key: key);
@@ -15,7 +15,7 @@ class LoginScreen extends StatefulWidget {
   _LoginScreenState createState() => _LoginScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _LoginScreenState extends ConsumerState<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
   String? _username;
   String? _password;
@@ -23,7 +23,7 @@ class _LoginScreenState extends State<LoginScreen> {
   void _login() async {
     _formKey.currentState?.save();
 
-    final client = context.read(ferryClientProvider);
+    final client = ref.read(ferryClientProvider);
 
     final request = GLoginUserReq(
       (b) => b
@@ -35,7 +35,7 @@ class _LoginScreenState extends State<LoginScreen> {
     print(resp);
     final token = resp.data?.loginUser;
     if (token != null) {
-      await context.read(authProvider.notifier).setSession(token);
+      await ref.read(authProvider.notifier).setSession(token);
       Navigator.of(context)
           .pushNamedAndRemoveUntil(HomeScreen.routeName, (_) => false);
     } else {

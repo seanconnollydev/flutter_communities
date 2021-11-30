@@ -12,7 +12,7 @@ class PostCard extends ConsumerWidget {
   const PostCard(this._post, this._communityId, {Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context, watch) {
+  Widget build(BuildContext context, ref) {
     final theme = Theme.of(context);
 
     return Card(
@@ -44,7 +44,7 @@ class PostCard extends ConsumerWidget {
                       iconSize: 12,
                       constraints: BoxConstraints(),
                       onPressed: () =>
-                          _handlePostVote(context, GPostVoteType.UpVote),
+                          _handlePostVote(context, ref, GPostVoteType.UpVote),
                       icon: Icon(
                         Icons.arrow_upward,
                       ),
@@ -54,7 +54,7 @@ class PostCard extends ConsumerWidget {
                       iconSize: 12,
                       constraints: BoxConstraints(),
                       onPressed: () =>
-                          _handlePostVote(context, GPostVoteType.DownVote),
+                          _handlePostVote(context, ref, GPostVoteType.DownVote),
                       icon: Icon(
                         Icons.arrow_downward,
                       ),
@@ -76,8 +76,9 @@ class PostCard extends ConsumerWidget {
     );
   }
 
-  void _handlePostVote(BuildContext context, GPostVoteType voteType) {
-    final repository = context.read(communityRepositoryProvider);
+  void _handlePostVote(
+      BuildContext context, WidgetRef ref, GPostVoteType voteType) {
+    final repository = ref.read(communityRepositoryProvider);
     repository.createPostVote(_post, voteType).listen(
       (event) {
         final message = event.graphqlErrors?.first.message;

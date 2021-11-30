@@ -14,7 +14,7 @@ import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 typedef GetCommunityResponse = OperationResponse<GGetPostsByCommunityIdData,
     GGetPostsByCommunityIdVars>?;
 
-class CommunityScreen extends StatefulWidget {
+class CommunityScreen extends ConsumerStatefulWidget {
   static const routeName = '/community';
 
   final String _communityId;
@@ -25,7 +25,7 @@ class CommunityScreen extends StatefulWidget {
   _CommunityScreenState createState() => _CommunityScreenState();
 }
 
-class _CommunityScreenState extends State<CommunityScreen> {
+class _CommunityScreenState extends ConsumerState<CommunityScreen> {
   final PagingController<String?, GPostFragment> _pagingController =
       PagingController(firstPageKey: null);
   late Client client;
@@ -33,7 +33,7 @@ class _CommunityScreenState extends State<CommunityScreen> {
 
   @override
   void initState() {
-    client = context.read(ferryClientProvider);
+    client = ref.read(ferryClientProvider);
 
     _request = GGetPostsByCommunityIdReq((b) => b
       ..requestId = 'GGetPostsByCommunityIdReq'

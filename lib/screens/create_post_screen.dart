@@ -5,7 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../cache_handlers.dart';
 
-class CreatePostScreen extends StatefulWidget {
+class CreatePostScreen extends ConsumerStatefulWidget {
   static const routeName = '/create-post';
 
   final String _communityId;
@@ -16,7 +16,7 @@ class CreatePostScreen extends StatefulWidget {
   _CreatePostScreenState createState() => _CreatePostScreenState();
 }
 
-class _CreatePostScreenState extends State<CreatePostScreen> {
+class _CreatePostScreenState extends ConsumerState<CreatePostScreen> {
   final _formKey = GlobalKey<FormState>();
   String? _title;
   String? _message;
@@ -24,7 +24,7 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
   void _save() async {
     _formKey.currentState?.save();
 
-    final client = context.read(ferryClientProvider);
+    final client = ref.read(ferryClientProvider);
 
     final request = GCreatePostReq(
       (b) => b

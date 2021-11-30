@@ -17,8 +17,8 @@ class HomeScreen extends ConsumerWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context, ScopedReader watch) {
-    final _auth = watch(authProvider);
+  Widget build(BuildContext context, ref) {
+    final _auth = ref.watch(authProvider);
 
     return Scaffold(
       appBar: UserAppBar(),
@@ -86,8 +86,8 @@ class _CommunityList extends ConsumerWidget {
   const _CommunityList({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context, ScopedReader watch) {
-    final repository = watch(communityRepositoryProvider);
+  Widget build(BuildContext context, ref) {
+    final repository = ref.watch(communityRepositoryProvider);
 
     return QueryStream<List<Community>?>(
       stream: repository.getCommunities(),

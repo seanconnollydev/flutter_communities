@@ -7,7 +7,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'home_screen.dart';
 
-class RegistrationScreen extends StatefulWidget {
+class RegistrationScreen extends ConsumerStatefulWidget {
   static const routeName = '/registration';
 
   const RegistrationScreen({Key? key}) : super(key: key);
@@ -16,7 +16,7 @@ class RegistrationScreen extends StatefulWidget {
   _RegistrationScreenState createState() => _RegistrationScreenState();
 }
 
-class _RegistrationScreenState extends State<RegistrationScreen> {
+class _RegistrationScreenState extends ConsumerState<RegistrationScreen> {
   final _formKey = GlobalKey<FormState>();
   String? _username;
   String? _password;
@@ -25,7 +25,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   void _save() async {
     _formKey.currentState?.save();
 
-    final client = context.read(ferryClientProvider);
+    final client = ref.read(ferryClientProvider);
 
     final request = GCreateUserReq(
       (b) => b
@@ -37,7 +37,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     final resp = await client.request(request).first;
     final token = resp.data?.createUser;
     if (token != null) {
-      await context.read(authProvider.notifier).setSession(token);
+      await ref.read(authProvider.notifier).setSession(token);
       Navigator.of(context)
           .pushNamedAndRemoveUntil(HomeScreen.routeName, (_) => false);
     }

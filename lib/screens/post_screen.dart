@@ -16,8 +16,8 @@ class PostScreen extends ConsumerWidget {
   const PostScreen(this._args, {Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context, ScopedReader watch) {
-    final repository = watch(communityRepositoryProvider);
+  Widget build(BuildContext context, ref) {
+    final repository = ref.watch(communityRepositoryProvider);
 
     return Scaffold(
       appBar: CommunityAppBar(_args.communityId),
@@ -73,7 +73,7 @@ class _PostScreenBody extends StatelessWidget {
   }
 }
 
-class _PostComments extends StatefulWidget {
+class _PostComments extends ConsumerStatefulWidget {
   final String _postId;
   final GetPostResponse _resp;
 
@@ -83,14 +83,14 @@ class _PostComments extends StatefulWidget {
   __PostCommentsState createState() => __PostCommentsState();
 }
 
-class __PostCommentsState extends State<_PostComments> {
+class __PostCommentsState extends ConsumerState<_PostComments> {
   final PagingController<String?, GPostCommentFragment> _pagingController =
       PagingController(firstPageKey: null);
   late CommunityRepository _repository;
 
   @override
   void initState() {
-    _repository = context.read(communityRepositoryProvider);
+    _repository = ref.read(communityRepositoryProvider);
 
     _pagingController.addPageRequestListener((pageKey) {
       if (pageKey != null) {
@@ -148,7 +148,7 @@ class __PostCommentsState extends State<_PostComments> {
   }
 }
 
-class _AddCommentDialog extends StatefulWidget {
+class _AddCommentDialog extends ConsumerStatefulWidget {
   final String _postId;
 
   const _AddCommentDialog(this._postId, {Key? key}) : super(key: key);
@@ -157,7 +157,7 @@ class _AddCommentDialog extends StatefulWidget {
   _AddCommentDialogState createState() => _AddCommentDialogState();
 }
 
-class _AddCommentDialogState extends State<_AddCommentDialog> {
+class _AddCommentDialogState extends ConsumerState<_AddCommentDialog> {
   final textController = TextEditingController();
 
   @override
@@ -168,7 +168,7 @@ class _AddCommentDialogState extends State<_AddCommentDialog> {
         autofocus: true,
         controller: textController,
         onSubmitted: (value) async {
-          final repository = context.read(communityRepositoryProvider);
+          final repository = ref.read(communityRepositoryProvider);
           await repository.createPostComment(widget._postId, value).first;
           Navigator.of(context).pop();
         },

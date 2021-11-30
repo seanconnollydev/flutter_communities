@@ -10,8 +10,8 @@ class EditProfileScreen extends ConsumerWidget {
   const EditProfileScreen({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context, watch) {
-    final repository = watch(communityRepositoryProvider);
+  Widget build(BuildContext context, ref) {
+    final repository = ref.watch(communityRepositoryProvider);
 
     return QueryStream<User?>(
         stream: repository.getViewer(),
@@ -37,7 +37,7 @@ class EditProfileScreen extends ConsumerWidget {
   }
 }
 
-class UserForm extends StatefulWidget {
+class UserForm extends ConsumerStatefulWidget {
   final User user;
   const UserForm({required this.user, Key? key}) : super(key: key);
 
@@ -45,7 +45,7 @@ class UserForm extends StatefulWidget {
   _UserFormState createState() => _UserFormState();
 }
 
-class _UserFormState extends State<UserForm> {
+class _UserFormState extends ConsumerState<UserForm> {
   late String? username;
   final _formKey = GlobalKey<FormState>();
 
@@ -58,7 +58,7 @@ class _UserFormState extends State<UserForm> {
   void _save() async {
     _formKey.currentState?.save();
 
-    final repository = context.read(communityRepositoryProvider);
+    final repository = ref.read(communityRepositoryProvider);
 
     await repository.updateUser(widget.user.id, username: username).first;
     Navigator.of(context).pop();

@@ -9,8 +9,8 @@ class ErrorDemoScreen extends ConsumerWidget {
   const ErrorDemoScreen({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context, watch) {
-    final repository = watch(communityRepositoryProvider);
+  Widget build(BuildContext context, ref) {
+    final repository = ref.watch(communityRepositoryProvider);
 
     return Scaffold(
         appBar: AppBar(

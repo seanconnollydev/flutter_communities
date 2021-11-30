@@ -12,8 +12,8 @@ class UserProfileScreen extends ConsumerWidget {
   const UserProfileScreen({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context, watch) {
-    final repository = watch(communityRepositoryProvider);
+  Widget build(BuildContext context, ref) {
+    final repository = ref.watch(communityRepositoryProvider);
 
     return QueryStream<User?>(
         stream: repository.getViewer(),
