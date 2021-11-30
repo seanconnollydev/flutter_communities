@@ -4,7 +4,7 @@ import 'package:flutter_communities/graphql/create_community.req.gql.dart';
 import 'package:flutter_communities/providers/ferry.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class CreateCommunityScreen extends StatefulWidget {
+class CreateCommunityScreen extends ConsumerStatefulWidget {
   static const routeName = '/create-community';
 
   const CreateCommunityScreen({Key? key}) : super(key: key);
@@ -13,7 +13,7 @@ class CreateCommunityScreen extends StatefulWidget {
   _CreateCommunityScreenState createState() => _CreateCommunityScreenState();
 }
 
-class _CreateCommunityScreenState extends State<CreateCommunityScreen> {
+class _CreateCommunityScreenState extends ConsumerState<CreateCommunityScreen> {
   final _formKey = GlobalKey<FormState>();
   String? _name;
   String? _purpose;
@@ -21,7 +21,7 @@ class _CreateCommunityScreenState extends State<CreateCommunityScreen> {
   void _save() async {
     _formKey.currentState?.save();
 
-    final client = context.read(ferryClientProvider);
+    final client = ref.read(ferryClientProvider);
 
     final request = GCreateCommunityReq(
       (b) => b
