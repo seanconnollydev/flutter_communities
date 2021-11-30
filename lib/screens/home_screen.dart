@@ -12,8 +12,8 @@ class HomeScreen extends ConsumerWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context, ScopedReader watch) {
-    final _auth = watch(authProvider);
+  Widget build(BuildContext context, ref) {
+    final _auth = ref.watch(authProvider);
 
     return Scaffold(
       appBar: UserAppBar(),
