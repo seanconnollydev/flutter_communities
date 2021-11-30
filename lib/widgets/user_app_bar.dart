@@ -9,7 +9,7 @@ class UserAppBar extends ConsumerWidget with PreferredSizeWidget {
   Size get preferredSize => Size.fromHeight(kToolbarHeight);
 
   @override
-  Widget build(BuildContext context, ScopedReader watch) {
+  Widget build(BuildContext context, ref) {
     return AppBar(
       title: Text('Flutter Communities'),
       actions: [
@@ -18,13 +18,13 @@ class UserAppBar extends ConsumerWidget with PreferredSizeWidget {
             child: Text('🤷‍♂️'),
             backgroundColor: Theme.of(context).backgroundColor,
           ),
-          onTap: () => _handleTap(context),
+          onTap: () => _handleTap(context, ref),
         )
       ],
     );
   }
 
-  void _handleTap(BuildContext context) {
+  void _handleTap(BuildContext context, WidgetRef ref) {
     showModalBottomSheet(
       context: context,
       builder: (_) {
@@ -34,7 +34,7 @@ class UserAppBar extends ConsumerWidget with PreferredSizeWidget {
             ListTile(
               title: Text('Logout'),
               onTap: () async {
-                await context.read(authProvider.notifier).clearSession();
+                await ref.read(authProvider.notifier).clearSession();
                 Navigator.of(context).popUntil((route) => false);
                 Navigator.of(context).pushNamed(HomeScreen.routeName);
               },
