@@ -13,7 +13,7 @@ final ferryClientProvider = Provider<Client>((ref) {
 
   return Client(
     link: HttpLink("https://graphql.us.fauna.com/graphql", defaultHeaders: {
-      'Authorization': 'Bearer fnAEXCAE-4AAQysj_WkAaYHR20rwEItpiqWsqVmq',
+      'Authorization': 'Bearer $token',
     }),
   );
 });
