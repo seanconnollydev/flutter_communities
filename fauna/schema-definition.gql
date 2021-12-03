@@ -8,6 +8,7 @@ type Mutation {
 
 type Query {
   communities: [Community!]!
+  viewer: User! @resolver(name: "viewer")
 }
 
 input CreateUserInput {

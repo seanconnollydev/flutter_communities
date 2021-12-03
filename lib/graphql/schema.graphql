@@ -101,6 +101,7 @@ type Query {
     # The pagination cursor.
     _cursor: String
   ): CommunityPage!
+  viewer: User!
 }
 
 scalar Time

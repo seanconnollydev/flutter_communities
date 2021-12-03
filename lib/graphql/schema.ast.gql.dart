@@ -358,7 +358,13 @@ const Query = _i1.ObjectTypeDefinitionNode(
                 defaultValue: null)
           ],
           type: _i1.NamedTypeNode(
-              name: _i1.NameNode(value: 'CommunityPage'), isNonNull: true))
+              name: _i1.NameNode(value: 'CommunityPage'), isNonNull: true)),
+      _i1.FieldDefinitionNode(
+          name: _i1.NameNode(value: 'viewer'),
+          directives: [],
+          args: [],
+          type: _i1.NamedTypeNode(
+              name: _i1.NameNode(value: 'User'), isNonNull: true))
     ]);
 const Time = _i1.ScalarTypeDefinitionNode(
     name: _i1.NameNode(value: 'Time'), directives: []);
