@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_communities/providers/auth.dart';
 import 'package:flutter_communities/screens/home_screen.dart';
+import 'package:flutter_communities/screens/user_profile_screen.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class UserAppBar extends ConsumerWidget with PreferredSizeWidget {
@@ -31,6 +32,13 @@ class UserAppBar extends ConsumerWidget with PreferredSizeWidget {
         return Column(
           mainAxisSize: MainAxisSize.min,
           children: [
+            ListTile(
+              title: Text('Profile'),
+              onTap: () async {
+                Navigator.of(context)
+                    .popAndPushNamed(UserProfileScreen.routeName);
+              },
+            ),
             ListTile(
               title: Text('Logout'),
               onTap: () async {

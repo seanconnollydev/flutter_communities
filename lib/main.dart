@@ -3,6 +3,7 @@ import 'package:flutter_communities/screens/community_screen.dart';
 import 'package:flutter_communities/screens/create_community_screen.dart';
 import 'package:flutter_communities/screens/login_screen.dart';
 import 'package:flutter_communities/screens/registration_screen.dart';
+import 'package:flutter_communities/screens/user_profile_screen.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'providers/auth.dart';
@@ -36,7 +37,8 @@ class FlutterCommunitiesApp extends StatelessWidget {
         LoginScreen.routeName: (_) => LoginScreen(),
         CommunityScreen.routeName: (context) => CommunityScreen(
             ModalRoute.of(context)!.settings.arguments as String),
-        CreateCommunityScreen.routeName: (_) => CreateCommunityScreen()
+        CreateCommunityScreen.routeName: (_) => CreateCommunityScreen(),
+        UserProfileScreen.routeName: (_) => UserProfileScreen(),
       },
     );
   }
