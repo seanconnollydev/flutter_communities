@@ -36,6 +36,10 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(GLoginUserVars.serializer)
       ..add(GLong.serializer)
       ..add(GTime.serializer)
+      ..add(GUpdateUserData.serializer)
+      ..add(GUpdateUserData_updateUser.serializer)
+      ..add(GUpdateUserReq.serializer)
+      ..add(GUpdateUserVars.serializer)
       ..add(GUserInput.serializer)
       ..addBuilderFactory(
           const FullType(BuiltList,
