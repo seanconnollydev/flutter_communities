@@ -42,6 +42,7 @@ abstract class GUpdateUserData_updateUser
   String get G__typename;
   @BuiltValueField(wireName: '_id')
   String get G_id;
+  String get username;
   static Serializer<GUpdateUserData_updateUser> get serializer =>
       _$gUpdateUserDataUpdateUserSerializer;
   Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(

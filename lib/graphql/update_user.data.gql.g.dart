@@ -85,6 +85,9 @@ class _$GUpdateUserData_updateUserSerializer
           specifiedType: const FullType(String)),
       '_id',
       serializers.serialize(object.G_id, specifiedType: const FullType(String)),
+      'username',
+      serializers.serialize(object.username,
+          specifiedType: const FullType(String)),
     ];
 
     return result;
@@ -108,6 +111,10 @@ class _$GUpdateUserData_updateUserSerializer
           break;
         case '_id':
           result.G_id = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
+          break;
+        case 'username':
+          result.username = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
           break;
       }
@@ -231,18 +238,22 @@ class _$GUpdateUserData_updateUser extends GUpdateUserData_updateUser {
   final String G__typename;
   @override
   final String G_id;
+  @override
+  final String username;
 
   factory _$GUpdateUserData_updateUser(
           [void Function(GUpdateUserData_updateUserBuilder)? updates]) =>
       (new GUpdateUserData_updateUserBuilder()..update(updates)).build();
 
   _$GUpdateUserData_updateUser._(
-      {required this.G__typename, required this.G_id})
+      {required this.G__typename, required this.G_id, required this.username})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         G__typename, 'GUpdateUserData_updateUser', 'G__typename');
     BuiltValueNullFieldError.checkNotNull(
         G_id, 'GUpdateUserData_updateUser', 'G_id');
+    BuiltValueNullFieldError.checkNotNull(
+        username, 'GUpdateUserData_updateUser', 'username');
   }
 
   @override
@@ -259,19 +270,22 @@ class _$GUpdateUserData_updateUser extends GUpdateUserData_updateUser {
     if (identical(other, this)) return true;
     return other is GUpdateUserData_updateUser &&
         G__typename == other.G__typename &&
-        G_id == other.G_id;
+        G_id == other.G_id &&
+        username == other.username;
   }
 
   @override
   int get hashCode {
-    return $jf($jc($jc(0, G__typename.hashCode), G_id.hashCode));
+    return $jf($jc(
+        $jc($jc(0, G__typename.hashCode), G_id.hashCode), username.hashCode));
   }
 
   @override
   String toString() {
     return (newBuiltValueToStringHelper('GUpdateUserData_updateUser')
           ..add('G__typename', G__typename)
-          ..add('G_id', G_id))
+          ..add('G_id', G_id)
+          ..add('username', username))
         .toString();
   }
 }
@@ -289,6 +303,10 @@ class GUpdateUserData_updateUserBuilder
   String? get G_id => _$this._G_id;
   set G_id(String? G_id) => _$this._G_id = G_id;
 
+  String? _username;
+  String? get username => _$this._username;
+  set username(String? username) => _$this._username = username;
+
   GUpdateUserData_updateUserBuilder() {
     GUpdateUserData_updateUser._initializeBuilder(this);
   }
@@ -298,6 +316,7 @@ class GUpdateUserData_updateUserBuilder
     if ($v != null) {
       _G__typename = $v.G__typename;
       _G_id = $v.G_id;
+      _username = $v.username;
       _$v = null;
     }
     return this;
@@ -321,7 +340,9 @@ class GUpdateUserData_updateUserBuilder
             G__typename: BuiltValueNullFieldError.checkNotNull(
                 G__typename, 'GUpdateUserData_updateUser', 'G__typename'),
             G_id: BuiltValueNullFieldError.checkNotNull(
-                G_id, 'GUpdateUserData_updateUser', 'G_id'));
+                G_id, 'GUpdateUserData_updateUser', 'G_id'),
+            username: BuiltValueNullFieldError.checkNotNull(
+                username, 'GUpdateUserData_updateUser', 'username'));
     replace(_$result);
     return _$result;
   }

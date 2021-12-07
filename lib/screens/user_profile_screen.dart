@@ -5,6 +5,7 @@ import 'package:flutter_communities/graphql/get_viewer.data.gql.dart';
 import 'package:flutter_communities/graphql/get_viewer.req.gql.dart';
 import 'package:flutter_communities/graphql/get_viewer.var.gql.dart';
 import 'package:flutter_communities/providers/ferry.dart';
+import 'package:flutter_communities/screens/edit_profile_screen.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class UserProfileScreen extends ConsumerWidget {
@@ -28,7 +29,14 @@ class UserProfileScreen extends ConsumerWidget {
           return Scaffold(
             appBar: AppBar(
               title: Text(user?.username ?? ''),
-              actions: [IconButton(onPressed: () {}, icon: Icon(Icons.edit))],
+              actions: [
+                IconButton(
+                    onPressed: () {
+                      Navigator.of(context)
+                          .pushNamed(EditProfileScreen.routeName);
+                    },
+                    icon: Icon(Icons.edit))
+              ],
             ),
             body: Center(
               child: Column(
