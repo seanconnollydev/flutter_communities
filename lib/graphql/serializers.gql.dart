@@ -55,6 +55,12 @@ import 'package:flutter_communities/graphql/update_user.req.gql.dart'
     show GUpdateUserReq;
 import 'package:flutter_communities/graphql/update_user.var.gql.dart'
     show GUpdateUserVars;
+import 'package:flutter_communities/graphql/user_fragment.data.gql.dart'
+    show GUserFragmentData;
+import 'package:flutter_communities/graphql/user_fragment.req.gql.dart'
+    show GUserFragmentReq;
+import 'package:flutter_communities/graphql/user_fragment.var.gql.dart'
+    show GUserFragmentVars;
 import 'package:gql_code_builder/src/serializers/operation_serializer.dart'
     show OperationSerializer;
 
@@ -97,6 +103,9 @@ final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   GUpdateUserData_updateUser,
   GUpdateUserReq,
   GUpdateUserVars,
+  GUserFragmentData,
+  GUserFragmentReq,
+  GUserFragmentVars,
   GUserInput
 ])
 final Serializers serializers = _serializersBuilder.build();

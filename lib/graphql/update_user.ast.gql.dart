@@ -1,5 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
+import 'package:flutter_communities/graphql/user_fragment.ast.gql.dart' as _i2;
 import 'package:gql/ast.dart' as _i1;
 
 const UpdateUser = _i1.OperationDefinitionNode(
@@ -34,18 +35,8 @@ const UpdateUser = _i1.OperationDefinitionNode(
           ],
           directives: [],
           selectionSet: _i1.SelectionSetNode(selections: [
-            _i1.FieldNode(
-                name: _i1.NameNode(value: '_id'),
-                alias: null,
-                arguments: [],
-                directives: [],
-                selectionSet: null),
-            _i1.FieldNode(
-                name: _i1.NameNode(value: 'username'),
-                alias: null,
-                arguments: [],
-                directives: [],
-                selectionSet: null)
+            _i1.FragmentSpreadNode(
+                name: _i1.NameNode(value: 'UserFragment'), directives: [])
           ]))
     ]));
-const document = _i1.DocumentNode(definitions: [UpdateUser]);
+const document = _i1.DocumentNode(definitions: [UpdateUser, _i2.UserFragment]);

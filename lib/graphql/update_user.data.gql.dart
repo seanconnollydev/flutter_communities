@@ -3,6 +3,7 @@
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 import 'package:flutter_communities/graphql/serializers.gql.dart' as _i1;
+import 'package:flutter_communities/graphql/user_fragment.data.gql.dart' as _i2;
 
 part 'update_user.data.gql.g.dart';
 
@@ -29,7 +30,8 @@ abstract class GUpdateUserData
 
 abstract class GUpdateUserData_updateUser
     implements
-        Built<GUpdateUserData_updateUser, GUpdateUserData_updateUserBuilder> {
+        Built<GUpdateUserData_updateUser, GUpdateUserData_updateUserBuilder>,
+        _i2.GUserFragment {
   GUpdateUserData_updateUser._();
 
   factory GUpdateUserData_updateUser(

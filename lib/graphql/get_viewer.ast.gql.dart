@@ -1,5 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
+import 'package:flutter_communities/graphql/user_fragment.ast.gql.dart' as _i2;
 import 'package:gql/ast.dart' as _i1;
 
 const GetViewer = _i1.OperationDefinitionNode(
@@ -14,18 +15,8 @@ const GetViewer = _i1.OperationDefinitionNode(
           arguments: [],
           directives: [],
           selectionSet: _i1.SelectionSetNode(selections: [
-            _i1.FieldNode(
-                name: _i1.NameNode(value: '_id'),
-                alias: null,
-                arguments: [],
-                directives: [],
-                selectionSet: null),
-            _i1.FieldNode(
-                name: _i1.NameNode(value: 'username'),
-                alias: null,
-                arguments: [],
-                directives: [],
-                selectionSet: null)
+            _i1.FragmentSpreadNode(
+                name: _i1.NameNode(value: 'UserFragment'), directives: [])
           ]))
     ]));
-const document = _i1.DocumentNode(definitions: [GetViewer]);
+const document = _i1.DocumentNode(definitions: [GetViewer, _i2.UserFragment]);

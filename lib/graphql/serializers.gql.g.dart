@@ -40,6 +40,9 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(GUpdateUserData_updateUser.serializer)
       ..add(GUpdateUserReq.serializer)
       ..add(GUpdateUserVars.serializer)
+      ..add(GUserFragmentData.serializer)
+      ..add(GUserFragmentReq.serializer)
+      ..add(GUserFragmentVars.serializer)
       ..add(GUserInput.serializer)
       ..addBuilderFactory(
           const FullType(BuiltList,

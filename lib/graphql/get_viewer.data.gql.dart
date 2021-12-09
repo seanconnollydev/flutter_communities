@@ -3,6 +3,7 @@
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 import 'package:flutter_communities/graphql/serializers.gql.dart' as _i1;
+import 'package:flutter_communities/graphql/user_fragment.data.gql.dart' as _i2;
 
 part 'get_viewer.data.gql.g.dart';
 
@@ -28,7 +29,9 @@ abstract class GGetViewerData
 }
 
 abstract class GGetViewerData_viewer
-    implements Built<GGetViewerData_viewer, GGetViewerData_viewerBuilder> {
+    implements
+        Built<GGetViewerData_viewer, GGetViewerData_viewerBuilder>,
+        _i2.GUserFragment {
   GGetViewerData_viewer._();
 
   factory GGetViewerData_viewer(
