@@ -1,5 +1,11 @@
+import 'package:ferry/ferry.dart';
+import 'package:ferry_flutter/ferry_flutter.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_communities/graphql/get_viewer.data.gql.dart';
+import 'package:flutter_communities/graphql/get_viewer.req.gql.dart';
+import 'package:flutter_communities/graphql/get_viewer.var.gql.dart';
 import 'package:flutter_communities/providers/auth.dart';
+import 'package:flutter_communities/providers/ferry.dart';
 import 'package:flutter_communities/screens/home_screen.dart';
 import 'package:flutter_communities/screens/user_profile_screen.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -11,17 +17,30 @@ class UserAppBar extends ConsumerWidget with PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context, ref) {
-    return AppBar(
-      title: Text('Flutter Communities'),
-      actions: [
-        GestureDetector(
-          child: CircleAvatar(
-            child: Text('🤷‍♂️'),
-            backgroundColor: Theme.of(context).backgroundColor,
-          ),
-          onTap: () => _handleTap(context, ref),
-        )
-      ],
+    final client = ref.watch(ferryClientProvider);
+
+    return Operation(
+      client: client,
+      operationRequest: GGetViewerReq(),
+      builder: (
+        context,
+        OperationResponse<GGetViewerData, GGetViewerVars>? resp,
+        _,
+      ) {
+        final user = resp?.data?.viewer;
+        return AppBar(
+          title: Text('Flutter Communities'),
+          actions: [
+            GestureDetector(
+              child: CircleAvatar(
+                child: Text(user?.avatar ?? ' '),
+                backgroundColor: Theme.of(context).backgroundColor,
+              ),
+              onTap: () => _handleTap(context, ref),
+            )
+          ],
+        );
+      },
     );
   }
 

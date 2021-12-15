@@ -36,6 +36,7 @@ abstract class GCreateUserInput
 
   String get username;
   String get password;
+  String? get avatar;
   static Serializer<GCreateUserInput> get serializer =>
       _$gCreateUserInputSerializer;
   Map<String, dynamic> toJson() =>
@@ -75,18 +76,6 @@ abstract class GLoginUserInput
       _i1.serializers.deserializeWith(GLoginUserInput.serializer, json);
 }
 
-abstract class GLong implements Built<GLong, GLongBuilder> {
-  GLong._();
-
-  factory GLong([String? value]) =>
-      _$GLong((b) => value != null ? (b..value = value) : b);
-
-  String get value;
-  @BuiltValueSerializer(custom: true)
-  static Serializer<GLong> get serializer => _i2.DefaultScalarSerializer<GLong>(
-      (Object serialized) => GLong((serialized as String?)));
-}
-
 abstract class GTime implements Built<GTime, GTimeBuilder> {
   GTime._();
 
@@ -105,10 +94,23 @@ abstract class GUserInput implements Built<GUserInput, GUserInputBuilder> {
   factory GUserInput([Function(GUserInputBuilder b) updates]) = _$GUserInput;
 
   String get username;
+  String? get avatar;
   static Serializer<GUserInput> get serializer => _$gUserInputSerializer;
   Map<String, dynamic> toJson() =>
       (_i1.serializers.serializeWith(GUserInput.serializer, this)
           as Map<String, dynamic>);
   static GUserInput? fromJson(Map<String, dynamic> json) =>
       _i1.serializers.deserializeWith(GUserInput.serializer, json);
+}
+
+abstract class GLong implements Built<GLong, GLongBuilder> {
+  GLong._();
+
+  factory GLong([String? value]) =>
+      _$GLong((b) => value != null ? (b..value = value) : b);
+
+  String get value;
+  @BuiltValueSerializer(custom: true)
+  static Serializer<GLong> get serializer => _i2.DefaultScalarSerializer<GLong>(
+      (Object serialized) => GLong((serialized as String?)));
 }

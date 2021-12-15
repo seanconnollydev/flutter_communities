@@ -85,7 +85,14 @@ class _$GGetViewerData_viewerSerializer
       serializers.serialize(object.username,
           specifiedType: const FullType(String)),
     ];
-
+    Object? value;
+    value = object.avatar;
+    if (value != null) {
+      result
+        ..add('avatar')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     return result;
   }
 
@@ -111,6 +118,10 @@ class _$GGetViewerData_viewerSerializer
           break;
         case 'username':
           result.username = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
+          break;
+        case 'avatar':
+          result.avatar = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
           break;
       }
@@ -236,13 +247,18 @@ class _$GGetViewerData_viewer extends GGetViewerData_viewer {
   final String G_id;
   @override
   final String username;
+  @override
+  final String? avatar;
 
   factory _$GGetViewerData_viewer(
           [void Function(GGetViewerData_viewerBuilder)? updates]) =>
       (new GGetViewerData_viewerBuilder()..update(updates)).build();
 
   _$GGetViewerData_viewer._(
-      {required this.G__typename, required this.G_id, required this.username})
+      {required this.G__typename,
+      required this.G_id,
+      required this.username,
+      this.avatar})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         G__typename, 'GGetViewerData_viewer', 'G__typename');
@@ -267,13 +283,16 @@ class _$GGetViewerData_viewer extends GGetViewerData_viewer {
     return other is GGetViewerData_viewer &&
         G__typename == other.G__typename &&
         G_id == other.G_id &&
-        username == other.username;
+        username == other.username &&
+        avatar == other.avatar;
   }
 
   @override
   int get hashCode {
     return $jf($jc(
-        $jc($jc(0, G__typename.hashCode), G_id.hashCode), username.hashCode));
+        $jc($jc($jc(0, G__typename.hashCode), G_id.hashCode),
+            username.hashCode),
+        avatar.hashCode));
   }
 
   @override
@@ -281,7 +300,8 @@ class _$GGetViewerData_viewer extends GGetViewerData_viewer {
     return (newBuiltValueToStringHelper('GGetViewerData_viewer')
           ..add('G__typename', G__typename)
           ..add('G_id', G_id)
-          ..add('username', username))
+          ..add('username', username)
+          ..add('avatar', avatar))
         .toString();
   }
 }
@@ -302,6 +322,10 @@ class GGetViewerData_viewerBuilder
   String? get username => _$this._username;
   set username(String? username) => _$this._username = username;
 
+  String? _avatar;
+  String? get avatar => _$this._avatar;
+  set avatar(String? avatar) => _$this._avatar = avatar;
+
   GGetViewerData_viewerBuilder() {
     GGetViewerData_viewer._initializeBuilder(this);
   }
@@ -312,6 +336,7 @@ class GGetViewerData_viewerBuilder
       _G__typename = $v.G__typename;
       _G_id = $v.G_id;
       _username = $v.username;
+      _avatar = $v.avatar;
       _$v = null;
     }
     return this;
@@ -337,7 +362,8 @@ class GGetViewerData_viewerBuilder
             G_id: BuiltValueNullFieldError.checkNotNull(
                 G_id, 'GGetViewerData_viewer', 'G_id'),
             username: BuiltValueNullFieldError.checkNotNull(
-                username, 'GGetViewerData_viewer', 'username'));
+                username, 'GGetViewerData_viewer', 'username'),
+            avatar: avatar);
     replace(_$result);
     return _$result;
   }

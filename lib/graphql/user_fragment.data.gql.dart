@@ -10,6 +10,7 @@ abstract class GUserFragment {
   String get G__typename;
   String get G_id;
   String get username;
+  String? get avatar;
   Map<String, dynamic> toJson();
 }
 
@@ -29,6 +30,7 @@ abstract class GUserFragmentData
   @BuiltValueField(wireName: '_id')
   String get G_id;
   String get username;
+  String? get avatar;
   static Serializer<GUserFragmentData> get serializer =>
       _$gUserFragmentDataSerializer;
   Map<String, dynamic> toJson() =>

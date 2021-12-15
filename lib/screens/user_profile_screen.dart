@@ -6,6 +6,7 @@ import 'package:flutter_communities/graphql/get_viewer.req.gql.dart';
 import 'package:flutter_communities/graphql/get_viewer.var.gql.dart';
 import 'package:flutter_communities/providers/ferry.dart';
 import 'package:flutter_communities/screens/edit_profile_screen.dart';
+import 'package:flutter_communities/widgets/avatar_box.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class UserProfileScreen extends ConsumerWidget {
@@ -41,6 +42,7 @@ class UserProfileScreen extends ConsumerWidget {
             body: Center(
               child: Column(
                 children: [
+                  AvatarBox(user?.avatar),
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 8.0),
                     child: Text('username'),

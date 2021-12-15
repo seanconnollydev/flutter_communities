@@ -95,7 +95,14 @@ class _$GCreateUserInputSerializer
       serializers.serialize(object.password,
           specifiedType: const FullType(String)),
     ];
-
+    Object? value;
+    value = object.avatar;
+    if (value != null) {
+      result
+        ..add('avatar')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     return result;
   }
 
@@ -117,6 +124,10 @@ class _$GCreateUserInputSerializer
           break;
         case 'password':
           result.password = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
+          break;
+        case 'avatar':
+          result.avatar = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
           break;
       }
@@ -189,7 +200,14 @@ class _$GUserInputSerializer implements StructuredSerializer<GUserInput> {
       serializers.serialize(object.username,
           specifiedType: const FullType(String)),
     ];
-
+    Object? value;
+    value = object.avatar;
+    if (value != null) {
+      result
+        ..add('avatar')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     return result;
   }
 
@@ -206,6 +224,10 @@ class _$GUserInputSerializer implements StructuredSerializer<GUserInput> {
       switch (key) {
         case 'username':
           result.username = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
+          break;
+        case 'avatar':
+          result.avatar = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
           break;
       }
@@ -322,12 +344,15 @@ class _$GCreateUserInput extends GCreateUserInput {
   final String username;
   @override
   final String password;
+  @override
+  final String? avatar;
 
   factory _$GCreateUserInput(
           [void Function(GCreateUserInputBuilder)? updates]) =>
       (new GCreateUserInputBuilder()..update(updates)).build();
 
-  _$GCreateUserInput._({required this.username, required this.password})
+  _$GCreateUserInput._(
+      {required this.username, required this.password, this.avatar})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         username, 'GCreateUserInput', 'username');
@@ -348,19 +373,22 @@ class _$GCreateUserInput extends GCreateUserInput {
     if (identical(other, this)) return true;
     return other is GCreateUserInput &&
         username == other.username &&
-        password == other.password;
+        password == other.password &&
+        avatar == other.avatar;
   }
 
   @override
   int get hashCode {
-    return $jf($jc($jc(0, username.hashCode), password.hashCode));
+    return $jf($jc(
+        $jc($jc(0, username.hashCode), password.hashCode), avatar.hashCode));
   }
 
   @override
   String toString() {
     return (newBuiltValueToStringHelper('GCreateUserInput')
           ..add('username', username)
-          ..add('password', password))
+          ..add('password', password)
+          ..add('avatar', avatar))
         .toString();
   }
 }
@@ -377,6 +405,10 @@ class GCreateUserInputBuilder
   String? get password => _$this._password;
   set password(String? password) => _$this._password = password;
 
+  String? _avatar;
+  String? get avatar => _$this._avatar;
+  set avatar(String? avatar) => _$this._avatar = avatar;
+
   GCreateUserInputBuilder();
 
   GCreateUserInputBuilder get _$this {
@@ -384,6 +416,7 @@ class GCreateUserInputBuilder
     if ($v != null) {
       _username = $v.username;
       _password = $v.password;
+      _avatar = $v.avatar;
       _$v = null;
     }
     return this;
@@ -407,7 +440,8 @@ class GCreateUserInputBuilder
             username: BuiltValueNullFieldError.checkNotNull(
                 username, 'GCreateUserInput', 'username'),
             password: BuiltValueNullFieldError.checkNotNull(
-                password, 'GCreateUserInput', 'password'));
+                password, 'GCreateUserInput', 'password'),
+            avatar: avatar);
     replace(_$result);
     return _$result;
   }
@@ -584,82 +618,6 @@ class GLoginUserInputBuilder
   }
 }
 
-class _$GLong extends GLong {
-  @override
-  final String value;
-
-  factory _$GLong([void Function(GLongBuilder)? updates]) =>
-      (new GLongBuilder()..update(updates)).build();
-
-  _$GLong._({required this.value}) : super._() {
-    BuiltValueNullFieldError.checkNotNull(value, 'GLong', 'value');
-  }
-
-  @override
-  GLong rebuild(void Function(GLongBuilder) updates) =>
-      (toBuilder()..update(updates)).build();
-
-  @override
-  GLongBuilder toBuilder() => new GLongBuilder()..replace(this);
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(other, this)) return true;
-    return other is GLong && value == other.value;
-  }
-
-  @override
-  int get hashCode {
-    return $jf($jc(0, value.hashCode));
-  }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('GLong')..add('value', value))
-        .toString();
-  }
-}
-
-class GLongBuilder implements Builder<GLong, GLongBuilder> {
-  _$GLong? _$v;
-
-  String? _value;
-  String? get value => _$this._value;
-  set value(String? value) => _$this._value = value;
-
-  GLongBuilder();
-
-  GLongBuilder get _$this {
-    final $v = _$v;
-    if ($v != null) {
-      _value = $v.value;
-      _$v = null;
-    }
-    return this;
-  }
-
-  @override
-  void replace(GLong other) {
-    ArgumentError.checkNotNull(other, 'other');
-    _$v = other as _$GLong;
-  }
-
-  @override
-  void update(void Function(GLongBuilder)? updates) {
-    if (updates != null) updates(this);
-  }
-
-  @override
-  _$GLong build() {
-    final _$result = _$v ??
-        new _$GLong._(
-            value:
-                BuiltValueNullFieldError.checkNotNull(value, 'GLong', 'value'));
-    replace(_$result);
-    return _$result;
-  }
-}
-
 class _$GTime extends GTime {
   @override
   final String value;
@@ -739,11 +697,13 @@ class GTimeBuilder implements Builder<GTime, GTimeBuilder> {
 class _$GUserInput extends GUserInput {
   @override
   final String username;
+  @override
+  final String? avatar;
 
   factory _$GUserInput([void Function(GUserInputBuilder)? updates]) =>
       (new GUserInputBuilder()..update(updates)).build();
 
-  _$GUserInput._({required this.username}) : super._() {
+  _$GUserInput._({required this.username, this.avatar}) : super._() {
     BuiltValueNullFieldError.checkNotNull(username, 'GUserInput', 'username');
   }
 
@@ -757,18 +717,21 @@ class _$GUserInput extends GUserInput {
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is GUserInput && username == other.username;
+    return other is GUserInput &&
+        username == other.username &&
+        avatar == other.avatar;
   }
 
   @override
   int get hashCode {
-    return $jf($jc(0, username.hashCode));
+    return $jf($jc($jc(0, username.hashCode), avatar.hashCode));
   }
 
   @override
   String toString() {
     return (newBuiltValueToStringHelper('GUserInput')
-          ..add('username', username))
+          ..add('username', username)
+          ..add('avatar', avatar))
         .toString();
   }
 }
@@ -780,12 +743,17 @@ class GUserInputBuilder implements Builder<GUserInput, GUserInputBuilder> {
   String? get username => _$this._username;
   set username(String? username) => _$this._username = username;
 
+  String? _avatar;
+  String? get avatar => _$this._avatar;
+  set avatar(String? avatar) => _$this._avatar = avatar;
+
   GUserInputBuilder();
 
   GUserInputBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
       _username = $v.username;
+      _avatar = $v.avatar;
       _$v = null;
     }
     return this;
@@ -807,7 +775,84 @@ class GUserInputBuilder implements Builder<GUserInput, GUserInputBuilder> {
     final _$result = _$v ??
         new _$GUserInput._(
             username: BuiltValueNullFieldError.checkNotNull(
-                username, 'GUserInput', 'username'));
+                username, 'GUserInput', 'username'),
+            avatar: avatar);
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GLong extends GLong {
+  @override
+  final String value;
+
+  factory _$GLong([void Function(GLongBuilder)? updates]) =>
+      (new GLongBuilder()..update(updates)).build();
+
+  _$GLong._({required this.value}) : super._() {
+    BuiltValueNullFieldError.checkNotNull(value, 'GLong', 'value');
+  }
+
+  @override
+  GLong rebuild(void Function(GLongBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GLongBuilder toBuilder() => new GLongBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GLong && value == other.value;
+  }
+
+  @override
+  int get hashCode {
+    return $jf($jc(0, value.hashCode));
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper('GLong')..add('value', value))
+        .toString();
+  }
+}
+
+class GLongBuilder implements Builder<GLong, GLongBuilder> {
+  _$GLong? _$v;
+
+  String? _value;
+  String? get value => _$this._value;
+  set value(String? value) => _$this._value = value;
+
+  GLongBuilder();
+
+  GLongBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _value = $v.value;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GLong other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GLong;
+  }
+
+  @override
+  void update(void Function(GLongBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  _$GLong build() {
+    final _$result = _$v ??
+        new _$GLong._(
+            value:
+                BuiltValueNullFieldError.checkNotNull(value, 'GLong', 'value'));
     replace(_$result);
     return _$result;
   }

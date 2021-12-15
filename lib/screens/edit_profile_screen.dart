@@ -6,6 +6,7 @@ import 'package:flutter_communities/graphql/get_viewer.req.gql.dart';
 import 'package:flutter_communities/graphql/get_viewer.var.gql.dart';
 import 'package:flutter_communities/graphql/update_user.req.gql.dart';
 import 'package:flutter_communities/providers/ferry.dart';
+import 'package:flutter_communities/widgets/icon_selector.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class EditProfileScreen extends ConsumerWidget {
@@ -50,6 +51,7 @@ class UserForm extends ConsumerStatefulWidget {
 
 class _UserFormState extends ConsumerState<UserForm> {
   late String? username;
+  String? avatar;
   final _formKey = GlobalKey<FormState>();
 
   @override
@@ -64,9 +66,12 @@ class _UserFormState extends ConsumerState<UserForm> {
     final client = ref.read(ferryClientProvider);
 
     await client
-        .request(GUpdateUserReq((b) => b
-          ..vars.id = widget.user.G_id
-          ..vars.data.username = username))
+        .request(GUpdateUserReq(
+          (b) => b
+            ..vars.id = widget.user.G_id
+            ..vars.data.username = username
+            ..vars.data.avatar = avatar,
+        ))
         .first;
     Navigator.of(context).pop();
   }
@@ -77,6 +82,9 @@ class _UserFormState extends ConsumerState<UserForm> {
       key: _formKey,
       child: Column(
         children: [
+          IconSelector(onSaved: (val) {
+            avatar = val;
+          }),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 8.0),
             child: Text('username'),

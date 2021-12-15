@@ -20,6 +20,12 @@ const UserFragment = _i1.FragmentDefinitionNode(
           alias: null,
           arguments: [],
           directives: [],
+          selectionSet: null),
+      _i1.FieldNode(
+          name: _i1.NameNode(value: 'avatar'),
+          alias: null,
+          arguments: [],
+          directives: [],
           selectionSet: null)
     ]));
 const document = _i1.DocumentNode(definitions: [UserFragment]);
