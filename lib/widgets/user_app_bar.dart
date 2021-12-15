@@ -4,10 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_communities/graphql/get_viewer.data.gql.dart';
 import 'package:flutter_communities/graphql/get_viewer.req.gql.dart';
 import 'package:flutter_communities/graphql/get_viewer.var.gql.dart';
+import 'package:flutter_communities/models/user.dart';
 import 'package:flutter_communities/providers/auth.dart';
+import 'package:flutter_communities/providers/community_repository.dart';
 import 'package:flutter_communities/providers/ferry.dart';
 import 'package:flutter_communities/screens/home_screen.dart';
 import 'package:flutter_communities/screens/user_profile_screen.dart';
+import 'package:flutter_communities/widgets/query_stream_builder.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class UserAppBar extends ConsumerWidget with PreferredSizeWidget {
@@ -17,17 +20,16 @@ class UserAppBar extends ConsumerWidget with PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context, ref) {
-    final client = ref.watch(ferryClientProvider);
+    final communityRepository = ref.watch(communityRepositoryProvider);
 
-    return Operation(
-      client: client,
-      operationRequest: GGetViewerReq(),
+    return QueryStreamBuilder<User?>(
+      stream: communityRepository.getViewer(),
+      showLoadingState: false,
       builder: (
         context,
-        OperationResponse<GGetViewerData, GGetViewerVars>? resp,
+        user,
         _,
       ) {
-        final user = resp?.data?.viewer;
         return AppBar(
           title: Text('Flutter Communities'),
           actions: [

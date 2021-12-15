@@ -1,12 +1,9 @@
-import 'package:ferry/ferry.dart';
-import 'package:ferry_flutter/ferry_flutter.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_communities/graphql/get_viewer.data.gql.dart';
-import 'package:flutter_communities/graphql/get_viewer.req.gql.dart';
-import 'package:flutter_communities/graphql/get_viewer.var.gql.dart';
-import 'package:flutter_communities/providers/ferry.dart';
+import 'package:flutter_communities/models/user.dart';
+import 'package:flutter_communities/providers/community_repository.dart';
 import 'package:flutter_communities/screens/edit_profile_screen.dart';
 import 'package:flutter_communities/widgets/avatar_box.dart';
+import 'package:flutter_communities/widgets/query_stream_builder.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class UserProfileScreen extends ConsumerWidget {
@@ -16,17 +13,15 @@ class UserProfileScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, ref) {
-    final client = ref.watch(ferryClientProvider);
+    final communityRepository = ref.watch(communityRepositoryProvider);
 
-    return Operation(
-        client: client,
-        operationRequest: GGetViewerReq(),
+    return QueryStreamBuilder<User?>(
+        stream: communityRepository.getViewer(),
         builder: (
           context,
-          OperationResponse<GGetViewerData, GGetViewerVars>? resp,
+          user,
           _,
         ) {
-          final user = resp?.data?.viewer;
           return Scaffold(
             appBar: AppBar(
               title: Text(user?.username ?? ''),
