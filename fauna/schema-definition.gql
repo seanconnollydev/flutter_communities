@@ -4,11 +4,16 @@
 type Mutation {
   createUser(data: CreateUserInput!): String! @resolver(name: "create_user")
   login(data: LoginUserInput!): String! @resolver(name: "login_user")
+  createPost(data: CreatePostInput!): Post! @resolver(name: "create_post")
+  createPostComment(data: CreatePostCommentInput!): PostComment! @resolver(name: "create_post_comment")
+  createPostVote(data: CreatePostVoteInput!): Post! @resolver(name: "create_post_vote")
 }
 
 type Query {
   communities: [Community!]!
   viewer: User! @resolver(name: "viewer")
+  getPostsByCommunityId(id: ID!): [Post]! @resolver(name: "get_posts_by_community_id", paginated: true)
+  getPostCommentsByPostId(id: ID!): [PostComment]! @resolver(name: "get_post_comments_by_post_id", paginated: true)
 }
 
 input CreateUserInput {
@@ -26,9 +31,55 @@ type Community {
   name: String!
   purpose: String
   icon: String
+  posts: [Post!] @relation(name: "community_posts")
 }
 
 type User {
   username: String! @unique
   avatar: String
+  posts: [Post!] @relation(name: "user_posts")
+}
+
+type Post {
+  title: String!
+  message: String!
+  upVotes: Int!
+  downVotes: Int!
+  creator: User! @relation(name: "user_posts")
+  community: Community! @relation(name: "community_posts")
+  votes: [PostVote!] @relation(name: "post_votes")
+  comments: [PostComment!] @relation(name: "post_comments")
+}
+
+type PostVote {
+  type: PostVoteType!
+  post: Post! @relation(name: "post_votes")
+  user: User! @relation(name: "user_post_votes")
+}
+
+enum PostVoteType {
+  UpVote
+  DownVote
+}
+
+type PostComment {
+  message: String!
+  creator: User! @relation(name: "user_post_comments")
+  post: Post! @relation(name: "post_comments")
+}
+
+input CreatePostInput {
+  title: String!
+  message: String!
+  communityId: String!
+}
+
+input CreatePostCommentInput {
+  message: String!
+  postId: String!
+}
+
+input CreatePostVoteInput {
+  postId: ID!
+  type: PostVoteType!
 }
