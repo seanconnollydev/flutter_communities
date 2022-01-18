@@ -1,0 +1,11 @@
+# import './post_fragment.graphql'
+
+query GetPostsByCommunityId($id: ID!, $size: Int, $cursor: String) {
+  getPostsByCommunityId(id: $id, _size: $size, _cursor: $cursor) {
+    data {
+      ...PostFragment
+    }
+    after
+    before
+  }
+}

@@ -28,6 +28,16 @@ import 'package:flutter_communities/graphql/get_community.req.gql.dart'
     show GGetCommunityReq;
 import 'package:flutter_communities/graphql/get_community.var.gql.dart'
     show GGetCommunityVars;
+import 'package:flutter_communities/graphql/get_posts_by_community_id.data.gql.dart'
+    show
+        GGetPostsByCommunityIdData,
+        GGetPostsByCommunityIdData_getPostsByCommunityId,
+        GGetPostsByCommunityIdData_getPostsByCommunityId_data,
+        GGetPostsByCommunityIdData_getPostsByCommunityId_data_creator;
+import 'package:flutter_communities/graphql/get_posts_by_community_id.req.gql.dart'
+    show GGetPostsByCommunityIdReq;
+import 'package:flutter_communities/graphql/get_posts_by_community_id.var.gql.dart'
+    show GGetPostsByCommunityIdVars;
 import 'package:flutter_communities/graphql/get_viewer.data.gql.dart'
     show GGetViewerData, GGetViewerData_viewer;
 import 'package:flutter_communities/graphql/get_viewer.req.gql.dart'
@@ -40,15 +50,38 @@ import 'package:flutter_communities/graphql/login_user.req.gql.dart'
     show GLoginUserReq;
 import 'package:flutter_communities/graphql/login_user.var.gql.dart'
     show GLoginUserVars;
+import 'package:flutter_communities/graphql/post_fragment.data.gql.dart'
+    show GPostFragmentData, GPostFragmentData_creator;
+import 'package:flutter_communities/graphql/post_fragment.req.gql.dart'
+    show GPostFragmentReq;
+import 'package:flutter_communities/graphql/post_fragment.var.gql.dart'
+    show GPostFragmentVars;
 import 'package:flutter_communities/graphql/schema.schema.gql.dart'
     show
         GCommunityInput,
+        GCommunityPostsRelation,
+        GCreatePostCommentInput,
+        GCreatePostInput,
+        GCreatePostVoteInput,
         GCreateUserInput,
         GDate,
         GLoginUserInput,
         GLong,
+        GPostCommentCreatorRelation,
+        GPostCommentInput,
+        GPostCommentPostRelation,
+        GPostCommentsRelation,
+        GPostCommunityRelation,
+        GPostCreatorRelation,
+        GPostInput,
+        GPostVoteInput,
+        GPostVotePostRelation,
+        GPostVoteType,
+        GPostVoteUserRelation,
+        GPostVotesRelation,
         GTime,
-        GUserInput;
+        GUserInput,
+        GUserPostsRelation;
 import 'package:flutter_communities/graphql/update_user.data.gql.dart'
     show GUpdateUserData, GUpdateUserData_updateUser;
 import 'package:flutter_communities/graphql/update_user.req.gql.dart'
@@ -71,10 +104,14 @@ final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   ..addPlugin(StandardJsonPlugin());
 @SerializersFor([
   GCommunityInput,
+  GCommunityPostsRelation,
   GCreateCommunityData,
   GCreateCommunityData_createCommunity,
   GCreateCommunityReq,
   GCreateCommunityVars,
+  GCreatePostCommentInput,
+  GCreatePostInput,
+  GCreatePostVoteInput,
   GCreateUserData,
   GCreateUserInput,
   GCreateUserReq,
@@ -89,6 +126,12 @@ final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   GGetCommunityData_findCommunityByID,
   GGetCommunityReq,
   GGetCommunityVars,
+  GGetPostsByCommunityIdData,
+  GGetPostsByCommunityIdData_getPostsByCommunityId,
+  GGetPostsByCommunityIdData_getPostsByCommunityId_data,
+  GGetPostsByCommunityIdData_getPostsByCommunityId_data_creator,
+  GGetPostsByCommunityIdReq,
+  GGetPostsByCommunityIdVars,
   GGetViewerData,
   GGetViewerData_viewer,
   GGetViewerReq,
@@ -98,6 +141,22 @@ final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   GLoginUserReq,
   GLoginUserVars,
   GLong,
+  GPostCommentCreatorRelation,
+  GPostCommentInput,
+  GPostCommentPostRelation,
+  GPostCommentsRelation,
+  GPostCommunityRelation,
+  GPostCreatorRelation,
+  GPostFragmentData,
+  GPostFragmentData_creator,
+  GPostFragmentReq,
+  GPostFragmentVars,
+  GPostInput,
+  GPostVoteInput,
+  GPostVotePostRelation,
+  GPostVoteType,
+  GPostVoteUserRelation,
+  GPostVotesRelation,
   GTime,
   GUpdateUserData,
   GUpdateUserData_updateUser,
@@ -106,6 +165,7 @@ final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   GUserFragmentData,
   GUserFragmentReq,
   GUserFragmentVars,
-  GUserInput
+  GUserInput,
+  GUserPostsRelation
 ])
 final Serializers serializers = _serializersBuilder.build();

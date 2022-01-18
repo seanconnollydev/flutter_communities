@@ -18,6 +18,35 @@ input CommunityInput {
   name: String!
   purpose: String
   icon: String
+  posts: CommunityPostsRelation
+}
+
+# Allow manipulating the relationship between the types 'Community' and 'Post'.
+input CommunityPostsRelation {
+  # Create one or more documents of type 'Post' and associate them with the current document.
+  create: [PostInput]
+
+  # Connect one or more documents of type 'Post' with the current document using their IDs.
+  connect: [ID]
+
+  # Disconnect the given documents of type 'Post' from the current document using their IDs.
+  disconnect: [ID]
+}
+
+input CreatePostCommentInput {
+  message: String!
+  postId: String!
+}
+
+input CreatePostInput {
+  title: String!
+  message: String!
+  communityId: String!
+}
+
+input CreatePostVoteInput {
+  postId: ID!
+  type: PostVoteType!
 }
 
 input CreateUserInput {
@@ -44,6 +73,22 @@ type Mutation {
   ): User
   createUser(data: CreateUserInput!): String!
 
+  # Update an existing document in the collection of 'PostComment'
+  updatePostComment(
+    # The 'PostComment' document's ID
+    id: ID!
+
+    # 'PostComment' input values
+    data: PostCommentInput!
+  ): PostComment
+  createPostComment(data: CreatePostCommentInput!): PostComment!
+
+  # Delete an existing document in the collection of 'PostComment'
+  deletePostComment(
+    # The 'PostComment' document's ID
+    id: ID!
+  ): PostComment
+
   # Update an existing document in the collection of 'Community'
   updateCommunity(
     # The 'Community' document's ID
@@ -52,6 +97,16 @@ type Mutation {
     # 'Community' input values
     data: CommunityInput!
   ): Community
+
+  # Update an existing document in the collection of 'Post'
+  updatePost(
+    # The 'Post' document's ID
+    id: ID!
+
+    # 'Post' input values
+    data: PostInput!
+  ): Post
+  createPostVote(data: CreatePostVoteInput!): Post!
 
   # Delete an existing document in the collection of 'Community'
   deleteCommunity(
@@ -64,6 +119,22 @@ type Mutation {
     # The 'User' document's ID
     id: ID!
   ): User
+
+  # Delete an existing document in the collection of 'Post'
+  deletePost(
+    # The 'Post' document's ID
+    id: ID!
+  ): Post
+  createPost(data: CreatePostInput!): Post!
+
+  # Update an existing document in the collection of 'PostVote'
+  updatePostVote(
+    # The 'PostVote' document's ID
+    id: ID!
+
+    # 'PostVote' input values
+    data: PostVoteInput!
+  ): PostVote
   login(data: LoginUserInput!): String!
 
   # Create a new document in the collection of 'Community'
@@ -71,6 +142,116 @@ type Mutation {
     # 'Community' input values
     data: CommunityInput!
   ): Community!
+
+  # Delete an existing document in the collection of 'PostVote'
+  deletePostVote(
+    # The 'PostVote' document's ID
+    id: ID!
+  ): PostVote
+}
+
+# Allow manipulating the relationship between the types 'PostComment' and 'User' using the field 'PostComment.creator'.
+input PostCommentCreatorRelation {
+  # Create a document of type 'User' and associate it with the current document.
+  create: UserInput
+
+  # Connect a document of type 'User' with the current document using its ID.
+  connect: ID
+}
+
+# 'PostComment' input values
+input PostCommentInput {
+  message: String!
+  creator: PostCommentCreatorRelation
+  post: PostCommentPostRelation
+}
+
+# Allow manipulating the relationship between the types 'PostComment' and 'Post' using the field 'PostComment.post'.
+input PostCommentPostRelation {
+  # Create a document of type 'Post' and associate it with the current document.
+  create: PostInput
+
+  # Connect a document of type 'Post' with the current document using its ID.
+  connect: ID
+}
+
+# Allow manipulating the relationship between the types 'Post' and 'PostComment'.
+input PostCommentsRelation {
+  # Create one or more documents of type 'PostComment' and associate them with the current document.
+  create: [PostCommentInput]
+
+  # Connect one or more documents of type 'PostComment' with the current document using their IDs.
+  connect: [ID]
+
+  # Disconnect the given documents of type 'PostComment' from the current document using their IDs.
+  disconnect: [ID]
+}
+
+# Allow manipulating the relationship between the types 'Post' and 'Community' using the field 'Post.community'.
+input PostCommunityRelation {
+  # Create a document of type 'Community' and associate it with the current document.
+  create: CommunityInput
+
+  # Connect a document of type 'Community' with the current document using its ID.
+  connect: ID
+}
+
+# Allow manipulating the relationship between the types 'Post' and 'User' using the field 'Post.creator'.
+input PostCreatorRelation {
+  # Create a document of type 'User' and associate it with the current document.
+  create: UserInput
+
+  # Connect a document of type 'User' with the current document using its ID.
+  connect: ID
+}
+
+# 'Post' input values
+input PostInput {
+  title: String!
+  message: String!
+  upVotes: Int!
+  downVotes: Int!
+  creator: PostCreatorRelation
+  community: PostCommunityRelation
+  votes: PostVotesRelation
+  comments: PostCommentsRelation
+}
+
+# 'PostVote' input values
+input PostVoteInput {
+  type: PostVoteType!
+  post: PostVotePostRelation
+  user: PostVoteUserRelation
+}
+
+# Allow manipulating the relationship between the types 'PostVote' and 'Post' using the field 'PostVote.post'.
+input PostVotePostRelation {
+  # Create a document of type 'Post' and associate it with the current document.
+  create: PostInput
+
+  # Connect a document of type 'Post' with the current document using its ID.
+  connect: ID
+}
+
+# Allow manipulating the relationship between the types 'PostVote' and 'User' using the field 'PostVote.user'.
+input PostVoteUserRelation {
+  # Create a document of type 'User' and associate it with the current document.
+  create: UserInput
+
+  # Connect a document of type 'User' with the current document using its ID.
+  connect: ID
+}
+
+# Allow manipulating the relationship between the types 'Post' and 'PostVote'.
+input PostVotesRelation {
+  # Create one or more documents of type 'PostVote' and associate them with the current document.
+  create: [PostVoteInput]
+
+  # Connect one or more documents of type 'PostVote' with the current document using their IDs.
+  connect: [ID]
+
+  # Disconnect the given documents of type 'PostVote' from the current document using their IDs.
+  disconnect: [ID]
 }
 
 scalar Time
@@ -79,10 +260,30 @@ scalar Time
 input UserInput {
   username: String!
   avatar: String
+  posts: UserPostsRelation
+}
+
+# Allow manipulating the relationship between the types 'User' and 'Post'.
+input UserPostsRelation {
+  # Create one or more documents of type 'Post' and associate them with the current document.
+  create: [PostInput]
+
+  # Connect one or more documents of type 'Post' with the current document using their IDs.
+  connect: [ID]
+
+  # Disconnect the given documents of type 'Post' from the current document using their IDs.
+  disconnect: [ID]
 }
 
 type Community {
   name: String!
+  posts(
+    # The number of items to return per page.
+    _size: Int
+
+    # The pagination cursor.
+    _cursor: String
+  ): PostPage!
 
   # The document's ID.
   _id: ID!
@@ -105,12 +306,121 @@ type CommunityPage {
   before: String
 }
 
+type Post {
+  community: Community!
+  votes(
+    # The number of items to return per page.
+    _size: Int
+
+    # The pagination cursor.
+    _cursor: String
+  ): PostVotePage!
+
+  # The document's ID.
+  _id: ID!
+  creator: User!
+  upVotes: Int!
+  message: String!
+  title: String!
+  comments(
+    # The number of items to return per page.
+    _size: Int
+
+    # The pagination cursor.
+    _cursor: String
+  ): PostCommentPage!
+  downVotes: Int!
+
+  # The document's timestamp.
+  _ts: Long!
+}
+
+type PostComment {
+  post: Post!
+
+  # The document's ID.
+  _id: ID!
+  creator: User!
+  message: String!
+
+  # The document's timestamp.
+  _ts: Long!
+}
+
+# The pagination object for elements of type 'PostComment'.
+type PostCommentPage {
+  # The elements of type 'PostComment' in this page.
+  data: [PostComment]!
+
+  # A cursor for elements coming after the current page.
+  after: String
+
+  # A cursor for elements coming before the current page.
+  before: String
+}
+
+# The pagination object for elements of type 'Post'.
+type PostPage {
+  # The elements of type 'Post' in this page.
+  data: [Post]!
+
+  # A cursor for elements coming after the current page.
+  after: String
+
+  # A cursor for elements coming before the current page.
+  before: String
+}
+
+type PostVote {
+  post: Post!
+
+  # The document's ID.
+  _id: ID!
+  type: PostVoteType!
+  user: User!
+
+  # The document's timestamp.
+  _ts: Long!
+}
+
+# The pagination object for elements of type 'PostVote'.
+type PostVotePage {
+  # The elements of type 'PostVote' in this page.
+  data: [PostVote]!
+
+  # A cursor for elements coming after the current page.
+  after: String
+
+  # A cursor for elements coming before the current page.
+  before: String
+}
+
+enum PostVoteType {
+  UpVote
+  DownVote
+}
+
 type Query {
+  getPostsByCommunityId(
+    # The number of items to return per page.
+    _size: Int
+
+    # The pagination cursor.
+    _cursor: String
+    id: ID!
+  ): QueryGetPostsByCommunityIdPage!
+
   # Find a document from the collection of 'Community' by its id.
   findCommunityByID(
     # The 'Community' document's ID
     id: ID!
   ): Community
+
+  # Find a document from the collection of 'Post' by its id.
+  findPostByID(
+    # The 'Post' document's ID
+    id: ID!
+  ): Post
 
   # Find a document from the collection of 'User' by its id.
   findUserByID(
@@ -124,17 +434,69 @@ type Query {
     # The pagination cursor.
     _cursor: String
   ): CommunityPage!
+
+  # Find a document from the collection of 'PostVote' by its id.
+  findPostVoteByID(
+    # The 'PostVote' document's ID
+    id: ID!
+  ): PostVote
+  getPostCommentsByPostId(
+    # The number of items to return per page.
+    _size: Int
+
+    # The pagination cursor.
+    _cursor: String
+    id: ID!
+  ): QueryGetPostCommentsByPostIdPage!
   viewer: User!
+
+  # Find a document from the collection of 'PostComment' by its id.
+  findPostCommentByID(
+    # The 'PostComment' document's ID
+    id: ID!
+  ): PostComment
+}
+
+# The pagination object for elements of type 'PostComment'.
+type QueryGetPostCommentsByPostIdPage {
+  # The elements of type 'PostComment' in this page.
+  data: [PostComment]!
+
+  # A cursor for elements coming after the current page.
+  after: String
+
+  # A cursor for elements coming before the current page.
+  before: String
+}
+
+# The pagination object for elements of type 'Post'.
+type QueryGetPostsByCommunityIdPage {
+  # The elements of type 'Post' in this page.
+  data: [Post]!
+
+  # A cursor for elements coming after the current page.
+  after: String
+
+  # A cursor for elements coming before the current page.
+  before: String
 }
 
 type User {
+  avatar: String
+  posts(
+    # The number of items to return per page.
+    _size: Int
+
+    # The pagination cursor.
+    _cursor: String
+  ): PostPage!
+  username: String!
+
   # The document's ID.
   _id: ID!
 
   # The document's timestamp.
   _ts: Long!
-  username: String!
-  avatar: String
 }
 
 # The `Long` scalar type represents non-fractional signed whole numeric values. Long can represent values between -(2^63) and 2^63 - 1.
