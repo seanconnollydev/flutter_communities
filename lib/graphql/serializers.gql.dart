@@ -7,6 +7,15 @@ import 'package:flutter_communities/graphql/create_community.req.gql.dart'
     show GCreateCommunityReq;
 import 'package:flutter_communities/graphql/create_community.var.gql.dart'
     show GCreateCommunityVars;
+import 'package:flutter_communities/graphql/create_post.data.gql.dart'
+    show
+        GCreatePostData,
+        GCreatePostData_createPost,
+        GCreatePostData_createPost_creator;
+import 'package:flutter_communities/graphql/create_post.req.gql.dart'
+    show GCreatePostReq;
+import 'package:flutter_communities/graphql/create_post.var.gql.dart'
+    show GCreatePostVars;
 import 'package:flutter_communities/graphql/create_user.data.gql.dart'
     show GCreateUserData;
 import 'package:flutter_communities/graphql/create_user.req.gql.dart'
@@ -110,7 +119,12 @@ final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   GCreateCommunityReq,
   GCreateCommunityVars,
   GCreatePostCommentInput,
+  GCreatePostData,
+  GCreatePostData_createPost,
+  GCreatePostData_createPost_creator,
   GCreatePostInput,
+  GCreatePostReq,
+  GCreatePostVars,
   GCreatePostVoteInput,
   GCreateUserData,
   GCreateUserInput,

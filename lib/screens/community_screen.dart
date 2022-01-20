@@ -8,6 +8,8 @@ import 'package:flutter_communities/widgets/post_card.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
+import 'create_post_screen.dart';
+
 class CommunityScreen extends ConsumerStatefulWidget {
   static const routeName = '/community';
 
@@ -67,13 +69,13 @@ class _CommunityScreenState extends ConsumerState<CommunityScreen> {
           ),
         ),
       ),
-      // floatingActionButton: FloatingActionButton(
-      //   child: Icon(Icons.add),
-      //   onPressed: () {
-      //     Navigator.of(context).pushNamed(CreatePostScreen.routeName,
-      //         arguments: widget._communityId);
-      //   },
-      // ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        onPressed: () {
+          Navigator.of(context).pushNamed(CreatePostScreen.routeName,
+              arguments: widget._communityId);
+        },
+      ),
     );
   }
 

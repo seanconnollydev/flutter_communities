@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_communities/screens/community_screen.dart';
 import 'package:flutter_communities/screens/create_community_screen.dart';
+import 'package:flutter_communities/screens/create_post_screen.dart';
 import 'package:flutter_communities/screens/edit_profile_screen.dart';
 import 'package:flutter_communities/screens/login_screen.dart';
 import 'package:flutter_communities/screens/registration_screen.dart';
@@ -41,6 +42,8 @@ class FlutterCommunitiesApp extends StatelessWidget {
         CreateCommunityScreen.routeName: (_) => CreateCommunityScreen(),
         UserProfileScreen.routeName: (_) => UserProfileScreen(),
         EditProfileScreen.routeName: (_) => EditProfileScreen(),
+        CreatePostScreen.routeName: (context) => CreatePostScreen(
+            ModalRoute.of(context)!.settings.arguments as String)
       },
     );
   }

@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:ferry/ferry.dart';
+import 'package:flutter_communities/graphql/create_post.req.gql.dart';
 import 'package:flutter_communities/graphql/create_user.req.gql.dart';
 import 'package:flutter_communities/graphql/get_posts_by_community_id.data.gql.dart';
 import 'package:flutter_communities/graphql/get_posts_by_community_id.var.gql.dart';
@@ -9,6 +10,7 @@ import 'package:flutter_communities/models/user.dart';
 import 'package:flutter_communities/providers/ferry.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../cache_handlers.dart';
 import '../request_builders.dart';
 
 final communityRepositoryProvider = Provider<CommunityRepository>((ref) {
@@ -69,6 +71,20 @@ class CommunityRepository {
           });
 
     _refetch(nextReq);
+  }
+
+  Future<void> createPost(
+      String communityId, String title, String message) async {
+    final request = GCreatePostReq(
+      (b) => b
+        ..vars.data.communityId = communityId
+        ..vars.data.title = title
+        ..vars.data.message = message
+        ..updateCacheHandlerKey =
+            CacheHandlers.key(CacheHandler.createPostHandler),
+    );
+
+    await _mutation(request);
   }
 
   Future<OperationResponse<TData, TVars>> _mutation<TData, TVars>(
