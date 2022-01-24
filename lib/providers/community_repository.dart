@@ -2,15 +2,12 @@ import 'dart:async';
 
 import 'package:ferry/ferry.dart';
 import 'package:flutter_communities/graphql/create_post.req.gql.dart';
-import 'package:flutter_communities/graphql/create_post_comment.data.gql.dart';
 import 'package:flutter_communities/graphql/create_post_comment.req.gql.dart';
-import 'package:flutter_communities/graphql/create_post_comment.var.gql.dart';
 import 'package:flutter_communities/graphql/create_post_vote.data.gql.dart';
 import 'package:flutter_communities/graphql/create_post_vote.req.gql.dart';
 import 'package:flutter_communities/graphql/create_post_vote.var.gql.dart';
 import 'package:flutter_communities/graphql/create_user.req.gql.dart';
 import 'package:flutter_communities/graphql/get_post.data.gql.dart';
-import 'package:flutter_communities/graphql/get_post.req.gql.dart';
 import 'package:flutter_communities/graphql/get_post.var.gql.dart';
 import 'package:flutter_communities/graphql/get_post_comments.data.gql.dart';
 import 'package:flutter_communities/graphql/get_post_comments.req.gql.dart';

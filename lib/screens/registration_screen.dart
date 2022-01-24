@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_communities/graphql/create_user.req.gql.dart';
 import 'package:flutter_communities/providers/auth.dart';
 import 'package:flutter_communities/providers/community_repository.dart';
-import 'package:flutter_communities/providers/ferry.dart';
 import 'package:flutter_communities/widgets/icon_selector.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

@@ -1,13 +1,7 @@
-import 'package:ferry/ferry.dart';
-import 'package:ferry_flutter/ferry_flutter.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_communities/graphql/get_viewer.data.gql.dart';
-import 'package:flutter_communities/graphql/get_viewer.req.gql.dart';
-import 'package:flutter_communities/graphql/get_viewer.var.gql.dart';
 import 'package:flutter_communities/models/user.dart';
 import 'package:flutter_communities/providers/auth.dart';
 import 'package:flutter_communities/providers/community_repository.dart';
-import 'package:flutter_communities/providers/ferry.dart';
 import 'package:flutter_communities/screens/home_screen.dart';
 import 'package:flutter_communities/screens/user_profile_screen.dart';
 import 'package:flutter_communities/widgets/query_stream_builder.dart';
