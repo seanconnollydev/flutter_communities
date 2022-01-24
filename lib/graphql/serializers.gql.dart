@@ -16,6 +16,21 @@ import 'package:flutter_communities/graphql/create_post.req.gql.dart'
     show GCreatePostReq;
 import 'package:flutter_communities/graphql/create_post.var.gql.dart'
     show GCreatePostVars;
+import 'package:flutter_communities/graphql/create_post_comment.data.gql.dart'
+    show
+        GCreatePostCommentData,
+        GCreatePostCommentData_createPostComment,
+        GCreatePostCommentData_createPostComment_creator;
+import 'package:flutter_communities/graphql/create_post_comment.req.gql.dart'
+    show GCreatePostCommentReq;
+import 'package:flutter_communities/graphql/create_post_comment.var.gql.dart'
+    show GCreatePostCommentVars;
+import 'package:flutter_communities/graphql/create_post_vote.data.gql.dart'
+    show GCreatePostVoteData, GCreatePostVoteData_createPostVote;
+import 'package:flutter_communities/graphql/create_post_vote.req.gql.dart'
+    show GCreatePostVoteReq;
+import 'package:flutter_communities/graphql/create_post_vote.var.gql.dart'
+    show GCreatePostVoteVars;
 import 'package:flutter_communities/graphql/create_user.data.gql.dart'
     show GCreateUserData;
 import 'package:flutter_communities/graphql/create_user.req.gql.dart'
@@ -37,6 +52,28 @@ import 'package:flutter_communities/graphql/get_community.req.gql.dart'
     show GGetCommunityReq;
 import 'package:flutter_communities/graphql/get_community.var.gql.dart'
     show GGetCommunityVars;
+import 'package:flutter_communities/graphql/get_post.data.gql.dart'
+    show
+        GGetPostData,
+        GGetPostData_findPostByID,
+        GGetPostData_findPostByID_creator,
+        GGetPostData_getPostCommentsByPostId,
+        GGetPostData_getPostCommentsByPostId_data,
+        GGetPostData_getPostCommentsByPostId_data_creator;
+import 'package:flutter_communities/graphql/get_post.req.gql.dart'
+    show GGetPostReq;
+import 'package:flutter_communities/graphql/get_post.var.gql.dart'
+    show GGetPostVars;
+import 'package:flutter_communities/graphql/get_post_comments.data.gql.dart'
+    show
+        GGetPostCommentsData,
+        GGetPostCommentsData_getPostCommentsByPostId,
+        GGetPostCommentsData_getPostCommentsByPostId_data,
+        GGetPostCommentsData_getPostCommentsByPostId_data_creator;
+import 'package:flutter_communities/graphql/get_post_comments.req.gql.dart'
+    show GGetPostCommentsReq;
+import 'package:flutter_communities/graphql/get_post_comments.var.gql.dart'
+    show GGetPostCommentsVars;
 import 'package:flutter_communities/graphql/get_posts_by_community_id.data.gql.dart'
     show
         GGetPostsByCommunityIdData,
@@ -59,6 +96,12 @@ import 'package:flutter_communities/graphql/login_user.req.gql.dart'
     show GLoginUserReq;
 import 'package:flutter_communities/graphql/login_user.var.gql.dart'
     show GLoginUserVars;
+import 'package:flutter_communities/graphql/post_comment_fragment.data.gql.dart'
+    show GPostCommentFragmentData, GPostCommentFragmentData_creator;
+import 'package:flutter_communities/graphql/post_comment_fragment.req.gql.dart'
+    show GPostCommentFragmentReq;
+import 'package:flutter_communities/graphql/post_comment_fragment.var.gql.dart'
+    show GPostCommentFragmentVars;
 import 'package:flutter_communities/graphql/post_fragment.data.gql.dart'
     show GPostFragmentData, GPostFragmentData_creator;
 import 'package:flutter_communities/graphql/post_fragment.req.gql.dart'
@@ -118,14 +161,23 @@ final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   GCreateCommunityData_createCommunity,
   GCreateCommunityReq,
   GCreateCommunityVars,
+  GCreatePostCommentData,
+  GCreatePostCommentData_createPostComment,
+  GCreatePostCommentData_createPostComment_creator,
   GCreatePostCommentInput,
+  GCreatePostCommentReq,
+  GCreatePostCommentVars,
   GCreatePostData,
   GCreatePostData_createPost,
   GCreatePostData_createPost_creator,
   GCreatePostInput,
   GCreatePostReq,
   GCreatePostVars,
+  GCreatePostVoteData,
+  GCreatePostVoteData_createPostVote,
   GCreatePostVoteInput,
+  GCreatePostVoteReq,
+  GCreatePostVoteVars,
   GCreateUserData,
   GCreateUserInput,
   GCreateUserReq,
@@ -140,6 +192,20 @@ final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   GGetCommunityData_findCommunityByID,
   GGetCommunityReq,
   GGetCommunityVars,
+  GGetPostCommentsData,
+  GGetPostCommentsData_getPostCommentsByPostId,
+  GGetPostCommentsData_getPostCommentsByPostId_data,
+  GGetPostCommentsData_getPostCommentsByPostId_data_creator,
+  GGetPostCommentsReq,
+  GGetPostCommentsVars,
+  GGetPostData,
+  GGetPostData_findPostByID,
+  GGetPostData_findPostByID_creator,
+  GGetPostData_getPostCommentsByPostId,
+  GGetPostData_getPostCommentsByPostId_data,
+  GGetPostData_getPostCommentsByPostId_data_creator,
+  GGetPostReq,
+  GGetPostVars,
   GGetPostsByCommunityIdData,
   GGetPostsByCommunityIdData_getPostsByCommunityId,
   GGetPostsByCommunityIdData_getPostsByCommunityId_data,
@@ -156,6 +222,10 @@ final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   GLoginUserVars,
   GLong,
   GPostCommentCreatorRelation,
+  GPostCommentFragmentData,
+  GPostCommentFragmentData_creator,
+  GPostCommentFragmentReq,
+  GPostCommentFragmentVars,
   GPostCommentInput,
   GPostCommentPostRelation,
   GPostCommentsRelation,

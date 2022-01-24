@@ -2,10 +2,24 @@ import 'dart:async';
 
 import 'package:ferry/ferry.dart';
 import 'package:flutter_communities/graphql/create_post.req.gql.dart';
+import 'package:flutter_communities/graphql/create_post_comment.data.gql.dart';
+import 'package:flutter_communities/graphql/create_post_comment.req.gql.dart';
+import 'package:flutter_communities/graphql/create_post_comment.var.gql.dart';
+import 'package:flutter_communities/graphql/create_post_vote.data.gql.dart';
+import 'package:flutter_communities/graphql/create_post_vote.req.gql.dart';
+import 'package:flutter_communities/graphql/create_post_vote.var.gql.dart';
 import 'package:flutter_communities/graphql/create_user.req.gql.dart';
+import 'package:flutter_communities/graphql/get_post.data.gql.dart';
+import 'package:flutter_communities/graphql/get_post.req.gql.dart';
+import 'package:flutter_communities/graphql/get_post.var.gql.dart';
+import 'package:flutter_communities/graphql/get_post_comments.data.gql.dart';
+import 'package:flutter_communities/graphql/get_post_comments.req.gql.dart';
+import 'package:flutter_communities/graphql/get_post_comments.var.gql.dart';
 import 'package:flutter_communities/graphql/get_posts_by_community_id.data.gql.dart';
 import 'package:flutter_communities/graphql/get_posts_by_community_id.var.gql.dart';
 import 'package:flutter_communities/graphql/get_viewer.req.gql.dart';
+import 'package:flutter_communities/graphql/post_fragment.data.gql.dart';
+import 'package:flutter_communities/graphql/schema.schema.gql.dart';
 import 'package:flutter_communities/models/user.dart';
 import 'package:flutter_communities/providers/ferry.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -87,6 +101,49 @@ class CommunityRepository {
     await _mutation(request);
   }
 
+  Stream<OperationResponse<GCreatePostVoteData, GCreatePostVoteVars>>
+      createPostVote(GPostFragment post, GPostVoteType voteType) {
+    return _request(
+      GCreatePostVoteReq(
+        (b) => b
+          ..vars.data.postId = post.G_id
+          ..vars.data.type = voteType
+          ..optimisticResponse.createPostVote.G_id = post.G_id
+          ..optimisticResponse.createPostVote.upVotes =
+              voteType == GPostVoteType.UpVote ? post.upVotes + 1 : post.upVotes
+          ..optimisticResponse.createPostVote.downVotes =
+              voteType == GPostVoteType.DownVote
+                  ? post.downVotes + 1
+                  : post.downVotes,
+      ),
+    );
+  }
+
+  Stream<GetPostResponse> getPost(String postId) {
+    return _request(RequestBuilders.getPost(postId));
+  }
+
+  Stream<GetPostCommentsResponse> getPostComments(
+      String postId, String cursor) {
+    return _request(GGetPostCommentsReq(
+      (b) => b
+        ..vars.postId = postId
+        ..vars.cursor = cursor,
+    ));
+  }
+
+  Future<void> createPostComment(String postId, String message) async {
+    await _mutation(
+      GCreatePostCommentReq(
+        (b) => b
+          ..vars.data.postId = postId
+          ..vars.data.message = message
+          ..updateCacheHandlerKey =
+              CacheHandlers.key(CacheHandler.createPostCommentHandler),
+      ),
+    );
+  }
+
   Future<OperationResponse<TData, TVars>> _mutation<TData, TVars>(
       OperationRequest<TData, TVars> req) {
     final completer = Completer<OperationResponse<TData, TVars>>();
@@ -141,3 +198,8 @@ class CommunityRepository {
     _client.requestController.add(req);
   }
 }
+
+typedef GetPostResponse = OperationResponse<GGetPostData, GGetPostVars>?;
+
+typedef GetPostCommentsResponse
+    = OperationResponse<GGetPostCommentsData, GGetPostCommentsVars>;

@@ -1,3 +1,4 @@
+import 'graphql/get_post.req.gql.dart';
 import 'graphql/get_posts_by_community_id.req.gql.dart';
 
 class RequestBuilders {
@@ -10,6 +11,14 @@ class RequestBuilders {
         ..requestId = 'GGetPostsByCommunityIdReq'
         ..vars.id = communityId
         ..vars.size = size,
+    );
+  }
+
+  static GGetPostReq getPost(String postId) {
+    return GGetPostReq(
+      (b) => b
+        ..vars.id = postId
+        ..requestId = 'GGetPostReq',
     );
   }
 }

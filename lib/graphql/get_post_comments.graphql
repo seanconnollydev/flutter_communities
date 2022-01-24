@@ -1,0 +1,11 @@
+# import './post_comment_fragment.graphql'
+
+query GetPostComments($postId: ID!, $cursor: String) {
+  getPostCommentsByPostId(id: $postId, _size: 10, _cursor: $cursor) {
+    data {
+      ...PostCommentFragment
+    }
+    after
+    before
+  }
+}

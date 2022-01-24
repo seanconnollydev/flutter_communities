@@ -6,7 +6,10 @@ import 'package:flutter_communities/request_builders.dart';
 
 import 'graphql/create_post.data.gql.dart';
 import 'graphql/create_post.var.gql.dart';
+import 'graphql/create_post_comment.data.gql.dart';
+import 'graphql/create_post_comment.var.gql.dart';
 import 'graphql/get_communities.data.gql.dart';
+import 'graphql/get_post.data.gql.dart';
 import 'graphql/get_posts_by_community_id.data.gql.dart';
 
 class CacheHandlers {
@@ -21,6 +24,8 @@ class CacheHandlers {
         return createCommunityHandler;
       case CacheHandler.createPostHandler:
         return createPostHandler;
+      case CacheHandler.createPostCommentHandler:
+        return createPostCommentHandler;
     }
   }
 
@@ -32,6 +37,7 @@ class CacheHandlers {
 enum CacheHandler {
   createCommunityHandler,
   createPostHandler,
+  createPostCommentHandler,
 }
 
 UpdateCacheHandler<GCreateCommunityData, GCreateCommunityVars>
@@ -69,6 +75,29 @@ UpdateCacheHandler<GCreatePostData, GCreatePostVars> createPostHandler = (
           request,
           communityWithPostsData
               .rebuild((b) => b..getPostsByCommunityId.data.insert(0, toAdd)));
+    }
+  }
+};
+
+UpdateCacheHandler<GCreatePostCommentData, GCreatePostCommentVars>
+    createPostCommentHandler = (
+  proxy,
+  response,
+) {
+  final request =
+      RequestBuilders.getPost(response.operationRequest.vars.data.postId);
+  final postData = proxy.readQuery(request);
+  final newPostComment = response.data?.createPostComment;
+
+  if (postData != null && newPostComment != null) {
+    final toAdd = GGetPostData_getPostCommentsByPostId_data.fromJson(
+        newPostComment.toJson());
+
+    if (toAdd != null) {
+      proxy.writeQuery(
+          request,
+          postData.rebuild(
+              (b) => b..getPostCommentsByPostId.data.insert(0, toAdd)));
     }
   }
 };

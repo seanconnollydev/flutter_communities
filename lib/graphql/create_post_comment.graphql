@@ -1,0 +1,7 @@
+# import './post_comment_fragment.graphql'
+
+mutation CreatePostComment($data: CreatePostCommentInput!) {
+  createPostComment(data: $data) {
+    ...PostCommentFragment
+  }
+}
