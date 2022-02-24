@@ -3,7 +3,7 @@ The final app is built with several [User-Defined Functions](https://docs.fauna.
 
 Feel free to copy and paste from here throughout the course.
 
-`create_post`
+## `create_post`
 
 ```
 Query(
@@ -34,7 +34,7 @@ Query(
 )
 ```
 
-`create_post_comment`
+## `create_post_comment`
 
 ```
 Query(
@@ -58,7 +58,7 @@ Query(
 )
 ```
 
-`create_post_vote`
+## `create_post_vote`
 
 ```
 Query(
@@ -107,7 +107,7 @@ Query(
 )
 ```
 
-`create_user`
+## `create_user`
 
 ```
 Query(
@@ -131,7 +131,7 @@ Query(
 )v
 ```
 
-`get_post_comments_by_post_id`
+## `get_post_comments_by_post_id`
 
 ```
 Query(
@@ -159,7 +159,7 @@ Query(
 )
 ```
 
-`get_posts_by_community_id`
+## `get_posts_by_community_id`
 
 ```
 Query(
@@ -187,7 +187,7 @@ Query(
 )
 ```
 
-`login_user`
+## `login_user`
 
 ```
 Query(
@@ -204,13 +204,13 @@ Query(
 )
 ```
 
-`viewer`
+## `viewer`
 
 ```
 Query(Lambda("_", Get(CurrentIdentity())))
 ```
 
-`community_posts_by_community_id_sort_by_ts_desc` (index)
+## `community_posts_by_community_id_sort_by_ts_desc` (index)
 
 ```
 CreateIndex({
@@ -236,7 +236,7 @@ CreateIndex({
 
 ```
 
-`post_comments_by_post_id_sorted_by_ts_desc` (index)
+## `post_comments_by_post_id_sorted_by_ts_desc` (index)
 
 ```
 CreateIndex({
@@ -261,7 +261,7 @@ CreateIndex({
 })
 ```
 
-`post_votes_by_user_and_post` (index)
+## `post_votes_by_user_and_post` (index)
 
 ```
 CreateIndex({
