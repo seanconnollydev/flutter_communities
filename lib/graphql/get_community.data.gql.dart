@@ -2,8 +2,6 @@
 
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:flutter_communities/graphql/community_fragment.data.gql.dart'
-    as _i2;
 import 'package:flutter_communities/graphql/serializers.gql.dart' as _i1;
 
 part 'get_community.data.gql.g.dart';
@@ -32,8 +30,7 @@ abstract class GGetCommunityData
 abstract class GGetCommunityData_findCommunityByID
     implements
         Built<GGetCommunityData_findCommunityByID,
-            GGetCommunityData_findCommunityByIDBuilder>,
-        _i2.GCommunityFragment {
+            GGetCommunityData_findCommunityByIDBuilder> {
   GGetCommunityData_findCommunityByID._();
 
   factory GGetCommunityData_findCommunityByID(
@@ -48,7 +45,6 @@ abstract class GGetCommunityData_findCommunityByID
   @BuiltValueField(wireName: '_id')
   String get G_id;
   String get name;
-  String? get icon;
   static Serializer<GGetCommunityData_findCommunityByID> get serializer =>
       _$gGetCommunityDataFindCommunityByIDSerializer;
   Map<String, dynamic> toJson() => (_i1.serializers

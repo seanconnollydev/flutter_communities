@@ -4,7 +4,7 @@ import 'package:flutter_communities/providers/community_repository.dart';
 import 'package:flutter_communities/widgets/comment_card.dart';
 import 'package:flutter_communities/widgets/community_app_bar.dart';
 import 'package:flutter_communities/widgets/post_card.dart';
-import 'package:flutter_communities/widgets/query_stream.dart';
+import 'package:flutter_communities/widgets/query_stream_builder.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
@@ -21,7 +21,7 @@ class PostScreen extends ConsumerWidget {
 
     return Scaffold(
       appBar: CommunityAppBar(_args.communityId),
-      body: QueryStream<GetPostResponse>(
+      body: QueryStreamBuilder<GetPostResponse>(
           stream: repository.getPost(_args.postId),
           builder: (context, resp, error) =>
               _PostScreenBody(resp, _args.communityId)),
@@ -60,7 +60,7 @@ class _PostScreenBody extends StatelessWidget {
         slivers: [
           SliverList(
             delegate: SliverChildListDelegate([
-              PostCard(post, _communityId),
+              PostCard(post, _communityId, enableTap: false),
               Divider(),
               Text(post.message),
               Divider(),
@@ -169,7 +169,11 @@ class _AddCommentDialogState extends ConsumerState<_AddCommentDialog> {
         controller: textController,
         onSubmitted: (value) async {
           final repository = ref.read(communityRepositoryProvider);
+<<<<<<< HEAD
           await repository.createPostComment(widget._postId, value).first;
+=======
+          await repository.createPostComment(widget._postId, value);
+>>>>>>> 12-final
           Navigator.of(context).pop();
         },
       ),

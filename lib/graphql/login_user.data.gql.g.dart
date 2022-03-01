@@ -23,8 +23,8 @@ class _$GLoginUserDataSerializer
       '__typename',
       serializers.serialize(object.G__typename,
           specifiedType: const FullType(String)),
-      'loginUser',
-      serializers.serialize(object.loginUser,
+      'login',
+      serializers.serialize(object.login,
           specifiedType: const FullType(String)),
     ];
 
@@ -47,8 +47,8 @@ class _$GLoginUserDataSerializer
           result.G__typename = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
           break;
-        case 'loginUser':
-          result.loginUser = serializers.deserialize(value,
+        case 'login':
+          result.login = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
           break;
       }
@@ -62,17 +62,16 @@ class _$GLoginUserData extends GLoginUserData {
   @override
   final String G__typename;
   @override
-  final String loginUser;
+  final String login;
 
   factory _$GLoginUserData([void Function(GLoginUserDataBuilder)? updates]) =>
       (new GLoginUserDataBuilder()..update(updates)).build();
 
-  _$GLoginUserData._({required this.G__typename, required this.loginUser})
+  _$GLoginUserData._({required this.G__typename, required this.login})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         G__typename, 'GLoginUserData', 'G__typename');
-    BuiltValueNullFieldError.checkNotNull(
-        loginUser, 'GLoginUserData', 'loginUser');
+    BuiltValueNullFieldError.checkNotNull(login, 'GLoginUserData', 'login');
   }
 
   @override
@@ -88,19 +87,19 @@ class _$GLoginUserData extends GLoginUserData {
     if (identical(other, this)) return true;
     return other is GLoginUserData &&
         G__typename == other.G__typename &&
-        loginUser == other.loginUser;
+        login == other.login;
   }
 
   @override
   int get hashCode {
-    return $jf($jc($jc(0, G__typename.hashCode), loginUser.hashCode));
+    return $jf($jc($jc(0, G__typename.hashCode), login.hashCode));
   }
 
   @override
   String toString() {
     return (newBuiltValueToStringHelper('GLoginUserData')
           ..add('G__typename', G__typename)
-          ..add('loginUser', loginUser))
+          ..add('login', login))
         .toString();
   }
 }
@@ -113,9 +112,9 @@ class GLoginUserDataBuilder
   String? get G__typename => _$this._G__typename;
   set G__typename(String? G__typename) => _$this._G__typename = G__typename;
 
-  String? _loginUser;
-  String? get loginUser => _$this._loginUser;
-  set loginUser(String? loginUser) => _$this._loginUser = loginUser;
+  String? _login;
+  String? get login => _$this._login;
+  set login(String? login) => _$this._login = login;
 
   GLoginUserDataBuilder() {
     GLoginUserData._initializeBuilder(this);
@@ -125,7 +124,7 @@ class GLoginUserDataBuilder
     final $v = _$v;
     if ($v != null) {
       _G__typename = $v.G__typename;
-      _loginUser = $v.loginUser;
+      _login = $v.login;
       _$v = null;
     }
     return this;
@@ -148,8 +147,8 @@ class GLoginUserDataBuilder
         new _$GLoginUserData._(
             G__typename: BuiltValueNullFieldError.checkNotNull(
                 G__typename, 'GLoginUserData', 'G__typename'),
-            loginUser: BuiltValueNullFieldError.checkNotNull(
-                loginUser, 'GLoginUserData', 'loginUser'));
+            login: BuiltValueNullFieldError.checkNotNull(
+                login, 'GLoginUserData', 'login'));
     replace(_$result);
     return _$result;
   }

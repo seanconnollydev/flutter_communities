@@ -11,6 +11,23 @@ The course is organized into different sections. If you want to jump ahead to a 
 - [1-start](/tree/1-start)
 - [2-registration](/tree/2-registration)
 
+# Get started
+In a terminal:
+
+```bash
+# Clone the repository'
+git clone https://github.com/seanconnollydev/flutter_communities.git
+
+# Go to the directory
+cd flutter_communities
+
+# Switch to the first branch
+git checkout 1-start
+
+# Run the project
+flutter run
+```
+
 # Usage
 
 Generate GraphQL types:

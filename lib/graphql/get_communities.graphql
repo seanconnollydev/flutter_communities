@@ -1,9 +1,9 @@
-# import './community_fragment.graphql'
-
 query GetCommunities($size: Int, $cursor: String) {
   communities(_size: $size, _cursor: $cursor) {
     data {
-      ...CommunityFragment
+      _id
+      name
+      icon
     }
   }
 }

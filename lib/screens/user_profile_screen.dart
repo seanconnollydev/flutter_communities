@@ -3,7 +3,7 @@ import 'package:flutter_communities/models/user.dart';
 import 'package:flutter_communities/providers/community_repository.dart';
 import 'package:flutter_communities/screens/edit_profile_screen.dart';
 import 'package:flutter_communities/widgets/avatar_box.dart';
-import 'package:flutter_communities/widgets/query_stream.dart';
+import 'package:flutter_communities/widgets/query_stream_builder.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class UserProfileScreen extends ConsumerWidget {
@@ -13,11 +13,19 @@ class UserProfileScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, ref) {
+<<<<<<< HEAD
     final repository = ref.watch(communityRepositoryProvider);
+=======
+    final communityRepository = ref.watch(communityRepositoryProvider);
+>>>>>>> 12-final
 
-    return QueryStream<User?>(
-        stream: repository.getViewer(),
-        builder: (context, user, _) {
+    return QueryStreamBuilder<User?>(
+        stream: communityRepository.getViewer(),
+        builder: (
+          context,
+          user,
+          _,
+        ) {
           return Scaffold(
             appBar: AppBar(
               title: Text(user?.username ?? ''),
@@ -30,22 +38,24 @@ class UserProfileScreen extends ConsumerWidget {
                     icon: Icon(Icons.edit))
               ],
             ),
-            body: Column(
-              children: [
-                AvatarBox(user?.avatar),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 8.0),
-                  child: Text('username'),
-                ),
-                if (user != null)
-                  Text(
-                    '@${user.username}',
-                    style: Theme.of(context)
-                        .textTheme
-                        .bodyText1
-                        ?.copyWith(fontWeight: FontWeight.bold),
-                  )
-              ],
+            body: Center(
+              child: Column(
+                children: [
+                  AvatarBox(user?.avatar),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 8.0),
+                    child: Text('username'),
+                  ),
+                  if (user != null)
+                    Text(
+                      '@${user.username}',
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodyText1
+                          ?.copyWith(fontWeight: FontWeight.bold),
+                    )
+                ],
+              ),
             ),
           );
         });

@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_communities/models/user.dart';
 import 'package:flutter_communities/providers/auth.dart';
 import 'package:flutter_communities/providers/community_repository.dart';
-import 'package:flutter_communities/screens/error_demo_screen.dart';
 import 'package:flutter_communities/screens/home_screen.dart';
 import 'package:flutter_communities/screens/user_profile_screen.dart';
-import 'package:flutter_communities/widgets/query_stream.dart';
+import 'package:flutter_communities/widgets/query_stream_builder.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class UserAppBar extends ConsumerWidget with PreferredSizeWidget {
@@ -15,6 +14,7 @@ class UserAppBar extends ConsumerWidget with PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context, ref) {
+<<<<<<< HEAD
     final repository = ref.watch(communityRepositoryProvider);
 
     return QueryStream<User?>(
@@ -39,6 +39,32 @@ class UserAppBar extends ConsumerWidget with PreferredSizeWidget {
             ],
           );
         });
+=======
+    final communityRepository = ref.watch(communityRepositoryProvider);
+
+    return QueryStreamBuilder<User?>(
+      stream: communityRepository.getViewer(),
+      showLoadingState: false,
+      builder: (
+        context,
+        user,
+        _,
+      ) {
+        return AppBar(
+          title: Text('Flutter Communities'),
+          actions: [
+            GestureDetector(
+              child: CircleAvatar(
+                child: Text(user?.avatar ?? ' '),
+                backgroundColor: Theme.of(context).backgroundColor,
+              ),
+              onTap: () => _handleTap(context, ref),
+            )
+          ],
+        );
+      },
+    );
+>>>>>>> 12-final
   }
 
   void _handleTap(BuildContext context, WidgetRef ref) {
@@ -63,13 +89,6 @@ class UserAppBar extends ConsumerWidget with PreferredSizeWidget {
                 Navigator.of(context).pushNamed(HomeScreen.routeName);
               },
             ),
-            ListTile(
-              title: Text('Error Demo'),
-              onTap: () {
-                Navigator.of(context)
-                    .popAndPushNamed(ErrorDemoScreen.routeName);
-              },
-            )
           ],
         );
       },

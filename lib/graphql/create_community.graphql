@@ -1,7 +1,7 @@
-# import './community_fragment.graphql'
-
 mutation CreateCommunity($data: CommunityInput!) {
   createCommunity(data: $data) {
-    ...CommunityFragment
+    _id
+    name
+    purpose
   }
 }

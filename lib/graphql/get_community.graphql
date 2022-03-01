@@ -1,7 +1,6 @@
-# import './community_fragment.graphql'
-
-query GetCommunity($id: ID!) {
+query GetCommunity($id: ID!){
   findCommunityByID(id: $id) {
-    ...CommunityFragment
+    _id
+    name
   }
 }

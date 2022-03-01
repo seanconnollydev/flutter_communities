@@ -1,12 +1,6 @@
 import 'package:built_collection/built_collection.dart';
 import 'package:built_value/serializer.dart';
 import 'package:built_value/standard_json_plugin.dart' show StandardJsonPlugin;
-import 'package:flutter_communities/graphql/community_fragment.data.gql.dart'
-    show GCommunityFragmentData;
-import 'package:flutter_communities/graphql/community_fragment.req.gql.dart'
-    show GCommunityFragmentReq;
-import 'package:flutter_communities/graphql/community_fragment.var.gql.dart'
-    show GCommunityFragmentVars;
 import 'package:flutter_communities/graphql/create_community.data.gql.dart'
     show GCreateCommunityData, GCreateCommunityData_createCommunity;
 import 'package:flutter_communities/graphql/create_community.req.gql.dart'
@@ -58,16 +52,6 @@ import 'package:flutter_communities/graphql/get_community.req.gql.dart'
     show GGetCommunityReq;
 import 'package:flutter_communities/graphql/get_community.var.gql.dart'
     show GGetCommunityVars;
-import 'package:flutter_communities/graphql/get_community_with_posts.data.gql.dart'
-    show
-        GGetPostsByCommunityIdData,
-        GGetPostsByCommunityIdData_getPostsByCommunityId,
-        GGetPostsByCommunityIdData_getPostsByCommunityId_data,
-        GGetPostsByCommunityIdData_getPostsByCommunityId_data_creator;
-import 'package:flutter_communities/graphql/get_community_with_posts.req.gql.dart'
-    show GGetPostsByCommunityIdReq;
-import 'package:flutter_communities/graphql/get_community_with_posts.var.gql.dart'
-    show GGetPostsByCommunityIdVars;
 import 'package:flutter_communities/graphql/get_post.data.gql.dart'
     show
         GGetPostData,
@@ -90,6 +74,16 @@ import 'package:flutter_communities/graphql/get_post_comments.req.gql.dart'
     show GGetPostCommentsReq;
 import 'package:flutter_communities/graphql/get_post_comments.var.gql.dart'
     show GGetPostCommentsVars;
+import 'package:flutter_communities/graphql/get_posts_by_community_id.data.gql.dart'
+    show
+        GGetPostsByCommunityIdData,
+        GGetPostsByCommunityIdData_getPostsByCommunityId,
+        GGetPostsByCommunityIdData_getPostsByCommunityId_data,
+        GGetPostsByCommunityIdData_getPostsByCommunityId_data_creator;
+import 'package:flutter_communities/graphql/get_posts_by_community_id.req.gql.dart'
+    show GGetPostsByCommunityIdReq;
+import 'package:flutter_communities/graphql/get_posts_by_community_id.var.gql.dart'
+    show GGetPostsByCommunityIdVars;
 import 'package:flutter_communities/graphql/get_viewer.data.gql.dart'
     show GGetViewerData, GGetViewerData_viewer;
 import 'package:flutter_communities/graphql/get_viewer.req.gql.dart'
@@ -116,7 +110,6 @@ import 'package:flutter_communities/graphql/post_fragment.var.gql.dart'
     show GPostFragmentVars;
 import 'package:flutter_communities/graphql/schema.schema.gql.dart'
     show
-        GCommunityCreatorRelation,
         GCommunityInput,
         GCommunityPostsRelation,
         GCreatePostCommentInput,
@@ -139,17 +132,8 @@ import 'package:flutter_communities/graphql/schema.schema.gql.dart'
         GPostVoteUserRelation,
         GPostVotesRelation,
         GTime,
-        GUserCommunitiesRelation,
         GUserInput,
-        GUserPost_commentsRelation,
-        GUserPost_votesRelation,
         GUserPostsRelation;
-import 'package:flutter_communities/graphql/throws_error.data.gql.dart'
-    show GThrowsErrorData, GThrowsErrorData_throwsError;
-import 'package:flutter_communities/graphql/throws_error.req.gql.dart'
-    show GThrowsErrorReq;
-import 'package:flutter_communities/graphql/throws_error.var.gql.dart'
-    show GThrowsErrorVars;
 import 'package:flutter_communities/graphql/update_user.data.gql.dart'
     show GUpdateUserData, GUpdateUserData_updateUser;
 import 'package:flutter_communities/graphql/update_user.req.gql.dart'
@@ -171,10 +155,6 @@ final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   ..add(OperationSerializer())
   ..addPlugin(StandardJsonPlugin());
 @SerializersFor([
-  GCommunityCreatorRelation,
-  GCommunityFragmentData,
-  GCommunityFragmentReq,
-  GCommunityFragmentVars,
   GCommunityInput,
   GCommunityPostsRelation,
   GCreateCommunityData,
@@ -261,22 +241,15 @@ final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   GPostVoteType,
   GPostVoteUserRelation,
   GPostVotesRelation,
-  GThrowsErrorData,
-  GThrowsErrorData_throwsError,
-  GThrowsErrorReq,
-  GThrowsErrorVars,
   GTime,
   GUpdateUserData,
   GUpdateUserData_updateUser,
   GUpdateUserReq,
   GUpdateUserVars,
-  GUserCommunitiesRelation,
   GUserFragmentData,
   GUserFragmentReq,
   GUserFragmentVars,
   GUserInput,
-  GUserPost_commentsRelation,
-  GUserPost_votesRelation,
   GUserPostsRelation
 ])
 final Serializers serializers = _serializersBuilder.build();

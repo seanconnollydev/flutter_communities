@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_communities/graphql/create_user.req.gql.dart';
 import 'package:flutter_communities/providers/auth.dart';
-import 'package:flutter_communities/providers/ferry.dart';
+import 'package:flutter_communities/providers/community_repository.dart';
 import 'package:flutter_communities/widgets/icon_selector.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -9,7 +8,6 @@ import 'home_screen.dart';
 
 class RegistrationScreen extends ConsumerStatefulWidget {
   static const routeName = '/registration';
-
   const RegistrationScreen({Key? key}) : super(key: key);
 
   @override
@@ -25,22 +23,32 @@ class _RegistrationScreenState extends ConsumerState<RegistrationScreen> {
   void _save() async {
     _formKey.currentState?.save();
 
+<<<<<<< HEAD
     final client = ref.read(ferryClientProvider);
+=======
+    final communityRepository = ref.read(communityRepositoryProvider);
+>>>>>>> 12-final
 
-    final request = GCreateUserReq(
-      (b) => b
-        ..vars.data.username = _username
-        ..vars.data.password = _password
-        ..vars.data.avatar = _avatar,
-    );
+    final token = await communityRepository
+        .createUser(
+      username: _username!,
+      password: _password!,
+      avatar: _avatar,
+    )
+        .catchError((error) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text('Registration failed. Please try again.'),
+        backgroundColor: Colors.red,
+      ));
+    });
 
-    final resp = await client.request(request).first;
-    final token = resp.data?.createUser;
     if (token != null) {
       await ref.read(authProvider.notifier).setSession(token);
       Navigator.of(context)
           .pushNamedAndRemoveUntil(HomeScreen.routeName, (_) => false);
     }
+
+    print('username: $_username; password: $_password');
   }
 
   @override

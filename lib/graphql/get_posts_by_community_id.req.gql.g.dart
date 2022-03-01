@@ -1,28 +1,32 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'throws_error.req.gql.dart';
+part of 'get_posts_by_community_id.req.gql.dart';
 
 // **************************************************************************
 // BuiltValueGenerator
 // **************************************************************************
 
-Serializer<GThrowsErrorReq> _$gThrowsErrorReqSerializer =
-    new _$GThrowsErrorReqSerializer();
+Serializer<GGetPostsByCommunityIdReq> _$gGetPostsByCommunityIdReqSerializer =
+    new _$GGetPostsByCommunityIdReqSerializer();
 
-class _$GThrowsErrorReqSerializer
-    implements StructuredSerializer<GThrowsErrorReq> {
+class _$GGetPostsByCommunityIdReqSerializer
+    implements StructuredSerializer<GGetPostsByCommunityIdReq> {
   @override
-  final Iterable<Type> types = const [GThrowsErrorReq, _$GThrowsErrorReq];
+  final Iterable<Type> types = const [
+    GGetPostsByCommunityIdReq,
+    _$GGetPostsByCommunityIdReq
+  ];
   @override
-  final String wireName = 'GThrowsErrorReq';
+  final String wireName = 'GGetPostsByCommunityIdReq';
 
   @override
-  Iterable<Object?> serialize(Serializers serializers, GThrowsErrorReq object,
+  Iterable<Object?> serialize(
+      Serializers serializers, GGetPostsByCommunityIdReq object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object?>[
       'vars',
       serializers.serialize(object.vars,
-          specifiedType: const FullType(_i3.GThrowsErrorVars)),
+          specifiedType: const FullType(_i3.GGetPostsByCommunityIdVars)),
       'operation',
       serializers.serialize(object.operation,
           specifiedType: const FullType(_i4.Operation)),
@@ -43,7 +47,7 @@ class _$GThrowsErrorReqSerializer
       result
         ..add('optimisticResponse')
         ..add(serializers.serialize(value,
-            specifiedType: const FullType(_i2.GThrowsErrorData)));
+            specifiedType: const FullType(_i2.GGetPostsByCommunityIdData)));
     }
     value = object.updateCacheHandlerKey;
     if (value != null) {
@@ -71,10 +75,10 @@ class _$GThrowsErrorReqSerializer
   }
 
   @override
-  GThrowsErrorReq deserialize(
+  GGetPostsByCommunityIdReq deserialize(
       Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = new GThrowsErrorReqBuilder();
+    final result = new GGetPostsByCommunityIdReqBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -84,8 +88,9 @@ class _$GThrowsErrorReqSerializer
       switch (key) {
         case 'vars':
           result.vars.replace(serializers.deserialize(value,
-                  specifiedType: const FullType(_i3.GThrowsErrorVars))!
-              as _i3.GThrowsErrorVars);
+                  specifiedType:
+                      const FullType(_i3.GGetPostsByCommunityIdVars))!
+              as _i3.GGetPostsByCommunityIdVars);
           break;
         case 'operation':
           result.operation = serializers.deserialize(value,
@@ -97,8 +102,9 @@ class _$GThrowsErrorReqSerializer
           break;
         case 'optimisticResponse':
           result.optimisticResponse.replace(serializers.deserialize(value,
-                  specifiedType: const FullType(_i2.GThrowsErrorData))!
-              as _i2.GThrowsErrorData);
+                  specifiedType:
+                      const FullType(_i2.GGetPostsByCommunityIdData))!
+              as _i2.GGetPostsByCommunityIdData);
           break;
         case 'updateCacheHandlerKey':
           result.updateCacheHandlerKey = serializers.deserialize(value,
@@ -127,18 +133,19 @@ class _$GThrowsErrorReqSerializer
   }
 }
 
-class _$GThrowsErrorReq extends GThrowsErrorReq {
+class _$GGetPostsByCommunityIdReq extends GGetPostsByCommunityIdReq {
   @override
-  final _i3.GThrowsErrorVars vars;
+  final _i3.GGetPostsByCommunityIdVars vars;
   @override
   final _i4.Operation operation;
   @override
   final String? requestId;
   @override
-  final _i2.GThrowsErrorData? Function(
-      _i2.GThrowsErrorData?, _i2.GThrowsErrorData?)? updateResult;
+  final _i2.GGetPostsByCommunityIdData? Function(
+          _i2.GGetPostsByCommunityIdData?, _i2.GGetPostsByCommunityIdData?)?
+      updateResult;
   @override
-  final _i2.GThrowsErrorData? optimisticResponse;
+  final _i2.GGetPostsByCommunityIdData? optimisticResponse;
   @override
   final String? updateCacheHandlerKey;
   @override
@@ -148,10 +155,11 @@ class _$GThrowsErrorReq extends GThrowsErrorReq {
   @override
   final bool executeOnListen;
 
-  factory _$GThrowsErrorReq([void Function(GThrowsErrorReqBuilder)? updates]) =>
-      (new GThrowsErrorReqBuilder()..update(updates)).build();
+  factory _$GGetPostsByCommunityIdReq(
+          [void Function(GGetPostsByCommunityIdReqBuilder)? updates]) =>
+      (new GGetPostsByCommunityIdReqBuilder()..update(updates)).build();
 
-  _$GThrowsErrorReq._(
+  _$GGetPostsByCommunityIdReq._(
       {required this.vars,
       required this.operation,
       this.requestId,
@@ -162,26 +170,28 @@ class _$GThrowsErrorReq extends GThrowsErrorReq {
       this.fetchPolicy,
       required this.executeOnListen})
       : super._() {
-    BuiltValueNullFieldError.checkNotNull(vars, 'GThrowsErrorReq', 'vars');
     BuiltValueNullFieldError.checkNotNull(
-        operation, 'GThrowsErrorReq', 'operation');
+        vars, 'GGetPostsByCommunityIdReq', 'vars');
     BuiltValueNullFieldError.checkNotNull(
-        executeOnListen, 'GThrowsErrorReq', 'executeOnListen');
+        operation, 'GGetPostsByCommunityIdReq', 'operation');
+    BuiltValueNullFieldError.checkNotNull(
+        executeOnListen, 'GGetPostsByCommunityIdReq', 'executeOnListen');
   }
 
   @override
-  GThrowsErrorReq rebuild(void Function(GThrowsErrorReqBuilder) updates) =>
+  GGetPostsByCommunityIdReq rebuild(
+          void Function(GGetPostsByCommunityIdReqBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  GThrowsErrorReqBuilder toBuilder() =>
-      new GThrowsErrorReqBuilder()..replace(this);
+  GGetPostsByCommunityIdReqBuilder toBuilder() =>
+      new GGetPostsByCommunityIdReqBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     final dynamic _$dynamicOther = other;
-    return other is GThrowsErrorReq &&
+    return other is GGetPostsByCommunityIdReq &&
         vars == other.vars &&
         operation == other.operation &&
         requestId == other.requestId &&
@@ -213,7 +223,7 @@ class _$GThrowsErrorReq extends GThrowsErrorReq {
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('GThrowsErrorReq')
+    return (newBuiltValueToStringHelper('GGetPostsByCommunityIdReq')
           ..add('vars', vars)
           ..add('operation', operation)
           ..add('requestId', requestId)
@@ -227,14 +237,15 @@ class _$GThrowsErrorReq extends GThrowsErrorReq {
   }
 }
 
-class GThrowsErrorReqBuilder
-    implements Builder<GThrowsErrorReq, GThrowsErrorReqBuilder> {
-  _$GThrowsErrorReq? _$v;
+class GGetPostsByCommunityIdReqBuilder
+    implements
+        Builder<GGetPostsByCommunityIdReq, GGetPostsByCommunityIdReqBuilder> {
+  _$GGetPostsByCommunityIdReq? _$v;
 
-  _i3.GThrowsErrorVarsBuilder? _vars;
-  _i3.GThrowsErrorVarsBuilder get vars =>
-      _$this._vars ??= new _i3.GThrowsErrorVarsBuilder();
-  set vars(_i3.GThrowsErrorVarsBuilder? vars) => _$this._vars = vars;
+  _i3.GGetPostsByCommunityIdVarsBuilder? _vars;
+  _i3.GGetPostsByCommunityIdVarsBuilder get vars =>
+      _$this._vars ??= new _i3.GGetPostsByCommunityIdVarsBuilder();
+  set vars(_i3.GGetPostsByCommunityIdVarsBuilder? vars) => _$this._vars = vars;
 
   _i4.Operation? _operation;
   _i4.Operation? get operation => _$this._operation;
@@ -244,20 +255,25 @@ class GThrowsErrorReqBuilder
   String? get requestId => _$this._requestId;
   set requestId(String? requestId) => _$this._requestId = requestId;
 
-  _i2.GThrowsErrorData? Function(_i2.GThrowsErrorData?, _i2.GThrowsErrorData?)?
+  _i2.GGetPostsByCommunityIdData? Function(
+          _i2.GGetPostsByCommunityIdData?, _i2.GGetPostsByCommunityIdData?)?
       _updateResult;
-  _i2.GThrowsErrorData? Function(_i2.GThrowsErrorData?, _i2.GThrowsErrorData?)?
+  _i2.GGetPostsByCommunityIdData? Function(
+          _i2.GGetPostsByCommunityIdData?, _i2.GGetPostsByCommunityIdData?)?
       get updateResult => _$this._updateResult;
   set updateResult(
-          _i2.GThrowsErrorData? Function(
-                  _i2.GThrowsErrorData?, _i2.GThrowsErrorData?)?
+          _i2.GGetPostsByCommunityIdData? Function(
+                  _i2.GGetPostsByCommunityIdData?,
+                  _i2.GGetPostsByCommunityIdData?)?
               updateResult) =>
       _$this._updateResult = updateResult;
 
-  _i2.GThrowsErrorDataBuilder? _optimisticResponse;
-  _i2.GThrowsErrorDataBuilder get optimisticResponse =>
-      _$this._optimisticResponse ??= new _i2.GThrowsErrorDataBuilder();
-  set optimisticResponse(_i2.GThrowsErrorDataBuilder? optimisticResponse) =>
+  _i2.GGetPostsByCommunityIdDataBuilder? _optimisticResponse;
+  _i2.GGetPostsByCommunityIdDataBuilder get optimisticResponse =>
+      _$this._optimisticResponse ??=
+          new _i2.GGetPostsByCommunityIdDataBuilder();
+  set optimisticResponse(
+          _i2.GGetPostsByCommunityIdDataBuilder? optimisticResponse) =>
       _$this._optimisticResponse = optimisticResponse;
 
   String? _updateCacheHandlerKey;
@@ -282,11 +298,11 @@ class GThrowsErrorReqBuilder
   set executeOnListen(bool? executeOnListen) =>
       _$this._executeOnListen = executeOnListen;
 
-  GThrowsErrorReqBuilder() {
-    GThrowsErrorReq._initializeBuilder(this);
+  GGetPostsByCommunityIdReqBuilder() {
+    GGetPostsByCommunityIdReq._initializeBuilder(this);
   }
 
-  GThrowsErrorReqBuilder get _$this {
+  GGetPostsByCommunityIdReqBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
       _vars = $v.vars.toBuilder();
@@ -304,25 +320,25 @@ class GThrowsErrorReqBuilder
   }
 
   @override
-  void replace(GThrowsErrorReq other) {
+  void replace(GGetPostsByCommunityIdReq other) {
     ArgumentError.checkNotNull(other, 'other');
-    _$v = other as _$GThrowsErrorReq;
+    _$v = other as _$GGetPostsByCommunityIdReq;
   }
 
   @override
-  void update(void Function(GThrowsErrorReqBuilder)? updates) {
+  void update(void Function(GGetPostsByCommunityIdReqBuilder)? updates) {
     if (updates != null) updates(this);
   }
 
   @override
-  _$GThrowsErrorReq build() {
-    _$GThrowsErrorReq _$result;
+  _$GGetPostsByCommunityIdReq build() {
+    _$GGetPostsByCommunityIdReq _$result;
     try {
       _$result = _$v ??
-          new _$GThrowsErrorReq._(
+          new _$GGetPostsByCommunityIdReq._(
               vars: vars.build(),
               operation: BuiltValueNullFieldError.checkNotNull(
-                  operation, 'GThrowsErrorReq', 'operation'),
+                  operation, 'GGetPostsByCommunityIdReq', 'operation'),
               requestId: requestId,
               updateResult: updateResult,
               optimisticResponse: _optimisticResponse?.build(),
@@ -330,7 +346,9 @@ class GThrowsErrorReqBuilder
               updateCacheHandlerContext: updateCacheHandlerContext,
               fetchPolicy: fetchPolicy,
               executeOnListen: BuiltValueNullFieldError.checkNotNull(
-                  executeOnListen, 'GThrowsErrorReq', 'executeOnListen'));
+                  executeOnListen,
+                  'GGetPostsByCommunityIdReq',
+                  'executeOnListen'));
     } catch (_) {
       late String _$failedField;
       try {
@@ -341,7 +359,7 @@ class GThrowsErrorReqBuilder
         _optimisticResponse?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
-            'GThrowsErrorReq', _$failedField, e.toString());
+            'GGetPostsByCommunityIdReq', _$failedField, e.toString());
       }
       rethrow;
     }

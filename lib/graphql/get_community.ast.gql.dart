@@ -1,7 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-import 'package:flutter_communities/graphql/community_fragment.ast.gql.dart'
-    as _i2;
 import 'package:gql/ast.dart' as _i1;
 
 const GetCommunity = _i1.OperationDefinitionNode(
@@ -27,9 +25,18 @@ const GetCommunity = _i1.OperationDefinitionNode(
           ],
           directives: [],
           selectionSet: _i1.SelectionSetNode(selections: [
-            _i1.FragmentSpreadNode(
-                name: _i1.NameNode(value: 'CommunityFragment'), directives: [])
+            _i1.FieldNode(
+                name: _i1.NameNode(value: '_id'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null),
+            _i1.FieldNode(
+                name: _i1.NameNode(value: 'name'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null)
           ]))
     ]));
-const document =
-    _i1.DocumentNode(definitions: [GetCommunity, _i2.CommunityFragment]);
+const document = _i1.DocumentNode(definitions: [GetCommunity]);

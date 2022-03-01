@@ -1,10 +1,13 @@
+import 'package:ferry/ferry.dart';
+import 'package:ferry_flutter/ferry_flutter.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_communities/models/community.dart';
+import 'package:flutter_communities/graphql/get_communities.data.gql.dart';
+import 'package:flutter_communities/graphql/get_communities.req.gql.dart';
+import 'package:flutter_communities/graphql/get_communities.var.gql.dart';
 import 'package:flutter_communities/providers/auth.dart';
-import 'package:flutter_communities/widgets/query_stream.dart';
+import 'package:flutter_communities/providers/ferry.dart';
 import 'package:flutter_communities/widgets/user_app_bar.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_communities/providers/community_repository.dart';
 
 import 'community_screen.dart';
 import 'create_community_screen.dart';
@@ -34,7 +37,9 @@ class HomeScreen extends ConsumerWidget {
 }
 
 class _Welcome extends StatelessWidget {
-  const _Welcome({Key? key}) : super(key: key);
+  const _Welcome({
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -87,21 +92,34 @@ class _CommunityList extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, ref) {
+<<<<<<< HEAD
     final repository = ref.watch(communityRepositoryProvider);
+=======
+    final client = ref.watch(ferryClientProvider);
 
-    return QueryStream<List<Community>?>(
-      stream: repository.getCommunities(),
-      builder: (context, communities, _) {
+    return Operation(
+      client: client,
+      operationRequest: GGetCommunitiesReq(),
+      builder: (
+        BuildContext context,
+        OperationResponse<GGetCommunitiesData, GGetCommunitiesVars>? response,
+        Object? error,
+      ) {
+        if (response?.loading == true)
+          return Center(child: CircularProgressIndicator());
+
+        final communities = response?.data?.communities.data;
+>>>>>>> 12-final
+
         if (communities != null && communities.isEmpty == false) {
           return ListView.separated(
               itemBuilder: (context, i) {
                 final community = communities[i];
                 return ListTile(
-                  leading: Text(community.icon, style: TextStyle(fontSize: 24)),
                   title: Text(community.name),
                   onTap: () {
                     Navigator.of(context).pushNamed(CommunityScreen.routeName,
-                        arguments: community.id);
+                        arguments: community.G_id);
                   },
                 );
               },

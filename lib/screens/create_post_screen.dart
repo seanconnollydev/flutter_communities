@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_communities/graphql/create_post.req.gql.dart';
-import 'package:flutter_communities/providers/ferry.dart';
+import 'package:flutter_communities/providers/community_repository.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+<<<<<<< HEAD
 import '../cache_handlers.dart';
 
+=======
+>>>>>>> 12-final
 class CreatePostScreen extends ConsumerStatefulWidget {
   static const routeName = '/create-post';
 
@@ -24,6 +26,7 @@ class _CreatePostScreenState extends ConsumerState<CreatePostScreen> {
   void _save() async {
     _formKey.currentState?.save();
 
+<<<<<<< HEAD
     final client = ref.read(ferryClientProvider);
 
     final request = GCreatePostReq(
@@ -36,8 +39,15 @@ class _CreatePostScreenState extends ConsumerState<CreatePostScreen> {
     );
 
     await client.request(request).first;
+=======
+    final communityRepository = ref.read(communityRepositoryProvider);
+>>>>>>> 12-final
 
-    Navigator.of(context).pop();
+    if (_title != null && _message != null) {
+      await communityRepository.createPost(
+          widget._communityId, _title!, _message!);
+      Navigator.of(context).pop();
+    }
   }
 
   @override

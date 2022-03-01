@@ -4,7 +4,7 @@ import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 import 'package:flutter_communities/graphql/serializers.gql.dart' as _i1;
 
-part 'get_community_with_posts.var.gql.g.dart';
+part 'get_posts_by_community_id.var.gql.g.dart';
 
 abstract class GGetPostsByCommunityIdVars
     implements

@@ -1,34 +1,28 @@
-import 'dart:convert';
+import 'dart:async';
+
 import 'package:ferry/ferry.dart';
+import 'package:flutter_communities/graphql/create_post.req.gql.dart';
 import 'package:flutter_communities/graphql/create_post_comment.req.gql.dart';
 import 'package:flutter_communities/graphql/create_post_vote.data.gql.dart';
 import 'package:flutter_communities/graphql/create_post_vote.req.gql.dart';
 import 'package:flutter_communities/graphql/create_post_vote.var.gql.dart';
-import 'package:flutter_communities/graphql/get_communities.data.gql.dart';
-import 'package:flutter_communities/graphql/get_communities.req.gql.dart';
-import 'package:flutter_communities/graphql/get_communities.var.gql.dart';
-import 'package:flutter_communities/graphql/get_community.data.gql.dart';
-import 'package:flutter_communities/graphql/get_community.req.gql.dart';
-import 'package:flutter_communities/graphql/get_community.var.gql.dart';
+import 'package:flutter_communities/graphql/create_user.req.gql.dart';
 import 'package:flutter_communities/graphql/get_post.data.gql.dart';
-import 'package:flutter_communities/graphql/get_post.req.gql.dart';
 import 'package:flutter_communities/graphql/get_post.var.gql.dart';
 import 'package:flutter_communities/graphql/get_post_comments.data.gql.dart';
 import 'package:flutter_communities/graphql/get_post_comments.req.gql.dart';
 import 'package:flutter_communities/graphql/get_post_comments.var.gql.dart';
+import 'package:flutter_communities/graphql/get_posts_by_community_id.data.gql.dart';
+import 'package:flutter_communities/graphql/get_posts_by_community_id.var.gql.dart';
 import 'package:flutter_communities/graphql/get_viewer.req.gql.dart';
 import 'package:flutter_communities/graphql/post_fragment.data.gql.dart';
 import 'package:flutter_communities/graphql/schema.schema.gql.dart';
-import 'package:flutter_communities/graphql/throws_error.data.gql.dart';
-import 'package:flutter_communities/graphql/throws_error.req.gql.dart';
-import 'package:flutter_communities/graphql/throws_error.var.gql.dart';
-import 'package:flutter_communities/graphql/update_user.req.gql.dart';
-import 'package:flutter_communities/models/community.dart';
 import 'package:flutter_communities/models/user.dart';
 import 'package:flutter_communities/providers/ferry.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../cache_handlers.dart';
+import '../request_builders.dart';
 
 final communityRepositoryProvider = Provider<CommunityRepository>((ref) {
   final client = ref.watch(ferryClientProvider);
@@ -39,19 +33,69 @@ final communityRepositoryProvider = Provider<CommunityRepository>((ref) {
 class CommunityRepository {
   final Client _client;
 
-  static const _encoder = JsonEncoder.withIndent(' ');
-
   const CommunityRepository(this._client);
 
-  Stream<ThrowsErrorResponse> throwsError() {
-    return _request(GThrowsErrorReq());
+  Stream<User?> getViewer() {
+    return _request(GGetViewerReq()).map((resp) =>
+        resp.data != null ? User.fromUserFragment(resp.data!.viewer) : null);
   }
 
-  Stream<List<Community>?> getCommunities() {
-    return _request(GGetCommunitiesReq()).map((resp) => resp
-        .data?.communities.data
-        .map((f) => Community.fromCommunityFragment(f)!)
-        .toList());
+  Future<String?> createUser({
+    required String username,
+    required String password,
+    String? avatar,
+  }) async {
+    final request = GCreateUserReq(
+      (b) => b
+        ..vars.data.username = username
+        ..vars.data.password = password
+        ..vars.data.avatar = avatar,
+    );
+
+    final resp = await _mutation(request);
+    return resp.data?.createUser;
+  }
+
+  Stream<
+      OperationResponse<GGetPostsByCommunityIdData,
+          GGetPostsByCommunityIdVars>> getPostsByCommunityId(
+      String communityId) {
+    return _request(RequestBuilders.getPostsByCommunityId(communityId));
+  }
+
+  void getMorePostsByCommunityId(String communityId, String cursor) {
+    final nextReq =
+        RequestBuilders.getPostsByCommunityId(communityId).rebuild((b) => b
+          ..vars.cursor = cursor
+          ..updateResult = (previous, result) {
+            if (previous != null && result != null) {
+              return previous.rebuild((b) => b
+                ..getPostsByCommunityId.after =
+                    result.getPostsByCommunityId.after
+                ..getPostsByCommunityId.before =
+                    result.getPostsByCommunityId.before
+                ..getPostsByCommunityId
+                    .data
+                    .addAll(result.getPostsByCommunityId.data));
+            }
+            return result;
+          });
+
+    _refetch(nextReq);
+  }
+
+  Future<void> createPost(
+      String communityId, String title, String message) async {
+    final request = GCreatePostReq(
+      (b) => b
+        ..vars.data.communityId = communityId
+        ..vars.data.title = title
+        ..vars.data.message = message
+        ..updateCacheHandlerKey =
+            CacheHandlers.key(CacheHandler.createPostHandler),
+    );
+
+    await _mutation(request);
   }
 
   Stream<OperationResponse<GCreatePostVoteData, GCreatePostVoteVars>>
@@ -73,23 +117,7 @@ class CommunityRepository {
   }
 
   Stream<GetPostResponse> getPost(String postId) {
-    return _request(
-      GGetPostReq((b) => b
-        ..vars.id = postId
-        ..requestId = 'GGetPostReq'),
-    );
-  }
-
-  Stream createPostComment(String postId, String message) {
-    return _request(
-      GCreatePostCommentReq(
-        (b) => b
-          ..vars.data.postId = postId
-          ..vars.data.message = message
-          ..updateCacheHandlerKey =
-              CacheHandlers.key(CacheHandler.createPostCommentHandler),
-      ),
-    );
+    return _request(RequestBuilders.getPost(postId));
   }
 
   Stream<GetPostCommentsResponse> getPostComments(
@@ -101,63 +129,74 @@ class CommunityRepository {
     ));
   }
 
-  Stream<Community?> getCommunity(String communityId) {
-    return _request(GGetCommunityReq((b) => b..vars.id = communityId)).map(
-        (resp) =>
-            Community.fromCommunityFragment(resp.data?.findCommunityByID));
+  Future<void> createPostComment(String postId, String message) async {
+    await _mutation(
+      GCreatePostCommentReq(
+        (b) => b
+          ..vars.data.postId = postId
+          ..vars.data.message = message
+          ..updateCacheHandlerKey =
+              CacheHandlers.key(CacheHandler.createPostCommentHandler),
+      ),
+    );
   }
 
-  Stream<User?> getViewer() {
-    return _request(GGetViewerReq()).map((resp) =>
-        resp.data != null ? User.fromUserFragment(resp.data!.viewer) : null);
-  }
+  Future<OperationResponse<TData, TVars>> _mutation<TData, TVars>(
+      OperationRequest<TData, TVars> req) {
+    final completer = Completer<OperationResponse<TData, TVars>>();
 
-  Stream updateUser(String id, {String? username}) {
-    return _request(GUpdateUserReq((b) => b
-      ..vars.id = id
-      ..vars.data.username = username));
+    _request(req, onException: (exception) {
+      if (!completer.isCompleted) {
+        completer.completeError(exception);
+      }
+    }).first.then((value) {
+      if (!completer.isCompleted) {
+        completer.complete(value);
+      }
+    });
+
+    return completer.future;
   }
 
   Stream<OperationResponse<TData, TVars>> _request<TData, TVars>(
-      OperationRequest<TData, TVars> request) {
+    OperationRequest<TData, TVars> request, {
+    void Function(Exception error)? onException,
+  }) {
     final stream = _client.request(request);
-    final vars = _encoder.convert(request.vars);
 
     stream.listen((resp) {
-      final data = _encoder.convert(resp.data);
-
-      print('');
-      print(
-          '╔╣ Request  ║ ${request.operation.operationName} ║ ${resp.dataSource}');
-      print('╠═══════ Vars ═══════');
-      print('$vars');
-      print('╠═ Response');
-      print('╠═══════ Data ═══════');
-      print('$data');
+      final errorString = StringBuffer();
 
       if (resp.graphqlErrors?.isNotEmpty == true) {
-        print('║    Errors ║ ${resp.graphqlErrors?.length ?? ''}');
+        onException?.call(Exception((resp.graphqlErrors)));
+
+        errorString.writeln(
+            'GraphQL Errors ║ ${request.operation.operationName} ║ Count: ${resp.graphqlErrors?.length ?? ''}');
         resp.graphqlErrors?.forEach((gqlError) {
-          print('║    - ${gqlError.message}');
+          errorString.writeln(' - ${gqlError.message}');
         });
       }
 
-      print('╚═════════════════════════════════════════════════════════');
+      if (resp.linkException != null) {
+        onException?.call(Exception(resp.linkException));
+        errorString.writeln('Link Exception');
+        errorString.writeln(' - ${resp.linkException}');
+      }
+
+      if (errorString.isNotEmpty) {
+        print(errorString.toString());
+      }
     });
+
     return stream;
   }
+
+  void _refetch(OperationRequest req) {
+    _client.requestController.add(req);
+  }
 }
-
-typedef GetCommunitiesResponse
-    = OperationResponse<GGetCommunitiesData, GGetCommunitiesVars>;
-
-typedef ThrowsErrorResponse
-    = OperationResponse<GThrowsErrorData, GThrowsErrorVars>;
 
 typedef GetPostResponse = OperationResponse<GGetPostData, GGetPostVars>?;
 
 typedef GetPostCommentsResponse
     = OperationResponse<GGetPostCommentsData, GGetPostCommentsVars>;
-
-typedef GetCommunityResponse
-    = OperationResponse<GGetCommunityData, GGetCommunityVars>;

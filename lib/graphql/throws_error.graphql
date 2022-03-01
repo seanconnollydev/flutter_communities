@@ -1,5 +1,0 @@
-query ThrowsError {
-  throwsError {
-    _id
-  }
-}

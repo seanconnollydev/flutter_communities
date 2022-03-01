@@ -1,5 +1,5 @@
-import 'graphql/get_community_with_posts.req.gql.dart';
 import 'graphql/get_post.req.gql.dart';
+import 'graphql/get_posts_by_community_id.req.gql.dart';
 
 class RequestBuilders {
   static GGetPostsByCommunityIdReq getPostsByCommunityId(

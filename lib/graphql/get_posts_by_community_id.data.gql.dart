@@ -6,7 +6,7 @@ import 'package:built_value/serializer.dart';
 import 'package:flutter_communities/graphql/post_fragment.data.gql.dart' as _i2;
 import 'package:flutter_communities/graphql/serializers.gql.dart' as _i1;
 
-part 'get_community_with_posts.data.gql.g.dart';
+part 'get_posts_by_community_id.data.gql.g.dart';
 
 abstract class GGetPostsByCommunityIdData
     implements

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_communities/graphql/login_user.req.gql.dart';
 import 'package:flutter_communities/providers/auth.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_communities/providers/ferry.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'home_screen.dart';
 
@@ -32,15 +32,14 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
     );
 
     final resp = await client.request(request).first;
-    print(resp);
-    final token = resp.data?.loginUser;
+    final token = resp.data?.login;
     if (token != null) {
       await ref.read(authProvider.notifier).setSession(token);
       Navigator.of(context)
-          .pushNamedAndRemoveUntil(HomeScreen.routeName, (_) => false);
+          .pushNamedAndRemoveUntil(HomeScreen.routeName, (route) => false);
     } else {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text('Login failed, please try again.'),
+        content: Text('Login failed. Please try again.'),
         backgroundColor: Colors.red,
       ));
     }

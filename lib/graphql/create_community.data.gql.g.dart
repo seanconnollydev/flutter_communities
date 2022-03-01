@@ -91,10 +91,10 @@ class _$GCreateCommunityData_createCommunitySerializer
       serializers.serialize(object.name, specifiedType: const FullType(String)),
     ];
     Object? value;
-    value = object.icon;
+    value = object.purpose;
     if (value != null) {
       result
-        ..add('icon')
+        ..add('purpose')
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
@@ -125,8 +125,8 @@ class _$GCreateCommunityData_createCommunitySerializer
           result.name = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
           break;
-        case 'icon':
-          result.icon = serializers.deserialize(value,
+        case 'purpose':
+          result.purpose = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
           break;
       }
@@ -261,7 +261,7 @@ class _$GCreateCommunityData_createCommunity
   @override
   final String name;
   @override
-  final String? icon;
+  final String? purpose;
 
   factory _$GCreateCommunityData_createCommunity(
           [void Function(GCreateCommunityData_createCommunityBuilder)?
@@ -273,7 +273,7 @@ class _$GCreateCommunityData_createCommunity
       {required this.G__typename,
       required this.G_id,
       required this.name,
-      this.icon})
+      this.purpose})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         G__typename, 'GCreateCommunityData_createCommunity', 'G__typename');
@@ -299,14 +299,14 @@ class _$GCreateCommunityData_createCommunity
         G__typename == other.G__typename &&
         G_id == other.G_id &&
         name == other.name &&
-        icon == other.icon;
+        purpose == other.purpose;
   }
 
   @override
   int get hashCode {
     return $jf($jc(
         $jc($jc($jc(0, G__typename.hashCode), G_id.hashCode), name.hashCode),
-        icon.hashCode));
+        purpose.hashCode));
   }
 
   @override
@@ -315,7 +315,7 @@ class _$GCreateCommunityData_createCommunity
           ..add('G__typename', G__typename)
           ..add('G_id', G_id)
           ..add('name', name)
-          ..add('icon', icon))
+          ..add('purpose', purpose))
         .toString();
   }
 }
@@ -338,9 +338,9 @@ class GCreateCommunityData_createCommunityBuilder
   String? get name => _$this._name;
   set name(String? name) => _$this._name = name;
 
-  String? _icon;
-  String? get icon => _$this._icon;
-  set icon(String? icon) => _$this._icon = icon;
+  String? _purpose;
+  String? get purpose => _$this._purpose;
+  set purpose(String? purpose) => _$this._purpose = purpose;
 
   GCreateCommunityData_createCommunityBuilder() {
     GCreateCommunityData_createCommunity._initializeBuilder(this);
@@ -352,7 +352,7 @@ class GCreateCommunityData_createCommunityBuilder
       _G__typename = $v.G__typename;
       _G_id = $v.G_id;
       _name = $v.name;
-      _icon = $v.icon;
+      _purpose = $v.purpose;
       _$v = null;
     }
     return this;
@@ -380,7 +380,7 @@ class GCreateCommunityData_createCommunityBuilder
                 G_id, 'GCreateCommunityData_createCommunity', 'G_id'),
             name: BuiltValueNullFieldError.checkNotNull(
                 name, 'GCreateCommunityData_createCommunity', 'name'),
-            icon: icon);
+            purpose: purpose);
     replace(_$result);
     return _$result;
   }

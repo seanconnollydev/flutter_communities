@@ -8,8 +8,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 class PostCard extends ConsumerWidget {
   final GPostFragment _post;
   final String _communityId;
+  final bool enableTap;
 
-  const PostCard(this._post, this._communityId, {Key? key}) : super(key: key);
+  const PostCard(this._post, this._communityId,
+      {Key? key, this.enableTap = true})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context, ref) {
@@ -18,21 +21,16 @@ class PostCard extends ConsumerWidget {
     return Card(
       elevation: 4,
       child: InkWell(
-        child: Container(
-          padding: const EdgeInsets.all(16),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                _post.creator.username,
-                style: theme.textTheme.subtitle1?.copyWith(fontSize: 12),
-              ),
-              Container(
-                margin: EdgeInsets.symmetric(vertical: 8),
-                child: Text(
-                  _post.title,
-                  style: theme.textTheme.bodyText1?.copyWith(fontSize: 16),
+          child: Container(
+            padding: const EdgeInsets.all(16),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  _post.creator.username,
+                  style: theme.textTheme.subtitle1?.copyWith(fontSize: 12),
                 ),
+<<<<<<< HEAD
               ),
               Container(
                 decoration:
@@ -57,22 +55,57 @@ class PostCard extends ConsumerWidget {
                           _handlePostVote(context, ref, GPostVoteType.DownVote),
                       icon: Icon(
                         Icons.arrow_downward,
-                      ),
-                    ),
-                  ],
+=======
+                Container(
+                  margin: EdgeInsets.symmetric(vertical: 8),
+                  child: Text(
+                    _post.title,
+                    style: theme.textTheme.bodyText1?.copyWith(fontSize: 16),
+                  ),
                 ),
-              ),
-            ],
+                Container(
+                  decoration:
+                      BoxDecoration(border: Border.all(color: Colors.grey)),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      IconButton(
+                        iconSize: 12,
+                        constraints: BoxConstraints(),
+                        onPressed: () =>
+                            _handlePostVote(context, ref, GPostVoteType.UpVote),
+                        icon: Icon(
+                          Icons.arrow_upward,
+                        ),
+                      ),
+                      Text('${_post.upVotes - _post.downVotes}'),
+                      IconButton(
+                        iconSize: 12,
+                        constraints: BoxConstraints(),
+                        onPressed: () => _handlePostVote(
+                            context, ref, GPostVoteType.DownVote),
+                        icon: Icon(
+                          Icons.arrow_downward,
+                        ),
+>>>>>>> 12-final
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ),
-        ),
-        onTap: () => Navigator.of(context).pushNamed(
-          PostScreen.routeName,
-          arguments: PostScreenArguments(
-            postId: _post.G_id,
-            communityId: _communityId,
-          ),
-        ),
-      ),
+          onTap: enableTap
+              ? () {
+                  Navigator.of(context).pushNamed(
+                    PostScreen.routeName,
+                    arguments: PostScreenArguments(
+                      postId: _post.G_id,
+                      communityId: _communityId,
+                    ),
+                  );
+                }
+              : null),
     );
   }
 

@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_communities/graphql/update_user.req.gql.dart';
 import 'package:flutter_communities/models/user.dart';
 import 'package:flutter_communities/providers/community_repository.dart';
-import 'package:flutter_communities/widgets/query_stream.dart';
+import 'package:flutter_communities/providers/ferry.dart';
+import 'package:flutter_communities/widgets/icon_selector.dart';
+import 'package:flutter_communities/widgets/query_stream_builder.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class EditProfileScreen extends ConsumerWidget {
@@ -11,22 +14,23 @@ class EditProfileScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, ref) {
+<<<<<<< HEAD
     final repository = ref.watch(communityRepositoryProvider);
+=======
+    final communityRepository = ref.watch(communityRepositoryProvider);
+>>>>>>> 12-final
 
-    return QueryStream<User?>(
-        stream: repository.getViewer(),
-        builder: (context, user, _) {
+    return QueryStreamBuilder<User?>(
+        stream: communityRepository.getViewer(),
+        builder: (
+          context,
+          user,
+          _,
+        ) {
           return Scaffold(
             appBar: AppBar(
               title: Text(user?.username ?? ''),
-              actions: [
-                IconButton(
-                    onPressed: () {
-                      Navigator.of(context)
-                          .pushNamed(EditProfileScreen.routeName);
-                    },
-                    icon: Icon(Icons.edit))
-              ],
+              actions: [IconButton(onPressed: () {}, icon: Icon(Icons.edit))],
             ),
             body: Padding(
               padding: EdgeInsets.all(16),
@@ -47,6 +51,7 @@ class UserForm extends ConsumerStatefulWidget {
 
 class _UserFormState extends ConsumerState<UserForm> {
   late String? username;
+  String? avatar;
   final _formKey = GlobalKey<FormState>();
 
   @override
@@ -58,9 +63,20 @@ class _UserFormState extends ConsumerState<UserForm> {
   void _save() async {
     _formKey.currentState?.save();
 
+<<<<<<< HEAD
     final repository = ref.read(communityRepositoryProvider);
+=======
+    final client = ref.read(ferryClientProvider);
+>>>>>>> 12-final
 
-    await repository.updateUser(widget.user.id, username: username).first;
+    await client
+        .request(GUpdateUserReq(
+          (b) => b
+            ..vars.id = widget.user.id
+            ..vars.data.username = username
+            ..vars.data.avatar = avatar,
+        ))
+        .first;
     Navigator.of(context).pop();
   }
 
@@ -70,6 +86,9 @@ class _UserFormState extends ConsumerState<UserForm> {
       key: _formKey,
       child: Column(
         children: [
+          IconSelector(onSaved: (val) {
+            avatar = val;
+          }),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 8.0),
             child: Text('username'),

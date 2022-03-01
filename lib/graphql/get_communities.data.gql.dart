@@ -3,8 +3,6 @@
 import 'package:built_collection/built_collection.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:flutter_communities/graphql/community_fragment.data.gql.dart'
-    as _i2;
 import 'package:flutter_communities/graphql/serializers.gql.dart' as _i1;
 
 part 'get_communities.data.gql.g.dart';
@@ -58,8 +56,7 @@ abstract class GGetCommunitiesData_communities
 abstract class GGetCommunitiesData_communities_data
     implements
         Built<GGetCommunitiesData_communities_data,
-            GGetCommunitiesData_communities_dataBuilder>,
-        _i2.GCommunityFragment {
+            GGetCommunitiesData_communities_dataBuilder> {
   GGetCommunitiesData_communities_data._();
 
   factory GGetCommunitiesData_communities_data(

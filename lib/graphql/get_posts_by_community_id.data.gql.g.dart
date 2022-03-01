@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'get_community_with_posts.data.gql.dart';
+part of 'get_posts_by_community_id.data.gql.dart';
 
 // **************************************************************************
 // BuiltValueGenerator

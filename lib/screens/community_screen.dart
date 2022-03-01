@@ -1,38 +1,34 @@
-import 'package:ferry/ferry.dart';
+import 'dart:async';
+
 import 'package:flutter/material.dart';
-import 'package:flutter_communities/graphql/get_community_with_posts.data.gql.dart';
-import 'package:flutter_communities/graphql/get_community_with_posts.req.gql.dart';
-import 'package:flutter_communities/graphql/get_community_with_posts.var.gql.dart';
 import 'package:flutter_communities/graphql/post_fragment.data.gql.dart';
-import 'package:flutter_communities/providers/ferry.dart';
-import 'package:flutter_communities/screens/create_post_screen.dart';
+import 'package:flutter_communities/providers/community_repository.dart';
 import 'package:flutter_communities/widgets/community_app_bar.dart';
 import 'package:flutter_communities/widgets/post_card.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
-typedef GetCommunityResponse = OperationResponse<GGetPostsByCommunityIdData,
-    GGetPostsByCommunityIdVars>?;
+import 'create_post_screen.dart';
 
 class CommunityScreen extends ConsumerStatefulWidget {
   static const routeName = '/community';
 
   final String _communityId;
-
   const CommunityScreen(this._communityId, {Key? key}) : super(key: key);
 
   @override
-  _CommunityScreenState createState() => _CommunityScreenState();
+  ConsumerState<CommunityScreen> createState() => _CommunityScreenState();
 }
 
 class _CommunityScreenState extends ConsumerState<CommunityScreen> {
   final PagingController<String?, GPostFragment> _pagingController =
       PagingController(firstPageKey: null);
-  late Client client;
-  late GGetPostsByCommunityIdReq _request;
+  late CommunityRepository _communityRepository;
+  StreamSubscription? _streamSubscription;
 
   @override
   void initState() {
+<<<<<<< HEAD
     client = ref.read(ferryClientProvider);
 
     _request = GGetPostsByCommunityIdReq((b) => b
@@ -61,13 +57,25 @@ class _CommunityScreenState extends ConsumerState<CommunityScreen> {
         client.requestController.add(nextReq);
       }
     });
+=======
+    _communityRepository = ref.read(communityRepositoryProvider);
+>>>>>>> 12-final
 
-    client.request(_request).listen((event) {
+    _streamSubscription = _communityRepository
+        .getPostsByCommunityId(widget._communityId)
+        .listen((event) {
       _pagingController.value = PagingState(
         nextPageKey: event.data?.getPostsByCommunityId.after,
         error: event.graphqlErrors,
         itemList: event.data?.getPostsByCommunityId.data.toList(),
       );
+    });
+
+    _pagingController.addPageRequestListener((pageKey) {
+      if (pageKey != null) {
+        _communityRepository.getMorePostsByCommunityId(
+            widget._communityId, pageKey);
+      }
     });
 
     super.initState();
@@ -100,5 +108,12 @@ class _CommunityScreenState extends ConsumerState<CommunityScreen> {
         },
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    _pagingController.dispose();
+    _streamSubscription?.cancel();
+    super.dispose();
   }
 }

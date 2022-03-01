@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_communities/cache_handlers.dart';
 import 'package:flutter_communities/graphql/create_community.req.gql.dart';
 import 'package:flutter_communities/providers/ferry.dart';
-import 'package:flutter_communities/widgets/icon_selector.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+<<<<<<< HEAD
 import 'home_screen.dart';
 
+=======
+>>>>>>> 12-final
 class CreateCommunityScreen extends ConsumerStatefulWidget {
   static const routeName = '/create-community';
 
@@ -20,7 +22,6 @@ class _CreateCommunityScreenState extends ConsumerState<CreateCommunityScreen> {
   final _formKey = GlobalKey<FormState>();
   String? _name;
   String? _purpose;
-  String? _icon;
 
   void _save() async {
     _formKey.currentState?.save();
@@ -31,15 +32,12 @@ class _CreateCommunityScreenState extends ConsumerState<CreateCommunityScreen> {
       (b) => b
         ..vars.data.name = _name
         ..vars.data.purpose = _purpose
-        ..vars.data.icon = _icon
         ..updateCacheHandlerKey =
             CacheHandlers.key(CacheHandler.createCommunityHandler),
     );
 
     await client.request(request).first;
-
-    Navigator.of(context)
-        .pushNamedAndRemoveUntil(HomeScreen.routeName, (_) => false);
+    Navigator.of(context).pop();
   }
 
   @override
@@ -54,9 +52,6 @@ class _CreateCommunityScreenState extends ConsumerState<CreateCommunityScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              IconSelector(
-                onSaved: (icon) => _icon = icon,
-              ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16),
                 child: TextFormField(

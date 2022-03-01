@@ -7,10 +7,6 @@ part of 'serializers.gql.dart';
 // **************************************************************************
 
 Serializers _$serializers = (new Serializers().toBuilder()
-      ..add(GCommunityCreatorRelation.serializer)
-      ..add(GCommunityFragmentData.serializer)
-      ..add(GCommunityFragmentReq.serializer)
-      ..add(GCommunityFragmentVars.serializer)
       ..add(GCommunityInput.serializer)
       ..add(GCommunityPostsRelation.serializer)
       ..add(GCreateCommunityData.serializer)
@@ -99,32 +95,16 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(GPostVoteType.serializer)
       ..add(GPostVoteUserRelation.serializer)
       ..add(GPostVotesRelation.serializer)
-      ..add(GThrowsErrorData.serializer)
-      ..add(GThrowsErrorData_throwsError.serializer)
-      ..add(GThrowsErrorReq.serializer)
-      ..add(GThrowsErrorVars.serializer)
       ..add(GTime.serializer)
       ..add(GUpdateUserData.serializer)
       ..add(GUpdateUserData_updateUser.serializer)
       ..add(GUpdateUserReq.serializer)
       ..add(GUpdateUserVars.serializer)
-      ..add(GUserCommunitiesRelation.serializer)
       ..add(GUserFragmentData.serializer)
       ..add(GUserFragmentReq.serializer)
       ..add(GUserFragmentVars.serializer)
       ..add(GUserInput.serializer)
-      ..add(GUserPost_commentsRelation.serializer)
-      ..add(GUserPost_votesRelation.serializer)
       ..add(GUserPostsRelation.serializer)
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(GCommunityInput)]),
-          () => new ListBuilder<GCommunityInput>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(String)]),
-          () => new ListBuilder<String>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(String)]),
-          () => new ListBuilder<String>())
       ..addBuilderFactory(
           const FullType(BuiltList,
               const [const FullType(GGetCommunitiesData_communities_data)]),
@@ -136,12 +116,15 @@ Serializers _$serializers = (new Serializers().toBuilder()
           () => new ListBuilder<
               GGetPostCommentsData_getPostCommentsByPostId_data>())
       ..addBuilderFactory(
-          const FullType(BuiltList,
-              const [const FullType(GGetPostData_getPostCommentsByPostId_data)]),
+          const FullType(BuiltList, const [
+            const FullType(GGetPostData_getPostCommentsByPostId_data)
+          ]),
           () => new ListBuilder<GGetPostData_getPostCommentsByPostId_data>())
       ..addBuilderFactory(
-          const FullType(BuiltList,
-              const [const FullType(GGetPostsByCommunityIdData_getPostsByCommunityId_data)]),
+          const FullType(BuiltList, const [
+            const FullType(
+                GGetPostsByCommunityIdData_getPostsByCommunityId_data)
+          ]),
           () => new ListBuilder<
               GGetPostsByCommunityIdData_getPostsByCommunityId_data>())
       ..addBuilderFactory(
@@ -154,15 +137,6 @@ Serializers _$serializers = (new Serializers().toBuilder()
           const FullType(BuiltList, const [const FullType(String)]),
           () => new ListBuilder<String>())
       ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(GPostCommentInput)]),
-          () => new ListBuilder<GPostCommentInput>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(String)]),
-          () => new ListBuilder<String>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(String)]),
-          () => new ListBuilder<String>())
-      ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(GPostInput)]),
           () => new ListBuilder<GPostInput>())
       ..addBuilderFactory(
@@ -188,12 +162,7 @@ Serializers _$serializers = (new Serializers().toBuilder()
           () => new ListBuilder<String>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(String)]),
-          () => new ListBuilder<String>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(GPostVoteInput)]),
-          () => new ListBuilder<GPostVoteInput>())
-      ..addBuilderFactory(const FullType(BuiltList, const [const FullType(String)]), () => new ListBuilder<String>())
-      ..addBuilderFactory(const FullType(BuiltList, const [const FullType(String)]), () => new ListBuilder<String>()))
+          () => new ListBuilder<String>()))
     .build();
 
 // ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,lines_longer_than_80_chars,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new

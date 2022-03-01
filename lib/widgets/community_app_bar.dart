@@ -1,7 +1,10 @@
+import 'package:ferry/ferry.dart';
+import 'package:ferry_flutter/ferry_flutter.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_communities/models/community.dart';
-import 'package:flutter_communities/providers/community_repository.dart';
-import 'package:flutter_communities/widgets/query_stream.dart';
+import 'package:flutter_communities/graphql/get_community.data.gql.dart';
+import 'package:flutter_communities/graphql/get_community.req.gql.dart';
+import 'package:flutter_communities/graphql/get_community.var.gql.dart';
+import 'package:flutter_communities/providers/ferry.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class CommunityAppBar extends ConsumerWidget with PreferredSizeWidget {
@@ -13,23 +16,24 @@ class CommunityAppBar extends ConsumerWidget with PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context, ref) {
+<<<<<<< HEAD
     final repository = ref.watch(communityRepositoryProvider);
+=======
+    final client = ref.watch(ferryClientProvider);
+>>>>>>> 12-final
 
-    return QueryStream<Community?>(
-      stream: repository.getCommunity(_communityId),
-      builder: (
-        context,
-        community,
-        error,
-      ) {
-        final communityName = community?.name;
-        final icon = community?.icon;
-        final title = communityName != null ? '$icon $communityName' : '';
-
-        return AppBar(
-          title: Text(title),
-        );
-      },
-    );
+    return Operation(
+        operationRequest: GGetCommunityReq((b) => b..vars.id = _communityId),
+        builder: (
+          context,
+          OperationResponse<GGetCommunityData, GGetCommunityVars>? resp,
+          err,
+        ) {
+          final communityName = resp?.data?.findCommunityByID?.name;
+          return AppBar(
+            title: Text(communityName ?? ''),
+          );
+        },
+        client: client);
   }
 }

@@ -17,7 +17,7 @@ abstract class GLoginUserData
       b..G__typename = 'Mutation';
   @BuiltValueField(wireName: '__typename')
   String get G__typename;
-  String get loginUser;
+  String get login;
   static Serializer<GLoginUserData> get serializer =>
       _$gLoginUserDataSerializer;
   Map<String, dynamic> toJson() =>

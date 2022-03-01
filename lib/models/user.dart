@@ -12,8 +12,9 @@ class User {
 
   static User fromUserFragment(GUserFragment userFragment) {
     return User(
-        id: userFragment.G_id,
-        username: userFragment.username,
-        avatar: userFragment.avatar);
+      id: userFragment.G_id,
+      username: userFragment.username,
+      avatar: userFragment.avatar,
+    );
   }
 }

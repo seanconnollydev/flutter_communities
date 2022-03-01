@@ -3,16 +3,16 @@
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 import 'package:ferry_exec/ferry_exec.dart' as _i1;
-import 'package:flutter_communities/graphql/get_community_with_posts.ast.gql.dart'
+import 'package:flutter_communities/graphql/get_posts_by_community_id.ast.gql.dart'
     as _i5;
-import 'package:flutter_communities/graphql/get_community_with_posts.data.gql.dart'
+import 'package:flutter_communities/graphql/get_posts_by_community_id.data.gql.dart'
     as _i2;
-import 'package:flutter_communities/graphql/get_community_with_posts.var.gql.dart'
+import 'package:flutter_communities/graphql/get_posts_by_community_id.var.gql.dart'
     as _i3;
 import 'package:flutter_communities/graphql/serializers.gql.dart' as _i6;
 import 'package:gql_exec/gql_exec.dart' as _i4;
 
-part 'get_community_with_posts.req.gql.g.dart';
+part 'get_posts_by_community_id.req.gql.g.dart';
 
 abstract class GGetPostsByCommunityIdReq
     implements
