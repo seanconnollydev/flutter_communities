@@ -9,7 +9,17 @@ A comprehensive online course for Flutter developers who want to build amazing a
 The course is organized into different sections. If you want to jump ahead to a section or you just want to make sure you are starting from a good spot, it may be helpful to use the branches provided.
 
 - [1-start](https://github.com/seanconnollydev/flutter_communities/tree/1-start)
-- [2-registration](/tree/2-registration)
+- [2-registration](https://github.com/seanconnollydev/flutter_communities/tree/2-registration)
+- [3-login](https://github.com/seanconnollydev/flutter_communities/tree/3-login)
+- [4-logout](https://github.com/seanconnollydev/flutter_communities/tree/4-logout)
+- [5-auth-state](https://github.com/seanconnollydev/flutter_communities/tree/5-auth-state)
+- [6-community-list](https://github.com/seanconnollydev/flutter_communities/tree/6-community-list)
+- [7-community-screen](https://github.com/seanconnollydev/flutter_communities/tree/7-community-screen)
+- [8-create-community](https://github.com/seanconnollydev/flutter_communities/tree/8-create-community)
+- [9-user-profile](https://github.com/seanconnollydev/flutter_communities/tree/9-user-profile)
+- [10-user-avatar](https://github.com/seanconnollydev/flutter_communities/tree/10-user-avatar)
+- [11-posts](https://github.com/seanconnollydev/flutter_communities/tree/11-posts)
+- [12-final](https://github.com/seanconnollydev/flutter_communities/tree/12-final)
 
 # Get started
 In a terminal:
