@@ -5,10 +5,19 @@ A comprehensive online course for Flutter developers who want to build amazing a
   </strong>
 </div>
 
+# How to use this repository
+The course is organized into different sections. If you want to jump ahead to a section or you just want to make sure you are starting from a good spot, it may be helpful to use the branches provided.
+
+- [1-start](/tree/1-start)
+- [2-registration](/tree/2-registration)
+
 # Usage
 
 Generate GraphQL types:
 ```bash
+flutter pub run build_runner build --delete-conflicting-outputs
+
+# Or if you use FVM
 fvm flutter pub run build_runner build --delete-conflicting-outputs
 ```
 
