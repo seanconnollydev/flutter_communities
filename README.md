@@ -3,6 +3,8 @@
   <strong>
 A comprehensive online course for Flutter developers who want to build amazing apps with Flutter and GraphQL.
   </strong>
+  <br /><br />
+  <div>Get the course: <a href="https://seanconnolly.dev./flutter-graphql">GraphQL for Flutter Developers</a></div>
 </div>
 
 # How to use this repository
