@@ -1,12 +1,18 @@
 <div>
-  <h1 align="center"><a href="https://seanconnolly.dev/flutter-graphql">GraphQL for Flutter Developers 🚀 The Course</a></h1>
+  <h1><a href="https://seanconnolly.dev/flutter-graphql">GraphQL for Flutter Developers 🚀 The Course</a></h1>
   <strong>
 A comprehensive online course for Flutter developers who want to build amazing apps with Flutter and GraphQL.
   </strong>
+  <br /><br />
+  <div>Get the course: <a href="https://seanconnolly.dev./flutter-graphql">GraphQL for Flutter Developers</a></div>
 </div>
 
 # How to use this repository
 The course is organized into different sections. If you want to jump ahead to a section or you just want to make sure you are starting from a good spot, it may be helpful to use the branches provided.
+
+These branches are also mentioned in the description of each video.
+
+![Screen Shot 2022-03-01 at 8 36 09 AM](https://user-images.githubusercontent.com/2985457/156201075-c29f95f0-5ab2-45e7-af28-69a24342d9f1.png)
 
 - [1-start](https://github.com/seanconnollydev/flutter_communities/tree/1-start)
 - [2-registration](https://github.com/seanconnollydev/flutter_communities/tree/2-registration)
