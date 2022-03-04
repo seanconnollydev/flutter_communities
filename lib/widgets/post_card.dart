@@ -30,32 +30,6 @@ class PostCard extends ConsumerWidget {
                   _post.creator.username,
                   style: theme.textTheme.subtitle1?.copyWith(fontSize: 12),
                 ),
-<<<<<<< HEAD
-              ),
-              Container(
-                decoration:
-                    BoxDecoration(border: Border.all(color: Colors.grey)),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    IconButton(
-                      iconSize: 12,
-                      constraints: BoxConstraints(),
-                      onPressed: () =>
-                          _handlePostVote(context, ref, GPostVoteType.UpVote),
-                      icon: Icon(
-                        Icons.arrow_upward,
-                      ),
-                    ),
-                    Text('${_post.upVotes - _post.downVotes}'),
-                    IconButton(
-                      iconSize: 12,
-                      constraints: BoxConstraints(),
-                      onPressed: () =>
-                          _handlePostVote(context, ref, GPostVoteType.DownVote),
-                      icon: Icon(
-                        Icons.arrow_downward,
-=======
                 Container(
                   margin: EdgeInsets.symmetric(vertical: 8),
                   child: Text(
@@ -87,7 +61,6 @@ class PostCard extends ConsumerWidget {
                         icon: Icon(
                           Icons.arrow_downward,
                         ),
->>>>>>> 12-final
                       ),
                     ],
                   ),

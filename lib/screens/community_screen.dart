@@ -28,38 +28,7 @@ class _CommunityScreenState extends ConsumerState<CommunityScreen> {
 
   @override
   void initState() {
-<<<<<<< HEAD
-    client = ref.read(ferryClientProvider);
-
-    _request = GGetPostsByCommunityIdReq((b) => b
-      ..requestId = 'GGetPostsByCommunityIdReq'
-      ..vars.id = widget._communityId
-      ..vars.size = 10);
-
-    _pagingController.addPageRequestListener((pageKey) {
-      if (pageKey != null) {
-        final nextReq = _request.rebuild((b) => b
-          ..vars.cursor = pageKey
-          ..updateResult = (previous, result) {
-            if (previous != null && result != null) {
-              return previous.rebuild((b) => b
-                ..getPostsByCommunityId.after =
-                    result.getPostsByCommunityId.after
-                ..getPostsByCommunityId.before =
-                    result.getPostsByCommunityId.before
-                ..getPostsByCommunityId
-                    .data
-                    .addAll(result.getPostsByCommunityId.data));
-            }
-            return result;
-          });
-
-        client.requestController.add(nextReq);
-      }
-    });
-=======
     _communityRepository = ref.read(communityRepositoryProvider);
->>>>>>> 12-final
 
     _streamSubscription = _communityRepository
         .getPostsByCommunityId(widget._communityId)

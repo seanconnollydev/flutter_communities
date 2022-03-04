@@ -169,11 +169,7 @@ class _AddCommentDialogState extends ConsumerState<_AddCommentDialog> {
         controller: textController,
         onSubmitted: (value) async {
           final repository = ref.read(communityRepositoryProvider);
-<<<<<<< HEAD
-          await repository.createPostComment(widget._postId, value).first;
-=======
           await repository.createPostComment(widget._postId, value);
->>>>>>> 12-final
           Navigator.of(context).pop();
         },
       ),

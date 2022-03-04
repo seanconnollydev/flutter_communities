@@ -23,11 +23,7 @@ class _RegistrationScreenState extends ConsumerState<RegistrationScreen> {
   void _save() async {
     _formKey.currentState?.save();
 
-<<<<<<< HEAD
-    final client = ref.read(ferryClientProvider);
-=======
     final communityRepository = ref.read(communityRepositoryProvider);
->>>>>>> 12-final
 
     final token = await communityRepository
         .createUser(

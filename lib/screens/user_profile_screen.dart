@@ -13,11 +13,7 @@ class UserProfileScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, ref) {
-<<<<<<< HEAD
-    final repository = ref.watch(communityRepositoryProvider);
-=======
     final communityRepository = ref.watch(communityRepositoryProvider);
->>>>>>> 12-final
 
     return QueryStreamBuilder<User?>(
         stream: communityRepository.getViewer(),

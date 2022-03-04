@@ -16,11 +16,7 @@ class CommunityAppBar extends ConsumerWidget with PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context, ref) {
-<<<<<<< HEAD
-    final repository = ref.watch(communityRepositoryProvider);
-=======
     final client = ref.watch(ferryClientProvider);
->>>>>>> 12-final
 
     return Operation(
         operationRequest: GGetCommunityReq((b) => b..vars.id = _communityId),

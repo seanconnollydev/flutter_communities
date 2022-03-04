@@ -4,11 +4,6 @@ import 'package:flutter_communities/graphql/create_community.req.gql.dart';
 import 'package:flutter_communities/providers/ferry.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-<<<<<<< HEAD
-import 'home_screen.dart';
-
-=======
->>>>>>> 12-final
 class CreateCommunityScreen extends ConsumerStatefulWidget {
   static const routeName = '/create-community';
 

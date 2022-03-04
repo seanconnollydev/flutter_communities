@@ -14,32 +14,6 @@ class UserAppBar extends ConsumerWidget with PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context, ref) {
-<<<<<<< HEAD
-    final repository = ref.watch(communityRepositoryProvider);
-
-    return QueryStream<User?>(
-        stream: repository.getViewer(),
-        showLoadingState: false,
-        builder: (
-          context,
-          user,
-          error,
-        ) {
-          return AppBar(
-            title: Text('Flutter Communities'),
-            actions: [
-              if (user != null)
-                GestureDetector(
-                  child: CircleAvatar(
-                    child: Text(user.avatar),
-                    backgroundColor: Theme.of(context).backgroundColor,
-                  ),
-                  onTap: () => _handleTap(context, ref),
-                )
-            ],
-          );
-        });
-=======
     final communityRepository = ref.watch(communityRepositoryProvider);
 
     return QueryStreamBuilder<User?>(
@@ -64,7 +38,6 @@ class UserAppBar extends ConsumerWidget with PreferredSizeWidget {
         );
       },
     );
->>>>>>> 12-final
   }
 
   void _handleTap(BuildContext context, WidgetRef ref) {

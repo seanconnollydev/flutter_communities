@@ -92,9 +92,6 @@ class _CommunityList extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, ref) {
-<<<<<<< HEAD
-    final repository = ref.watch(communityRepositoryProvider);
-=======
     final client = ref.watch(ferryClientProvider);
 
     return Operation(
@@ -109,7 +106,6 @@ class _CommunityList extends ConsumerWidget {
           return Center(child: CircularProgressIndicator());
 
         final communities = response?.data?.communities.data;
->>>>>>> 12-final
 
         if (communities != null && communities.isEmpty == false) {
           return ListView.separated(

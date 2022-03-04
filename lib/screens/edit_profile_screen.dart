@@ -14,11 +14,7 @@ class EditProfileScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, ref) {
-<<<<<<< HEAD
-    final repository = ref.watch(communityRepositoryProvider);
-=======
     final communityRepository = ref.watch(communityRepositoryProvider);
->>>>>>> 12-final
 
     return QueryStreamBuilder<User?>(
         stream: communityRepository.getViewer(),
@@ -63,11 +59,7 @@ class _UserFormState extends ConsumerState<UserForm> {
   void _save() async {
     _formKey.currentState?.save();
 
-<<<<<<< HEAD
-    final repository = ref.read(communityRepositoryProvider);
-=======
     final client = ref.read(ferryClientProvider);
->>>>>>> 12-final
 
     await client
         .request(GUpdateUserReq(
