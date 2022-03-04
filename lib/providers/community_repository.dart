@@ -62,7 +62,7 @@ class CommunityRepository {
   }) {
     final stream = _client.request(request);
 
-    stream.listen((resp) {
+    return stream.map((resp) {
       final errorString = StringBuffer();
 
       if (resp.graphqlErrors?.isNotEmpty == true) {
@@ -84,8 +84,8 @@ class CommunityRepository {
       if (errorString.isNotEmpty) {
         print(errorString.toString());
       }
-    });
 
-    return stream;
+      return resp;
+    });
   }
 }
